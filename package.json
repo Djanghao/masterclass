@@ -1,0 +1,20 @@
+{
+  "name": "masterclass",
+  "version": "0.5.0",
+  "type": "module",
+  "description": "AI-driven tutoring and interview preparation system",
+  "scripts": {
+    "install:mc": "tsx tools/install.ts"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.0",
+    "@llamaindex/openai": "^0.4.22",
+    "llamaindex": "^0.12.1",
+    "yaml": "^2.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

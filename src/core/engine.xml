@@ -1,0 +1,105 @@
+<engine>
+  <!--
+    MasterClass Workflow Engine v0.5
+    All workflows MUST load and internalize these rules before executing any step.
+  -->
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       1. FILE-AS-STATE: Progress Detection
+       ════════════════════════════════════════════════════════════════════ -->
+  <file-as-state>
+    <rule id="has-content">File has content → previously started → ask user where to resume</rule>
+    <rule id="empty-file">File exists but empty → not started → begin from step 1</rule>
+    <rule id="no-file">File does not exist → not planned → suggest running upstream workflow</rule>
+    <rule id="no-markers">NEVER use state markers, frontmatter status, or external state files. All progress is determined by reading actual file content.</rule>
+    <rule id="resume-detection">When resuming, read the file content, identify completed sections by their headings, and ask the user which section to continue from.</rule>
+  </file-as-state>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       2. READ-WRITE BOUNDARIES
+       ════════════════════════════════════════════════════════════════════ -->
+  <read-write-boundaries>
+    <rule id="js-readonly">JS action scripts only perform initialization and read-only operations. They NEVER modify existing file content.</rule>
+    <rule id="llm-writes">All content writing and modification is done by the LLM directly (via tool calls).</rule>
+    <rule id="no-overwrite">Never overwrite existing content without explicit user confirmation.</rule>
+    <rule id="mkdir-touch">Directory creation (mkdir -p) and empty file creation (touch) are done by the LLM via shell commands.</rule>
+    <rule id="source-readonly">Files in interview/*/source/ are read-only after being copied by problem-copy.js.</rule>
+  </read-write-boundaries>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       3. MENU SYSTEMS
+       ════════════════════════════════════════════════════════════════════ -->
+  <menu-system>
+    <teaching-menu context="tutor-workflows: lesson-teach">
+      <option key="C">Complete — continue to next section</option>
+      <option key="D">Deep dive — go deeper on current topic</option>
+      <option key="W">Write — distill current dialogue into document</option>
+      <option key="E">Elicitation — trigger guided exploration subflow</option>
+      <option key="O">Other — free conversation</option>
+    </teaching-menu>
+
+    <interview-menu context="interviewer-workflows: interview-run">
+      <option key="C">Continue — proceed to next phase</option>
+      <option key="H">Hint — give me a hint (do NOT give the answer)</option>
+      <option key="F">Finished — I am done with this part</option>
+      <option key="E">Elicitation — trigger guided exploration subflow</option>
+    </interview-menu>
+
+    <menu-rules>
+      <rule>Always display the relevant menu after completing a section or action.</rule>
+      <rule>Wait for user input before proceeding. Never auto-advance.</rule>
+      <rule>Menu keys are case-insensitive. Accept both 'c' and 'C'.</rule>
+    </menu-rules>
+  </menu-system>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       4. WRITE [W] BEHAVIOR
+       ════════════════════════════════════════════════════════════════════ -->
+  <write-behavior>
+    <rule id="always-available">[W] is available at any point during teaching and interview workflows.</rule>
+    <rule id="target-contextual">
+      Write target depends on context:
+      - During lesson-teach → lesson.md (teaching essence) or practice.md (exercises)
+      - During interview-run → interview.md (interview record and evaluation)
+    </rule>
+    <rule id="quality-distill">Written content is a high-quality distillation of the dialogue, NOT a conversation transcript. Organize by topic, use clear headings, include key insights and examples.</rule>
+    <rule id="resume-after-write">After writing, return to the current workflow step and redisplay the menu.</rule>
+    <rule id="append-not-replace">Append new content to existing file content. Never replace what was previously written unless user explicitly asks.</rule>
+  </write-behavior>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       5. LANGUAGE RULES
+       ════════════════════════════════════════════════════════════════════ -->
+  <language-rules>
+    <rule id="speak">Speak to user in {communication_language} (from config.yaml).</rule>
+    <rule id="documents">Write documents in {document_output_language} (from config.yaml).</rule>
+    <rule id="interview">Conduct interviews in {interviewer_language} (from config.yaml).</rule>
+    <rule id="code-comments">Code examples and comments follow the document output language.</rule>
+  </language-rules>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       6. LEARNING CONTEXT AUTO-UPDATE
+       ════════════════════════════════════════════════════════════════════ -->
+  <context-update>
+    <rule id="detect">During any workflow, when you discover important learner information (weak areas, strengths, preferences, background changes, learning breakthroughs), proactively prompt:
+      "This seems important — update your learning profile?"</rule>
+    <rule id="confirm">Only update docs/progress/learning-context.md after user confirms.</rule>
+    <rule id="append-context">Append new observations. Preserve and refine existing entries.</rule>
+  </context-update>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       7. WORKFLOW EXECUTION RULES
+       ════════════════════════════════════════════════════════════════════ -->
+  <workflow-execution>
+    <rule id="load-order">Every workflow MUST follow this initialization sequence:
+      1. Read and internalize this engine.xml
+      2. Read .masterclass/config/config.yaml (or use config-read.js output)
+      3. Read docs/progress/learning-context.md
+      4. Execute workflow.md instructions
+    </rule>
+    <rule id="step-sequence">Execute steps in strict sequential order. Never skip steps. Never load future steps prematurely.</rule>
+    <rule id="one-step-at-a-time">Read one step file fully, execute it completely, then move to the next.</rule>
+    <rule id="no-auto-generate">Never generate content without user input. This is collaborative facilitation.</rule>
+    <rule id="user-confirm">Always get user confirmation before writing files or creating structure.</rule>
+  </workflow-execution>
+</engine>

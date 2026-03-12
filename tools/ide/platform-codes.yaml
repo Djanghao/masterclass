@@ -1,0 +1,10 @@
+claude-code:
+  name: "Claude Code"
+  target_dir: ".claude/skills"
+  template_type: "default"
+  skill_format: true
+  filename: "SKILL.md"
+
+# Additional IDEs can be added here later.
+# Each entry needs: name, target_dir, template_type, skill_format, filename.
+# Add a matching template file in tools/ide/templates/{template_type}-workflow.md

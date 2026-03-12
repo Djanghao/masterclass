@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "tools/actions",
+    "outDir": ".masterclass/actions",
+    "noEmit": false,
+    "declaration": false
+  },
+  "include": ["tools/actions/**/*.ts"]
+}
