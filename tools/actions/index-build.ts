@@ -1,10 +1,10 @@
 /**
  * index-build.ts
  *
- * Scans the knowledge base and builds a LlamaIndex vector index.
- * Persists the index to data/index/ for use by index-search.ts.
+ * Scans the knowledge base and builds/updates a LlamaIndex vector index.
+ * First run: full build. Subsequent runs: incremental (only changed/new/deleted docs).
  *
- * Usage: npx tsx tools/actions/index-build.ts [--type=leetcode|books|notes|all]
+ * Usage: npx tsx tools/actions/index-build.ts [--type=leetcode|books|notes|all] [--rebuild]
  */
 
 import fs from 'node:fs';
@@ -55,6 +55,7 @@ function scanLeetcodeProblems(knowledgePath: string): Document[] {
 
       docs.push(new Document({
         text: content,
+        id_: relativePath,
         metadata: {
           category: category.name,
           difficulty,
@@ -98,11 +99,14 @@ function scanMarkdownDir(dir: string, type: string, docs: Document[]): void {
       const content = fs.readFileSync(fullPath, 'utf8');
       if (!content.trim()) continue;
 
+      const relativePath = path.relative(process.cwd(), fullPath);
+
       docs.push(new Document({
         text: content,
+        id_: relativePath,
         metadata: {
           type,
-          path: path.relative(process.cwd(), fullPath),
+          path: relativePath,
           name: entry.name.replace(/\.md$/, ''),
         },
       }));
@@ -113,6 +117,7 @@ function scanMarkdownDir(dir: string, type: string, docs: Document[]): void {
 async function main(): Promise<void> {
   const args = parseArgs();
   const type = args.type || 'all';
+  const rebuild = process.argv.includes('--rebuild');
 
   configureEmbeddings();
 
@@ -160,15 +165,62 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  console.error(`Building index for ${docs.length} documents...`);
-
   const persistDir = path.join(process.cwd(), 'data', 'index');
+
+  if (rebuild && fs.existsSync(persistDir)) {
+    fs.rmSync(persistDir, { recursive: true });
+    console.error('Removed old index (--rebuild)');
+  }
+
   fs.mkdirSync(persistDir, { recursive: true });
 
   const storageContext = await storageContextFromDefaults({ persistDir });
-  await VectorStoreIndex.fromDocuments(docs, { storageContext });
+  const hasExistingIndex = fs.existsSync(path.join(persistDir, 'doc_store.json'));
 
-  output({ success: true, documentsIndexed: docs.length, persistDir });
+  if (!hasExistingIndex) {
+    console.error(`Building index for ${docs.length} documents...`);
+    await VectorStoreIndex.fromDocuments(docs, { storageContext });
+    output({ success: true, mode: 'full', documentsIndexed: docs.length, persistDir });
+    return;
+  }
+
+  // Incremental update
+  console.error('Updating index incrementally...');
+  const index = await VectorStoreIndex.init({ storageContext });
+  const docStore = storageContext.docStore;
+
+  const existingRefs = await docStore.getAllRefDocInfo() ?? {};
+  const existingIds = new Set(Object.keys(existingRefs));
+  const currentIds = new Set(docs.map(d => d.id_));
+
+  let inserted = 0, updated = 0, deleted = 0, unchanged = 0;
+
+  for (const doc of docs) {
+    const existingHash = await docStore.getDocumentHash(doc.id_);
+    if (!existingHash) {
+      await index.insert(doc);
+      inserted++;
+    } else if (existingHash !== doc.hash) {
+      await index.deleteRefDoc(doc.id_, true);
+      await index.insert(doc);
+      updated++;
+    } else {
+      unchanged++;
+    }
+  }
+
+  // Delete docs no longer on disk (only when scanning all types)
+  if (type === 'all') {
+    for (const oldId of existingIds) {
+      if (!currentIds.has(oldId)) {
+        await index.deleteRefDoc(oldId, true);
+        deleted++;
+      }
+    }
+  }
+
+  console.error(`Inserted: ${inserted}, Updated: ${updated}, Deleted: ${deleted}, Unchanged: ${unchanged}`);
+  output({ success: true, mode: 'incremental', inserted, updated, deleted, unchanged, persistDir });
 }
 
 main().catch((err: Error) => {
