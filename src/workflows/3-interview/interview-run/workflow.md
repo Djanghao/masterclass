@@ -37,5 +37,5 @@ Check that `{interview_path}/source/` exists and has content (problem data).
 
 Does `{interview_path}/interview.md` have content?
 
-- **YES** → Read and follow: `steps/step-01-continue.md`
-- **NO** → Read and follow: `steps/step-01-problem.md`
+- **No** → Read and follow: `steps/step-01-interview.md`
+- **Yes** → Summarize progress, ask the user where to pick up, and route accordingly.

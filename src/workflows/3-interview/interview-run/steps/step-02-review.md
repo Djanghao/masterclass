@@ -1,10 +1,10 @@
 ---
-step: 3
+step: 2
 name: Structured Code Review
-next: step-04-followup.md
+next: step-03-followup.md
 ---
 
-# Step 3: Structured Code Review
+# Step 2: Structured Code Review
 
 **Goal:** Perform a thorough, structured code review with severity ratings and a pass/fail verdict.
 
@@ -83,6 +83,6 @@ After presenting the review:
 Ask: "Want to fix the issues and try again, or move to follow-up questions?"
 
 - **Fix** → Let them fix code, then re-review (lighter pass)
-- **Follow-up** → Read and follow: `steps/step-04-followup.md`
+- **Follow-up** → Read and follow: `steps/step-03-followup.md`
 - **Write** → "Want me to save this review to interview.md? [W]"
   - If yes, write the full review to `{interview_path}/interview.md`

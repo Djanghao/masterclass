@@ -1,10 +1,10 @@
 ---
-step: 4
+step: 3
 name: Follow-Up & Wrap Up
 next: null
 ---
 
-# Step 4: Follow-Up & Wrap Up
+# Step 3: Follow-Up & Wrap Up
 
 **Goal:** Explore variations, discuss optimization, and wrap up the interview with a complete record.
 
@@ -61,7 +61,7 @@ If yes, write/update `{interview_path}/interview.md`:
 {final code}
 
 ## Code Review
-{structured review from step 3}
+{structured review from step 2}
 
 ## Follow-Up Discussion
 {key insights from follow-up}
