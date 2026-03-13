@@ -51,4 +51,3 @@ Suggest what to do next:
 - "Continue to the next lesson: `/mc-lesson-plan {next_lesson_path}`"
 - "Review your progress: `/mc-context`"
 
-Return to Tutor menu.

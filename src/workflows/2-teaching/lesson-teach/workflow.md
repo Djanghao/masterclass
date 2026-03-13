@@ -17,7 +17,9 @@ description: 'Interactive dialogue-based teaching session. Requires a lesson pat
 
 Step-file architecture. Rules from `engine.xml` apply.
 
-Key teaching rule: **[W] is always available.** When the user selects W, distill the current discussion into the appropriate document (lesson.md or practice.md), then return to the current step and redisplay the menu.
+Key rules:
+- **[W] is always available.** The user can type `W` (auto-detect context) or `W <topic>` (specify what to write). Distill into the appropriate document (lesson.md or practice.md), then return to the current step and redisplay the menu.
+- **Early exit:** If the user asks to stop or wrap up at any point, offer to jump directly to `steps/step-03-summary.md`.
 
 ---
 
@@ -34,7 +36,7 @@ Does `{lesson_path}/plan.md` have content?
 
 ### 3. Resume Detection
 
-Does `{lesson_path}/lesson.md` have content?
+Read `{lesson_path}/lesson.md` and `{lesson_path}/practice.md`.
 
-- **YES** → Read and follow: `steps/step-01-continue.md`
-- **NO** → Read and follow: `steps/step-01-teach.md`
+- **Both empty** → Fresh start. Read and follow: `steps/step-01-teach.md`
+- **Has content** → Summarize progress, ask the user where to pick up, and route accordingly.

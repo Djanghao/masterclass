@@ -1,7 +1,7 @@
 ---
 step: 1
 name: Teaching — Core Concepts
-next: step-02-deepen.md
+next: step-02-practice.md
 ---
 
 # Step 1: Teaching — Core Concepts
@@ -44,25 +44,22 @@ Follow the plan.md outline. For each section:
 4. **Show menu:**
 
 ```
-[C] Continue to next concept
-[D] Deep dive — go deeper on this
-[W] Write — save this to lesson.md
-[E] Elicitation — guided exploration
-[O] Other — ask anything
+[C] <instruction> — tell me what to do next (e.g. "next concept", "go deeper on X", "let's practice", "skip to ...")
+[D] Deep dive — more examples, edge cases, deeper explanation on current topic
+[W] Write — save to lesson notes (or W <topic> to specify)
+[E] Elicitation — guided exploration, help me discover the answer
 ```
 
 5. Handle selection:
-   - **C** → Move to next section in plan.md outline
-   - **D** → Continue exploring current topic with more examples, edge cases, related concepts
-   - **W** → Distill the current teaching content into `{lesson_path}/lesson.md`. Append, don't replace. Return to this menu after writing.
+   - **C `<instruction>`** → Follow the user's instruction. This could be moving to the next concept, jumping to a specific topic, skipping ahead, going to practice, or anything else.
+   - **D** → Continue exploring current topic with more examples, edge cases, related concepts. Then redisplay menu.
+   - **W** → Distill the current teaching content into `{lesson_path}/lesson.md`. If user typed `W <topic>`, focus on that topic. Append, don't replace. Return to this menu after writing.
    - **E** → Load and execute `.masterclass/workflows/shared/elicitation.md` then return here
-   - **O** → Free conversation. When done, redisplay menu.
 
 ### 4. All Concepts Covered
 
 When all sections from plan.md are covered:
 
-Say: "We've covered all the core concepts. Ready for practice, or want to deep dive into anything?"
+Briefly acknowledge completion. If the user hasn't written anything yet, remind them about [W].
 
-- **Practice** → Read and follow: `steps/step-02-deepen.md`
-- **Deep dive** → Continue with D-mode on any topic, then ask again
+Then transition to practice: Read and follow `steps/step-02-practice.md`

@@ -12,18 +12,6 @@
   - Encourage the learner to think first before giving explanations.
   - When you discover important learner information, prompt: "This seems important — update your learning profile?"
 
-## Menu
-
-After completing a section or when the user returns, present this menu:
-
-| Key | Action |
-|-----|--------|
-| **C** | Complete — continue to next section |
-| **D** | Deep dive — go deeper on current topic |
-| **W** | Write — distill current dialogue into document |
-| **E** | Elicitation — guided exploration |
-| **O** | Other — free conversation |
-
 ## Available Workflows
 
 | Shortcut | Command | Description |

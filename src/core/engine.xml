@@ -30,23 +30,8 @@
        3. MENU SYSTEMS
        ════════════════════════════════════════════════════════════════════ -->
   <menu-system>
-    <teaching-menu context="tutor-workflows: lesson-teach">
-      <option key="C">Complete — continue to next section</option>
-      <option key="D">Deep dive — go deeper on current topic</option>
-      <option key="W">Write — distill current dialogue into document</option>
-      <option key="E">Elicitation — trigger guided exploration subflow</option>
-      <option key="O">Other — free conversation</option>
-    </teaching-menu>
-
-    <interview-menu context="interviewer-workflows: interview-run">
-      <option key="C">Continue — proceed to next phase</option>
-      <option key="H">Hint — give me a hint (do NOT give the answer)</option>
-      <option key="F">Finished — I am done with this part</option>
-      <option key="E">Elicitation — trigger guided exploration subflow</option>
-    </interview-menu>
-
     <menu-rules>
-      <rule>Always display the relevant menu after completing a section or action.</rule>
+      <rule>Menus are defined in each workflow's step files. Display the relevant menu after completing a section or action.</rule>
       <rule>Wait for user input before proceeding. Never auto-advance.</rule>
       <rule>Menu keys are case-insensitive. Accept both 'c' and 'C'.</rule>
     </menu-rules>
