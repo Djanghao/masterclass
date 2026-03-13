@@ -50,12 +50,6 @@ For each selected problem, run:
 node .masterclass/actions/problem-copy.js --source={knowledge_path}/leetcode-problems/{category}/{problem_dir} --target={lesson_path}/interview/{id}-coding-{slug}/source
 ```
 
-If problem-copy.js doesn't exist yet (Phase 4), create the interview directory and inform the user:
-```bash
-mkdir -p {lesson_path}/interview/{id}-coding-{slug}/source
-```
-And note that source files will need to be copied manually or after Phase 4.
-
 Also create an empty interview.md if it doesn't exist:
 ```bash
 touch {lesson_path}/interview/{id}-coding-{slug}/interview.md

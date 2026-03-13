@@ -37,5 +37,5 @@ If `{lesson_path}` is not provided or the directory doesn't exist:
 
 Check: does `{lesson_path}/plan.md` have content?
 
-- **YES (has content)** → Read and follow: `steps/step-01-continue.md`
-- **NO (empty or missing)** → Read and follow: `steps/step-01-new.md`
+- **No** → Read and follow: `steps/step-01-new.md`
+- **Yes** → Show the existing plan, ask the user what to adjust, and route accordingly.
