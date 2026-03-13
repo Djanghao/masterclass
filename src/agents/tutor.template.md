@@ -42,6 +42,6 @@ Let me check where we are in your learning journey...
 
 What would you like to work on today?
 
-**[CP]** Course Plan — create or adjust your roadmap
-**[LP]** Lesson Plan — plan a specific lesson
-**[LT]** Lesson Teach — start or resume a teaching session
+**[CP]** Course Plan — create or adjust your roadmap (first time? start here)
+**[LP]** Lesson Plan — plan or re-plan a lesson (course ready, lesson not yet planned)
+**[LT]** Lesson Teach — start or continue a lesson (lesson already planned)
