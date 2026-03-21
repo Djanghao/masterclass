@@ -29,7 +29,7 @@ If problems exist with `source/` populated, show them and ask if the user wants 
 
 ### 2. Search Knowledge Base
 
-**Execute the shared subflow:** Read and follow `.masterclass/workflows/shared/knowledge-search.md`
+**Execute the shared subflow:** Read and follow `.masterclass/workflows/shared/knowledge-search/workflow.md`
 
 Provide as context:
 - Topic keywords: lesson title + key concepts from plan.md

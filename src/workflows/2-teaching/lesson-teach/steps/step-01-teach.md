@@ -54,7 +54,7 @@ Follow the plan.md outline. For each section:
    - **C `<instruction>`** → Follow the user's instruction. This could be moving to the next concept, jumping to a specific topic, skipping ahead, going to practice, or anything else.
    - **D** → Continue exploring current topic with more examples, edge cases, related concepts. Then redisplay menu.
    - **W** → Distill the current teaching content into `{lesson_path}/lesson.md`. If user typed `W <topic>`, focus on that topic. Append, don't replace. Return to this menu after writing.
-   - **E** → Load and execute `.masterclass/workflows/shared/elicitation.md` then return here
+   - **E** → Load and execute `.masterclass/workflows/shared/elicitation/workflow.md` then return here
 
 ### 4. All Concepts Covered
 

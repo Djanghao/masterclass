@@ -1,10 +1,11 @@
 /**
  * index-build.ts
  *
- * Scans the knowledge base and builds/updates a LlamaIndex vector index.
- * First run: full build. Subsequent runs: incremental (only changed/new/deleted docs).
+ * Scans the knowledge base and builds/updates per-category LlamaIndex vector indexes.
+ * Categories are auto-discovered from subdirectories of the knowledge path.
+ * Each category gets its own index at data/index/{category}/.
  *
- * Usage: npx tsx tools/actions/index-build.ts [--type=leetcode|books|notes|all] [--rebuild]
+ * Usage: npx tsx tools/actions/index-build.ts [--type=papers,leetcode-problems|all] [--rebuild]
  */
 
 import fs from 'node:fs';
@@ -28,36 +29,39 @@ function configureEmbeddings(): void {
   Settings.embedModel = new OpenAIEmbedding({ model: 'text-embedding-3-small' });
 }
 
-function scanLeetcodeProblems(knowledgePath: string): Document[] {
-  const leetcodePath = path.join(knowledgePath, 'leetcode-problems');
-  if (!fs.existsSync(leetcodePath)) return [];
+function discoverCategories(knowledgePath: string): string[] {
+  return fs.readdirSync(knowledgePath, { withFileTypes: true })
+    .filter(d => d.isDirectory())
+    .map(d => d.name);
+}
 
+function scanLeetcodeProblems(categoryPath: string): Document[] {
   const docs: Document[] = [];
 
-  for (const category of fs.readdirSync(leetcodePath, { withFileTypes: true })) {
-    if (!category.isDirectory()) continue;
-    const categoryPath = path.join(leetcodePath, category.name);
+  for (const subcategory of fs.readdirSync(categoryPath, { withFileTypes: true })) {
+    if (!subcategory.isDirectory()) continue;
+    const subcategoryPath = path.join(categoryPath, subcategory.name);
 
-    for (const problem of fs.readdirSync(categoryPath, { withFileTypes: true })) {
+    for (const problem of fs.readdirSync(subcategoryPath, { withFileTypes: true })) {
       if (!problem.isDirectory()) continue;
 
       const match = problem.name.match(/^(\d+)_(\w+)_(.+)$/);
       if (!match) continue;
 
       const [, id, difficulty, slug] = match;
-      const problemMdPath = path.join(categoryPath, problem.name, 'description', 'problem.md');
+      const problemMdPath = path.join(subcategoryPath, problem.name, 'description', 'problem.md');
       if (!fs.existsSync(problemMdPath)) continue;
 
       const content = fs.readFileSync(problemMdPath, 'utf8');
       if (!content.trim()) continue;
 
-      const relativePath = path.relative(process.cwd(), path.join(categoryPath, problem.name));
+      const relativePath = path.relative(process.cwd(), path.join(subcategoryPath, problem.name));
 
       docs.push(new Document({
         text: content,
         id_: relativePath,
         metadata: {
-          category: category.name,
+          category: subcategory.name,
           difficulty,
           id,
           slug,
@@ -72,104 +76,66 @@ function scanLeetcodeProblems(knowledgePath: string): Document[] {
   return docs;
 }
 
-function scanBooks(knowledgePath: string): Document[] {
-  const booksPath = path.join(knowledgePath, 'books');
-  if (!fs.existsSync(booksPath)) return [];
-
-  const docs: Document[] = [];
-  scanMarkdownDir(booksPath, 'book', docs);
-  return docs;
-}
-
-function scanNotes(knowledgePath: string): Document[] {
-  const notesPath = path.join(knowledgePath, 'notes');
-  if (!fs.existsSync(notesPath)) return [];
-
-  const docs: Document[] = [];
-  scanMarkdownDir(notesPath, 'note', docs);
-  return docs;
-}
-
-function scanMarkdownDir(dir: string, type: string, docs: Document[]): void {
+function scanMarkdownDir(dir: string, category: string, docs: Document[]): void {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      scanMarkdownDir(fullPath, type, docs);
+      scanMarkdownDir(fullPath, category, docs);
     } else if (entry.name.endsWith('.md')) {
       const content = fs.readFileSync(fullPath, 'utf8');
       if (!content.trim()) continue;
 
       const relativePath = path.relative(process.cwd(), fullPath);
+      const subdir = path.relative(path.join(process.cwd(), 'data', 'knowledge', category), path.dirname(fullPath));
 
       docs.push(new Document({
         text: content,
         id_: relativePath,
         metadata: {
-          type,
+          type: category,
           path: relativePath,
           name: entry.name.replace(/\.md$/, ''),
+          category: subdir !== '.' ? subdir : undefined,
         },
       }));
     }
   }
 }
 
-async function main(): Promise<void> {
-  const args = parseArgs();
-  const type = args.type || 'all';
-  const rebuild = process.argv.includes('--rebuild');
+function scanCategory(knowledgePath: string, category: string): Document[] {
+  const categoryPath = path.join(knowledgePath, category);
+  if (!fs.existsSync(categoryPath)) return [];
 
-  configureEmbeddings();
-
-  let knowledgePath: string;
-  try {
-    const config = loadConfig();
-    knowledgePath = path.resolve(config.knowledge_path || 'data/knowledge');
-  } catch {
-    knowledgePath = path.resolve('data/knowledge');
+  if (category === 'leetcode-problems') {
+    return scanLeetcodeProblems(categoryPath);
   }
 
-  if (!fs.existsSync(knowledgePath)) {
-    output({ success: false, error: `Knowledge path not found: ${knowledgePath}` });
-    process.exit(1);
-  }
+  const docs: Document[] = [];
+  scanMarkdownDir(categoryPath, category, docs);
+  return docs;
+}
 
-  let docs: Document[] = [];
-  const limit = args.limit ? parseInt(args.limit, 10) : 0;
+interface CategoryResult {
+  category: string;
+  mode: 'full' | 'incremental';
+  documentsIndexed?: number;
+  inserted?: number;
+  updated?: number;
+  deleted?: number;
+  unchanged?: number;
+}
 
-  if (type === 'all' || type === 'leetcode') {
-    const leetcodeDocs = scanLeetcodeProblems(knowledgePath);
-    docs.push(...leetcodeDocs);
-    console.error(`Scanned ${leetcodeDocs.length} LeetCode problems`);
-  }
-
-  if (type === 'all' || type === 'books') {
-    const bookDocs = scanBooks(knowledgePath);
-    docs.push(...bookDocs);
-    console.error(`Scanned ${bookDocs.length} book entries`);
-  }
-
-  if (type === 'all' || type === 'notes') {
-    const noteDocs = scanNotes(knowledgePath);
-    docs.push(...noteDocs);
-    console.error(`Scanned ${noteDocs.length} note entries`);
-  }
-
-  if (limit > 0 && docs.length > limit) {
-    docs = docs.slice(0, limit);
-    console.error(`Limited to ${limit} documents`);
-  }
-
-  if (docs.length === 0) {
-    output({ success: false, error: 'No documents found to index.' });
-    process.exit(1);
-  }
-
-  const persistDir = path.join(process.cwd(), 'data', 'index');
+async function buildCategoryIndex(
+  category: string,
+  docs: Document[],
+  indexBaseDir: string,
+  rebuild: boolean,
+): Promise<CategoryResult> {
+  const persistDir = path.join(indexBaseDir, category);
 
   if (rebuild && fs.existsSync(persistDir)) {
     fs.rmSync(persistDir, { recursive: true });
-    console.error('Removed old index (--rebuild)');
+    console.error(`  Removed old index for ${category} (--rebuild)`);
   }
 
   fs.mkdirSync(persistDir, { recursive: true });
@@ -178,14 +144,12 @@ async function main(): Promise<void> {
   const hasExistingIndex = fs.existsSync(path.join(persistDir, 'doc_store.json'));
 
   if (!hasExistingIndex) {
-    console.error(`Building index for ${docs.length} documents...`);
+    console.error(`  Building full index for ${category}: ${docs.length} documents...`);
     await VectorStoreIndex.fromDocuments(docs, { storageContext });
-    output({ success: true, mode: 'full', documentsIndexed: docs.length, persistDir });
-    return;
+    return { category, mode: 'full', documentsIndexed: docs.length };
   }
 
-  // Incremental update
-  console.error('Updating index incrementally...');
+  console.error(`  Updating ${category} incrementally...`);
   const index = await VectorStoreIndex.init({ storageContext });
   const docStore = storageContext.docStore;
 
@@ -209,18 +173,74 @@ async function main(): Promise<void> {
     }
   }
 
-  // Delete docs no longer on disk (only when scanning all types)
-  if (type === 'all') {
-    for (const oldId of existingIds) {
-      if (!currentIds.has(oldId)) {
-        await index.deleteRefDoc(oldId, true);
-        deleted++;
-      }
+  for (const oldId of existingIds) {
+    if (!currentIds.has(oldId)) {
+      await index.deleteRefDoc(oldId, true);
+      deleted++;
     }
   }
 
-  console.error(`Inserted: ${inserted}, Updated: ${updated}, Deleted: ${deleted}, Unchanged: ${unchanged}`);
-  output({ success: true, mode: 'incremental', inserted, updated, deleted, unchanged, persistDir });
+  console.error(`  ${category}: inserted=${inserted} updated=${updated} deleted=${deleted} unchanged=${unchanged}`);
+  return { category, mode: 'incremental', inserted, updated, deleted, unchanged };
+}
+
+async function main(): Promise<void> {
+  const args = parseArgs();
+  const typeArg = args.type || 'all';
+  const rebuild = process.argv.includes('--rebuild');
+
+  configureEmbeddings();
+
+  let knowledgePath: string;
+  try {
+    const config = loadConfig();
+    knowledgePath = path.resolve(config.knowledge_path || 'data/knowledge');
+  } catch {
+    knowledgePath = path.resolve('data/knowledge');
+  }
+
+  if (!fs.existsSync(knowledgePath)) {
+    output({ success: false, error: `Knowledge path not found: ${knowledgePath}` });
+    process.exit(1);
+  }
+
+  const allCategories = discoverCategories(knowledgePath);
+  const requested = typeArg === 'all'
+    ? allCategories
+    : typeArg.split(',').map(s => s.trim()).filter(Boolean);
+
+  const missing = requested.filter(c => !allCategories.includes(c));
+  if (missing.length > 0) {
+    output({ success: false, error: `Categories not found: ${missing.join(', ')}. Available: ${allCategories.join(', ')}` });
+    process.exit(1);
+  }
+
+  console.error(`Knowledge path: ${knowledgePath}`);
+  console.error(`Available categories: ${allCategories.join(', ')}`);
+  console.error(`Building: ${requested.join(', ')}`);
+
+  const indexBaseDir = path.join(process.cwd(), 'data', 'index');
+  const results: CategoryResult[] = [];
+
+  for (const category of requested) {
+    const docs = scanCategory(knowledgePath, category);
+    console.error(`Scanned ${docs.length} documents from ${category}`);
+
+    if (docs.length === 0) {
+      console.error(`  Skipping ${category}: no documents found`);
+      continue;
+    }
+
+    const result = await buildCategoryIndex(category, docs, indexBaseDir, rebuild);
+    results.push(result);
+  }
+
+  if (results.length === 0) {
+    output({ success: false, error: 'No documents found to index in any requested category.' });
+    process.exit(1);
+  }
+
+  output({ success: true, categories: results });
 }
 
 main().catch((err: Error) => {

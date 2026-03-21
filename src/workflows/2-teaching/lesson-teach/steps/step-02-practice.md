@@ -42,7 +42,7 @@ Based on plan.md's practice ideas and the concepts taught:
    - **C `<instruction>`** → Follow the user's instruction. This could be the next exercise, a specific type of problem, going back to teaching, jumping to summary, or anything else.
    - **D** → Explore variations of the current problem, discuss edge cases, compare alternative approaches. Then redisplay menu.
    - **W** → Distill the current exercise and solution into `{lesson_path}/practice.md`. If user typed `W <topic>`, focus on that topic. Append, don't replace. Return to this menu after writing.
-   - **E** → Load and execute `.masterclass/workflows/shared/elicitation.md` then return here
+   - **E** → Load and execute `.masterclass/workflows/shared/elicitation/workflow.md` then return here
 
 ### 2. Wrap Up Practice
 

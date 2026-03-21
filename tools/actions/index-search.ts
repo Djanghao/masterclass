@@ -1,9 +1,11 @@
 /**
  * index-search.ts
  *
- * Queries the LlamaIndex vector index for matching knowledge base content.
+ * Queries per-category LlamaIndex vector indexes.
+ * Supports comma-separated types to search multiple categories in parallel,
+ * retrieving top K from each and merging results by score.
  *
- * Usage: npx tsx .masterclass/actions/index-search.ts --query=<text> --top=<N> --type=<leetcode|books|notes|all>
+ * Usage: npx tsx .masterclass/actions/index-search.ts --query=<text> --top=<N> --type=<papers,leetcode-problems|all>
  */
 
 import fs from 'node:fs';
@@ -36,6 +38,38 @@ function configureEmbeddings(): void {
   Settings.embedModel = new OpenAIEmbedding({ model: 'text-embedding-3-small' });
 }
 
+function discoverIndexedCategories(indexBaseDir: string): string[] {
+  if (!fs.existsSync(indexBaseDir)) return [];
+  return fs.readdirSync(indexBaseDir, { withFileTypes: true })
+    .filter(d => d.isDirectory() && fs.existsSync(path.join(indexBaseDir, d.name, 'doc_store.json')))
+    .map(d => d.name);
+}
+
+async function searchCategory(
+  category: string,
+  query: string,
+  topK: number,
+  indexBaseDir: string,
+): Promise<SearchResult[]> {
+  const persistDir = path.join(indexBaseDir, category);
+  if (!fs.existsSync(path.join(persistDir, 'doc_store.json'))) return [];
+
+  const storageContext = await storageContextFromDefaults({ persistDir });
+  const index = await VectorStoreIndex.init({ storageContext });
+  const retriever = index.asRetriever({ similarityTopK: topK });
+  const nodes = await retriever.retrieve(query);
+
+  return nodes.map((node) => ({
+    path: (node.node.metadata?.path as string) || '',
+    type: (node.node.metadata?.type as string) || category,
+    name: (node.node.metadata?.name as string) || '',
+    score: node.score ?? 0,
+    category: node.node.metadata?.category as string | undefined,
+    difficulty: node.node.metadata?.difficulty as string | undefined,
+    id: node.node.metadata?.id as string | undefined,
+  }));
+}
+
 async function main(): Promise<void> {
   const args = parseArgs();
 
@@ -44,39 +78,38 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const persistDir = path.join(process.cwd(), 'data', 'index');
-  if (!fs.existsSync(persistDir)) {
-    output({ success: false, error: 'Vector index not found. Run npm run index:build first.' });
+  const indexBaseDir = path.join(process.cwd(), 'data', 'index');
+  const available = discoverIndexedCategories(indexBaseDir);
+
+  if (available.length === 0) {
+    output({ success: false, error: 'No indexes found. Run npm run index:build first.' });
     process.exit(1);
   }
 
   configureEmbeddings();
 
-  const storageContext = await storageContextFromDefaults({ persistDir });
-  const index = await VectorStoreIndex.init({ storageContext });
+  const typeArg = args.type || 'all';
+  const requested = typeArg === 'all'
+    ? available
+    : typeArg.split(',').map(s => s.trim()).filter(Boolean);
 
-  const topK = parseInt(args.top || '10', 10);
-  const retriever = index.asRetriever({ similarityTopK: topK });
-  const nodes = await retriever.retrieve(args.query);
+  const valid = requested.filter(c => available.includes(c));
+  if (valid.length === 0) {
+    output({ success: false, error: `No matching indexes. Requested: ${requested.join(', ')}. Available: ${available.join(', ')}` });
+    process.exit(1);
+  }
 
-  const typeFilter = args.type || 'all';
-  const results: SearchResult[] = nodes
-    .filter((node) => {
-      if (typeFilter === 'all') return true;
-      const nodeType = (node.node.metadata?.type as string) || '';
-      return nodeType.startsWith(typeFilter);
-    })
-    .map((node) => ({
-      path: (node.node.metadata?.path as string) || '',
-      type: (node.node.metadata?.type as string) || 'unknown',
-      name: (node.node.metadata?.name as string) || '',
-      score: node.score ?? 0,
-      category: node.node.metadata?.category as string | undefined,
-      difficulty: node.node.metadata?.difficulty as string | undefined,
-      id: node.node.metadata?.id as string | undefined,
-    }));
+  const topK = parseInt(args.top || '5', 10);
 
-  output({ success: true, results });
+  const allResults = await Promise.all(
+    valid.map(category => searchCategory(category, args.query, topK, indexBaseDir))
+  );
+
+  const merged = allResults
+    .flat()
+    .sort((a, b) => b.score - a.score);
+
+  output({ success: true, searched: valid, available, results: merged });
 }
 
 main().catch((err: Error) => {

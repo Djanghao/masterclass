@@ -90,4 +90,4 @@ Handle:
 - **C `<instruction>`** → Follow the user's instruction. When the candidate says they're done and code is submitted: "Let's review your code." Read and follow: `steps/step-02-review.md`
 - **H** → Give a targeted hint WITHOUT revealing the answer.
 - **W** → Write current progress to `{interview_path}/interview.md`. Append, don't replace. Return to menu.
-- **E** → Load `.masterclass/workflows/shared/elicitation.md` then return here
+- **E** → Load `.masterclass/workflows/shared/elicitation/workflow.md` then return here
