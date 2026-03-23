@@ -25,6 +25,7 @@ interface AgentDef {
 const AGENTS: AgentDef[] = [
   { template: 'tutor.template.md', output: 'tutor.md' },
   { template: 'interviewer.template.md', output: 'interviewer.md' },
+  { template: 'researcher.template.md', output: 'researcher.md' },
 ];
 
 try {
@@ -41,6 +42,9 @@ try {
       : '',
     interviewer_custom_block: config.interviewer_custom_persona
       ? `\n- **Custom Style:** ${config.interviewer_custom_persona}`
+      : '',
+    researcher_custom_block: config.researcher_custom_persona
+      ? `\n- **Custom Style:** ${config.researcher_custom_persona}`
       : '',
   };
 

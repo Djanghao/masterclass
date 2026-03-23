@@ -18,6 +18,7 @@ description: 'Guided exploration subflow triggered by [E] from any menu.'
 Determine which workflow invoked this subflow:
 - **Teaching context** (lesson-teach) → offer teaching techniques
 - **Interview context** (interview-run) → offer interview techniques
+- **Research context** (paper-read, paper-qa, paper-survey) → offer research techniques
 
 ### 2. Present Techniques
 
@@ -40,6 +41,16 @@ Determine which workflow invoked this subflow:
 | 3 | **Edge Case Hunter** | Systematically enumerate edge cases: empty, single, max, negative, duplicate |
 | 4 | **Optimization Paths** | List all possible approaches ordered by complexity, discuss trade-offs |
 | 5 | **STAR Expression** | Structure the explanation as Situation → Task → Action → Result |
+
+**Research techniques:**
+
+| # | Technique | Description |
+|---|-----------|-------------|
+| 1 | **Paper Anatomy** | Break down the paper's structure — what each section is for, how arguments flow |
+| 2 | **Notation Decoder** | Systematically decode every symbol in an equation or algorithm |
+| 3 | **Critical Review** | Evaluate methodology: are experiments fair? Is the baseline appropriate? What's missing? |
+| 4 | **Connection Map** | Map how this paper connects to other papers, techniques, and the learner's knowledge |
+| 5 | **Reproduce Mentally** | Walk through the algorithm/method step by step as if implementing it |
 
 Ask: "Which technique would you like to try? (1-5)"
 

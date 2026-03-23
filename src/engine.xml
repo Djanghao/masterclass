@@ -41,11 +41,13 @@
        4. WRITE [W] BEHAVIOR
        ════════════════════════════════════════════════════════════════════ -->
   <write-behavior>
-    <rule id="always-available">[W] is available at any point during teaching and interview workflows.</rule>
+    <rule id="always-available">[W] is available at any point during teaching, interview, and research workflows.</rule>
     <rule id="target-contextual">
       Write target depends on context:
       - During lesson-teach → lesson.md (teaching essence) or practice.md (exercises)
       - During interview-run → interview.md (interview record and evaluation)
+      - During paper-read / paper-qa → {notes_path} (paper reading notes, derived from paper path: replace .pdf with -notes.md)
+      - During paper-survey → {survey_path} (survey document in docs/research/{topic-slug}/)
     </rule>
     <rule id="quality-distill">Written content is a high-quality distillation of the dialogue, NOT a conversation transcript. Organize by topic, use clear headings, include key insights and examples.</rule>
     <rule id="resume-after-write">After writing, return to the current workflow step and redisplay the menu.</rule>
@@ -87,4 +89,15 @@
     <rule id="no-auto-generate">Never generate content without user input. This is collaborative facilitation.</rule>
     <rule id="user-confirm">Always get user confirmation before writing files or creating structure.</rule>
   </workflow-execution>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       8. RESEARCH WORKFLOW RULES
+       ════════════════════════════════════════════════════════════════════ -->
+  <research-rules>
+    <rule id="pdf-reading">Read PDF papers using Read(file_path, pages="N-M"). Read at most 5 pages at a time to keep context manageable.</rule>
+    <rule id="cite-pages">When answering questions or explaining paper content, always cite the page number where the information was found.</rule>
+    <rule id="notes-colocation">Paper reading notes are stored alongside the PDF: {paper_path} with .pdf replaced by -notes.md.</rule>
+    <rule id="survey-location">Survey documents go in docs/research/{topic-slug}/survey.md.</rule>
+    <rule id="check-source-code">When reading a paper, proactively look for open-source code links (usually in abstract, introduction, or footnotes — common patterns: github.com, huggingface.co, "code is available at"). If found, use gh API or WebFetch to read the actual implementation. Papers often omit details, simplify descriptions, or present idealized versions — the code reveals the real story: commented-out features, engineering compromises, differences from the paper's claims, and parameter choices not mentioned in the text.</rule>
+  </research-rules>
 </engine>

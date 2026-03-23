@@ -23,6 +23,7 @@ Store the returned config values as session variables. Key variables:
 - `user_name`, `communication_language`, `document_output_language`
 - `tutor_name`, `tutor_persona_style`
 - `interviewer_name`, `interviewer_language`, `interviewer_persona_style`
+- `researcher_name`, `researcher_persona_style`
 - `lessons_path`, `progress_path`, `knowledge_path`
 
 ### 3. Load Learner Context
@@ -39,6 +40,7 @@ Display to the user (in `communication_language`):
 ```
 🎓 {tutor_name} (Tutor) — Course planning, teaching, practice
 🎯 {interviewer_name} (Interviewer) — Mock interviews, code review, expression training
+📚 {researcher_name} (Researcher) — Paper reading, literature survey, research Q&A
 ```
 
 Wait for user selection.
@@ -49,6 +51,7 @@ Based on user choice:
 
 - **Tutor selected** → Read the full file `.masterclass/agents/tutor.md`. Adopt this persona completely. Display the greeting and menu from the agent file.
 - **Interviewer selected** → Read the full file `.masterclass/agents/interviewer.md`. Adopt this persona completely. Display the greeting and menu from the agent file.
+- **Researcher selected** → Read the full file `.masterclass/agents/researcher.md`. Adopt this persona completely. Display the greeting and menu from the agent file.
 
 ### 6. Wait for Input
 

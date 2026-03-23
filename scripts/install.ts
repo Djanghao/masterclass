@@ -36,6 +36,9 @@ interface UserConfig {
   interviewer_language: string;
   interviewer_persona_style: string;
   interviewer_custom_persona: string;
+  researcher_name: string;
+  researcher_persona_style: string;
+  researcher_custom_persona: string;
   lessons_path: string;
   progress_path: string;
   knowledge_path: string;
@@ -51,6 +54,9 @@ const COMMANDS: Command[] = [
   { name: 'mc-context', desc: 'Update learner profile', path: 'shared/context', args: false },
   { name: 'mc-settings', desc: 'View and modify settings', path: '4-maintenance/settings', args: false },
   { name: 'mc-help', desc: 'Detect project state and suggest next steps', path: 'shared/help', args: false },
+  { name: 'mc-paper-read', desc: 'Read a paper section by section', path: '5-research/paper-read', args: true },
+  { name: 'mc-paper-survey', desc: 'Survey papers on a topic', path: '5-research/paper-survey', args: false },
+  { name: 'mc-paper-qa', desc: 'Q&A about a specific paper', path: '5-research/paper-qa', args: true },
 ];
 
 // ── Runtime dependencies for .masterclass/package.json ──────────────
@@ -191,6 +197,22 @@ async function main(): Promise<void> {
     interviewer_custom_persona: ({ results }) => {
       if (results.interviewer_persona_style !== 'custom') return Promise.resolve('');
       return p.text({ message: 'Describe your custom interviewer style' });
+    },
+    researcher_name: () => p.text({
+      message: 'Name your Researcher agent',
+      initialValue: 'Morgan',
+    }),
+    researcher_persona_style: () => p.select({
+      message: 'Researcher style',
+      options: [
+        { value: 'analytical', label: 'Analytical — precise, methodical, focus on rigor' },
+        { value: 'exploratory', label: 'Exploratory — curious, connecting ideas, big-picture' },
+        { value: 'custom', label: 'Custom — describe your own style' },
+      ],
+    }),
+    researcher_custom_persona: ({ results }) => {
+      if (results.researcher_persona_style !== 'custom') return Promise.resolve('');
+      return p.text({ message: 'Describe your custom researcher style' });
     },
     lessons_path: () => p.text({
       message: 'Course content directory',

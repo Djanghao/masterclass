@@ -23,6 +23,8 @@ Check these files and directories in order:
 | Any lesson.md has content? | `{lessons_path}/**/lesson.md` | Teaching started |
 | Any interview.md has content? | `{lessons_path}/**/interview/*/interview.md` | Interviews done |
 | Learning context has content? | `{progress_path}/learning-context.md` | Profile exists |
+| Any paper notes exist? | `{knowledge_path}/papers/**/*-notes.md` | Papers have been read |
+| Any survey exists? | `docs/research/*/survey.md` | Surveys generated |
 
 ### 2. Determine Stage & Suggest
 
@@ -54,9 +56,16 @@ Show available interview problems.
 Show a summary: modules completed, lessons taught, interviews done.
 Suggest the next unfinished lesson or interview.
 
+**Has lesson content, no paper notes →**
+"You're learning well! Consider reading papers related to your topics for deeper understanding."
+"Run `/mc-paper-survey` to survey papers on a topic, or `/mc-paper-read {paper_path}` to read a specific paper."
+
 ### 3. Additional Tips
 
 Always show:
 - `/mc-context` — view or update your learning profile
 - `/mc-settings` — change configuration
+- `/mc-paper-read <path>` — read a paper section by section
+- `/mc-paper-survey` — survey papers on a topic
+- `/mc-paper-qa <path>` — ask questions about a paper
 - `/mc-start` — start a new session with agent selection
