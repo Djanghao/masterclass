@@ -19,7 +19,7 @@ from pathlib import Path
 
 from device import select_device, load_embed_model, get_model_config, save_model_config, MODELS
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 KNOWLEDGE_DIR = PROJECT_ROOT / "data" / "knowledge"
 INDEX_BASE_DIR = PROJECT_ROOT / "data" / ".index"
 ALL_TYPES = ["papers", "leetcode", "books"]

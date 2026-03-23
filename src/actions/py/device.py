@@ -3,7 +3,7 @@ import sys
 import json
 from pathlib import Path
 
-INDEX_BASE_DIR = Path(__file__).resolve().parent.parent.parent / "data" / ".index"
+INDEX_BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent / "data" / ".index"
 
 MODELS = {
     "bge-m3": {

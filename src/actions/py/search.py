@@ -17,7 +17,7 @@ from pathlib import Path
 
 from device import select_device, load_embed_model
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 INDEX_BASE_DIR = PROJECT_ROOT / "data" / ".index"
 
 ALL_TYPES = ["papers", "leetcode", "books"]
@@ -116,16 +116,25 @@ def search_type(
 
         results.append(result)
 
-    # Apply metadata filters (leetcode)
-    if type_name == "leetcode" and filters:
-        difficulty = filters.get("difficulty")
-        tags = filters.get("tags")
+    # Apply metadata filters
+    if filters:
+        # Path filter (match any part of the file path)
+        path_filter = filters.get("path")
+        if path_filter:
+            # Normalize: strip trailing slash, support both relative and absolute
+            pf = path_filter.rstrip("/")
+            results = [r for r in results if pf in r.get("path", "")]
 
-        if difficulty:
-            results = [r for r in results if r.get("difficulty", "").lower() == difficulty.lower()]
-        if tags:
-            filter_tags = set(t.strip().lower() for t in tags.split(","))
-            results = [r for r in results if filter_tags & set(t.lower() for t in r.get("tags", []))]
+        # Leetcode-specific filters
+        if type_name == "leetcode":
+            difficulty = filters.get("difficulty")
+            tags = filters.get("tags")
+
+            if difficulty:
+                results = [r for r in results if r.get("difficulty", "").lower() == difficulty.lower()]
+            if tags:
+                filter_tags = set(t.strip().lower() for t in tags.split(","))
+                results = [r for r in results if filter_tags & set(t.lower() for t in r.get("tags", []))]
 
     return results[:top_k]
 
@@ -135,6 +144,7 @@ def main():
     parser.add_argument("--query", "-q", required=True, help="Search query")
     parser.add_argument("--type", "-t", default="all", help="Type to search: papers, leetcode, or all")
     parser.add_argument("--top", "-k", type=int, default=5, help="Number of results per type")
+    parser.add_argument("--path", "-p", help="Filter by path (e.g. papers/gui-agent, books/system-design)")
     parser.add_argument("--difficulty", help="Filter by difficulty (leetcode)")
     parser.add_argument("--tags", help="Filter by tags, comma-separated (leetcode)")
     parser.add_argument("--verbose", "-v", action="store_true")
@@ -166,7 +176,7 @@ def main():
         searched.append(type_name)
         results = search_type(
             type_name, args.query, args.top, args.verbose,
-            difficulty=args.difficulty, tags=args.tags,
+            path=args.path, difficulty=args.difficulty, tags=args.tags,
         )
         all_results.extend(results)
 
