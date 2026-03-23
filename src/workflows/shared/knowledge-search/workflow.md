@@ -58,9 +58,13 @@ The response includes `searched` (which types were actually searched) and result
 
 If the search returns `success: true`, use the returned results and skip to step 4. For paper results, use `Read(file_path, pages=page)` to read the specific page for full context.
 
-### 3. Fallback: IDE Native Search
+### 3. Fallback: Build Index or IDE Native Search
 
-If kb-search fails (venv not configured or no results), use your own tools and capabilities to search `{knowledge_path}/` directly. Use whatever approach works best for the current IDE environment (glob, grep, directory listing, etc.).
+If search returns no results because the index doesn't exist, run the build subflow first:
+- Read and follow `.masterclass/workflows/shared/knowledge-build/workflow.md`
+- Then retry the search from step 2.
+
+If kb-search fails for other reasons (venv not configured, or still no results after building), use your own tools and capabilities to search `{knowledge_path}/` directly. Use whatever approach works best for the current IDE environment (glob, grep, directory listing, etc.).
 
 ### 4. Return Results
 
