@@ -17,7 +17,7 @@ import pickle
 import argparse
 from pathlib import Path
 
-from device import select_device
+from device import select_device, load_embed_model
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 KNOWLEDGE_DIR = PROJECT_ROOT / "data" / "knowledge"
@@ -352,15 +352,10 @@ def main():
     print(f"Device: {device}")
 
     from llama_index.core import Settings
-    from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
     print("Loading bge-m3 embedding model...")
     t0 = time.time()
-    Settings.embed_model = HuggingFaceEmbedding(
-        model_name="BAAI/bge-m3",
-        device=device,
-        trust_remote_code=True,
-    )
+    Settings.embed_model = load_embed_model(device)
     print(f"  Loaded on {device} in {time.time() - t0:.1f}s")
 
     types = ALL_TYPES if args.type == "all" else [t.strip() for t in args.type.split(",")]
