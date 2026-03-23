@@ -1,5 +1,5 @@
 """
-Semantic search over knowledge base.
+Semantic search over knowledge base using FAISS.
 
 Usage:
   python tools/kb/search.py --query="LoRA参数" --type=papers --top=5
@@ -32,16 +32,18 @@ def search_type(
 ) -> list[dict]:
     """Search a single type's index. Returns list of result dicts."""
     from llama_index.core import StorageContext, load_index_from_storage
+    from llama_index.vector_stores.faiss import FaissVectorStore
 
     index_dir = INDEX_BASE_DIR / type_name
-    if not (index_dir / "index_store.json").exists():
+    if not (index_dir / "default__vector_store.json").exists():
         if verbose:
             print(f"  No index for {type_name}, skipping", file=sys.stderr)
         return []
 
-    # Load vector index
+    # Load FAISS index + docstore
     t0 = time.time()
-    storage_context = StorageContext.from_defaults(persist_dir=str(index_dir))
+    vector_store = FaissVectorStore.from_persist_dir(str(index_dir))
+    storage_context = StorageContext.from_defaults(vector_store=vector_store, persist_dir=str(index_dir))
     index = load_index_from_storage(storage_context)
     if verbose:
         print(f"  {type_name} index loaded in {time.time() - t0:.1f}s", file=sys.stderr)
@@ -54,7 +56,7 @@ def search_type(
         print(f"  {type_name} vector: {len(vec_results)} results in {time.time() - t0:.0f}ms", file=sys.stderr)
 
     # BM25 search
-    nodes_pkl = index_dir / "nodes.pkl"
+    nodes_pkl = index_dir / "bm25_index.pkl"
     bm25_results = []
     if nodes_pkl.exists():
         try:

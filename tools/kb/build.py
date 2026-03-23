@@ -1,5 +1,5 @@
 """
-Build knowledge base index with incremental updates.
+Build knowledge base index with incremental updates using FAISS.
 
 Usage:
   python tools/kb/build.py --type=papers
@@ -23,6 +23,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 KNOWLEDGE_DIR = PROJECT_ROOT / "data" / "knowledge"
 INDEX_BASE_DIR = PROJECT_ROOT / "data" / ".index"
 
+EMBED_DIM = 1024  # bge-m3 output dimension
 ALL_TYPES = ["papers", "leetcode"]
 
 
@@ -33,17 +34,17 @@ def compute_file_hash(filepath: Path) -> str:
     return hashlib.md5(filepath.read_bytes()).hexdigest()
 
 
-def load_file_hashes(index_dir: Path) -> dict:
+def load_manifest(index_dir: Path) -> dict:
     """Load stored {filepath: {hash, doc_ids}} from index dir."""
-    hash_file = index_dir / "file_hashes.json"
+    hash_file = index_dir / "manifest.json"
     if hash_file.exists():
         return json.loads(hash_file.read_text())
     return {}
 
 
-def save_file_hashes(index_dir: Path, hashes: dict):
+def save_manifest(index_dir: Path, hashes: dict):
     """Save file hashes to index dir."""
-    (index_dir / "file_hashes.json").write_text(json.dumps(hashes, indent=2, ensure_ascii=False))
+    (index_dir / "manifest.json").write_text(json.dumps(hashes, indent=2, ensure_ascii=False))
 
 
 # ─── Document loaders ───
@@ -139,6 +140,24 @@ def diff_files(old_hashes: dict, new_hashes: dict) -> dict:
     }
 
 
+# ─── FAISS helpers ───
+
+def create_faiss_store(index_dir: Path):
+    """Create a new FAISS vector store."""
+    import faiss
+    from llama_index.vector_stores.faiss import FaissVectorStore
+
+    faiss_index = faiss.IndexFlatIP(EMBED_DIM)
+    return FaissVectorStore(faiss_index)
+
+
+def load_faiss_store(index_dir: Path):
+    """Load existing FAISS vector store from disk."""
+    from llama_index.vector_stores.faiss import FaissVectorStore
+
+    return FaissVectorStore.from_persist_dir(str(index_dir))
+
+
 # ─── Build logic ───
 
 def scan_files(type_name: str) -> list[Path]:
@@ -152,10 +171,11 @@ def scan_files(type_name: str) -> list[Path]:
 
 def build_type(type_name: str, rebuild: bool = False):
     """Build or incrementally update index for one type."""
-    from llama_index.core import VectorStoreIndex, StorageContext, load_index_from_storage
+    from llama_index.core import VectorStoreIndex, StorageContext
     from llama_index.core.node_parser import SentenceSplitter
 
     index_dir = INDEX_BASE_DIR / type_name
+    index_dir.mkdir(parents=True, exist_ok=True)
     print(f"\n{'=' * 60}")
     print(f"Building: {type_name}")
     print(f"{'=' * 60}")
@@ -172,15 +192,21 @@ def build_type(type_name: str, rebuild: bool = False):
     new_hashes = {str(f): compute_file_hash(f) for f in files}
     print(f"  Hashed in {time.time() - t0:.2f}s")
 
-    # ── Decide: full build or incremental ──
-    has_existing_index = (index_dir / "index_store.json").exists() and not rebuild
+    # ── Handle rebuild ──
+    if rebuild:
+        for item in index_dir.iterdir():
+            if item.is_dir():
+                shutil.rmtree(item)
+            else:
+                item.unlink()
+        print("  Cleared existing index")
 
-    if not has_existing_index:
-        # Full build
-        if index_dir.exists() and rebuild:
-            shutil.rmtree(index_dir)
-        index_dir.mkdir(parents=True, exist_ok=True)
+    # ── Check for existing index ──
+    old_hashes = load_manifest(index_dir)
+    is_fresh = len(old_hashes) == 0
 
+    if is_fresh:
+        # ── Full build ──
         print(f"\n  Full build: loading {len(files)} files...")
         t0 = time.time()
         if type_name == "papers":
@@ -198,13 +224,16 @@ def build_type(type_name: str, rebuild: bool = False):
         else:
             nodes = None
 
-        # Build index
-        print(f"  Building vector index...")
+        # Build index with FAISS
+        print(f"  Building vector index (FAISS)...")
+        vector_store = create_faiss_store(index_dir)
+        storage_context = StorageContext.from_defaults(vector_store=vector_store)
+
         t0 = time.time()
         if nodes is not None:
-            index = VectorStoreIndex(nodes, show_progress=True)
+            index = VectorStoreIndex(nodes, storage_context=storage_context, show_progress=True)
         else:
-            index = VectorStoreIndex.from_documents(docs, show_progress=True)
+            index = VectorStoreIndex.from_documents(docs, storage_context=storage_context, show_progress=True)
         print(f"  Index built in {time.time() - t0:.1f}s")
 
         # Persist
@@ -212,27 +241,25 @@ def build_type(type_name: str, rebuild: bool = False):
 
         # Save nodes for BM25
         if nodes is None:
-            # Extract nodes from index for BM25
             docstore = index.storage_context.docstore
             nodes = list(docstore.docs.values())
-        with open(index_dir / "nodes.pkl", "wb") as f:
+        with open(index_dir / "bm25_index.pkl", "wb") as f:
             pickle.dump(nodes, f)
 
-        # Save hashes with doc_ids
+        # Save hashes
         hash_data = {}
         for filepath, h in new_hashes.items():
             hash_data[filepath] = {
                 "hash": h,
                 "doc_ids": file_doc_ids.get(filepath, []),
             }
-        save_file_hashes(index_dir, hash_data)
+        save_manifest(index_dir, hash_data)
 
         idx_size = sum(f.stat().st_size for f in index_dir.rglob("*") if f.is_file())
         print(f"\n  Saved to {index_dir} ({idx_size / 1024 / 1024:.1f} MB)")
         return
 
     # ── Incremental update ──
-    old_hashes = load_file_hashes(index_dir)
     diff = diff_files(old_hashes, new_hashes)
 
     n_added = len(diff["added"])
@@ -246,7 +273,8 @@ def build_type(type_name: str, rebuild: bool = False):
         return
 
     # Load existing index
-    storage_context = StorageContext.from_defaults(persist_dir=str(index_dir))
+    vector_store = load_faiss_store(index_dir)
+    storage_context = StorageContext.from_defaults(vector_store=vector_store, persist_dir=str(index_dir))
     index = load_index_from_storage(storage_context)
 
     # Delete removed files
@@ -300,12 +328,12 @@ def build_type(type_name: str, rebuild: bool = False):
 
     # Persist
     index.storage_context.persist(persist_dir=str(index_dir))
-    save_file_hashes(index_dir, old_hashes)
+    save_manifest(index_dir, old_hashes)
 
-    # Rebuild nodes.pkl for BM25
+    # Rebuild bm25_index.pkl for BM25
     docstore = index.storage_context.docstore
     all_nodes = list(docstore.docs.values())
-    with open(index_dir / "nodes.pkl", "wb") as f:
+    with open(index_dir / "bm25_index.pkl", "wb") as f:
         pickle.dump(all_nodes, f)
 
     print(f"  Incremental update complete.")
