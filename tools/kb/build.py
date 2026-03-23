@@ -21,7 +21,7 @@ from device import select_device
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 KNOWLEDGE_DIR = PROJECT_ROOT / "data" / "knowledge"
-INDEX_BASE_DIR = PROJECT_ROOT / "data" / "index"
+INDEX_BASE_DIR = PROJECT_ROOT / "data" / ".index"
 
 ALL_TYPES = ["papers", "leetcode"]
 
