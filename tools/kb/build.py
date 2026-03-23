@@ -17,13 +17,11 @@ import pickle
 import argparse
 from pathlib import Path
 
-from device import select_device, load_embed_model
+from device import select_device, load_embed_model, get_model_config, save_model_config, MODELS
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 KNOWLEDGE_DIR = PROJECT_ROOT / "data" / "knowledge"
 INDEX_BASE_DIR = PROJECT_ROOT / "data" / ".index"
-
-EMBED_DIM = 1024  # bge-m3 output dimension
 ALL_TYPES = ["papers", "leetcode", "books"]
 
 
@@ -147,7 +145,7 @@ def create_faiss_store(index_dir: Path):
     import faiss
     from llama_index.vector_stores.faiss import FaissVectorStore
 
-    faiss_index = faiss.IndexFlatIP(EMBED_DIM)
+    faiss_index = faiss.IndexFlatIP(get_model_config()["dim"])
     return FaissVectorStore(faiss_index)
 
 
@@ -343,17 +341,24 @@ def build_type(type_name: str, rebuild: bool = False):
 
 def main():
     parser = argparse.ArgumentParser(description="Build knowledge base index")
-    parser.add_argument("--type", default="all", help="Type to build: papers, leetcode, or all")
+    parser.add_argument("--type", default="all", help="Type to build: papers, leetcode, books, or all")
+    parser.add_argument("--model", choices=list(MODELS.keys()), help="Embedding model to use (saves choice for future builds)")
     parser.add_argument("--rebuild", action="store_true", help="Force full rebuild")
     args = parser.parse_args()
 
+    # Save model choice if specified
+    if args.model:
+        save_model_config(args.model)
+        print(f"Model set to: {args.model} ({MODELS[args.model]['description']})")
+
     # Select device and load embedding model once
+    model_config = get_model_config()
     device = select_device()
     print(f"Device: {device}")
+    print(f"Model: {model_config['name']} ({model_config['dim']}d)")
 
     from llama_index.core import Settings
 
-    print("Loading bge-m3 embedding model...")
     t0 = time.time()
     Settings.embed_model = load_embed_model(device)
     print(f"  Loaded on {device} in {time.time() - t0:.1f}s")
