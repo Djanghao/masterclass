@@ -56,9 +56,36 @@ const COMMANDS: Command[] = [
 // ── Runtime dependencies for .masterclass/package.json ──────────────
 const RUNTIME_DEPS = {
   yaml: '^2.7.1',
-  llamaindex: '^0.12.1',
-  '@llamaindex/openai': '^0.4.22',
 };
+
+// ── Embedding model options ─────────────────────────────────────────
+const EMBED_MODELS: Record<string, { name: string; dim: number; min_gpu_gb: number; multilingual: boolean; description: string }> = {
+  'bge-m3': {
+    name: 'BAAI/bge-m3',
+    dim: 1024,
+    min_gpu_gb: 2.0,
+    multilingual: true,
+    description: 'Multilingual (zh/en/ja/ko), 1024 dim, ~2GB — best quality',
+  },
+  'bge-small-en': {
+    name: 'BAAI/bge-small-en-v1.5',
+    dim: 384,
+    min_gpu_gb: 0.5,
+    multilingual: false,
+    description: 'English only, 384 dim, ~130MB — fast and lightweight',
+  },
+};
+
+const PYTHON_DEPS = [
+  'llama-index-core',
+  'llama-index-readers-file',
+  'llama-index-embeddings-huggingface',
+  'llama-index-vector-stores-faiss',
+  'llama-index-retrievers-bm25',
+  'faiss-cpu',
+  'torch',
+  'sentence-transformers',
+];
 
 // ── Helpers ──────────────────────────────────────────────────────────
 function ensureDir(dir: string): void {
@@ -101,7 +128,13 @@ async function main(): Promise<void> {
     if (!overwrite) {
       p.log.info('Keeping existing config. Reinstalling files...');
       const config = YAML.parse(fs.readFileSync(configPath, 'utf8')) as UserConfig;
-      await installFiles(config);
+      // Read existing model choice or default
+      const modelConfigPath = path.join(ROOT, 'data', '.index', 'model.json');
+      let existingModel = 'bge-m3';
+      if (fs.existsSync(modelConfigPath)) {
+        try { existingModel = JSON.parse(fs.readFileSync(modelConfigPath, 'utf8')).model; } catch {}
+      }
+      await installFiles(config, existingModel);
       p.outro('✅ Reinstall complete.');
       return;
     }
@@ -175,31 +208,27 @@ async function main(): Promise<void> {
     onCancel: () => { p.cancel('Installation cancelled.'); process.exit(0); },
   }) as UserConfig;
 
-  // ── Optional: OpenAI API key ────────────────────────────────────
-  const apiKey = await p.text({
-    message: 'OpenAI API key (for vector search, leave empty to skip)',
-    placeholder: 'sk-...',
-    initialValue: '',
+  // ── Embedding model selection ──────────────────────────────────
+  const embedModel = await p.select({
+    message: 'Embedding model for knowledge base search',
+    options: Object.entries(EMBED_MODELS).map(([key, m]) => ({
+      value: key,
+      label: `${key} — ${m.description}`,
+    })),
   });
-  if (!p.isCancel(apiKey) && apiKey) {
-    ensureDir(OUTPUT);
-    fs.writeFileSync(path.join(OUTPUT, '.env'), `OPENAI_API_KEY=${apiKey}\n`);
-    p.log.success('API key saved to .masterclass/.env');
-  } else {
-    p.log.info('Skipped. You can add it later in .masterclass/.env');
-  }
+  if (p.isCancel(embedModel)) { p.cancel('Installation cancelled.'); process.exit(0); }
 
   // ── Write config ──────────────────────────────────────────────────
   ensureDir(path.join(OUTPUT, 'config'));
   fs.writeFileSync(configPath, YAML.stringify(config, { indent: 2, lineWidth: 0 }));
   p.log.success('Config saved to .masterclass/config/config.yaml');
 
-  await installFiles(config);
+  await installFiles(config, embedModel as string);
   p.outro('✅ MasterClass installed. Run /mc-start to begin.');
 }
 
 // ── Install files ────────────────────────────────────────────────────
-async function installFiles(config: UserConfig): Promise<void> {
+async function installFiles(config: UserConfig, embedModel: string): Promise<void> {
   const spinner = p.spinner();
 
   // 1. Copy source files to .masterclass/
@@ -297,7 +326,35 @@ async function installFiles(config: UserConfig): Promise<void> {
 
   spinner.stop('IDE skill files generated.');
 
-  // 6. Create user content directories
+  // 6. Set up Python venv for knowledge base
+  spinner.start('Setting up Python environment...');
+  const venvPath = path.join(OUTPUT, 'venv');
+  if (!fs.existsSync(path.join(venvPath, 'bin', 'python'))) {
+    execSync(`python3 -m venv "${venvPath}"`, { cwd: ROOT, stdio: 'pipe' });
+  }
+  const pip = path.join(venvPath, 'bin', 'pip');
+  execSync(`"${pip}" install -q ${PYTHON_DEPS.join(' ')}`, { cwd: ROOT, stdio: 'pipe', timeout: 600000 });
+  spinner.stop('Python environment ready.');
+
+  // 7. Copy KB scripts to .masterclass/actions/
+  spinner.start('Copying knowledge base scripts...');
+  const kbSrc = path.join(TOOLS, 'kb');
+  const kbDest = path.join(OUTPUT, 'actions');
+  for (const file of ['device.py', 'build.py', 'search.py']) {
+    fs.copyFileSync(path.join(kbSrc, file), path.join(kbDest, file));
+  }
+  spinner.stop('Knowledge base scripts copied.');
+
+  // 8. Save embedding model config
+  const indexDir = path.join(ROOT, 'data', '.index');
+  ensureDir(indexDir);
+  fs.writeFileSync(
+    path.join(indexDir, 'model.json'),
+    JSON.stringify({ model: embedModel }, null, 2) + '\n',
+  );
+  p.log.success(`Embedding model: ${embedModel} (${EMBED_MODELS[embedModel].description})`);
+
+  // 9. Create user content directories
   const lessonsPath = config.lessons_path || 'docs/course';
   const progressPath = config.progress_path || 'docs/progress';
   ensureDir(path.join(ROOT, lessonsPath));
