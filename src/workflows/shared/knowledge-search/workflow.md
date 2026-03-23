@@ -31,16 +31,27 @@ Search the knowledge base using hybrid search (vector + BM25). Types can be comm
 .masterclass/venv/bin/python .masterclass/actions/py/search.py --query="{topic keywords}" --top=5 --type={types or "all"}
 ```
 
+Available flags:
+- `--type` / `-t` — Index to search: `papers`, `leetcode`, `books`, or `all` (default: `all`)
+- `--top` / `-k` — Number of results (default: 5)
+- `--path` / `-p` — Filter results by path substring (e.g. `papers/cot-reasoning/gui-agent`)
+- `--difficulty` — Filter by difficulty, leetcode only (e.g. `Medium`)
+- `--tags` — Filter by tags, comma-separated, leetcode only (e.g. `dp,greedy`)
+- `--verbose` / `-v` — Print timing info to stderr
+
 Examples:
 ```bash
 # Search only papers
-.masterclass/venv/bin/python .masterclass/actions/py/search.py --query="attention mechanism" --type=papers
+.masterclass/venv/bin/python .masterclass/actions/py/search.py -q "attention mechanism" -t papers
+
+# Search papers in a specific subdirectory
+.masterclass/venv/bin/python .masterclass/actions/py/search.py -q "UI code generation" -t papers --path="cot-reasoning/ui-generation"
 
 # Search leetcode with filters
-.masterclass/venv/bin/python .masterclass/actions/py/search.py --query="binary tree" --type=leetcode --difficulty=Medium
+.masterclass/venv/bin/python .masterclass/actions/py/search.py -q "binary tree" -t leetcode --difficulty=Medium --tags=dp
 
 # Search everything
-.masterclass/venv/bin/python .masterclass/actions/py/search.py --query="two sum" --type=all
+.masterclass/venv/bin/python .masterclass/actions/py/search.py -q "two sum" -t all
 ```
 
 The response includes `searched` (which types were actually searched) and results with path, page, score, and snippet.
