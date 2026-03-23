@@ -171,7 +171,7 @@ def scan_files(type_name: str) -> list[Path]:
 
 def build_type(type_name: str, rebuild: bool = False):
     """Build or incrementally update index for one type."""
-    from llama_index.core import VectorStoreIndex, StorageContext
+    from llama_index.core import VectorStoreIndex, StorageContext, load_index_from_storage
     from llama_index.core.node_parser import SentenceSplitter
 
     index_dir = INDEX_BASE_DIR / type_name

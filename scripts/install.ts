@@ -83,8 +83,8 @@ const PYTHON_DEPS = [
   'llama-index-vector-stores-faiss',
   'llama-index-retrievers-bm25',
   'faiss-cpu',
-  'torch',
   'sentence-transformers',
+  'pymupdf',
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────
@@ -332,6 +332,37 @@ async function installFiles(config: UserConfig, embedModel: string): Promise<voi
     execSync(`python3 -m venv "${venvPath}"`, { cwd: ROOT, stdio: 'pipe' });
   }
   const pip = path.join(venvPath, 'bin', 'pip');
+
+  // Detect CUDA and install matching torch (GPU wheel from PyTorch index, CPU fallback)
+  const cpuIndex = 'https://download.pytorch.org/whl/cpu';
+  let torchIndex = cpuIndex;
+  let cudaLabel = 'CPU-only';
+  try {
+    const smiHeader = execSync('nvidia-smi', { stdio: 'pipe' }).toString();
+    const cudaMatch = smiHeader.match(/CUDA Version:\s*(\d+)\.(\d+)/);
+    if (cudaMatch) {
+      const major = parseInt(cudaMatch[1], 10);
+      if (major >= 12) {
+        torchIndex = 'https://download.pytorch.org/whl/cu126';
+        cudaLabel = `CUDA ${cudaMatch[1]}.${cudaMatch[2]} → cu126`;
+      } else if (major === 11) {
+        torchIndex = 'https://download.pytorch.org/whl/cu118';
+        cudaLabel = `CUDA ${cudaMatch[1]}.${cudaMatch[2]} → cu118`;
+      }
+    }
+  } catch {}
+
+  p.log.info(`Installing torch (${cudaLabel})`);
+  try {
+    execSync(`"${pip}" install -q torch --index-url ${torchIndex}`, { cwd: ROOT, stdio: 'pipe', timeout: 600000 });
+  } catch {
+    if (torchIndex !== cpuIndex) {
+      p.log.warn('GPU torch install failed, falling back to CPU-only');
+      execSync(`"${pip}" install -q torch --index-url ${cpuIndex}`, { cwd: ROOT, stdio: 'pipe', timeout: 600000 });
+    } else {
+      throw new Error('Failed to install torch');
+    }
+  }
   execSync(`"${pip}" install -q ${PYTHON_DEPS.join(' ')}`, { cwd: ROOT, stdio: 'pipe', timeout: 600000 });
   spinner.stop('Python environment ready.');
 
