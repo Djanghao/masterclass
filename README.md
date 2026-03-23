@@ -35,13 +35,13 @@ The installer will:
 
 ### Vector Search (Optional)
 
-If you provided an OpenAI API key, build the knowledge base index:
+Build the knowledge base index for semantic search:
 
 ```bash
-node .masterclass/actions/index-build.js
+.masterclass/venv/bin/python .masterclass/actions/kb-build.py --type=all
 ```
 
-Without the key, the system falls back to IDE-native search.
+This uses local bge-m3 embeddings (no API key needed). Without the index, the system falls back to IDE-native search.
 
 ## Usage
 

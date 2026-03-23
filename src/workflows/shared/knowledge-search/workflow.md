@@ -25,31 +25,31 @@ Once both categories and query are known, proceed.
 
 ### 2. Search via Vector Index (Primary)
 
-Try LlamaIndex first. Categories can be comma-separated to search multiple indexes in parallel — each returns its own top K, results are merged by score:
+Search the knowledge base using hybrid search (vector + BM25). Types can be comma-separated to search multiple indexes — results are merged by score:
 
 ```bash
-node .masterclass/actions/index-search.js --query="{topic keywords}" --top=5 --type={categories or "all"}
+.masterclass/venv/bin/python .masterclass/actions/kb-search.py --query="{topic keywords}" --top=5 --type={types or "all"}
 ```
 
 Examples:
 ```bash
 # Search only papers
-node .masterclass/actions/index-search.js --query="attention mechanism" --type=papers
+.masterclass/venv/bin/python .masterclass/actions/kb-search.py --query="attention mechanism" --type=papers
 
-# Search papers and notes together
-node .masterclass/actions/index-search.js --query="transformer architecture" --type=papers,notes --top=5
+# Search leetcode with filters
+.masterclass/venv/bin/python .masterclass/actions/kb-search.py --query="binary tree" --type=leetcode --difficulty=Medium
 
 # Search everything
-node .masterclass/actions/index-search.js --query="two sum" --type=all
+.masterclass/venv/bin/python .masterclass/actions/kb-search.py --query="two sum" --type=all
 ```
 
-The response includes `searched` (which categories were actually searched) and `available` (all indexed categories) so you know what's available.
+The response includes `searched` (which types were actually searched) and results with path, page, score, and snippet.
 
-If `index-search.js` returns `success: true`, use the returned results and skip to step 4.
+If the search returns `success: true`, use the returned results and skip to step 4. For paper results, use `Read(file_path, pages=page)` to read the specific page for full context.
 
 ### 3. Fallback: IDE Native Search
 
-If index-search fails (not configured or no results), use your own tools and capabilities to search `{knowledge_path}/` directly. Use whatever approach works best for the current IDE environment (glob, grep, directory listing, etc.).
+If kb-search fails (venv not configured or no results), use your own tools and capabilities to search `{knowledge_path}/` directly. Use whatever approach works best for the current IDE environment (glob, grep, directory listing, etc.).
 
 ### 4. Return Results
 
