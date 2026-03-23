@@ -20,7 +20,7 @@ from device import select_device
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 INDEX_BASE_DIR = PROJECT_ROOT / "data" / ".index"
 
-ALL_TYPES = ["papers", "leetcode"]
+ALL_TYPES = ["papers", "leetcode", "books"]
 
 
 def search_type(
@@ -102,7 +102,7 @@ def search_type(
             "snippet": snippet,
         }
 
-        if type_name == "papers":
+        if type_name in ("papers", "books"):
             file_path = meta.get("file_path", "")
             result["path"] = file_path
             result["filename"] = Path(file_path).name if file_path else ""

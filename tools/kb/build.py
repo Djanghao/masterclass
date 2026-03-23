@@ -24,7 +24,7 @@ KNOWLEDGE_DIR = PROJECT_ROOT / "data" / "knowledge"
 INDEX_BASE_DIR = PROJECT_ROOT / "data" / ".index"
 
 EMBED_DIM = 1024  # bge-m3 output dimension
-ALL_TYPES = ["papers", "leetcode"]
+ALL_TYPES = ["papers", "leetcode", "books"]
 
 
 # ─── File hash utilities ───
@@ -164,6 +164,8 @@ def scan_files(type_name: str) -> list[Path]:
     """Discover files to index for a given type."""
     if type_name == "papers":
         return sorted((KNOWLEDGE_DIR / "papers").rglob("*.pdf"))
+    elif type_name == "books":
+        return sorted((KNOWLEDGE_DIR / "books").rglob("*.pdf"))
     elif type_name == "leetcode":
         return sorted((KNOWLEDGE_DIR / "leetcode-problems").rglob("*/description/problem.md"))
     return []
@@ -209,14 +211,14 @@ def build_type(type_name: str, rebuild: bool = False):
         # ── Full build ──
         print(f"\n  Full build: loading {len(files)} files...")
         t0 = time.time()
-        if type_name == "papers":
+        if type_name in ("papers", "books"):
             docs, file_doc_ids = load_papers(files)
         else:
             docs, file_doc_ids = load_leetcode(files)
         print(f"  Loaded {len(docs)} documents in {time.time() - t0:.1f}s")
 
-        # Chunk (papers only)
-        if type_name == "papers":
+        # Chunk (PDF types)
+        if type_name in ("papers", "books"):
             splitter = SentenceSplitter(chunk_size=512, chunk_overlap=50)
             t0 = time.time()
             nodes = splitter.get_nodes_from_documents(docs)
@@ -303,14 +305,14 @@ def build_type(type_name: str, rebuild: bool = False):
     if to_load:
         print(f"\n  Loading {len(to_load)} files...")
         t0 = time.time()
-        if type_name == "papers":
+        if type_name in ("papers", "books"):
             new_docs, new_file_doc_ids = load_papers(to_load)
         else:
             new_docs, new_file_doc_ids = load_leetcode(to_load)
         print(f"  Loaded {len(new_docs)} documents in {time.time() - t0:.1f}s")
 
-        # Chunk if papers
-        if type_name == "papers":
+        # Chunk if PDF type
+        if type_name in ("papers", "books"):
             splitter = SentenceSplitter(chunk_size=512, chunk_overlap=50)
             new_nodes = splitter.get_nodes_from_documents(new_docs)
             for node in new_nodes:
