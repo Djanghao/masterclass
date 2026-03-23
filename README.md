@@ -38,7 +38,7 @@ The installer will:
 Build the knowledge base index for semantic search:
 
 ```bash
-.masterclass/venv/bin/python .masterclass/actions/kb-build.py --type=all
+.masterclass/venv/bin/python .masterclass/actions/py/build.py --type=all
 ```
 
 This uses local bge-m3 embeddings (no API key needed). Without the index, the system falls back to IDE-native search.

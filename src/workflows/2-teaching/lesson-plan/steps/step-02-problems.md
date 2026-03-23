@@ -47,7 +47,7 @@ Let the user pick which problems to assign (can select multiple).
 For each selected problem, run:
 
 ```bash
-node .masterclass/actions/problem-copy.js --source={knowledge_path}/leetcode-problems/{category}/{problem_dir} --target={lesson_path}/interview/{id}-coding-{slug}/source
+node .masterclass/actions/js/problem-copy.js --source={knowledge_path}/leetcode-problems/{category}/{problem_dir} --target={lesson_path}/interview/{id}-coding-{slug}/source
 ```
 
 Also create an empty interview.md if it doesn't exist:

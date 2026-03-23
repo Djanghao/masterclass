@@ -8,6 +8,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["tools/**/*.ts"],
+  "include": ["scripts/**/*.ts", "src/actions/ts/**/*.ts"],
   "exclude": ["node_modules", "data"]
 }

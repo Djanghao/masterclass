@@ -4,7 +4,7 @@
   "type": "module",
   "description": "AI-driven tutoring and interview preparation system",
   "scripts": {
-    "install:mc": "tsx tools/install.ts"
+    "install:mc": "tsx scripts/install.ts"
   },
   "dependencies": {
     "@clack/prompts": "^0.10.0",

@@ -13,11 +13,11 @@ description: 'System initialization and agent selection. This is the mandatory e
 
 ### 1. Load Engine Rules
 
-Read and internalize `.masterclass/core/engine.xml` — these are the execution rules for ALL subsequent workflows. Every rule in that file applies from this point forward.
+Read and internalize `.masterclass/engine.xml` — these are the execution rules for ALL subsequent workflows. Every rule in that file applies from this point forward.
 
 ### 2. Load Configuration
 
-Run: `node .masterclass/actions/config-read.js`
+Run: `node .masterclass/actions/js/config-read.js`
 
 Store the returned config values as session variables. Key variables:
 - `user_name`, `communication_language`, `document_output_language`

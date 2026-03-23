@@ -2,10 +2,10 @@
 Build knowledge base index with incremental updates using FAISS.
 
 Usage:
-  python tools/kb/build.py --type=papers
-  python tools/kb/build.py --type=leetcode
-  python tools/kb/build.py --type=all
-  python tools/kb/build.py --type=papers --rebuild
+  python src/actions/py/build.py --type=papers
+  python src/actions/py/build.py --type=leetcode
+  python src/actions/py/build.py --type=all
+  python src/actions/py/build.py --type=papers --rebuild
 """
 import re
 import sys

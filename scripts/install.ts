@@ -6,7 +6,7 @@ import YAML from 'yaml';
 
 const ROOT = process.cwd();
 const SRC = path.join(ROOT, 'src');
-const TOOLS = path.join(ROOT, 'tools');
+const SCRIPTS = path.join(ROOT, 'scripts');
 const OUTPUT = path.join(ROOT, '.masterclass');
 
 // ── Types ────────────────────────────────────────────────────────────
@@ -235,10 +235,9 @@ async function installFiles(config: UserConfig, embedModel: string): Promise<voi
   spinner.start('Copying source files...');
 
   // engine.xml
-  ensureDir(path.join(OUTPUT, 'core'));
   fs.copyFileSync(
-    path.join(SRC, 'core', 'engine.xml'),
-    path.join(OUTPUT, 'core', 'engine.xml'),
+    path.join(SRC, 'engine.xml'),
+    path.join(OUTPUT, 'engine.xml'),
   );
 
   // workflows
@@ -279,7 +278,7 @@ async function installFiles(config: UserConfig, embedModel: string): Promise<voi
 
   // 4. Compile agents (using the newly installed runtime)
   spinner.start('Compiling agents...');
-  const compileAgents = path.join(OUTPUT, 'actions', 'compile-agents.js');
+  const compileAgents = path.join(OUTPUT, 'actions', 'js', 'compile-agents.js');
   if (fs.existsSync(compileAgents)) {
     execSync(`node "${compileAgents}"`, { cwd: ROOT, stdio: 'pipe' });
     spinner.stop('Agents compiled.');
@@ -290,13 +289,13 @@ async function installFiles(config: UserConfig, embedModel: string): Promise<voi
   // 5. Generate IDE skill files
   spinner.start('Generating IDE skill files...');
 
-  const platformCodesPath = path.join(TOOLS, 'ide', 'platform-codes.yaml');
+  const platformCodesPath = path.join(SCRIPTS, 'ide', 'platform-codes.yaml');
   const platforms = YAML.parse(fs.readFileSync(platformCodesPath, 'utf8')) as Record<string, Platform>;
 
   for (const [, platform] of Object.entries(platforms)) {
     if (typeof platform !== 'object' || !platform.target_dir) continue;
 
-    const templatePath = path.join(TOOLS, 'ide', 'templates', `${platform.template_type}-workflow.md`);
+    const templatePath = path.join(SCRIPTS, 'ide', 'templates', `${platform.template_type}-workflow.md`);
     if (!fs.existsSync(templatePath)) {
       p.log.warn(`Template not found for ${platform.name}: ${templatePath}`);
       continue;
@@ -336,10 +335,11 @@ async function installFiles(config: UserConfig, embedModel: string): Promise<voi
   execSync(`"${pip}" install -q ${PYTHON_DEPS.join(' ')}`, { cwd: ROOT, stdio: 'pipe', timeout: 600000 });
   spinner.stop('Python environment ready.');
 
-  // 7. Copy KB scripts to .masterclass/actions/
+  // 7. Copy KB scripts to .masterclass/actions/py/
   spinner.start('Copying knowledge base scripts...');
-  const kbSrc = path.join(TOOLS, 'kb');
-  const kbDest = path.join(OUTPUT, 'actions');
+  const kbSrc = path.join(SRC, 'actions', 'py');
+  const kbDest = path.join(OUTPUT, 'actions', 'py');
+  ensureDir(kbDest);
   for (const file of ['device.py', 'build.py', 'search.py']) {
     fs.copyFileSync(path.join(kbSrc, file), path.join(kbDest, file));
   }

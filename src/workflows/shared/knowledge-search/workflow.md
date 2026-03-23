@@ -28,19 +28,19 @@ Once both categories and query are known, proceed.
 Search the knowledge base using hybrid search (vector + BM25). Types can be comma-separated to search multiple indexes — results are merged by score:
 
 ```bash
-.masterclass/venv/bin/python .masterclass/actions/kb-search.py --query="{topic keywords}" --top=5 --type={types or "all"}
+.masterclass/venv/bin/python .masterclass/actions/py/search.py --query="{topic keywords}" --top=5 --type={types or "all"}
 ```
 
 Examples:
 ```bash
 # Search only papers
-.masterclass/venv/bin/python .masterclass/actions/kb-search.py --query="attention mechanism" --type=papers
+.masterclass/venv/bin/python .masterclass/actions/py/search.py --query="attention mechanism" --type=papers
 
 # Search leetcode with filters
-.masterclass/venv/bin/python .masterclass/actions/kb-search.py --query="binary tree" --type=leetcode --difficulty=Medium
+.masterclass/venv/bin/python .masterclass/actions/py/search.py --query="binary tree" --type=leetcode --difficulty=Medium
 
 # Search everything
-.masterclass/venv/bin/python .masterclass/actions/kb-search.py --query="two sum" --type=all
+.masterclass/venv/bin/python .masterclass/actions/py/search.py --query="two sum" --type=all
 ```
 
 The response includes `searched` (which types were actually searched) and results with path, page, score, and snippet.

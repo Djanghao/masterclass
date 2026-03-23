@@ -53,7 +53,7 @@ Write the updated config to `.masterclass/config/config.yaml`.
 
 If any agent-related setting changed (tutor_name, tutor_persona_style, tutor_custom_persona, interviewer_name, interviewer_language, interviewer_persona_style, interviewer_custom_persona, user_name, communication_language, document_output_language):
 
-Run: `node .masterclass/actions/compile-agents.js`
+Run: `node .masterclass/actions/js/compile-agents.js`
 
 Check the output JSON. If success, tell the user agents have been updated.
 

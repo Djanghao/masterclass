@@ -2,9 +2,9 @@
 Semantic search over knowledge base using FAISS.
 
 Usage:
-  python tools/kb/search.py --query="LoRA参数" --type=papers --top=5
-  python tools/kb/search.py --query="sliding window" --type=leetcode --difficulty=Medium
-  python tools/kb/search.py --query="二叉树" --type=all --top=10
+  python src/actions/py/search.py --query="LoRA参数" --type=papers --top=5
+  python src/actions/py/search.py --query="sliding window" --type=leetcode --difficulty=Medium
+  python src/actions/py/search.py --query="二叉树" --type=all --top=10
 
 Output: JSON to stdout
 """
