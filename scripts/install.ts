@@ -57,6 +57,8 @@ const COMMANDS: Command[] = [
   { name: 'mc-paper-read', desc: 'Read a paper section by section', path: '5-research/paper-read', args: true },
   { name: 'mc-paper-survey', desc: 'Survey papers on a topic', path: '5-research/paper-survey', args: false },
   { name: 'mc-paper-qa', desc: 'Q&A about a specific paper', path: '5-research/paper-qa', args: true },
+  { name: 'mc-kb-search', desc: 'Search the knowledge base', path: 'shared/knowledge-search', args: true },
+  { name: 'mc-kb-build', desc: 'Build or rebuild knowledge base indexes', path: 'shared/knowledge-build', args: true },
 ];
 
 // ── Runtime dependencies for .masterclass/package.json ──────────────

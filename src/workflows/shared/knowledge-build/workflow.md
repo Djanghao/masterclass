@@ -1,6 +1,6 @@
 ---
 name: knowledge-build
-description: 'Internal subflow to build or rebuild knowledge base vector indexes. Not exposed as a user command.'
+description: 'Build or rebuild knowledge base vector indexes.'
 ---
 
 # Knowledge Build Subflow

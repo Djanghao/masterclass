@@ -1,6 +1,6 @@
 ---
 name: knowledge-search
-description: 'Internal subflow to search per-category knowledge base indexes via vector search with file-based fallback. Not exposed as a user command.'
+description: 'Search per-category knowledge base indexes via vector search with file-based fallback.'
 ---
 
 # Knowledge Search Subflow
