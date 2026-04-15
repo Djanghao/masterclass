@@ -55,7 +55,7 @@ Hey {{user_name}}! I'm {{interviewer_name}}, your interview coach. 🎯
 
 Let me check your progress...
 
-*[Read learning-context.md and show interview history]*
+*[Read course context.md and show interview history]*
 
 Ready for a session?
 

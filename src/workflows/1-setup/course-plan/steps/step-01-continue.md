@@ -22,8 +22,8 @@ next: step-03-scaffold.md
 
 ### 1. Load Current State
 
-- Read `{lessons_path}/roadmap.yaml`
-- List the directory structure under `{lessons_path}/` to see existing modules and lessons
+- Read `{lessons_path}/{course_slug}/roadmap.yaml`
+- List the directory structure under `{lessons_path}/{course_slug}/` to see existing modules and lessons
 
 ### 2. Present to User
 
@@ -55,7 +55,7 @@ On confirmation:
 - Update `roadmap.yaml` with new values
 - Create new directories and empty files for added modules/lessons (`mkdir -p` + `touch`)
 - If removing: confirm again, then delete directories
-- Update `learning-context.md` if goals changed
+- Update `{course_path}/context.md` if goals changed
 
 ### 6. Done
 

@@ -14,7 +14,7 @@ next: null
 
 - 📋 Produce a structured summary of the entire paper.
 - 📝 Offer to write the summary to notes.
-- 🧠 Check if learning-context.md needs updating.
+- 🧠 Check if course context needs updating.
 - ✅ Speak in `{communication_language}`.
 
 ---
@@ -76,7 +76,7 @@ If yes, write/append to `{notes_path}`:
 If you discovered important information about the learner:
 - Research interests, background knowledge gaps, preferred paper reading style
 - Prompt: "I noticed {observation}. Should I update your learning profile?"
-- If confirmed, update `{progress_path}/learning-context.md`
+- If confirmed, write to `{course_path}/context.md`
 
 ### 5. Next Steps
 

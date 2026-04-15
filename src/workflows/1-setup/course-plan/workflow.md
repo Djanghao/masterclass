@@ -31,11 +31,18 @@ This uses **step-file architecture**. Rules from `engine.xml` apply.
 
 From config (already in session from mc-start):
 - `lessons_path` → where course content lives (default: `docs/course`)
-- `progress_path` → where learning-context.md lives (default: `docs/progress`)
 
-### 2. Resume Detection
+### 2. Route by Intent
 
-Check: does `{lessons_path}/roadmap.yaml` exist and have content?
+Course selection happens in `mc-start`. When this workflow runs, determine the mode:
 
-- **YES (has content)** → Read and follow: `steps/step-01-continue.md`
-- **NO (empty or missing)** → Read and follow: `steps/step-01-new.md`
+- **`{course_slug}` is set and `{course_path}/roadmap.yaml` exists** → The user wants to review/adjust this course.
+  Read and follow: `steps/step-01-continue.md`
+
+- **`{course_slug}` is NOT set (or new course requested)** → The user wants to create a new course.
+  Read and follow: `steps/step-01-new.md`
+
+- **Fallback (called standalone without mc-start):**
+  List subdirectories under `{lessons_path}/`. Each subdirectory containing a `roadmap.yaml` is an existing course.
+  - Existing courses found → Show the list and ask: review existing or create new?
+  - No courses found → Read and follow: `steps/step-01-new.md`

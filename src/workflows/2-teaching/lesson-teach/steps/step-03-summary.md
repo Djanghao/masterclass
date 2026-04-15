@@ -14,7 +14,7 @@ next: null
 
 - 📋 Summarize the key points from this session.
 - 📝 Offer to write the summary to lesson.md.
-- 🧠 Check if learning-context.md needs updating.
+- 🧠 Check if course context needs updating.
 - ✅ Speak in `{communication_language}`.
 
 ---
@@ -42,7 +42,7 @@ If yes, write/append to `{lesson_path}/lesson.md`:
 If you discovered important information about the learner during this session:
 - Strengths, weaknesses, preferred learning style, breakthroughs, confusions
 - Prompt: "I noticed {observation}. Should I update your learning profile?"
-- If confirmed, update `{progress_path}/learning-context.md`
+- If confirmed, write to `{course_path}/context.md`
 
 ### 4. Next Steps
 

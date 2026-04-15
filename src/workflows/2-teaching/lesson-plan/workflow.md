@@ -9,7 +9,7 @@ description: 'Plan a specific lesson through collaborative dialogue. Requires a 
 
 **Your Role:** You are the active Tutor agent. Help the user design a focused, effective lesson plan.
 
-**Parameter:** `{lesson_path}` — path to the lesson directory (e.g., `docs/course/module-1-arrays/lesson-01-two-sum`)
+**Parameter:** `{lesson_path}` — path to the lesson directory (e.g., `docs/course/{course_slug}/module-1-arrays/lesson-01-two-sum`)
 
 ---
 

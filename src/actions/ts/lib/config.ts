@@ -17,7 +17,6 @@ export interface MasterClassConfig {
   researcher_persona_style: string;
   researcher_custom_persona: string;
   lessons_path: string;
-  progress_path: string;
   knowledge_path: string;
 }
 

@@ -6,7 +6,7 @@ next: null
 
 # Step 3: Scaffold Directory Structure
 
-**Goal:** Write the roadmap.yaml, create all directories and empty files, and initialize learning-context.md.
+**Goal:** Write the roadmap.yaml, create all directories and empty files, and initialize course context.
 
 ---
 
@@ -23,7 +23,7 @@ next: null
 
 ### 1. Write roadmap.yaml
 
-Write `{lessons_path}/roadmap.yaml` with the confirmed data:
+Write `{lessons_path}/{course_slug}/roadmap.yaml` with the confirmed data:
 
 ```yaml
 goals:
@@ -35,29 +35,37 @@ level: "<junior|senior|principal|distinguished>"
 direction: "<interview prep|deep dive|engineering practice>"
 ```
 
-### 2. Create Directory Structure
+### 2. Create Course Context File
+
+Create an empty `{lessons_path}/{course_slug}/context.md` for course-specific learning observations:
+
+```bash
+touch {lessons_path}/{course_slug}/context.md
+```
+
+### 3. Create Directory Structure
 
 For each module and lesson, run:
 
 ```bash
-mkdir -p {lessons_path}/module-{N}-{name}/lesson-{NN}-{name}/interview/{id}-{type}-{slug}
+mkdir -p {lessons_path}/{course_slug}/module-{N}-{name}/lesson-{NN}-{name}/interview/{id}-{type}-{slug}
 ```
 
 Then create empty files:
 
 ```bash
-touch {lessons_path}/module-{N}-{name}/lesson-{NN}-{name}/plan.md
-touch {lessons_path}/module-{N}-{name}/lesson-{NN}-{name}/lesson.md
-touch {lessons_path}/module-{N}-{name}/lesson-{NN}-{name}/practice.md
-touch {lessons_path}/module-{N}-{name}/lesson-{NN}-{name}/interview/{id}-{type}-{slug}/interview.md
+touch {lessons_path}/{course_slug}/module-{N}-{name}/lesson-{NN}-{name}/plan.md
+touch {lessons_path}/{course_slug}/module-{N}-{name}/lesson-{NN}-{name}/lesson.md
+touch {lessons_path}/{course_slug}/module-{N}-{name}/lesson-{NN}-{name}/practice.md
+touch {lessons_path}/{course_slug}/module-{N}-{name}/lesson-{NN}-{name}/interview/{id}-{type}-{slug}/interview.md
 ```
 
-### 3. Initialize Learning Context
+### 4. Initialize Course Context
 
-If `{progress_path}/learning-context.md` is empty, write initial content:
+If `{course_path}/context.md` is empty, write initial content:
 
 ```markdown
-# Learning Context
+# Course Context
 
 ## Learner
 - Name: {user_name}
@@ -77,12 +85,12 @@ If `{progress_path}/learning-context.md` is empty, write initial content:
 
 If it already has content, append the new goals/direction if they differ.
 
-### 4. Completion
+### 5. Completion
 
 Display the created structure as a tree.
 
 Suggest next steps:
-- "Run `/mc-lesson-plan {lessons_path}/module-1-.../lesson-01-...` to plan your first lesson"
+- "Run `/mc-lesson-plan {lessons_path}/{course_slug}/module-1-.../lesson-01-...` to plan your first lesson"
 - Or pick a different module to start with
 
 Return to Tutor menu.

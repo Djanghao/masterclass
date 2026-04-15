@@ -40,7 +40,6 @@ interface UserConfig {
   researcher_persona_style: string;
   researcher_custom_persona: string;
   lessons_path: string;
-  progress_path: string;
   knowledge_path: string;
 }
 
@@ -219,10 +218,6 @@ async function main(): Promise<void> {
     lessons_path: () => p.text({
       message: 'Course content directory',
       initialValue: 'docs/course',
-    }),
-    progress_path: () => p.text({
-      message: 'Progress tracking directory',
-      initialValue: 'docs/progress',
     }),
     knowledge_path: () => p.text({
       message: 'Knowledge base directory',
@@ -411,14 +406,7 @@ async function installFiles(config: UserConfig, embedModel: string): Promise<voi
 
   // 9. Create user content directories
   const lessonsPath = config.lessons_path || 'docs/course';
-  const progressPath = config.progress_path || 'docs/progress';
   ensureDir(path.join(ROOT, lessonsPath));
-  ensureDir(path.join(ROOT, progressPath));
-
-  const lcPath = path.join(ROOT, progressPath, 'learning-context.md');
-  if (!fs.existsSync(lcPath)) {
-    fs.writeFileSync(lcPath, '');
-  }
 
   p.log.success('Directory structure ready.');
 }

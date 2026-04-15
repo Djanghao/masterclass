@@ -14,7 +14,7 @@ next: null
 
 - 📋 Produce a well-structured survey document.
 - 📝 Write to `{survey_path}`.
-- 🧠 Check if learning-context.md needs updating.
+- 🧠 Check if course context needs updating.
 - ✅ Speak in `{communication_language}`. Write document in `{document_output_language}`.
 
 ---

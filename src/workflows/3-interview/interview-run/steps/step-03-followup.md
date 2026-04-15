@@ -14,7 +14,7 @@ next: null
 
 - 💡 Follow-up should deepen understanding, not just test more.
 - 📝 Offer to write the complete interview record.
-- 🧠 Check if learning-context.md needs updating.
+- 🧠 Check if course context needs updating.
 - 🎯 Conduct in `{interviewer_language}`.
 
 ---
@@ -80,7 +80,7 @@ If yes, write/update `{interview_path}/interview.md`:
 If you observed important patterns:
 - Consistent weak areas, strong areas, communication habits
 - Prompt: "I noticed {observation}. Should I update your learning profile?"
-- If confirmed, update `{progress_path}/learning-context.md`
+- If confirmed, write to `{course_path}/context.md`
 
 ### 5. Next Steps
 

@@ -21,6 +21,13 @@ next: step-02-generate.md
 
 ## SEQUENCE
 
+### 0. Course Name
+
+Ask the user to give this course a short name (used as the folder name under `{lessons_path}/`).
+- Convert to kebab-case for the folder slug (e.g., "量化笔试准备" → `quant-exam-prep`)
+- Confirm the slug with the user before proceeding.
+- Store as `{course_slug}` for later use.
+
 ### 1. Learning Goals
 
 Ask the user about their learning goals. Examples of good questions:

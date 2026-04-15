@@ -13,7 +13,7 @@ next: step-02-problems.md
 ## MANDATORY RULES
 
 - 💬 Collaborate with the user — ask what they want to focus on, what they already know.
-- 📖 Check roadmap.yaml and learning-context.md for context on this lesson's place in the curriculum.
+- 📖 Check roadmap.yaml and course context for this lesson's place in the curriculum.
 - ✅ Speak in `{communication_language}`. Write plan.md in `{document_output_language}`.
 
 ---
@@ -22,8 +22,8 @@ next: step-02-problems.md
 
 ### 1. Gather Context
 
-- Read `{lessons_path}/roadmap.yaml` to understand this lesson's position in the curriculum
-- Read `{progress_path}/learning-context.md` for learner background
+- Read the `roadmap.yaml` from the course folder containing this lesson (derive `{course_slug}` from the lesson path) to understand this lesson's position in the curriculum
+- Read `{course_path}/context.md` for learner background and course-specific observations (if it exists)
 - Check if previous lessons in this module have content (to understand prerequisites)
 
 ### 2. Discuss the Lesson

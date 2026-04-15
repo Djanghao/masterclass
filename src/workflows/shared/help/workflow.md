@@ -18,11 +18,11 @@ Check these files and directories in order:
 | Check | Path | Meaning |
 |-------|------|---------|
 | Config exists? | `.masterclass/config/config.yaml` | System installed |
-| Roadmap exists? | `{lessons_path}/roadmap.yaml` | Course planned |
+| Any course exists? | `{lessons_path}/*/roadmap.yaml` | Course planned |
 | Any plan.md has content? | `{lessons_path}/**/plan.md` | Lessons planned |
 | Any lesson.md has content? | `{lessons_path}/**/lesson.md` | Teaching started |
 | Any interview.md has content? | `{lessons_path}/**/interview/*/interview.md` | Interviews done |
-| Learning context has content? | `{progress_path}/learning-context.md` | Profile exists |
+| Learning context has content? | `{course_path}/context.md` | Profile exists |
 | Any paper notes exist? | `{knowledge_path}/papers/**/*-notes.md` | Papers have been read |
 | Any survey exists? | `docs/research/*/survey.md` | Surveys generated |
 

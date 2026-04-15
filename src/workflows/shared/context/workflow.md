@@ -1,11 +1,11 @@
 ---
 name: mc-context
-description: 'View and update your learner profile (learning-context.md).'
+description: 'View and update your course learning context ({course_path}/context.md).'
 ---
 
 # Learning Context Workflow
 
-**Goal:** Let the user view, update, or refine their learning profile.
+**Goal:** Let the user view, update, or refine their course learning context.
 
 ---
 
@@ -13,12 +13,12 @@ description: 'View and update your learner profile (learning-context.md).'
 
 ### 1. Load
 
-Read `{progress_path}/learning-context.md` (default: `docs/progress/learning-context.md`).
+Read `{course_path}/context.md` (course learning context).
+If empty or missing → tell the user: "Your course learning context is empty. Let me help you set it up."
 
 ### 2. Present
 
-If it has content → display the current profile clearly, organized by section.
-If it is empty → tell the user: "Your learning profile is empty. Let me help you set it up."
+Display the course context, organized by section.
 
 ### 3. Update
 
@@ -33,7 +33,7 @@ Common updates:
 
 ### 4. Write
 
-Apply the user's changes to `{progress_path}/learning-context.md`:
+Apply the user's changes to `{course_path}/context.md`:
 - Append new observations under the appropriate section
 - Refine existing entries if the user corrects them
 - Never delete prior observations unless explicitly asked

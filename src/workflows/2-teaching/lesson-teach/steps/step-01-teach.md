@@ -26,7 +26,7 @@ next: step-02-practice.md
 ### 1. Load Context
 
 - Read `{lesson_path}/plan.md` — the teaching blueprint
-- Read `{progress_path}/learning-context.md` — learner background
+- Read `{course_path}/context.md` — learner background and course-specific observations (if it exists)
 - Check if previous lessons have content (to build on prior knowledge)
 
 ### 2. Opening

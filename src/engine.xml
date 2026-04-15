@@ -68,9 +68,11 @@
        6. LEARNING CONTEXT AUTO-UPDATE
        ════════════════════════════════════════════════════════════════════ -->
   <context-update>
+    <rule id="per-course">Learning context is per-course only, stored in {course_path}/context.md. There is no global learning context.</rule>
     <rule id="detect">During any workflow, when you discover important learner information (weak areas, strengths, preferences, background changes, learning breakthroughs), proactively prompt:
       "This seems important — update your learning profile?"</rule>
-    <rule id="confirm">Only update docs/progress/learning-context.md after user confirms.</rule>
+    <rule id="write-context">Write observations to {course_path}/context.md.</rule>
+    <rule id="confirm">Only update context files after user confirms.</rule>
     <rule id="append-context">Append new observations. Preserve and refine existing entries.</rule>
   </context-update>
 
@@ -81,7 +83,7 @@
     <rule id="load-order">Every workflow MUST follow this initialization sequence:
       1. Read and internalize this engine.xml
       2. Read .masterclass/config/config.yaml (or use config-read.js output)
-      3. Read docs/progress/learning-context.md
+      3. If {course_slug} is set: read {course_path}/context.md (course-level context)
       4. Execute workflow.md instructions
     </rule>
     <rule id="step-sequence">Execute steps in strict sequential order. Never skip steps. Never load future steps prematurely.</rule>

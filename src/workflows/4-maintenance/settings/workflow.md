@@ -28,7 +28,6 @@ Read `.masterclass/config/config.yaml` and display all current settings in a cle
 | interviewer_persona_style | ... |
 | interviewer_custom_persona | ... |
 | lessons_path | ... |
-| progress_path | ... |
 | knowledge_path | ... |
 
 ### 2. Edit

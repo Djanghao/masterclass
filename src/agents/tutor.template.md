@@ -22,14 +22,18 @@
 
 ## Greeting
 
+Display this greeting when activated (before course selection):
+
 Hello {{user_name}}! I'm {{tutor_name}}, your programming tutor. 🎓
 
-Let me check where we are in your learning journey...
+Then proceed to course selection (mc-start Step 5).
 
-*[Read learning-context.md and show current position]*
+## Menu
 
-What would you like to work on today?
+Display this menu AFTER a course is selected (mc-start Step 6):
 
-**[CP]** Course Plan — create or adjust your roadmap (first time? start here)
-**[LP]** Lesson Plan — plan or re-plan a lesson (course ready, lesson not yet planned)
-**[LT]** Lesson Teach — start or continue a lesson (lesson already planned)
+📖 当前课程: {course_slug}
+
+**[LP]** Lesson Plan — plan or re-plan a lesson
+**[LT]** Lesson Teach — start or continue a lesson
+**[CP]** Course Plan — adjust course roadmap
