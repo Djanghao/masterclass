@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2240. Number of Ways to Buy Pens and Pencils</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/number-of-ways-to-buy-pens-and-pencils/">2240. Number of Ways to Buy Pens and Pencils</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>472</td>
+            <td>35</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/enumeration"><code>enumeration</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>reddit</code></p>
+    </details>
+
+    <p>You are given an integer <code>total</code> indicating the amount of money you have. You are also given two integers <code>cost1</code> and <code>cost2</code> indicating the price of a pen and pencil respectively. You can spend <strong>part or all</strong> of your money to buy multiple quantities (or none) of each kind of writing utensil.</p>
+
+<p>Return <em>the <strong>number of distinct ways</strong> you can buy some number of pens and pencils.</em></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> total = 20, cost1 = 10, cost2 = 5
+<strong>Output:</strong> 9
+<strong>Explanation:</strong> The price of a pen is 10 and the price of a pencil is 5.
+- If you buy 0 pens, you can buy 0, 1, 2, 3, or 4 pencils.
+- If you buy 1 pen, you can buy 0, 1, or 2 pencils.
+- If you buy 2 pens, you cannot buy any pencils.
+The total number of ways to buy pens and pencils is 5 + 3 + 1 = 9.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> total = 5, cost1 = 10, cost2 = 10
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> The price of both pens and pencils are 10, which cost more than total, so you cannot buy any writing utensils. Therefore, there is only 1 way: buy 0 pens and 0 pencils.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= total, cost1, cost2 &lt;= 10<sup>6</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/number-of-ways-to-buy-pens-and-pencils/">Submissions</a>
+        <a href="https://leetcode.com/problems/number-of-ways-to-buy-pens-and-pencils/">Solutions</a>
+    </div>
+</body>
+</html>

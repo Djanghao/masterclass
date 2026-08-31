@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1236. Web Crawler</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/web-crawler/">1236. Web Crawler</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>304</td>
+            <td>333</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/string"><code>string</code></a> | <a href="https://leetcode.com/tag/depth-first-search"><code>depth-first-search</code></a> | <a href="https://leetcode.com/tag/breadth-first-search"><code>breadth-first-search</code></a> | <a href="https://leetcode.com/tag/interactive"><code>interactive</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>snowflake</code> | <code>microsoft</code> | <code>dropbox</code> | <code>facebook</code></p>
+    </details>
+
+    <p>Given a url <code>startUrl</code> and an interface <code>HtmlParser</code>, implement a web&nbsp;crawler to crawl all links that are under the&nbsp;<strong>same hostname</strong> as&nbsp;<code>startUrl</code>.&nbsp;</p>
+
+<p>Return&nbsp;all urls obtained by your web crawler in <strong>any</strong> order.</p>
+
+<p>Your crawler should:</p>
+
+<ul>
+	<li>Start from the page: <code>startUrl</code></li>
+	<li>Call <code>HtmlParser.getUrls(url)</code> to get all urls from a webpage of given url.</li>
+	<li>Do not crawl the same link twice.</li>
+	<li>Explore only the links that are under the <strong>same hostname</strong> as <code>startUrl</code>.</li>
+</ul>
+
+<p><img src="./images/0.png"></p>
+
+<p>As shown in the example url above, the hostname is <code>example.org</code>. For simplicity sake, you may assume all&nbsp;urls use <strong>http protocol</strong> without any&nbsp;<strong>port</strong> specified. For example, the urls&nbsp;<code>http://leetcode.com/problems</code> and&nbsp;<code>http://leetcode.com/contest</code> are under the same hostname, while urls <code>http://example.org/test</code> and <code>http://example.com/abc</code> are not under the same hostname.</p>
+
+<p>The <code>HtmlParser</code> interface is defined as such:&nbsp;</p>
+
+<pre><code>interface HtmlParser {
+  // Return a list of all urls from a webpage of given <em>url</em>.
+  public List&lt;String&gt; getUrls(String url);
+}</code></pre>
+
+<p>Below&nbsp;are two examples explaining the functionality of the problem, for custom testing purposes you&#39;ll have three&nbsp;variables&nbsp;<code data-stringify-type="code">urls</code>,&nbsp;<code data-stringify-type="code">edges</code>&nbsp;and&nbsp;<code data-stringify-type="code">startUrl</code>. Notice that you will only have access to&nbsp;<code data-stringify-type="code">startUrl</code>&nbsp;in your code, while&nbsp;<code data-stringify-type="code">urls</code>&nbsp;and&nbsp;<code data-stringify-type="code">edges</code>&nbsp;are not directly accessible to you in code.</p>
+
+<p>Note: Consider the same URL with the trailing slash &quot;/&quot; as a different URL. For example, &quot;http://news.yahoo.com&quot;, and &quot;http://news.yahoo.com/&quot; are different urls.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<p><img src="./images/1.png"></p>
+
+<pre><code><strong>Input:
+</strong>urls = [
+&nbsp; &quot;http://news.yahoo.com&quot;,
+&nbsp; &quot;http://news.yahoo.com/news&quot;,
+&nbsp; &quot;http://news.yahoo.com/news/topics/&quot;,
+&nbsp; &quot;http://news.google.com&quot;,
+&nbsp; &quot;http://news.yahoo.com/us&quot;
+]
+edges = [[2,0],[2,1],[3,2],[3,1],[0,4]]
+startUrl = &quot;http://news.yahoo.com/news/topics/&quot;
+<strong>Output:</strong> [
+&nbsp; &quot;http://news.yahoo.com&quot;,
+&nbsp; &quot;http://news.yahoo.com/news&quot;,
+&nbsp; &quot;http://news.yahoo.com/news/topics/&quot;,
+&nbsp; &quot;http://news.yahoo.com/us&quot;
+]</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<p><strong><img src="./images/2.png"></strong></p>
+
+<pre><code><strong>Input:</strong> 
+urls = [
+&nbsp; &quot;http://news.yahoo.com&quot;,
+&nbsp; &quot;http://news.yahoo.com/news&quot;,
+&nbsp; &quot;http://news.yahoo.com/news/topics/&quot;,
+&nbsp; &quot;http://news.google.com&quot;
+]
+edges = [[0,2],[2,1],[3,2],[3,1],[3,0]]
+startUrl = &quot;http://news.google.com&quot;
+<strong>Output:</strong> [&quot;http://news.google.com&quot;]
+<strong>Explanation: </strong>The startUrl links to all other pages that do not share the same hostname.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= urls.length &lt;= 1000</code></li>
+	<li><code>1 &lt;= urls[i].length &lt;= 300</code></li>
+	<li><code>startUrl</code>&nbsp;is one of the <code>urls</code>.</li>
+	<li>Hostname label must be from 1 to 63 characters long, including the dots, may contain only the ASCII letters from &#39;a&#39; to&nbsp;&#39;z&#39;, digits&nbsp; from &#39;0&#39; to &#39;9&#39; and the&nbsp;hyphen-minus&nbsp;character (&#39;-&#39;).</li>
+	<li>The hostname may not start or end with&nbsp;the hyphen-minus character (&#39;-&#39;).&nbsp;</li>
+	<li>See:&nbsp;&nbsp;<a href="https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames">https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames</a></li>
+	<li>You may assume there&#39;re&nbsp;no duplicates in url library.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/web-crawler/">Submissions</a>
+        <a href="https://leetcode.com/problems/web-crawler/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>699. Falling Squares</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/falling-squares/">699. Falling Squares</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>670</td>
+            <td>76</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/segment-tree"><code>segment-tree</code></a> | <a href="https://leetcode.com/tag/ordered-set"><code>ordered-set</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>uber</code> | <code>square</code></p>
+    </details>
+
+    <p>There are several squares being dropped onto the X-axis of a 2D plane.</p>
+
+<p>You are given a 2D integer array <code>positions</code> where <code>positions[i] = [left<sub>i</sub>, sideLength<sub>i</sub>]</code> represents the <code>i<sup>th</sup></code> square with a side length of <code>sideLength<sub>i</sub></code> that is dropped with its left edge aligned with X-coordinate <code>left<sub>i</sub></code>.</p>
+
+<p>Each square is dropped one at a time from a height above any landed squares. It then falls downward (negative Y direction) until it either lands <strong>on the top side of another square</strong> or <strong>on the X-axis</strong>. A square brushing the left/right side of another square does not count as landing on it. Once it lands, it freezes in place and cannot be moved.</p>
+
+<p>After each square is dropped, you must record the <strong>height of the current tallest stack of squares</strong>.</p>
+
+<p>Return <em>an integer array </em><code>ans</code><em> where </em><code>ans[i]</code><em> represents the height described above after dropping the </em><code>i<sup>th</sup></code><em> square</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.jpg">
+<pre><code><strong>Input:</strong> positions = [[1,2],[2,3],[6,1]]
+<strong>Output:</strong> [2,5,5]
+<strong>Explanation:</strong>
+After the first drop, the tallest stack is square 1 with a height of 2.
+After the second drop, the tallest stack is squares 1 and 2 with a height of 5.
+After the third drop, the tallest stack is still squares 1 and 2 with a height of 5.
+Thus, we return an answer of [2, 5, 5].</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> positions = [[100,100],[200,100]]
+<strong>Output:</strong> [100,100]
+<strong>Explanation:</strong>
+After the first drop, the tallest stack is square 1 with a height of 100.
+After the second drop, the tallest stack is either square 1 or square 2, both with heights of 100.
+Thus, we return an answer of [100, 100].
+Note that square 2 only brushes the right side of square 1, which does not count as landing on it.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= positions.length &lt;= 1000</code></li>
+	<li><code>1 &lt;= left<sub>i</sub> &lt;= 10<sup>8</sup></code></li>
+	<li><code>1 &lt;= sideLength<sub>i</sub> &lt;= 10<sup>6</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/falling-squares/">Submissions</a>
+        <a href="https://leetcode.com/problems/falling-squares/">Solutions</a>
+    </div>
+</body>
+</html>

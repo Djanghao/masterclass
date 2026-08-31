@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49. Group Anagrams</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/group-anagrams/">49. Group Anagrams</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>21508</td>
+            <td>735</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/hash-table"><code>hash-table</code></a> | <a href="https://leetcode.com/tag/string"><code>string</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>amazon</code> | <code>microsoft</code> | <code>google</code> | <code>facebook</code> | <code>bloomberg</code> | <code>oracle</code> | <code>apple</code> | <code>yandex</code> | <code>adobe</code> | <code>jpmorgan</code> | <code>goldman-sachs</code> | <code>blackrock</code> | <code>tiktok</code> | <code>avito</code> | <code>okta</code> | <code>visa</code> | <code>anduril</code> | <code>zoho</code> | <code>uber</code> | <code>paypal</code> | <code>ibm</code> | <code>nutanix</code> | <code>nvidia</code> | <code>expedia</code> | <code>sap</code> | <code>intuit</code> | <code>coupang</code> | <code>dell</code> | <code>workday</code> | <code>infosys</code> | <code>athenahealth</code> | <code>disney</code> | <code>tcs</code> | <code>dp-world</code> | <code>josh-technology</code> | <code>affirm</code> | <code>salesforce</code> | <code>servicenow</code> | <code>epam-systems</code> | <code>walmart-labs</code> | <code>ebay</code> | <code>atlassian</code> | <code>citadel</code> | <code>autodesk</code> | <code>cisco</code> | <code>ripple</code> | <code>palo-alto-networks</code> | <code>msci</code> | <code>wayfair</code> | <code>snapchat</code> | <code>twilio</code> | <code>splunk</code> | <code>myntra</code> | <code>doordash</code> | <code>hashedin</code> | <code>publicis-sapient</code> | <code>mts</code> | <code>f5-networks</code> | <code>zopsmart</code> | <code>niantic</code> | <code>siemens</code> | <code>persistent-systems</code> | <code>compass</code> | <code>bny-mellon</code> | <code>squarepoint-capital</code> | <code>yelp</code></p>
+    </details>
+
+    <p>Given an array of strings <code>strs</code>, group the <span data-keyword="anagram">anagrams</span> together. You can return the answer in <strong>any order</strong>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">strs = [&quot;eat&quot;,&quot;tea&quot;,&quot;tan&quot;,&quot;ate&quot;,&quot;nat&quot;,&quot;bat&quot;]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>There is no string in strs that can be rearranged to form <code>&quot;bat&quot;</code>.</li>
+	<li>The strings <code>&quot;nat&quot;</code> and <code>&quot;tan&quot;</code> are anagrams as they can be rearranged to form each other.</li>
+	<li>The strings <code>&quot;ate&quot;</code>, <code>&quot;eat&quot;</code>, and <code>&quot;tea&quot;</code> are anagrams as they can be rearranged to form each other.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">strs = [&quot;&quot;]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[[&quot;&quot;]]</span></p>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">strs = [&quot;a&quot;]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[[&quot;a&quot;]]</span></p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= strs.length &lt;= 10<sup>4</sup></code></li>
+	<li><code>0 &lt;= strs[i].length &lt;= 100</code></li>
+	<li><code>strs[i]</code> consists of lowercase English letters.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/group-anagrams/">Submissions</a>
+        <a href="https://leetcode.com/problems/group-anagrams/">Solutions</a>
+    </div>
+</body>
+</html>

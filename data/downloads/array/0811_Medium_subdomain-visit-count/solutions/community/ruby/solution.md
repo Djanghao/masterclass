@@ -1,0 +1,36 @@
+# Ruby solution with Hash and splitting strings.
+
+**Author:** user9697N
+**Votes:** 3
+**Link:** [https://leetcode.com/problems/subdomain-visit-count/solutions/666705/](https://leetcode.com/problems/subdomain-visit-count/solutions/666705/)
+
+---
+
+##### Leetcode: 811. Subdomain Visit Count.
+
+Create hash map that going to store domains as keys, number of visits as values.  Iterate over the input array, extract domain and number of visits from each array element.  Split string by '.' converting it to an array.  Inside the internal loop convert array back to string - this will be a key for hash and add number of visits to this key value. Than sift left most index from the domains array and move to a  next iteration until the domain array is empty - this is the end of internal loop. Then after iterates over the all input array, convert hash in array of strings where first goes value a number, and then key - uri str. Return this array of strings.
+
+Ruby code:
+```Ruby
+# Leetcode: 811. Subdomain Visit Count.
+# https://leetcode.com/problems/subdomain-visit-count/
+# Runtime: 60 ms, faster than 100.00% of Ruby online submissions for Subdomain Visit Count.
+# Memory Usage: 9.8 MB, less than 100.00% of Ruby online submissions for Subdomain Visit Coun
+# @param {String[]} cpdomains
+# @return {String[]}
+def subdomain_visits(cpdomains)
+    h = {} # hash that going to count domains.
+    cpdomains.each do |x|
+        number,domain = x.split(" ")
+        number = number.to_i
+        domain = domain.split(?.)
+        while !domain.empty?
+            str = domain.join(?.)
+            h[str] ||= 0
+            h[str] += number
+            domain.shift
+        end
+    end
+    h.to_a.map{|x| "#{x[1]} #{x[0]}"}
+end
+```

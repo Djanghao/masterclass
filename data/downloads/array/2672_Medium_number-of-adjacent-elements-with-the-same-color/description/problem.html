@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2672. Number of Adjacent Elements With the Same Color</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/number-of-adjacent-elements-with-the-same-color/">2672. Number of Adjacent Elements With the Same Color</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>384</td>
+            <td>111</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>capital-one</code> | <code>roblox</code> | <code>visa</code> | <code>tiktok</code> | <code>uber</code> | <code>amazon</code></p>
+    </details>
+
+    <p>You are given an integer <code>n</code> representing an array <code>colors</code> of length <code>n</code> where all elements are set to 0&#39;s meaning <strong>uncolored</strong>. You are also given a 2D integer array <code>queries</code> where <code>queries[i] = [index<sub>i</sub>, color<sub>i</sub>]</code>. For the <code>i<sup>th</sup></code> <strong>query</strong>:</p>
+
+<ul>
+	<li>Set <code>colors[index<sub>i</sub>]</code> to <code>color<sub>i</sub></code>.</li>
+	<li>Count the number of adjacent pairs in <code>colors</code> which have the same color (regardless of <code>color<sub>i</sub></code>).</li>
+</ul>
+
+<p>Return an array <code>answer</code> of the same length as <code>queries</code> where <code>answer[i]</code> is the answer to the <code>i<sup>th</sup></code> query.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 4, queries = [[0,2],[1,2],[3,1],[1,1],[2,1]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[0,1,1,0,2]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>Initially array colors = [0,0,0,0], where 0 denotes uncolored elements of the array.</li>
+	<li>After the 1<sup>st</sup> query colors = [2,0,0,0]. The count of adjacent pairs with the same color is 0.</li>
+	<li>After the 2<sup>nd</sup> query colors = [2,2,0,0]. The count of adjacent pairs with the same color is 1.</li>
+	<li>After the 3<sup>rd</sup> query colors = [2,2,0,1]. The count of adjacent pairs with the same color is 1.</li>
+	<li>After the 4<sup>th</sup> query colors = [2,1,0,1]. The count of adjacent pairs with the same color is 0.</li>
+	<li>After the 5<sup>th</sup> query colors = [2,1,1,1]. The count of adjacent pairs with the same color is 2.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 1, queries = [[0,100000]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[0]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>After the 1<sup>st</sup> query colors = [100000]. The count of adjacent pairs with the same color is 0.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= queries.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>queries[i].length&nbsp;== 2</code></li>
+	<li><code>0 &lt;= index<sub>i</sub>&nbsp;&lt;= n - 1</code></li>
+	<li><code>1 &lt;=&nbsp; color<sub>i</sub>&nbsp;&lt;= 10<sup>5</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/number-of-adjacent-elements-with-the-same-color/">Submissions</a>
+        <a href="https://leetcode.com/problems/number-of-adjacent-elements-with-the-same-color/">Solutions</a>
+    </div>
+</body>
+</html>

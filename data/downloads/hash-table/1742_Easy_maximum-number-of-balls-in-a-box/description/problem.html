@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1742. Maximum Number of Balls in a Box</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/maximum-number-of-balls-in-a-box/">1742. Maximum Number of Balls in a Box</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>647</td>
+            <td>168</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/hash-table"><code>hash-table</code></a> | <a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/counting"><code>counting</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>appdynamics</code> | <code>lucid</code></p>
+    </details>
+
+    <p>You are working in a ball factory where you have <code>n</code> balls numbered from <code>lowLimit</code> up to <code>highLimit</code> <strong>inclusive</strong> (i.e., <code>n == highLimit - lowLimit + 1</code>), and an infinite number of boxes numbered from <code>1</code> to <code>infinity</code>.</p>
+
+<p>Your job at this factory is to put each ball in the box with a number equal to the sum of digits of the ball&#39;s number. For example, the ball number <code>321</code> will be put in the box number <code>3 + 2 + 1 = 6</code> and the ball number <code>10</code> will be put in the box number <code>1 + 0 = 1</code>.</p>
+
+<p>Given two integers <code>lowLimit</code> and <code>highLimit</code>, return<em> the number of balls in the box with the most balls.</em></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> lowLimit = 1, highLimit = 10
+<strong>Output:</strong> 2
+<strong>Explanation:</strong>
+Box Number:  1 2 3 4 5 6 7 8 9 10 11 ...
+Ball Count:  2 1 1 1 1 1 1 1 1 0  0  ...
+Box 1 has the most number of balls with 2 balls.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> lowLimit = 5, highLimit = 15
+<strong>Output:</strong> 2
+<strong>Explanation:</strong>
+Box Number:  1 2 3 4 5 6 7 8 9 10 11 ...
+Ball Count:  1 1 1 1 2 2 1 1 1 0  0  ...
+Boxes 5 and 6 have the most number of balls with 2 balls in each.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> lowLimit = 19, highLimit = 28
+<strong>Output:</strong> 2
+<strong>Explanation:</strong>
+Box Number:  1 2 3 4 5 6 7 8 9 10 11 12 ...
+Ball Count:  0 1 1 1 1 1 1 1 1 2  0  0  ...
+Box 10 has the most number of balls with 2 balls.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= lowLimit &lt;= highLimit &lt;= 10<sup>5</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/maximum-number-of-balls-in-a-box/">Submissions</a>
+        <a href="https://leetcode.com/problems/maximum-number-of-balls-in-a-box/">Solutions</a>
+    </div>
+</body>
+</html>

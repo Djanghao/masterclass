@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3444. Minimum Increments for Target Multiples in an Array</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-increments-for-target-multiples-in-an-array/">3444. Minimum Increments for Target Multiples in an Array</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>87</td>
+            <td>7</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/bit-manipulation"><code>bit-manipulation</code></a> | <a href="https://leetcode.com/tag/number-theory"><code>number-theory</code></a> | <a href="https://leetcode.com/tag/bitmask"><code>bitmask</code></a></p>
+    </details>
+
+    
+
+    <p>You are given two arrays, <code>nums</code> and <code>target</code>.</p>
+
+<p>In a single operation, you may increment any element of <code>nums</code> by 1.</p>
+
+<p>Return <strong>the minimum number</strong> of operations required so that each element in <code>target</code> has <strong>at least</strong> one multiple in <code>nums</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [1,2,3], target = [4]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">1</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The minimum number of operations required to satisfy the condition is 1.</p>
+
+<ul>
+	<li>Increment 3 to 4 with just one operation, making 4 a multiple of itself.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [8,4], target = [10,5]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">2</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The minimum number of operations required to satisfy the condition is 2.</p>
+
+<ul>
+	<li>Increment 8 to 10 with 2 operations, making 10 a multiple of both 5 and 10.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [7,9,10], target = [7]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">0</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>Target 7 already has a multiple in nums, so no additional operations are needed.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 5 * 10<sup>4</sup></code></li>
+	<li><code>1 &lt;= target.length &lt;= 4</code></li>
+	<li><code>target.length &lt;= nums.length</code></li>
+	<li><code>1 &lt;= nums[i], target[i] &lt;= 10<sup>4</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-increments-for-target-multiples-in-an-array/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-increments-for-target-multiples-in-an-array/">Solutions</a>
+    </div>
+</body>
+</html>

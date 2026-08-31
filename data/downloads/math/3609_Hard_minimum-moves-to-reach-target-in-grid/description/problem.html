@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3609. Minimum Moves to Reach Target in Grid</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-moves-to-reach-target-in-grid/">3609. Minimum Moves to Reach Target in Grid</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>53</td>
+            <td>3</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a></p>
+    </details>
+
+    
+
+    <p>You are given four integers <code>sx</code>, <code>sy</code>, <code>tx</code>, and <code>ty</code>, representing two points <code>(sx, sy)</code> and <code>(tx, ty)</code> on an infinitely large 2D grid.</p>
+
+<p>You start at <code>(sx, sy)</code>.</p>
+
+<p>At any point <code>(x, y)</code>, define <code>m = max(x, y)</code>. You can either:</p>
+
+<ul>
+	<li>Move to <code>(x + m, y)</code>, or</li>
+	<li>Move to <code>(x, y + m)</code>.</li>
+</ul>
+
+<p>Return the <strong>minimum</strong> number of moves required to reach <code>(tx, ty)</code>. If it is impossible to reach the target, return -1.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">sx = 1, sy = 2, tx = 5, ty = 4</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">2</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The optimal path is:</p>
+
+<ul>
+	<li>Move 1: <code>max(1, 2) = 2</code>. Increase the y-coordinate by 2, moving from <code>(1, 2)</code> to <code>(1, 2 + 2) = (1, 4)</code>.</li>
+	<li>Move 2: <code>max(1, 4) = 4</code>. Increase the x-coordinate by 4, moving from <code>(1, 4)</code> to <code>(1 + 4, 4) = (5, 4)</code>.</li>
+</ul>
+
+<p>Thus, the minimum number of moves to reach <code>(5, 4)</code> is 2.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">sx = 0, sy = 1, tx = 2, ty = 3</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">3</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The optimal path is:</p>
+
+<ul>
+	<li>Move 1: <code>max(0, 1) = 1</code>. Increase the x-coordinate by 1, moving from <code>(0, 1)</code> to <code>(0 + 1, 1) = (1, 1)</code>.</li>
+	<li>Move 2: <code>max(1, 1) = 1</code>. Increase the x-coordinate by 1, moving from <code>(1, 1)</code> to <code>(1 + 1, 1) = (2, 1)</code>.</li>
+	<li>Move 3: <code>max(2, 1) = 2</code>. Increase the y-coordinate by 2, moving from <code>(2, 1)</code> to <code>(2, 1 + 2) = (2, 3)</code>.</li>
+</ul>
+
+<p>Thus, the minimum number of moves to reach <code>(2, 3)</code> is 3.</p>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">sx = 1, sy = 1, tx = 2, ty = 2</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">-1</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>It is impossible to reach <code>(2, 2)</code> from <code>(1, 1)</code> using the allowed moves. Thus, the answer is -1.</li>
+</ul>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>0 &lt;= sx &lt;= tx &lt;= 10<sup>9</sup></code></li>
+	<li><code>0 &lt;= sy &lt;= ty &lt;= 10<sup>9</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-moves-to-reach-target-in-grid/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-moves-to-reach-target-in-grid/">Solutions</a>
+    </div>
+</body>
+</html>

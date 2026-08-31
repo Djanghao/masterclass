@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3244. Shortest Distance After Road Addition Queries II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/shortest-distance-after-road-addition-queries-ii/">3244. Shortest Distance After Road Addition Queries II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>204</td>
+            <td>6</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/greedy"><code>greedy</code></a> | <a href="https://leetcode.com/tag/graph"><code>graph</code></a> | <a href="https://leetcode.com/tag/ordered-set"><code>ordered-set</code></a></p>
+    </details>
+
+    
+
+    <p>You are given an integer <code>n</code> and a 2D integer array <code>queries</code>.</p>
+
+<p>There are <code>n</code> cities numbered from <code>0</code> to <code>n - 1</code>. Initially, there is a <strong>unidirectional</strong> road from city <code>i</code> to city <code>i + 1</code> for all <code>0 &lt;= i &lt; n - 1</code>.</p>
+
+<p><code>queries[i] = [u<sub>i</sub>, v<sub>i</sub>]</code> represents the addition of a new <strong>unidirectional</strong> road from city <code>u<sub>i</sub></code> to city <code>v<sub>i</sub></code>. After each query, you need to find the <strong>length</strong> of the <strong>shortest path</strong> from city <code>0</code> to city <code>n - 1</code>.</p>
+
+<p>There are no two queries such that <code>queries[i][0] &lt; queries[j][0] &lt; queries[i][1] &lt; queries[j][1]</code>.</p>
+
+<p>Return an array <code>answer</code> where for each <code>i</code> in the range <code>[0, queries.length - 1]</code>, <code>answer[i]</code> is the <em>length of the shortest path</em> from city <code>0</code> to city <code>n - 1</code> after processing the <strong>first </strong><code>i + 1</code> queries.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 5, queries = [[2,4],[0,2],[0,4]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[3,2,1]</span></p>
+
+<p><strong>Explanation: </strong></p>
+
+<p><img src="./images/0.jpg"></p>
+
+<p>After the addition of the road from 2 to 4, the length of the shortest path from 0 to 4 is 3.</p>
+
+<p><img src="./images/1.jpg"></p>
+
+<p>After the addition of the road from 0 to 2, the length of the shortest path from 0 to 4 is 2.</p>
+
+<p><img src="./images/2.jpg"></p>
+
+<p>After the addition of the road from 0 to 4, the length of the shortest path from 0 to 4 is 1.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 4, queries = [[0,3],[0,2]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[1,1]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><img src="./images/3.jpg"></p>
+
+<p>After the addition of the road from 0 to 3, the length of the shortest path from 0 to 3 is 1.</p>
+
+<p><img src="./images/4.jpg"></p>
+
+<p>After the addition of the road from 0 to 2, the length of the shortest path remains 1.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>3 &lt;= n &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= queries.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>queries[i].length == 2</code></li>
+	<li><code>0 &lt;= queries[i][0] &lt; queries[i][1] &lt; n</code></li>
+	<li><code>1 &lt; queries[i][1] - queries[i][0]</code></li>
+	<li>There are no repeated roads among the queries.</li>
+	<li>There are no two queries such that <code>i != j</code> and <code>queries[i][0] &lt; queries[j][0] &lt; queries[i][1] &lt; queries[j][1]</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/shortest-distance-after-road-addition-queries-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/shortest-distance-after-road-addition-queries-ii/">Solutions</a>
+    </div>
+</body>
+</html>

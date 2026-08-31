@@ -1,0 +1,110 @@
+# Ruby: Two heads, one is for sorted, second for unsorted.
+
+**Author:** user9697N
+**Votes:** 1
+**Link:** [https://leetcode.com/problems/insertion-sort-list/solutions/1630361/](https://leetcode.com/problems/insertion-sort-list/solutions/1630361/)
+
+---
+
+## Leetcode: 147. Insertion Sort List.
+
+**Ruby: Two heads, one is for sorted, second for unsorted.**
+
+After a long debug, I created a rule: **Pick up a list element, set next nil. Avoid loops**.
+
+Create two pointers to the heads of two lists, the first one is sorted one, the second list is unsorted.  
+Create loop until `unsorted_pointer` points to a `nil`.   
+In each iteration unconect element from `unsorted_list`, set new `unsorted_pointer` and insert this element into the `sorted_list`.   
+
+For inserting into the `sorted_list` two methods would help.
+- `change_head` if `inserting_element` is less then `sorted_pointer`, in this case substitute the `sorted_pointer` by an `inserting_element`.
+- `insert_into` find conditions when the current element in `sorted_list` is less or equal to `inserting_element` and the next one is bigger or `nil`, then insert the `inserting_element` after the current element. Setting next of the current element to the inserting and inserting to the next.
+
+Let's try.
+
+
+Long debug and a rule: **Puck up list, set next nil**.
+
+Ruby code:
+```Ruby
+# Leetcode: 147. Insertion Sort List.
+# https://leetcode.com/problems/insertion-sort-list/
+# = = = = = = =
+# Accepted.
+# Thanks God!
+# = = = = = = =
+# Runtime: 1503 ms, faster than 20.00% of Ruby online submissions for Insertion Sort List.
+# Memory Usage: 210.5 MB, less than 60.00% of Ruby online submissions for Insertion Sort List.
+# Definition for singly-linked list.
+# class ListNode
+#     attr_accessor :val, :next
+#     def initialize(val = 0, _next = nil)
+#         @val = val
+#         @next = _next
+#     end
+# end
+# @param {ListNode} head
+# @return {ListNode}
+def insertion_sort_list(head)
+  return head if head.nil?
+  return head if head.next.nil?
+  @d = false
+  @sorted_pointer = head
+  @unsorted_pointer = head.next
+  @sorted_pointer.next = nil # Most important line!
+  puts "Start loop: sorted=#{@sorted_pointer.val}, unsorted=#{@unsorted_pointer.val}." if @d
+
+  while @unsorted_pointer
+    puts "Iteration: #{@unsorted_pointer.val}. Sorted #{@sorted_pointer.val}" if @d
+    inserting_element = @unsorted_pointer
+    @unsorted_pointer = @unsorted_pointer.next
+    insert_into_sorted(inserting_element)
+    puts "Unsorted: " if @d
+    draw_list(@unsorted_pointer) if @d
+    puts "Sorted: " if @d
+    draw_list(@sorted_pointer) if @d
+    puts "=====================" if @d
+  end
+  puts "End is reached." if @d
+  @sorted_pointer
+end
+
+def insert_into_sorted(inserting_element)
+  if inserting_element.val < @sorted_pointer.val
+    replace_head(inserting_element)
+  else
+    insert_into(inserting_element)
+  end
+end
+
+def replace_head(inserting_element)
+  puts "Head #{@sorted_pointer.val} < #{inserting_element.val}." if @d
+  inserting_element.next = @sorted_pointer
+  @sorted_pointer = inserting_element
+  puts "New head is #{@sorted_pointer.val}." if @d
+end
+
+def insert_into(inserting_element)
+  tmp = @sorted_pointer
+  val = inserting_element.val
+  while tmp
+    if tmp.val <= val && (tmp.next.nil? || val < tmp.next.val)
+      inserting_element.next = tmp.next
+      tmp.next = inserting_element
+      return 
+    end
+    tmp = tmp.next
+  end
+  raise "Cannot find place to insert."
+end
+
+def draw_list(head)
+  ans = []
+  while head
+    ans.push head.val
+    head = head.next
+  end
+  puts ans.join(?,)
+end
+
+```

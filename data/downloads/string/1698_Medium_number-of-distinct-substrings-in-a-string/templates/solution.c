@@ -1,0 +1,3 @@
+int countDistinct(char* s) {
+    
+}

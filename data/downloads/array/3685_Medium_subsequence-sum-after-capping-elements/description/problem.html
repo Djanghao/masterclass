@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3685. Subsequence Sum After Capping Elements</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/subsequence-sum-after-capping-elements/">3685. Subsequence Sum After Capping Elements</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>148</td>
+            <td>15</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/two-pointers"><code>two-pointers</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a></p>
+    </details>
+
+    
+
+    <p data-end="320" data-start="259">You are given an integer array <code>nums</code> of size <code>n</code> and a positive integer <code>k</code>.</p>
+
+<p data-end="294" data-start="163">An array <strong>capped</strong> by value <code>x</code> is obtained by replacing every element <code>nums[i]</code> with <code>min(nums[i], x)</code>.</p>
+
+<p data-end="511" data-start="296">For each integer <code data-end="316" data-start="313">x</code> from 1 to <code data-end="332" data-start="329">n</code>, determine whether it is possible to choose a <strong><span data-keyword="subsequence-array-nonempty">subsequence</span></strong> from the array capped by <code>x</code> such that the sum of the chosen elements is <strong>exactly</strong> <code data-end="510" data-start="507">k</code>.</p>
+
+<p data-end="788" data-start="649">Return a <strong>0-indexed</strong> boolean array <code data-end="680" data-start="672">answer</code> of size <code data-end="694" data-start="691">n</code>, where <code data-end="713" data-start="702">answer[i]</code> is <code data-end="723" data-start="717">true</code> if it is possible when using <code data-end="764" data-start="753">x = i + 1</code>, and <code data-end="777" data-start="770">false</code> otherwise.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [4,3,2,4], k = 5</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[false,false,true,true]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>For <code>x = 1</code>, the capped array is <code>[1, 1, 1, 1]</code>. Possible sums are <code>1, 2, 3, 4</code>, so it is impossible to form a sum of <code>5</code>.</li>
+	<li>For <code>x = 2</code>, the capped array is <code>[2, 2, 2, 2]</code>. Possible sums are <code>2, 4, 6, 8</code>, so it is impossible to form a sum of <code>5</code>.</li>
+	<li>For <code>x = 3</code>, the capped array is <code>[3, 3, 2, 3]</code>. A subsequence <code>[2, 3]</code> sums to <code>5</code>, so it is possible.</li>
+	<li>For <code>x = 4</code>, the capped array is <code>[4, 3, 2, 4]</code>. A subsequence <code>[3, 2]</code> sums to <code>5</code>, so it is possible.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [1,2,3,4,5], k = 3</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[true,true,true,true,true]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>For every value of <code>x</code>, it is always possible to select a subsequence from the capped array that sums exactly to <code>3</code>.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n == nums.length &lt;= 4000</code></li>
+	<li><code>1 &lt;= nums[i] &lt;= n</code></li>
+	<li><code>1 &lt;= k &lt;= 4000</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/subsequence-sum-after-capping-elements/">Submissions</a>
+        <a href="https://leetcode.com/problems/subsequence-sum-after-capping-elements/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2636. Promise Pool</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/promise-pool/">2636. Promise Pool</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>JavaScript</td>
+            <td>Medium</td>
+            <td>296</td>
+            <td>27</td>
+        </tr>
+    </table>
+
+    
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>yandex</code></p>
+    </details>
+
+    <p>Given an array&nbsp;of asynchronous functions&nbsp;<code>functions</code>&nbsp;and a <strong>pool limit</strong>&nbsp;<code>n</code>, return an asynchronous function&nbsp;<code>promisePool</code>. It should return&nbsp;a promise that resolves when all the input&nbsp;functions resolve.</p>
+
+<p><b>Pool limit</b> is defined as the maximum number promises that can be pending at once.&nbsp;<code>promisePool</code>&nbsp;should begin execution of as many functions as possible and continue executing new functions when old promises&nbsp;resolve.&nbsp;<code>promisePool</code>&nbsp;should execute <code>functions[i]</code>&nbsp;then <code>functions[i + 1]</code>&nbsp;then <code>functions[i + 2]</code>, etc. When the last promise resolves,&nbsp;<code>promisePool</code>&nbsp;should also resolve.</p>
+
+<p>For example, if&nbsp;<code>n = 1</code>, <code>promisePool</code>&nbsp;will execute one function at&nbsp;a time in&nbsp;series. However, if&nbsp;<code>n = 2</code>, it first executes two functions. When either of the two functions resolve, a 3rd function should be executed (if available), and so on until there are no functions left to execute.</p>
+
+<p>You can assume all&nbsp;<code>functions</code>&nbsp;never reject. It is acceptable for&nbsp;<code>promisePool</code>&nbsp;to return a promise that resolves any value.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+functions = [
+&nbsp; () =&gt; new Promise(res =&gt; setTimeout(res, 300)),
+&nbsp; () =&gt; new Promise(res =&gt; setTimeout(res, 400)),
+&nbsp; () =&gt; new Promise(res =&gt; setTimeout(res, 200))
+]
+n = 2
+<strong>Output:</strong> [[300,400,500],500]
+<strong>Explanation:</strong>
+Three functions are passed in. They sleep for 300ms, 400ms, and 200ms respectively.
+They resolve at 300ms, 400ms, and 500ms respectively. The returned promise resolves at 500ms.
+At t=0, the first 2 functions are executed. The pool size limit of 2 is reached.
+At t=300, the 1st function resolves, and the 3rd function is executed. Pool size is 2.
+At t=400, the 2nd function resolves. There is nothing left to execute. Pool size is 1.
+At t=500, the 3rd function resolves. Pool size is zero so the returned promise also resolves.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:
+</strong>functions = [
+&nbsp; () =&gt; new Promise(res =&gt; setTimeout(res, 300)),
+&nbsp; () =&gt; new Promise(res =&gt; setTimeout(res, 400)),
+&nbsp; () =&gt; new Promise(res =&gt; setTimeout(res, 200))
+]
+n = 5
+<strong>Output:</strong> [[300,400,200],400]
+<strong>Explanation:</strong>
+The three input promises resolve at 300ms, 400ms, and 200ms respectively.
+The returned promise resolves at 400ms.
+At t=0, all 3 functions are executed. The pool limit of 5 is never met.
+At t=200, the 3rd function resolves. Pool size is 2.
+At t=300, the 1st function resolved. Pool size is 1.
+At t=400, the 2nd function resolves. Pool size is 0, so the returned promise also resolves.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong>
+functions = [
+&nbsp; () =&gt; new Promise(res =&gt; setTimeout(res, 300)),
+&nbsp; () =&gt; new Promise(res =&gt; setTimeout(res, 400)),
+&nbsp; () =&gt; new Promise(res =&gt; setTimeout(res, 200))
+]
+n = 1
+<strong>Output:</strong> [[300,700,900],900]
+<strong>Explanation:
+</strong>The three input promises resolve at 300ms, 700ms, and 900ms respectively.
+The returned promise resolves at 900ms.
+At t=0, the 1st function is executed. Pool size is 1.
+At t=300, the 1st function resolves and the 2nd function is executed. Pool size is 1.
+At t=700, the 2nd function resolves and the 3rd function is executed. Pool size is 1.
+At t=900, the 3rd function resolves. Pool size is 0 so the returned promise resolves.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>0 &lt;= functions.length &lt;= 10</code></li>
+	<li><code><font face="monospace">1 &lt;= n &lt;= 10</font></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/promise-pool/">Submissions</a>
+        <a href="https://leetcode.com/problems/promise-pool/">Solutions</a>
+    </div>
+</body>
+</html>

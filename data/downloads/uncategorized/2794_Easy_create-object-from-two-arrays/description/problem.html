@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2794. Create Object from Two Arrays</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/create-object-from-two-arrays/">2794. Create Object from Two Arrays</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>JavaScript</td>
+            <td>Easy</td>
+            <td>10</td>
+            <td>3</td>
+        </tr>
+    </table>
+
+    
+
+    
+
+    <p>Given two arrays <code>keysArr</code> and <code>valuesArr</code>, return a new object <code>obj</code>. Each key-value pair in&nbsp;<code>obj</code>&nbsp;should come from&nbsp;<code>keysArr[i]</code>&nbsp;and&nbsp;<code>valuesArr[i]</code>.</p>
+
+<p>If a duplicate key exists at a previous index, that key-value should be excluded. In other words, only the first key should be added to the object.</p>
+
+<p>If the key is not a string, it should be converted into a string by calling <code>String()</code>&nbsp;on it.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> keysArr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], valuesArr = [1, 2, 3]
+<strong>Output:</strong> {&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3}
+<strong>Explanation:</strong> The keys &quot;a&quot;, &quot;b&quot;, and &quot;c&quot; are paired with the values 1, 2, and 3 respectively.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> keysArr = [&quot;1&quot;, 1, false], valuesArr = [4, 5, 6]
+<strong>Output:</strong> {&quot;1&quot;: 4, &quot;false&quot;: 6}
+<strong>Explanation:</strong> First, all the elements in keysArr are converted into strings. We can see there are two occurrences of &quot;1&quot;. The value associated with the first occurrence of &quot;1&quot; is used: 4.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> keysArr = [], valuesArr = []
+<strong>Output:</strong> {}
+<strong>Explanation:</strong> There are no keys so an empty object is returned.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>keysArr</code> and <code>valuesArr</code> are valid JSON arrays</li>
+	<li><code>2 &lt;= JSON.stringify(keysArr).length,&nbsp;JSON.stringify(valuesArr).length &lt;= 5 * 10<sup>5</sup></code></li>
+	<li><code>keysArr.length === valuesArr.length</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/create-object-from-two-arrays/">Submissions</a>
+        <a href="https://leetcode.com/problems/create-object-from-two-arrays/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2103. Rings and Rods</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/rings-and-rods/">2103. Rings and Rods</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>1018</td>
+            <td>21</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/hash-table"><code>hash-table</code></a> | <a href="https://leetcode.com/tag/string"><code>string</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code></p>
+    </details>
+
+    <p>There are <code>n</code> rings and each ring is either red, green, or blue. The rings are distributed <strong>across ten rods</strong> labeled from <code>0</code> to <code>9</code>.</p>
+
+<p>You are given a string <code>rings</code> of length <code>2n</code> that describes the <code>n</code> rings that are placed onto the rods. Every two characters in <code>rings</code> forms a <strong>color-position pair</strong> that is used to describe each ring where:</p>
+
+<ul>
+	<li>The <strong>first</strong> character of the <code>i<sup>th</sup></code> pair denotes the <code>i<sup>th</sup></code> ring&#39;s <strong>color</strong> (<code>&#39;R&#39;</code>, <code>&#39;G&#39;</code>, <code>&#39;B&#39;</code>).</li>
+	<li>The <strong>second</strong> character of the <code>i<sup>th</sup></code> pair denotes the <strong>rod</strong> that the <code>i<sup>th</sup></code> ring is placed on (<code>&#39;0&#39;</code> to <code>&#39;9&#39;</code>).</li>
+</ul>
+
+<p>For example, <code>&quot;R3G2B1&quot;</code> describes <code>n == 3</code> rings: a red ring placed onto the rod labeled 3, a green ring placed onto the rod labeled 2, and a blue ring placed onto the rod labeled 1.</p>
+
+<p>Return <em>the number of rods that have <strong>all three colors</strong> of rings on them.</em></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.png">
+<pre><code><strong>Input:</strong> rings = &quot;B0B6G0R6R0R6G9&quot;
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> 
+- The rod labeled 0 holds 3 rings with all colors: red, green, and blue.
+- The rod labeled 6 holds 3 rings, but it only has red and blue.
+- The rod labeled 9 holds only a green ring.
+Thus, the number of rods with all three colors is 1.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+<img src="./images/1.png">
+<pre><code><strong>Input:</strong> rings = &quot;B0R0G0R9R0B0G0&quot;
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> 
+- The rod labeled 0 holds 6 rings with all colors: red, green, and blue.
+- The rod labeled 9 holds only a red ring.
+Thus, the number of rods with all three colors is 1.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> rings = &quot;G4&quot;
+<strong>Output:</strong> 0
+<strong>Explanation:</strong> 
+Only one ring is given. Thus, no rods have all three colors.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>rings.length == 2 * n</code></li>
+	<li><code>1 &lt;= n &lt;= 100</code></li>
+	<li><code>rings[i]</code> where <code>i</code> is <strong>even</strong> is either <code>&#39;R&#39;</code>, <code>&#39;G&#39;</code>, or <code>&#39;B&#39;</code> (<strong>0-indexed</strong>).</li>
+	<li><code>rings[i]</code> where <code>i</code> is <strong>odd</strong> is a digit from <code>&#39;0&#39;</code> to <code>&#39;9&#39;</code> (<strong>0-indexed</strong>).</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/rings-and-rods/">Submissions</a>
+        <a href="https://leetcode.com/problems/rings-and-rods/">Solutions</a>
+    </div>
+</body>
+</html>

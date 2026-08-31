@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>773. Sliding Puzzle</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/sliding-puzzle/">773. Sliding Puzzle</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>2722</td>
+            <td>75</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/backtracking"><code>backtracking</code></a> | <a href="https://leetcode.com/tag/breadth-first-search"><code>breadth-first-search</code></a> | <a href="https://leetcode.com/tag/memoization"><code>memoization</code></a> | <a href="https://leetcode.com/tag/matrix"><code>matrix</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>facebook</code> | <code>uber</code> | <code>nvidia</code> | <code>airbnb</code> | <code>google</code> | <code>microsoft</code></p>
+    </details>
+
+    <p>On an <code>2 x 3</code> board, there are five tiles labeled from <code>1</code> to <code>5</code>, and an empty square represented by <code>0</code>. A <strong>move</strong> consists of choosing <code>0</code> and a 4-directionally adjacent number and swapping it.</p>
+
+<p>The state of the board is solved if and only if the board is <code>[[1,2,3],[4,5,0]]</code>.</p>
+
+<p>Given the puzzle board <code>board</code>, return <em>the least number of moves required so that the state of the board is solved</em>. If it is impossible for the state of the board to be solved, return <code>-1</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.jpg">
+<pre><code><strong>Input:</strong> board = [[1,2,3],[4,0,5]]
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> Swap the 0 and the 5 in one move.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+<img src="./images/1.jpg">
+<pre><code><strong>Input:</strong> board = [[1,2,3],[5,4,0]]
+<strong>Output:</strong> -1
+<strong>Explanation:</strong> No number of moves will make the board solved.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+<img src="./images/2.jpg">
+<pre><code><strong>Input:</strong> board = [[4,1,2],[5,0,3]]
+<strong>Output:</strong> 5
+<strong>Explanation:</strong> 5 is the smallest number of moves that solves the board.
+An example path:
+After move 0: [[4,1,2],[5,0,3]]
+After move 1: [[4,1,2],[0,5,3]]
+After move 2: [[0,1,2],[4,5,3]]
+After move 3: [[1,0,2],[4,5,3]]
+After move 4: [[1,2,0],[4,5,3]]
+After move 5: [[1,2,3],[4,5,0]]</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>board.length == 2</code></li>
+	<li><code>board[i].length == 3</code></li>
+	<li><code>0 &lt;= board[i][j] &lt;= 5</code></li>
+	<li>Each value <code>board[i][j]</code> is <strong>unique</strong>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/sliding-puzzle/">Submissions</a>
+        <a href="https://leetcode.com/problems/sliding-puzzle/">Solutions</a>
+    </div>
+</body>
+</html>

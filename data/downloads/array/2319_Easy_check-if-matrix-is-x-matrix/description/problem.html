@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2319. Check if Matrix Is X-Matrix</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/check-if-matrix-is-x-matrix/">2319. Check if Matrix Is X-Matrix</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>538</td>
+            <td>26</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/matrix"><code>matrix</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code></p>
+    </details>
+
+    <p>A square matrix is said to be an <strong>X-Matrix</strong> if <strong>both</strong> of the following conditions hold:</p>
+
+<ol>
+	<li>All the elements in the diagonals of the matrix are <strong>non-zero</strong>.</li>
+	<li>All other elements are 0.</li>
+</ol>
+
+<p>Given a 2D integer array <code>grid</code> of size <code>n x n</code> representing a square matrix, return <code>true</code><em> if </em><code>grid</code><em> is an X-Matrix</em>. Otherwise, return <code>false</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.jpg">
+<pre><code><strong>Input:</strong> grid = [[2,0,0,1],[0,3,1,0],[0,5,2,0],[4,0,0,2]]
+<strong>Output:</strong> true
+<strong>Explanation:</strong> Refer to the diagram above. 
+An X-Matrix should have the green elements (diagonals) be non-zero and the red elements be 0.
+Thus, grid is an X-Matrix.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+<img src="./images/1.jpg">
+<pre><code><strong>Input:</strong> grid = [[5,7,0],[0,3,1],[0,5,0]]
+<strong>Output:</strong> false
+<strong>Explanation:</strong> Refer to the diagram above.
+An X-Matrix should have the green elements (diagonals) be non-zero and the red elements be 0.
+Thus, grid is not an X-Matrix.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>n == grid.length == grid[i].length</code></li>
+	<li><code>3 &lt;= n &lt;= 100</code></li>
+	<li><code>0 &lt;= grid[i][j] &lt;= 10<sup>5</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/check-if-matrix-is-x-matrix/">Submissions</a>
+        <a href="https://leetcode.com/problems/check-if-matrix-is-x-matrix/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+# Binary Search Approach in Java
+
+**Author:** deleted_user
+**Votes:** 24
+**Link:** [https://leetcode.com/problems/minimum-number-of-seconds-to-make-mountain-height-zero/solutions/5818267/](https://leetcode.com/problems/minimum-number-of-seconds-to-make-mountain-height-zero/solutions/5818267/)
+
+---
+
+# Approach
+1. Use binary search to find the smallest time where the total reduction from workers meets or exceeds the mountain height.
+2. For each midpoint in the binary search, check if the workers can collectively achieve the required height reduction within that time using another binary search.
+
+# Complexity
+- Time complexity: $$O(n \\log h)$$ (where $$n$$ is the number of workers and $$h$$ is the mountain height)
+- Space complexity: $$O(1)$$ (no additional data structures used)
+
+# Code
+```java
+class Solution {
+    public long minNumberOfSeconds(int mountainHeight, int[] workerTimes) {
+        long low = 1, high = (long) 1e18, result = high;
+        
+        while (low <= high) {
+            long mid = (low + high) / 2;
+            
+            if (canReduceMountain(mountainHeight, workerTimes, mid)) {
+                result = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        
+        return result;
+    }
+    
+    private boolean canReduceMountain(int mountainHeight, int[] workerTimes, long maxTime) {
+        long totalReduction = 0;
+        
+        for (int time : workerTimes) {
+            long low = 1, high = mountainHeight;
+            
+            while (low <= high) {
+                long mid = (low + high) / 2;
+                long cost = (mid * (mid + 1)) / 2 * time;
+                
+                if (cost <= maxTime) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+            
+            totalReduction += high;
+            if (totalReduction >= mountainHeight) {
+                return true;
+            }
+        }
+        
+        return totalReduction >= mountainHeight;
+    }
+}
+```
+# Upvote if you found this helpful! \uD83D\uDE0A

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>265. Paint House II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/paint-house-ii/">265. Paint House II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>1341</td>
+            <td>39</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>linkedin</code> | <code>facebook</code></p>
+    </details>
+
+    <p>There are a row of <code>n</code> houses, each house can be painted with one of the <code>k</code> colors. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.</p>
+
+<p>The cost of painting each house with a certain color is represented by an <code>n x k</code> cost matrix costs.</p>
+
+<ul>
+	<li>For example, <code>costs[0][0]</code> is the cost of painting house <code>0</code> with color <code>0</code>; <code>costs[1][2]</code> is the cost of painting house <code>1</code> with color <code>2</code>, and so on...</li>
+</ul>
+
+<p>Return <em>the minimum cost to paint all houses</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> costs = [[1,5,3],[2,9,4]]
+<strong>Output:</strong> 5
+<strong>Explanation:</strong>
+Paint house 0 into color 0, paint house 1 into color 2. Minimum cost: 1 + 4 = 5; 
+Or paint house 0 into color 2, paint house 1 into color 0. Minimum cost: 3 + 2 = 5.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> costs = [[1,3],[2,4]]
+<strong>Output:</strong> 5</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>costs.length == n</code></li>
+	<li><code>costs[i].length == k</code></li>
+	<li><code>1 &lt;= n &lt;= 100</code></li>
+	<li><code>2 &lt;= k &lt;= 20</code></li>
+	<li><code>1 &lt;= costs[i][j] &lt;= 20</code></li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong>Follow up:</strong> Could you solve it in <code>O(nk)</code> runtime?</p>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/paint-house-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/paint-house-ii/">Solutions</a>
+    </div>
+</body>
+</html>

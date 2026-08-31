@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3709. Design Exam Scores Tracker</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/design-exam-scores-tracker/">3709. Design Exam Scores Tracker</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>53</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/binary-search"><code>binary-search</code></a> | <a href="https://leetcode.com/tag/design"><code>design</code></a> | <a href="https://leetcode.com/tag/prefix-sum"><code>prefix-sum</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>meesho</code></p>
+    </details>
+
+    <p>Alice frequently takes exams and wants to track her scores and calculate the total scores over specific time periods.</p>
+
+<p>Implement the <code>ExamTracker</code> class:</p>
+
+<ul>
+	<li><code>ExamTracker()</code>: Initializes the <code>ExamTracker</code> object.</li>
+	<li><code>void record(int time, int score)</code>: Alice takes a new exam at time <code>time</code> and achieves the score <code>score</code>.</li>
+	<li><code>long long totalScore(int startTime, int endTime)</code>: Returns an integer that represents the <strong>total</strong> score of all exams taken by Alice between <code>startTime</code> and <code>endTime</code> (inclusive). If there are no recorded exams taken by Alice within the specified time interval, return 0.</li>
+</ul>
+
+<p>It is guaranteed that the function calls are made in chronological order. That is,</p>
+
+<ul>
+	<li>Calls to <code>record()</code> will be made with <strong>strictly increasing</strong> <code>time</code>.</li>
+	<li>Alice will never ask for total scores that require information from the future. That is, if the latest <code>record()</code> is called with <code>time = t</code>, then <code>totalScore()</code> will always be called with <code>startTime &lt;= endTime &lt;= t</code>.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong><br />
+<span class="example-io">[&quot;ExamTracker&quot;, &quot;record&quot;, &quot;totalScore&quot;, &quot;record&quot;, &quot;totalScore&quot;, &quot;totalScore&quot;, &quot;totalScore&quot;, &quot;totalScore&quot;]<br />
+[[], [1, 98], [1, 1], [5, 99], [1, 3], [1, 5], [3, 4], [2, 5]]</span></p>
+
+<p><strong>Output:</strong><br />
+<span class="example-io">[null, null, 98, null, 98, 197, 0, 99] </span></p>
+
+<p><strong>Explanation</strong></p>
+ExamTracker examTracker = new ExamTracker();<br />
+examTracker.record(1, 98); // Alice takes a new exam at time 1, scoring 98.<br />
+examTracker.totalScore(1, 1); // Between time 1 and time 1, Alice took 1 exam at time 1, scoring 98. The total score is 98.<br />
+examTracker.record(5, 99); // Alice takes a new exam at time 5, scoring 99.<br />
+examTracker.totalScore(1, 3); // Between time 1 and time 3, Alice took 1 exam at time 1, scoring 98. The total score is 98.<br />
+examTracker.totalScore(1, 5); // Between time 1 and time 5, Alice took 2 exams at time 1 and 5, scoring 98 and 99. The total score is <code>98 + 99 = 197</code>.<br />
+examTracker.totalScore(3, 4); // Alice did not take any exam between time 3 and time 4. Therefore, the answer is 0.<br />
+examTracker.totalScore(2, 5); // Between time 2 and time 5, Alice took 1 exam at time 5, scoring 99. The total score is 99.</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= time &lt;= 10<sup>9</sup></code></li>
+	<li><code>1 &lt;= score &lt;= 10<sup>9</sup></code></li>
+	<li><code>1 &lt;= startTime &lt;= endTime &lt;= t</code>, where <code>t</code> is the value of <code>time</code> from the most recent call of <code>record()</code>.</li>
+	<li>Calls of <code>record()</code> will be made with <strong>strictly increasing</strong> <code>time</code>.</li>
+	<li>After <code>ExamTracker()</code>, the first function call will always be <code>record()</code>.</li>
+	<li>At most <code>10<sup>5</sup></code> calls will be made in total to <code>record()</code> and <code>totalScore()</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/design-exam-scores-tracker/">Submissions</a>
+        <a href="https://leetcode.com/problems/design-exam-scores-tracker/">Solutions</a>
+    </div>
+</body>
+</html>

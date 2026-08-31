@@ -1,0 +1,43 @@
+# Ruby solution: same slope between all combinations with first point.
+
+**Author:** user9697N
+**Votes:** 2
+**Link:** [https://leetcode.com/problems/check-if-it-is-a-straight-line/solutions/815052/](https://leetcode.com/problems/check-if-it-is-a-straight-line/solutions/815052/)
+
+---
+
+##### Leetcode: 1232. Check If It Is a Straight Line.
+
+Idea behind this solution is that slope between first point and all others must be the same. What is a slope, it is a quotient between x distance and y distance of two points, it called dx and dy. First calculate slope between first two points, and than compare slope between first point and rest of them with first slope. 
+
+It is may happens that dy or dx are the same because it is horizontal or vertical line, and y and x values are same between all points respectively. These cases are added two.
+
+
+Ruby code:
+```Ruby
+# Leetcode: 1232. Check If It Is a Straight Line.
+# https://leetcode.com/problems/check-if-it-is-a-straight-line/
+# Runtime: 44 ms, faster than 83.33% of Ruby online submissions for Check If It Is a Straight Line.
+# Memory Usage: 9.8 MB, less than 58.33% of Ruby online submissions for Check If It Is a Straight Line.
+# @param {Integer[][]} coordinates
+# @return {Boolean}
+def check_straight_line(coordinates)
+    c = coordinates
+    
+    return true if c.all?{|(a,b)| a == c[0][0]}
+    return true if c.all?{|(a,b)| b == c[0][1]}
+    
+    a,b = c[0],c[1]
+    dx = a[0] - b[0]
+    dy = a[1] - b[1]
+    slope = dx.fdiv(dy)
+    
+    c[2..-1].each do |b|
+        dx = a[0] - b[0]
+        dy = a[1] - b[1]
+        return false if slope != dx.fdiv(dy)
+    end
+    
+    true
+end
+```

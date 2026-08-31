@@ -1,0 +1,37 @@
+# Ruby straightforward simple working solution.
+
+**Author:** user9697N
+**Votes:** 1
+**Link:** [https://leetcode.com/problems/fair-candy-swap/solutions/695497/](https://leetcode.com/problems/fair-candy-swap/solutions/695497/)
+
+---
+
+##### Leetcode: 888. Fair Candy Swap.
+
+
+First preparations calculate total amount of candy that Alice and Bob has. Next create a hash that stores what sizes of candy each sweets owner has, sizes will be keys in these Hash maps. Now iterating over all Alice candies solve such equity `Alice_sum - candy + x = Bob_sum + candy - x` and thus `2*x = (Bob_sum + candy) - (Alice_sum - candy)` and `x` will be candy size Bob need to return. Check that `2x` is positive, even, and `x` exists in Bobs hash. And return `[candy, 2x/2]`. Done.
+
+Ruby code:
+```Ruby
+# Leetcode: 888. Fair Candy Swap.
+# https://leetcode.com/problems/fair-candy-swap/
+# Runtime: 452 ms, faster than 56.25% of Ruby online submissions for Fair Candy Swap.
+# Memory Usage: 13.7 MB, less than 100.00% of Ruby online submissions for Fair Candy Swap.
+# @param {Integer[]} a
+# @param {Integer[]} b
+# @return {Integer[]}
+def fair_candy_swap(a, b)
+    asum, bsum = a.sum, b.sum
+    ah, bh = a.zip(a).to_h, b.zip(b).to_h
+    a.each do |swt|
+        x2 = (bsum + swt) - (a.sum - swt)
+        next if x2 <= 0
+        next if x2.odd?
+        next if bh[x2/2].nil?
+        return [swt,x2/2]
+        
+    end
+    raise "Cannot find answer."
+    
+end
+```

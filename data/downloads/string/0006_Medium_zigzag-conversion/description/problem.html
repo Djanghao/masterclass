@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Zigzag Conversion</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/zigzag-conversion/">6. Zigzag Conversion</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>9037</td>
+            <td>15741</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/string"><code>string</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>amazon</code> | <code>google</code> | <code>bloomberg</code> | <code>paypal</code> | <code>zoho</code> | <code>facebook</code> | <code>microsoft</code> | <code>walmart-labs</code> | <code>zopsmart</code> | <code>salesforce</code> | <code>paypay</code> | <code>microstrategy</code> | <code>apple</code> | <code>oracle</code> | <code>servicenow</code> | <code>adobe</code> | <code>mitsogo</code></p>
+    </details>
+
+    <p>The string <code>&quot;PAYPALISHIRING&quot;</code> is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+
+<pre><code>P   A   H   N
+A P L S I I G
+Y   I   R</code></pre>
+
+<p>And then read line by line: <code>&quot;PAHNAPLSIIGYIR&quot;</code></p>
+
+<p>Write the code that will take a string and make this conversion given a number of rows:</p>
+
+<pre><code>string convert(string s, int numRows);</code></pre>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> s = &quot;PAYPALISHIRING&quot;, numRows = 3
+<strong>Output:</strong> &quot;PAHNAPLSIIGYIR&quot;</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> s = &quot;PAYPALISHIRING&quot;, numRows = 4
+<strong>Output:</strong> &quot;PINALSIGYAHRPI&quot;
+<strong>Explanation:</strong>
+P     I    N
+A   L S  I G
+Y A   H R
+P     I</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> s = &quot;A&quot;, numRows = 1
+<strong>Output:</strong> &quot;A&quot;</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= s.length &lt;= 1000</code></li>
+	<li><code>s</code> consists of English letters (lower-case and upper-case), <code>&#39;,&#39;</code> and <code>&#39;.&#39;</code>.</li>
+	<li><code>1 &lt;= numRows &lt;= 1000</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/zigzag-conversion/">Submissions</a>
+        <a href="https://leetcode.com/problems/zigzag-conversion/">Solutions</a>
+    </div>
+</body>
+</html>

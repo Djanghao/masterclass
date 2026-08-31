@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2061. Number of Spaces Cleaning Robot Cleaned</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/number-of-spaces-cleaning-robot-cleaned/">2061. Number of Spaces Cleaning Robot Cleaned</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>128</td>
+            <td>29</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/matrix"><code>matrix</code></a> | <a href="https://leetcode.com/tag/simulation"><code>simulation</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>microsoft</code></p>
+    </details>
+
+    <p>A room is represented by a <strong>0-indexed</strong> 2D binary matrix <code>room</code> where a <code>0</code> represents an <strong>empty</strong> space and a <code>1</code> represents a space with an <strong>object</strong>. The top left corner of the room will be empty in all test cases.</p>
+
+<p>A cleaning robot starts at the top left corner of the room and is facing right. The robot will continue heading straight until it reaches the edge of the room or it hits an object, after which it will turn 90 degrees <strong>clockwise</strong> and repeat this process. The starting space and all spaces that the robot visits are <strong>cleaned</strong> by it.</p>
+
+<p>Return <em>the number of <strong>clean</strong> spaces in the room if the robot runs indefinitely.</em></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.png">
+<p>&nbsp;</p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">room = [[0,0,0],[1,1,0],[0,0,0]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">7</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ol>
+	<li>​​​​​​​The robot cleans the spaces at (0, 0), (0, 1), and (0, 2).</li>
+	<li>The robot is at the edge of the room, so it turns 90 degrees clockwise and now faces down.</li>
+	<li>The robot cleans the spaces at (1, 2), and (2, 2).</li>
+	<li>The robot is at the edge of the room, so it turns 90 degrees clockwise and now faces left.</li>
+	<li>The robot cleans the spaces at (2, 1), and (2, 0).</li>
+	<li>The robot has cleaned all 7 empty spaces, so return 7.</li>
+</ol>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+<img src="./images/1.png">
+<p>&nbsp;</p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">room = [[0,1,0],[1,0,0],[0,0,0]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">1</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ol>
+	<li>The robot cleans the space at (0, 0).</li>
+	<li>The robot hits an object, so it turns 90 degrees clockwise and now faces down.</li>
+	<li>The robot hits an object, so it turns 90 degrees clockwise and now faces left.</li>
+	<li>The robot is at the edge of the room, so it turns 90 degrees clockwise and now faces up.</li>
+	<li>The robot is at the edge of the room, so it turns 90 degrees clockwise and now faces right.</li>
+	<li>The robot is back at its starting position.</li>
+	<li>The robot has cleaned 1 space, so return 1.</li>
+</ol>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">room = [[0,0,0],[0,0,0],[0,0,0]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">8</span>​​​​​​​</p>
+
+<p>&nbsp;</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>m == room.length</code></li>
+	<li><code>n == room[r].length</code></li>
+	<li><code>1 &lt;= m, n &lt;= 300</code></li>
+	<li><code>room[r][c]</code> is either <code>0</code> or <code>1</code>.</li>
+	<li><code>room[0][0] == 0</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/number-of-spaces-cleaning-robot-cleaned/">Submissions</a>
+        <a href="https://leetcode.com/problems/number-of-spaces-cleaning-robot-cleaned/">Solutions</a>
+    </div>
+</body>
+</html>

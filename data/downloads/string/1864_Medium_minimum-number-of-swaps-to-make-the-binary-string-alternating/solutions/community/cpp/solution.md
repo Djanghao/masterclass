@@ -1,0 +1,30 @@
+# Simple C++ Solution
+
+**Author:** Sid200026
+**Votes:** 30
+**Link:** [https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-binary-string-alternating/solutions/1211263/](https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-binary-string-alternating/solutions/1211263/)
+
+---
+
+```
+class Solution {
+    
+    int minFillPos(string& s, char ch, int current = 0) {
+        int count = 0;
+        for(int i=0; i<s.size(); i+=2) {
+            if(s[i] != ch) count++;
+        }
+        return count;
+    }
+    
+public:
+    int minSwaps(string s) {
+        int oneCount = count(s.begin(), s.end(), '1');
+        int zeroCount = count(s.begin(), s.end(), '0');
+        if(abs(oneCount-zeroCount) > 1) return -1;
+        if(oneCount > zeroCount) return minFillPos(s,'1');
+        if(zeroCount > oneCount) return minFillPos(s,'0');
+        return min(minFillPos(s,'0'), minFillPos(s,'1'));
+    }
+};
+```

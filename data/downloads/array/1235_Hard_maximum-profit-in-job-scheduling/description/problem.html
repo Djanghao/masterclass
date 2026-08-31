@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1235. Maximum Profit in Job Scheduling</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/maximum-profit-in-job-scheduling/">1235. Maximum Profit in Job Scheduling</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>7220</td>
+            <td>121</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/binary-search"><code>binary-search</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>amazon</code> | <code>doordash</code> | <code>oracle</code> | <code>snowflake</code> | <code>uber</code> | <code>meesho</code> | <code>airbnb</code> | <code>bloomberg</code> | <code>verkada</code> | <code>microsoft</code> | <code>goldman-sachs</code> | <code>google</code> | <code>tiktok</code> | <code>phonepe</code> | <code>pinterest</code> | <code>databricks</code> | <code>bytedance</code> | <code>swiggy</code> | <code>adobe</code> | <code>apple</code> | <code>zeta</code> | <code>paypal</code> | <code>weride</code> | <code>ponyai</code></p>
+    </details>
+
+    <p>We have <code>n</code> jobs, where every job is scheduled to be done from <code>startTime[i]</code> to <code>endTime[i]</code>, obtaining a profit of <code>profit[i]</code>.</p>
+
+<p>You&#39;re given the <code>startTime</code>, <code>endTime</code> and <code>profit</code> arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.</p>
+
+<p>If you choose a job that ends at time <code>X</code> you will be able to start another job that starts at time <code>X</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<p><strong><img src="./images/0.png"></strong></p>
+
+<pre><code><strong>Input:</strong> startTime = [1,2,3,3], endTime = [3,4,5,6], profit = [50,10,40,70]
+<strong>Output:</strong> 120
+<strong>Explanation:</strong> The subset chosen is the first and fourth job. 
+Time range [1-3]+[3-6] , we get profit of 120 = 50 + 70.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<p><strong><img src="./images/1.png"> </strong></p>
+
+<pre><code><strong>Input:</strong> startTime = [1,2,3,4,6], endTime = [3,5,10,6,9], profit = [20,20,100,70,60]
+<strong>Output:</strong> 150
+<strong>Explanation:</strong> The subset chosen is the first, fourth and fifth job. 
+Profit obtained 150 = 20 + 70 + 60.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<p><strong><img src="./images/2.png"></strong></p>
+
+<pre><code><strong>Input:</strong> startTime = [1,1,1], endTime = [2,3,4], profit = [5,6,4]
+<strong>Output:</strong> 6</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= startTime.length == endTime.length == profit.length &lt;= 5 * 10<sup>4</sup></code></li>
+	<li><code>1 &lt;= startTime[i] &lt; endTime[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>1 &lt;= profit[i] &lt;= 10<sup>4</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/maximum-profit-in-job-scheduling/">Submissions</a>
+        <a href="https://leetcode.com/problems/maximum-profit-in-job-scheduling/">Solutions</a>
+    </div>
+</body>
+</html>

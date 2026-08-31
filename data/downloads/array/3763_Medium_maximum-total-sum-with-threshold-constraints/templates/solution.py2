@@ -1,0 +1,8 @@
+class Solution(object):
+    def maxSum(self, nums, threshold):
+        """
+        :type nums: List[int]
+        :type threshold: List[int]
+        :rtype: int
+        """
+        

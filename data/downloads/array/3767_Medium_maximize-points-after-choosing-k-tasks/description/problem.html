@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3767. Maximize Points After Choosing K Tasks</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/maximize-points-after-choosing-k-tasks/">3767. Maximize Points After Choosing K Tasks</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>45</td>
+            <td>2</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/greedy"><code>greedy</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a> | <a href="https://leetcode.com/tag/heap-priority-queue"><code>heap-priority-queue</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>amazon</code></p>
+    </details>
+
+    <p>You are given two integer arrays, <code>technique1</code> and <code>technique2</code>, each of length <code>n</code>, where <code>n</code> represents the number of tasks to complete.</p>
+
+<ul>
+	<li>If the <code>i<sup>th</sup></code> task is completed using technique 1, you earn <code>technique1[i]</code> points.</li>
+	<li>If it is completed using technique 2, you earn <code>technique2[i]</code> points.</li>
+</ul>
+
+<p>You are also given an integer <code>k</code>, representing the <strong>minimum</strong> number of tasks that <strong>must</strong> be completed using technique 1.</p>
+
+<p>You <strong>must</strong> complete <strong>at least</strong> <code>k</code> tasks using technique 1 (they do not need to be the first <code>k</code> tasks).</p>
+
+<p>The remaining tasks may be completed using <strong>either</strong> technique.</p>
+
+<p>Return an integer denoting the <strong>maximum total points</strong> you can earn.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">technique1 = [5,2,10], technique2 = [10,3,8], k = 2</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">22</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>We must complete at least <code>k = 2</code> tasks using <code>technique1</code>.</p>
+
+<p>Choosing <code>technique1[1]</code> and <code>technique1[2]</code> (completed using technique 1), and <code>technique2[0]</code> (completed using technique 2), yields the maximum points: <code>2 + 10 + 10 = 22</code>.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">technique1 = [10,20,30], technique2 = [5,15,25], k = 2</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">60</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>We must complete at least <code>k = 2</code> tasks using <code>technique1</code>.</p>
+
+<p>Choosing all tasks using technique 1 yields the maximum points: <code>10 + 20 + 30 = 60</code>.</p>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">technique1 = [1,2,3], technique2 = [4,5,6], k = 0</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">15</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>Since <code>k = 0</code>, we are not required to choose any task using <code>technique1</code>.</p>
+
+<p>Choosing all tasks using technique 2 yields the maximum points: <code>4 + 5 + 6 = 15</code>.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n == technique1.length == technique2.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= technique1[i], technique2​​​​​​​[i] &lt;= 10<sup>​​​​​​​5</sup></code></li>
+	<li><code>0 &lt;= k &lt;= n</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/maximize-points-after-choosing-k-tasks/">Submissions</a>
+        <a href="https://leetcode.com/problems/maximize-points-after-choosing-k-tasks/">Solutions</a>
+    </div>
+</body>
+</html>

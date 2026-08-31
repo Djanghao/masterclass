@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1891. Cutting Ribbons</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/cutting-ribbons/">1891. Cutting Ribbons</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>627</td>
+            <td>70</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/binary-search"><code>binary-search</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>facebook</code> | <code>google</code></p>
+    </details>
+
+    <p>You are given an integer array <code>ribbons</code>, where <code>ribbons[i]</code> represents the length of the <code>i<sup>th</sup></code> ribbon, and an integer <code>k</code>. You may cut any of the ribbons into any number of segments of <strong>positive integer</strong> lengths, or perform no cuts at all.</p>
+
+<ul>
+	<li>For example, if you have a ribbon of length <code>4</code>, you can:
+
+	<ul>
+		<li>Keep the ribbon of length <code>4</code>,</li>
+		<li>Cut it into one ribbon of length <code>3</code> and one ribbon of length <code>1</code>,</li>
+		<li>Cut it into two ribbons of length <code>2</code>,</li>
+		<li>Cut it into one ribbon of length <code>2</code> and two ribbons of length <code>1</code>, or</li>
+		<li>Cut it into four ribbons of length <code>1</code>.</li>
+	</ul>
+	</li>
+</ul>
+
+<p>Your task is to determine the <strong>maximum</strong> length of ribbon, <code>x</code>, that allows you to cut <em>at least</em> <code>k</code> ribbons, each of length <code>x</code>. You can discard any leftover ribbon from the cuts. If it is <strong>impossible</strong> to cut <code>k</code> ribbons of the same length, return 0.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> ribbons = [9,7,5], k = 3
+<strong>Output:</strong> 5
+<strong>Explanation:</strong>
+- Cut the first ribbon to two ribbons, one of length 5 and one of length 4.
+- Cut the second ribbon to two ribbons, one of length 5 and one of length 2.
+- Keep the third ribbon as it is.
+Now you have 3 ribbons of length 5.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> ribbons = [7,5,9], k = 4
+<strong>Output:</strong> 4
+<strong>Explanation:</strong>
+- Cut the first ribbon to two ribbons, one of length 4 and one of length 3.
+- Cut the second ribbon to two ribbons, one of length 4 and one of length 1.
+- Cut the third ribbon to three ribbons, two of length 4 and one of length 1.
+Now you have 4 ribbons of length 4.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> ribbons = [5,7,9], k = 22
+<strong>Output:</strong> 0
+<strong>Explanation:</strong> You cannot obtain k ribbons of the same positive integer length.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= ribbons.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= ribbons[i] &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= k &lt;= 10<sup>9</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/cutting-ribbons/">Submissions</a>
+        <a href="https://leetcode.com/problems/cutting-ribbons/">Solutions</a>
+    </div>
+</body>
+</html>

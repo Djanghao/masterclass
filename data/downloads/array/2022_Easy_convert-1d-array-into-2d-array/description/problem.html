@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2022. Convert 1D Array Into 2D Array</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/convert-1d-array-into-2d-array/">2022. Convert 1D Array Into 2D Array</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>1286</td>
+            <td>103</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/matrix"><code>matrix</code></a> | <a href="https://leetcode.com/tag/simulation"><code>simulation</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code> | <code>amazon</code> | <code>facebook</code> | <code>microsoft</code></p>
+    </details>
+
+    <p>You are given a <strong>0-indexed</strong> 1-dimensional (1D) integer array <code>original</code>, and two integers, <code>m</code> and <code>n</code>. You are tasked with creating a 2-dimensional (2D) array with <code> m</code> rows and <code>n</code> columns using <strong>all</strong> the elements from <code>original</code>.</p>
+
+<p>The elements from indices <code>0</code> to <code>n - 1</code> (<strong>inclusive</strong>) of <code>original</code> should form the first row of the constructed 2D array, the elements from indices <code>n</code> to <code>2 * n - 1</code> (<strong>inclusive</strong>) should form the second row of the constructed 2D array, and so on.</p>
+
+<p>Return <em>an </em><code>m x n</code><em> 2D array constructed according to the above procedure, or an empty 2D array if it is impossible</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.png">
+<pre><code><strong>Input:</strong> original = [1,2,3,4], m = 2, n = 2
+<strong>Output:</strong> [[1,2],[3,4]]
+<strong>Explanation:</strong> The constructed 2D array should contain 2 rows and 2 columns.
+The first group of n=2 elements in original, [1,2], becomes the first row in the constructed 2D array.
+The second group of n=2 elements in original, [3,4], becomes the second row in the constructed 2D array.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> original = [1,2,3], m = 1, n = 3
+<strong>Output:</strong> [[1,2,3]]
+<strong>Explanation:</strong> The constructed 2D array should contain 1 row and 3 columns.
+Put all three elements in original into the first row of the constructed 2D array.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> original = [1,2], m = 1, n = 1
+<strong>Output:</strong> []
+<strong>Explanation:</strong> There are 2 elements in original.
+It is impossible to fit 2 elements in a 1x1 2D array, so return an empty 2D array.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= original.length &lt;= 5 * 10<sup>4</sup></code></li>
+	<li><code>1 &lt;= original[i] &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= m, n &lt;= 4 * 10<sup>4</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/convert-1d-array-into-2d-array/">Submissions</a>
+        <a href="https://leetcode.com/problems/convert-1d-array-into-2d-array/">Solutions</a>
+    </div>
+</body>
+</html>

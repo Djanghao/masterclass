@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2397. Maximum Rows Covered by Columns</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/maximum-rows-covered-by-columns/">2397. Maximum Rows Covered by Columns</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>291</td>
+            <td>436</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/backtracking"><code>backtracking</code></a> | <a href="https://leetcode.com/tag/bit-manipulation"><code>bit-manipulation</code></a> | <a href="https://leetcode.com/tag/matrix"><code>matrix</code></a> | <a href="https://leetcode.com/tag/enumeration"><code>enumeration</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>apple</code></p>
+    </details>
+
+    <p>You are given an <code>m x n</code> binary matrix <code>matrix</code> and an integer <code>numSelect</code>.</p>
+
+<p>Your goal is to select exactly <code>numSelect</code> <strong>distinct </strong>columns from <code>matrix</code> such that you cover as many rows as possible.</p>
+
+<p>A row is considered <strong>covered</strong> if all the <code>1</code>&#39;s in that row are also part of a column that you have selected. If a row does not have any <code>1</code>s, it is also considered covered.</p>
+
+<p>More formally, let us consider <code>selected = {c<sub>1</sub>, c<sub>2</sub>, ...., c<sub>numSelect</sub>}</code> as the set of columns selected by you. A row <code>i</code> is <strong>covered</strong> by <code>selected</code> if:</p>
+
+<ul>
+	<li>For each cell where <code>matrix[i][j] == 1</code>, the column <code>j</code> is in <code>selected</code>.</li>
+	<li>Or, no cell in row <code>i</code> has a value of <code>1</code>.</li>
+</ul>
+
+<p>Return the <strong>maximum</strong> number of rows that can be <strong>covered</strong> by a set of <code>numSelect</code> columns.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<p><img src="./images/0.png"></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">matrix = [[0,0,0],[1,0,1],[0,1,1],[0,0,1]], numSelect = 2</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">3</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>One possible way to cover 3 rows is shown in the diagram above.<br />
+We choose s = {0, 2}.<br />
+- Row 0 is covered because it has no occurrences of 1.<br />
+- Row 1 is covered because the columns with value 1, i.e. 0 and 2 are present in s.<br />
+- Row 2 is not covered because matrix[2][1] == 1 but 1 is not present in s.<br />
+- Row 3 is covered because matrix[2][2] == 1 and 2 is present in s.<br />
+Thus, we can cover three rows.<br />
+Note that s = {1, 2} will also cover 3 rows, but it can be shown that no more than three rows can be covered.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<p><img src="./images/1.png"></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">matrix = [[1],[0]], numSelect = 1</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">2</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>Selecting the only column will result in both rows being covered since the entire matrix is selected.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>m == matrix.length</code></li>
+	<li><code>n == matrix[i].length</code></li>
+	<li><code>1 &lt;= m, n &lt;= 12</code></li>
+	<li><code>matrix[i][j]</code> is either <code>0</code> or <code>1</code>.</li>
+	<li><code>1 &lt;= numSelect&nbsp;&lt;= n</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/maximum-rows-covered-by-columns/">Submissions</a>
+        <a href="https://leetcode.com/problems/maximum-rows-covered-by-columns/">Solutions</a>
+    </div>
+</body>
+</html>

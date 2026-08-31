@@ -1,0 +1,62 @@
+# [C++/Python] EASY TO SOLVE || Beginner Friendly with detailed explanation with dry run
+
+**Author:** Cosmic_Phantom
+**Votes:** 56
+**Link:** [https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/solutions/1660888/](https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/solutions/1660888/)
+
+---
+
+													#Detailed Explanations with proofs
+**Reframing the Question:-**
+We are given a time array with time duration a song has . we need to find different number of **pairs** of songs for whch their total duration in seconds is **divisible by 60 .**
+***
+**Intuition:-**
+* A simple intuition can be that we need to **find the reminder** of the total duration of pairs which is divisible by 60 . In simple words we need to calculate `time % 60`
+* Also come to think of it, the different pair combinations which can give us our result by finding their reminders can be stored with the **help of hashing.**
+***
+**Algorithm:-**
+1. Let's declare a map which keeps tracks of pairs which gives reminder from 0 to 59 . 
+`int map[60] = { }; ` and a `result` variable which will give us total number of pairs that can be formed that are divisible by 60
+2. Now we need to check if the pairs are giving us the required result i.e the total duration of individual songs must be checked inside the `y = (60 - (x%60) ) %60; [Going to discuss below]` to find the reminder so that they can be stored wisely inside the map.
+3. Now after getting reminders add them to the map table 
+4. At last return the `result`.
+***
+**Explanation behind the mystery of y = (60 - (x % 60) ) % 60  :-** 
+
+![image](./images/0.jpeg)
+***
+**Conclusion :-**
+In the end, the conclusion statement can be: we use an array to count occurrences of number % 60. For each number x , we add the count of complimenting numbers (60 - x % 60) % 60 to the result.
+***
+**C++ Code:-**
+```
+class Solution {
+public:
+    int numPairsDivisibleBy60(vector<int>& time) {
+        int map[60] = {};
+        int result = 0;
+        for(auto x:time){
+            int t = x % 60;
+            int y = (60 - t)%60;
+            result += map[y];
+            map[t]++;
+        }
+        return result;
+    }
+};
+```
+***
+**Python Code:-**
+```
+class Solution(object):
+    def numPairsDivisibleBy60(self, time):
+        mapp = [0] * 60
+        result = 0
+        for x in time:
+            result += mapp[-x % 60]
+            mapp[x % 60] += 1
+        return result
+```
+***
+**Time Complexity :** *`O(n) (where n is the size of time)`*
+**Space Complexity :** *`O(60) (Can be cconsidered O(1) if the time duration 60s is treated as constant )`* 

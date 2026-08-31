@@ -1,0 +1,24 @@
+# Backtracking Solution Java
+
+**Author:** fabrizio3
+**Votes:** 376
+**Link:** [https://leetcode.com/problems/combinations/solutions/27002/](https://leetcode.com/problems/combinations/solutions/27002/)
+
+---
+
+        public static List<List<Integer>> combine(int n, int k) {
+    		List<List<Integer>> combs = new ArrayList<List<Integer>>();
+    		combine(combs, new ArrayList<Integer>(), 1, n, k);
+    		return combs;
+    	}
+    	public static void combine(List<List<Integer>> combs, List<Integer> comb, int start, int n, int k) {
+    		if(k==0) {
+    			combs.add(new ArrayList<Integer>(comb));
+    			return;
+    		}
+    		for(int i=start;i<=n;i++) {
+    			comb.add(i);
+    			combine(combs, comb, i+1, n, k-1);
+    			comb.remove(comb.size()-1);
+    		}
+    	}

@@ -1,0 +1,77 @@
+# ✔️ [Python] Simple, Easy Solution with HashTable, Array and LinkedList
+
+**Author:** girrajjangid
+**Votes:** 22
+**Link:** [https://leetcode.com/problems/design-hashset/solutions/2570162/](https://leetcode.com/problems/design-hashset/solutions/2570162/)
+
+---
+
+#### Approach-1: Using Dictionary
+
+```
+class MyHashSet:
+
+    def __init__(self):
+        self.d = {}
+
+    def add(self, key: int) -> None:
+        self.d[key] = 1
+
+    def remove(self, key: int) -> None:
+        self.d[key] = 0
+
+    def contains(self, key: int) -> bool:
+        return self.d.get(key,0)!=0
+```
+
+
+#### Approach-2: Using Array+Linked-List
+```
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+    
+class MyHashSet:    
+    
+    def __init__(self):
+        self.size = 1000
+        self.arr = [None]*self.size
+
+    def find_index(self, key):
+        return key % self.size
+    
+    def find_value(self, key):
+        idx = self.find_index(key)
+        head = self.arr[idx]
+        while head:
+            if head.val == key: return 1
+            head = head.next
+        return 0
+
+    def add(self, key: int) -> None:
+        if self.find_value(key): return
+        idx = self.find_index(key)
+        self.arr[idx] = ListNode(key, self.arr[idx])
+
+    def remove(self, key: int) -> None:
+        idx = self.find_index(key)
+        node = self.arr[idx]
+        if node is None: 
+            return 
+        if node.val==key:
+            self.arr[idx] = node.next
+            return 
+        first, second = node, node.next
+        while second:
+            if second.val == key:
+                first.next = second.next
+                return
+            first, second = first.next, second.next
+
+    def contains(self, key: int) -> bool:
+        return self.find_value(key)
+```
+
+If you think this post is **helpful** for you, hit a **thums up.** Any questions or discussions are welcome!
+

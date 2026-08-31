@@ -1,0 +1,35 @@
+# Java two pointers. Faster than 98%. Easy and simple solution.
+
+**Author:** PreetMangatt
+**Votes:** 24
+**Link:** [https://leetcode.com/problems/partition-array-according-to-given-pivot/solutions/2123066/](https://leetcode.com/problems/partition-array-according-to-given-pivot/solutions/2123066/)
+
+---
+
+```
+// Time complexity = 2n = O(n)
+// Space complexity = O(1), or O(n) if the result array is including in the complexity analysis.
+
+class Solution {
+    public int[] pivotArray(int[] nums, int pivot) {
+        int[] result = new int[nums.length];
+        int left = 0, right = nums.length - 1;
+        
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] < pivot) {
+                result[left++] = nums[i];
+            }
+            if(nums[nums.length - 1 - i] > pivot) {
+                result[right--] = nums[nums.length - 1 - i];
+            }
+        }
+        
+        while(left <= right) {
+            result[left++] = pivot;
+            result[right--] = pivot;
+        }
+        
+        return result;
+    } 
+}
+```

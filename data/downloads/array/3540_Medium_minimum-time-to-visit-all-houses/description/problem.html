@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3540. Minimum Time to Visit All Houses</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-time-to-visit-all-houses/">3540. Minimum Time to Visit All Houses</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>7</td>
+            <td>2</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/prefix-sum"><code>prefix-sum</code></a></p>
+    </details>
+
+    
+
+    <p>You are given two integer arrays <code>forward</code> and <code>backward</code>, both of size <code>n</code>. You are also given another integer array <code>queries</code>.</p>
+
+<p>There are <code>n</code> houses <em>arranged in a circle</em>. The houses are connected via roads in a special arrangement:</p>
+
+<ul>
+	<li>For all <code>0 &lt;= i &lt;= n - 2</code>, house <code>i</code> is connected to house <code>i + 1</code> via a road with length <code>forward[i]</code> meters. Additionally, house <code>n - 1</code> is connected back to house 0 via a road with length <code>forward[n - 1]</code> meters, completing the circle.</li>
+	<li>For all <code>1 &lt;= i &lt;= n - 1</code>, house <code>i</code> is connected to house <code>i - 1</code> via a road with length <code>backward[i]</code> meters. Additionally, house 0 is connected back to house <code>n - 1</code> via a road with length <code>backward[0]</code> meters, completing the circle.</li>
+</ul>
+
+<p>You can walk at a pace of <strong>one</strong> meter per second. Starting from house 0, find the <strong>minimum</strong> time taken to visit each house in the order specified by <code>queries</code>.</p>
+
+<p>Return the <strong>minimum</strong> total time taken to visit the houses.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">forward = [1,4,4], backward = [4,1,2], queries = [1,2,0,2]</span></p>
+
+<p><strong>Output:</strong> 12</p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The path followed is <code><u>0</u><sup>(0)</sup> &rarr; <u>1</u><sup>(1)</sup> &rarr;​​​​​​​ <u>2</u><sup>(5)</sup> <u>&rarr;</u> 1<sup>(7)</sup> <u>&rarr;</u>​​​​​​​ <u>0</u><sup>(8)</sup> <u>&rarr;</u> <u>2</u><sup>(12)</sup></code>.</p>
+
+<p><strong>Note:</strong> The notation used is <code>node<sup>(total time)</sup></code>, <code>&rarr;</code> represents forward road, and <code><u>&rarr;</u></code> represents backward road.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">forward = [1,1,1,1], backward = [2,2,2,2], queries = [1,2,3,0]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">4</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The path travelled is <code><u>0</u> &rarr;​​​​​​​ <u>1</u> &rarr;​​​​​​​ <u>2</u> &rarr;​​​​​​​ <u>3</u> &rarr; <u>0</u></code>. Each step is in the forward direction and requires 1 second.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>2 &lt;= n &lt;= 10<sup>5</sup></code></li>
+	<li><code>n == forward.length == backward.length</code></li>
+	<li><code>1 &lt;= forward[i], backward[i] &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= queries.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>0 &lt;= queries[i] &lt; n</code></li>
+	<li><code>queries[i] != queries[i + 1]</code></li>
+	<li><code>queries[0]</code> is not 0.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-time-to-visit-all-houses/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-time-to-visit-all-houses/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2079. Watering Plants</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/watering-plants/">2079. Watering Plants</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>967</td>
+            <td>73</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/simulation"><code>simulation</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code> | <code>amadeus</code></p>
+    </details>
+
+    <p>You want to water <code>n</code> plants in your garden with a watering can. The plants are arranged in a row and are labeled from <code>0</code> to <code>n - 1</code> from left to right where the <code>i<sup>th</sup></code> plant is located at <code>x = i</code>. There is a river at <code>x = -1</code> that you can refill your watering can at.</p>
+
+<p>Each plant needs a specific amount of water. You will water the plants in the following way:</p>
+
+<ul>
+	<li>Water the plants in order from left to right.</li>
+	<li>After watering the current plant, if you do not have enough water to <strong>completely</strong> water the next plant, return to the river to fully refill the watering can.</li>
+	<li>You <strong>cannot</strong> refill the watering can early.</li>
+</ul>
+
+<p>You are initially at the river (i.e., <code>x = -1</code>). It takes <strong>one step</strong> to move <strong>one unit</strong> on the x-axis.</p>
+
+<p>Given a <strong>0-indexed</strong> integer array <code>plants</code> of <code>n</code> integers, where <code>plants[i]</code> is the amount of water the <code>i<sup>th</sup></code> plant needs, and an integer <code>capacity</code> representing the watering can capacity, return <em>the <strong>number of steps</strong> needed to water all the plants</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> plants = [2,2,3,3], capacity = 5
+<strong>Output:</strong> 14
+<strong>Explanation:</strong> Start at the river with a full watering can:
+- Walk to plant 0 (1 step) and water it. Watering can has 3 units of water.
+- Walk to plant 1 (1 step) and water it. Watering can has 1 unit of water.
+- Since you cannot completely water plant 2, walk back to the river to refill (2 steps).
+- Walk to plant 2 (3 steps) and water it. Watering can has 2 units of water.
+- Since you cannot completely water plant 3, walk back to the river to refill (3 steps).
+- Walk to plant 3 (4 steps) and water it.
+Steps needed = 1 + 1 + 2 + 3 + 3 + 4 = 14.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> plants = [1,1,1,4,2,3], capacity = 4
+<strong>Output:</strong> 30
+<strong>Explanation:</strong> Start at the river with a full watering can:
+- Water plants 0, 1, and 2 (3 steps). Return to river (3 steps).
+- Water plant 3 (4 steps). Return to river (4 steps).
+- Water plant 4 (5 steps). Return to river (5 steps).
+- Water plant 5 (6 steps).
+Steps needed = 3 + 3 + 4 + 4 + 5 + 5 + 6 = 30.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> plants = [7,7,7,7,7,7,7], capacity = 8
+<strong>Output:</strong> 49
+<strong>Explanation:</strong> You have to refill before watering each plant.
+Steps needed = 1 + 1 + 2 + 2 + 3 + 3 + 4 + 4 + 5 + 5 + 6 + 6 + 7 = 49.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>n == plants.length</code></li>
+	<li><code>1 &lt;= n &lt;= 1000</code></li>
+	<li><code>1 &lt;= plants[i] &lt;= 10<sup>6</sup></code></li>
+	<li><code>max(plants[i]) &lt;= capacity &lt;= 10<sup>9</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/watering-plants/">Submissions</a>
+        <a href="https://leetcode.com/problems/watering-plants/">Solutions</a>
+    </div>
+</body>
+</html>

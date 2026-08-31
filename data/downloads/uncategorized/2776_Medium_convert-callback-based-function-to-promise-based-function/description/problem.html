@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2776. Convert Callback Based Function to Promise Based Function</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/convert-callback-based-function-to-promise-based-function/">2776. Convert Callback Based Function to Promise Based Function</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>JavaScript</td>
+            <td>Medium</td>
+            <td>19</td>
+            <td>12</td>
+        </tr>
+    </table>
+
+    
+
+    
+
+    <p>Write a function that accepts another function <code>fn</code> and converts the callback-based function&nbsp;into a promise-based function.&nbsp;</p>
+
+<p>The function <code>fn</code> takes a callback as its first argument, along with any additional arguments <code>args</code>&nbsp;passed as separate inputs.</p>
+
+<p>The&nbsp;<code>promisify</code>&nbsp;function returns a new function that should return a promise. The promise should resolve with the argument passed as the first parameter of the callback when the callback is invoked without error, and reject with the error when the callback is called with an error as the second argument.</p>
+
+<p>The following is an example of a function that could be passed into&nbsp;<code>promisify</code>.</p>
+
+<pre><code>function sum(callback, a, b) {
+  if (a &lt; 0 || b &lt; 0) {
+&nbsp;   const err = Error(&#39;a and b must be positive&#39;);
+    callback(undefined, err);
+&nbsp; } else {
+    callback(a + b);
+&nbsp; }
+}</code></pre>
+
+<p>This is the equivalent code based on promises:</p>
+
+<pre><code>async function sum(a, b) {
+  if (a &lt; 0 || b &lt; 0) {
+    throw Error(&#39;a and b must be positive&#39;);
+&nbsp; } else {
+    return a + b;
+&nbsp; }
+}</code></pre>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+fn = (callback, a, b, c) =&gt; {
+    callback(a * b * c);
+}
+args = [1, 2, 3]
+<strong>Output:</strong> {&quot;resolved&quot;: 6}
+<strong>Explanation:</strong> 
+const asyncFunc = promisify(fn);
+asyncFunc(1, 2, 3).then(console.log); // 6
+
+fn is called with a callback as the first argument and args as the rest. The promise based version of fn resolves a value of 6 when called with (1, 2, 3).</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+fn = (callback, a, b, c) =&gt; {
+    callback(a * b * c, &quot;Promise Rejected&quot;);
+}
+args = [4, 5, 6]
+<strong>Output:</strong> {&quot;rejected&quot;: &quot;Promise Rejected&quot;}
+<strong>Explanation:</strong> 
+const asyncFunc = promisify(fn);
+asyncFunc(4, 5, 6).catch(console.log); // &quot;Promise Rejected&quot;
+
+fn is called with a callback as the first argument and args as the rest. As the second argument, the callback accepts an error message, so when fn is called, the promise is rejected with a error message provided in the callback. Note that it did not matter what was passed as the first argument into the callback.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= args.length &lt;= 100</code></li>
+	<li><code>0 &lt;= args[i] &lt;= 10<sup>4</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/convert-callback-based-function-to-promise-based-function/">Submissions</a>
+        <a href="https://leetcode.com/problems/convert-callback-based-function-to-promise-based-function/">Solutions</a>
+    </div>
+</body>
+</html>

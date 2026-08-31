@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1728. Cat and Mouse II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/cat-and-mouse-ii/">1728. Cat and Mouse II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>285</td>
+            <td>48</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/graph"><code>graph</code></a> | <a href="https://leetcode.com/tag/topological-sort"><code>topological-sort</code></a> | <a href="https://leetcode.com/tag/memoization"><code>memoization</code></a> | <a href="https://leetcode.com/tag/matrix"><code>matrix</code></a> | <a href="https://leetcode.com/tag/game-theory"><code>game-theory</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code></p>
+    </details>
+
+    <p>A game is played by a cat and a mouse named Cat and Mouse.</p>
+
+<p>The environment is represented by a <code>grid</code> of size <code>rows x cols</code>, where each element is a wall, floor, player (Cat, Mouse), or food.</p>
+
+<ul>
+	<li>Players are represented by the characters <code>&#39;C&#39;</code>(Cat)<code>,&#39;M&#39;</code>(Mouse).</li>
+	<li>Floors are represented by the character <code>&#39;.&#39;</code> and can be walked on.</li>
+	<li>Walls are represented by the character <code>&#39;#&#39;</code> and cannot be walked on.</li>
+	<li>Food is represented by the character <code>&#39;F&#39;</code> and can be walked on.</li>
+	<li>There is only one of each character <code>&#39;C&#39;</code>, <code>&#39;M&#39;</code>, and <code>&#39;F&#39;</code> in <code>grid</code>.</li>
+</ul>
+
+<p>Mouse and Cat play according to the following rules:</p>
+
+<ul>
+	<li>Mouse <strong>moves first</strong>, then they take turns to move.</li>
+	<li>During each turn, Cat and Mouse can jump in one of the four directions (left, right, up, down). They cannot jump over the wall nor outside of the <code>grid</code>.</li>
+	<li><code>catJump, mouseJump</code> are the maximum lengths Cat and Mouse can jump at a time, respectively. Cat and Mouse can jump less than the maximum length.</li>
+	<li>Staying in the same position is allowed.</li>
+	<li>Mouse can jump over Cat.</li>
+</ul>
+
+<p>The game can end in 4 ways:</p>
+
+<ul>
+	<li>If Cat occupies the same position as Mouse, Cat wins.</li>
+	<li>If Cat reaches the food first, Cat wins.</li>
+	<li>If Mouse reaches the food first, Mouse wins.</li>
+	<li>If Mouse cannot get to the food within 1000 turns, Cat wins.</li>
+</ul>
+
+<p>Given a <code>rows x cols</code> matrix <code>grid</code> and two integers <code>catJump</code> and <code>mouseJump</code>, return <code>true</code><em> if Mouse can win the game if both Cat and Mouse play optimally, otherwise return </em><code>false</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.png">
+<pre><code><strong>Input:</strong> grid = [&quot;####F&quot;,&quot;#C...&quot;,&quot;M....&quot;], catJump = 1, mouseJump = 2
+<strong>Output:</strong> true
+<strong>Explanation:</strong> Cat cannot catch Mouse on its turn nor can it get the food before Mouse.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+<img src="./images/1.png">
+<pre><code><strong>Input:</strong> grid = [&quot;M.C...F&quot;], catJump = 1, mouseJump = 4
+<strong>Output:</strong> true</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> grid = [&quot;M.C...F&quot;], catJump = 1, mouseJump = 3
+<strong>Output:</strong> false</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>rows == grid.length</code></li>
+	<li><code>cols = grid[i].length</code></li>
+	<li><code>1 &lt;= rows, cols &lt;= 8</code></li>
+	<li><code>grid[i][j]</code> consist only of characters <code>&#39;C&#39;</code>, <code>&#39;M&#39;</code>, <code>&#39;F&#39;</code>, <code>&#39;.&#39;</code>, and <code>&#39;#&#39;</code>.</li>
+	<li>There is only one of each character <code>&#39;C&#39;</code>, <code>&#39;M&#39;</code>, and <code>&#39;F&#39;</code> in <code>grid</code>.</li>
+	<li><code>1 &lt;= catJump, mouseJump &lt;= 8</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/cat-and-mouse-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/cat-and-mouse-ii/">Solutions</a>
+    </div>
+</body>
+</html>

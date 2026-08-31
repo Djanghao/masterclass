@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2388. Change Null Values in a Table to the Previous Value</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/change-null-values-in-a-table-to-the-previous-value/">2388. Change Null Values in a Table to the Previous Value</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>94</td>
+            <td>31</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>deloitte</code></p>
+    </details>
+
+    <p>Table: <code>CoffeeShop</code></p>
+
+<pre><code>+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| drink       | varchar |
++-------------+---------+
+id is the primary key (column with unique values) for this table.
+Each row in this table shows the order id and the name of the drink ordered. Some drink rows are nulls.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Write a solution to replace the <code>null</code> values of the drink with the name of the drink of the previous row that is not <code>null</code>. It is guaranteed that the drink on the first row of the table is not <code>null</code>.</p>
+
+<p>Return the result table <strong>in the same order as the input</strong>.</p>
+
+<p>The result format is shown in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+CoffeeShop table:
++----+-------------------+
+| id | drink             |
++----+-------------------+
+| 9  | Rum and Coke      |
+| 6  | null              |
+| 7  | null              |
+| 3  | St Germain Spritz |
+| 1  | Orange Margarita  |
+| 2  | null              |
++----+-------------------+
+<strong>Output:</strong> 
++----+-------------------+
+| id | drink             |
++----+-------------------+
+| 9  | Rum and Coke      |
+| 6  | Rum and Coke      |
+| 7  | Rum and Coke      |
+| 3  | St Germain Spritz |
+| 1  | Orange Margarita  |
+| 2  | Orange Margarita  |
++----+-------------------+
+<strong>Explanation:</strong> 
+For ID 6, the previous value that is not null is from ID 9. We replace the null with &quot;Rum and Coke&quot;.
+For ID 7, the previous value that is not null is from ID 9. We replace the null with &quot;Rum and Coke;.
+For ID 2, the previous value that is not null is from ID 1. We replace the null with &quot;Orange Margarita&quot;.
+Note that the rows in the output are the same as in the input.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/change-null-values-in-a-table-to-the-previous-value/">Submissions</a>
+        <a href="https://leetcode.com/problems/change-null-values-in-a-table-to-the-previous-value/">Solutions</a>
+    </div>
+</body>
+</html>

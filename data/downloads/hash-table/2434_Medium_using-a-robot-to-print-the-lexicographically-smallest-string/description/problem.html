@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2434. Using a Robot to Print the Lexicographically Smallest String</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/">2434. Using a Robot to Print the Lexicographically Smallest String</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>1147</td>
+            <td>304</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/hash-table"><code>hash-table</code></a> | <a href="https://leetcode.com/tag/string"><code>string</code></a> | <a href="https://leetcode.com/tag/stack"><code>stack</code></a> | <a href="https://leetcode.com/tag/greedy"><code>greedy</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>tower-research</code> | <code>amazon</code> | <code>facebook</code> | <code>de-shaw</code></p>
+    </details>
+
+    <p>You are given a string <code>s</code> and a robot that currently holds an empty string <code>t</code>. Apply one of the following operations until <code>s</code> and <code>t</code> <strong>are both empty</strong>:</p>
+
+<ul>
+	<li>Remove the <strong>first</strong> character of a string <code>s</code> and give it to the robot. The robot will append this character to the string <code>t</code>.</li>
+	<li>Remove the <strong>last</strong> character of a string <code>t</code> and give it to the robot. The robot will write this character on paper.</li>
+</ul>
+
+<p>Return <em>the lexicographically smallest string that can be written on the paper.</em></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> s = &quot;zza&quot;
+<strong>Output:</strong> &quot;azz&quot;
+<strong>Explanation:</strong> Let p denote the written string.
+Initially p=&quot;&quot;, s=&quot;zza&quot;, t=&quot;&quot;.
+Perform first operation three times p=&quot;&quot;, s=&quot;&quot;, t=&quot;zza&quot;.
+Perform second operation three times p=&quot;azz&quot;, s=&quot;&quot;, t=&quot;&quot;.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> s = &quot;bac&quot;
+<strong>Output:</strong> &quot;abc&quot;
+<strong>Explanation:</strong> Let p denote the written string.
+Perform first operation twice p=&quot;&quot;, s=&quot;c&quot;, t=&quot;ba&quot;. 
+Perform second operation twice p=&quot;ab&quot;, s=&quot;c&quot;, t=&quot;&quot;. 
+Perform first operation p=&quot;ab&quot;, s=&quot;&quot;, t=&quot;c&quot;. 
+Perform second operation p=&quot;abc&quot;, s=&quot;&quot;, t=&quot;&quot;.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> s = &quot;bdda&quot;
+<strong>Output:</strong> &quot;addb&quot;
+<strong>Explanation:</strong> Let p denote the written string.
+Initially p=&quot;&quot;, s=&quot;bdda&quot;, t=&quot;&quot;.
+Perform first operation four times p=&quot;&quot;, s=&quot;&quot;, t=&quot;bdda&quot;.
+Perform second operation four times p=&quot;addb&quot;, s=&quot;&quot;, t=&quot;&quot;.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>s</code> consists of only English lowercase letters.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/">Submissions</a>
+        <a href="https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/">Solutions</a>
+    </div>
+</body>
+</html>

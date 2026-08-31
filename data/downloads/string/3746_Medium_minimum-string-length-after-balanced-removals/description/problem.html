@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3746. Minimum String Length After Balanced Removals</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-string-length-after-balanced-removals/">3746. Minimum String Length After Balanced Removals</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>50</td>
+            <td>5</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/string"><code>string</code></a> | <a href="https://leetcode.com/tag/stack"><code>stack</code></a> | <a href="https://leetcode.com/tag/counting"><code>counting</code></a></p>
+    </details>
+
+    
+
+    <p>You are given a string <code>s</code> consisting only of the characters <code>&#39;a&#39;</code> and <code>&#39;b&#39;</code>.</p>
+
+<p>You are allowed to repeatedly remove <strong>any <span data-keyword="substring-nonempty">substring</span></strong> where the number of <code>&#39;a&#39;</code> characters is equal to the number of <code>&#39;b&#39;</code> characters. After each removal, the remaining parts of the string are concatenated together without gaps.</p>
+
+<p>Return an integer denoting the <strong>minimum possible length</strong> of the string after performing any number of such operations.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">s = <code>&quot;aabbab&quot;</code></span></p>
+
+<p><strong>Output:</strong> <span class="example-io">0</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The substring <code>&quot;aabbab&quot;</code> has three <code>&#39;a&#39;</code> and three <code>&#39;b&#39;</code>. Since their counts are equal, we can remove the entire string directly. The minimum length is 0.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">s = <code>&quot;aaaa&quot;</code></span></p>
+
+<p><strong>Output:</strong> <span class="example-io">4</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>Every substring of <code>&quot;aaaa&quot;</code> contains only <code>&#39;a&#39;</code> characters. No substring can be removed as a result, so the minimum length remains 4.</p>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">s = <code>&quot;aaabb&quot;</code></span></p>
+
+<p><strong>Output:</strong> <span class="example-io">1</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>First, remove the substring <code>&quot;ab&quot;</code>, leaving <code>&quot;aab&quot;</code>. Next, remove the new substring <code>&quot;ab&quot;</code>, leaving <code>&quot;a&quot;</code>. No further removals are possible, so the minimum length is 1.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>s[i]</code> is either <code>&#39;a&#39;</code> or <code>&#39;b&#39;</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-string-length-after-balanced-removals/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-string-length-after-balanced-removals/">Solutions</a>
+    </div>
+</body>
+</html>

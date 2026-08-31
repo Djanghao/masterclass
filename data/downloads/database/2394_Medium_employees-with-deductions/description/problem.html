@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2394. Employees With Deductions</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/employees-with-deductions/">2394. Employees With Deductions</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>31</td>
+            <td>39</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>amazon</code></p>
+    </details>
+
+    <p>Table: <code>Employees</code></p>
+
+<pre><code>+--------------+------+
+| Column Name  | Type |
++--------------+------+
+| employee_id  | int  |
+| needed_hours | int  |
++--------------+------+
+employee_id is column with unique values for this table.
+Each row contains the id of an employee and the minimum number of hours needed for them to work to get their salary.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Logs</code></p>
+
+<pre><code>+-------------+----------+
+| Column Name | Type     |
++-------------+----------+
+| employee_id | int      |
+| in_time     | datetime |
+| out_time    | datetime |
++-------------+----------+
+(employee_id, in_time, out_time) is the primary key (combination of columns with unique values) for this table.
+Each row of this table shows the time stamps for an employee. in_time is the time the employee started to work, and out_time is the time the employee ended work.
+All the times are in October 2022. out_time can be one day after in_time which means the employee worked after the midnight.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>In a company, each employee must work a certain number of hours every month. Employees work in sessions. The number of hours an employee worked can be calculated from the sum of the number of minutes the employee worked in all of their sessions. The number of minutes in each session is rounded up.</p>
+
+<ul>
+	<li>For example, if the employee worked for <code>51</code> minutes and <code>2</code> seconds in a session, we consider it <code>52</code> minutes.</li>
+</ul>
+
+<p>Write a solution to report the IDs of the employees that will be deducted. In other words, report the IDs of the employees that did not work the needed hours.</p>
+
+<p>Return the result table <strong>in any order</strong>.</p>
+
+<p>The&nbsp;result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Employees table:
++-------------+--------------+
+| employee_id | needed_hours |
++-------------+--------------+
+| 1           | 20           |
+| 2           | 12           |
+| 3           | 2            |
++-------------+--------------+
+Logs table:
++-------------+---------------------+---------------------+
+| employee_id | in_time             | out_time            |
++-------------+---------------------+---------------------+
+| 1           | 2022-10-01 09:00:00 | 2022-10-01 17:00:00 |
+| 1           | 2022-10-06 09:05:04 | 2022-10-06 17:09:03 |
+| 1           | 2022-10-12 23:00:00 | 2022-10-13 03:00:01 |
+| 2           | 2022-10-29 12:00:00 | 2022-10-29 23:58:58 |
++-------------+---------------------+---------------------+
+<strong>Output:</strong> 
++-------------+
+| employee_id |
++-------------+
+| 2           |
+| 3           |
++-------------+
+<strong>Explanation:</strong> 
+Employee 1:
+ - Worked for three sessions:
+    - On 2022-10-01, they worked for 8 hours.
+    - On 2022-10-06, they worked for 8 hours and 4 minutes.
+    - On 2022-10-12, they worked for 4 hours and 1 minute. Note that they worked through midnight.
+ - Employee 1 worked a total of 20 hours and 5 minutes across sessions and will not be deducted.
+Employee 2:
+ - Worked for one session:
+    - On 2022-10-29, they worked for 11 hours and 59 minutes.
+ - Employee 2 did not work their hours and will be deducted.
+Employee 3:
+ - Did not work any session.
+ - Employee 3 did not work their hours and will be deducted.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/employees-with-deductions/">Submissions</a>
+        <a href="https://leetcode.com/problems/employees-with-deductions/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+# [711. Number of Distinct Islands II](https://leetcode.com/problems/number-of-distinct-islands-ii/)
+
+| Category | Difficulty | Likes | Dislikes |
+| :------: | :--------: | :---: | :------: |
+| Algorithms | Hard | 279 | 286 |
+
+**Tags:** [`hash-table`](https://leetcode.com/tag/hash-table), [`depth-first-search`](https://leetcode.com/tag/depth-first-search), [`breadth-first-search`](https://leetcode.com/tag/breadth-first-search), [`union-find`](https://leetcode.com/tag/union-find), [`hash-function`](https://leetcode.com/tag/hash-function)
+
+**Companies:** `amazon`, `google`, `facebook`
+
+## Description
+
+You are given an `m x n` binary matrix `grid`. An island is a group of `1`'s (representing land) connected **4-directionally** (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
+
+An island is considered to be the same as another if they have the same shape, or have the same shape after rotation (90, 180, or 270 degrees only) or reflection (left/right direction or up/down direction).
+
+Return *the number of distinct islands*.
+
+ 
+
+**Example 1:**
+
+![image](./images/0.jpg)
+```
+
+Input: grid = [[1,1,0,0,0],[1,0,0,0,0],[0,0,0,0,1],[0,0,0,1,1]]
+Output: 1
+Explanation: The two islands are considered the same because if we make a 180 degrees clockwise rotation on the first island, then two islands will have the same shapes.
+
+```
+
+**Example 2:**
+
+![image](./images/1.jpg)
+```
+
+Input: grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]
+Output: 1
+
+```
+
+ 
+
+**Constraints:**
+
+	- `m == grid.length`
+
+	- `n == grid[i].length`
+
+	- `1 <= m, n <= 50`
+
+	- `grid[i][j]` is either `0` or `1`.
+
+---
+
+**Links:** [Submissions](https://leetcode.com/problems/number-of-distinct-islands-ii/) | [Solutions](https://leetcode.com/problems/number-of-distinct-islands-ii/)

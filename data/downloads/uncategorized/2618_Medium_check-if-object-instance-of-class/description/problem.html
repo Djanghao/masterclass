@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2618. Check if Object Instance of Class</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/check-if-object-instance-of-class/">2618. Check if Object Instance of Class</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>JavaScript</td>
+            <td>Medium</td>
+            <td>290</td>
+            <td>111</td>
+        </tr>
+    </table>
+
+    
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>microsoft</code> | <code>google</code> | <code>amazon</code></p>
+    </details>
+
+    <p>Write a function that checks if a given value&nbsp;is an instance of a given class or superclass. For this problem, an object is considered an instance of a given class if that object has access to that class&#39;s methods.</p>
+
+<p>There are&nbsp;no constraints on the data types that can be passed to the function. For example, the value or the class could be&nbsp;<code>undefined</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> func = () =&gt; checkIfInstanceOf(new Date(), Date)
+<strong>Output:</strong> true
+<strong>Explanation: </strong>The object returned by the Date constructor is, by definition, an instance of Date.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> func = () =&gt; { class Animal {}; class Dog extends Animal {}; return checkIfInstanceOf(new Dog(), Animal); }
+<strong>Output:</strong> true
+<strong>Explanation:</strong>
+class Animal {};
+class Dog extends Animal {};
+checkIfInstanceOf(new Dog(), Animal); // true
+
+Dog is a subclass of Animal. Therefore, a Dog object is an instance of both Dog and Animal.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> func = () =&gt; checkIfInstanceOf(Date, Date)
+<strong>Output:</strong> false
+<strong>Explanation: </strong>A date constructor cannot logically be an instance of itself.</code></pre>
+
+<p><strong class="example">Example 4:</strong></p>
+
+<pre><code><strong>Input:</strong> func = () =&gt; checkIfInstanceOf(5, Number)
+<strong>Output:</strong> true
+<strong>Explanation: </strong>5 is a Number. Note that the &quot;instanceof&quot; keyword would return false. However, it is still considered an instance of Number because it accesses the Number methods. For example &quot;toFixed()&quot;.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/check-if-object-instance-of-class/">Submissions</a>
+        <a href="https://leetcode.com/problems/check-if-object-instance-of-class/">Solutions</a>
+    </div>
+</body>
+</html>

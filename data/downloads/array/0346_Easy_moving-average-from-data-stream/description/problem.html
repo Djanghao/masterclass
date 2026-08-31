@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>346. Moving Average from Data Stream</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/moving-average-from-data-stream/">346. Moving Average from Data Stream</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>1748</td>
+            <td>192</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/design"><code>design</code></a> | <a href="https://leetcode.com/tag/queue"><code>queue</code></a> | <a href="https://leetcode.com/tag/data-stream"><code>data-stream</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>facebook</code> | <code>spotify</code> | <code>amazon</code> | <code>google</code> | <code>microsoft</code> | <code>bloomberg</code> | <code>citadel</code> | <code>zscaler</code></p>
+    </details>
+
+    <p>Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.</p>
+
+<p>Implement the&nbsp;<code>MovingAverage</code> class:</p>
+
+<ul>
+	<li><code>MovingAverage(int size)</code> Initializes&nbsp;the object with the size of the window <code>size</code>.</li>
+	<li><code>double next(int val)</code> Returns the moving average of the last <code>size</code> values of the stream.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input</strong>
+[&quot;MovingAverage&quot;, &quot;next&quot;, &quot;next&quot;, &quot;next&quot;, &quot;next&quot;]
+[[3], [1], [10], [3], [5]]
+<strong>Output</strong>
+[null, 1.0, 5.5, 4.66667, 6.0]
+
+<strong>Explanation</strong>
+MovingAverage movingAverage = new MovingAverage(3);
+movingAverage.next(1); // return 1.0 = 1 / 1
+movingAverage.next(10); // return 5.5 = (1 + 10) / 2
+movingAverage.next(3); // return 4.66667 = (1 + 10 + 3) / 3
+movingAverage.next(5); // return 6.0 = (10 + 3 + 5) / 3</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= size &lt;= 1000</code></li>
+	<li><code>-10<sup>5</sup> &lt;= val &lt;= 10<sup>5</sup></code></li>
+	<li>At most <code>10<sup>4</sup></code> calls will be made to <code>next</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/moving-average-from-data-stream/">Submissions</a>
+        <a href="https://leetcode.com/problems/moving-average-from-data-stream/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1126. Active Businesses</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/active-businesses/">1126. Active Businesses</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>282</td>
+            <td>34</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>yelp</code></p>
+    </details>
+
+    <p>Table: <code>Events</code></p>
+
+<pre><code>+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| business_id   | int     |
+| event_type    | varchar |
+| occurrences   | int     | 
++---------------+---------+
+(business_id, event_type) is the primary key (combination of columns with unique values) of this table.
+Each row in the table logs the info that an event of some type occurred at some business for a number of times.</code></pre>
+
+<p>The <strong>average activity</strong> for a particular <code>event_type</code> is the average <code>occurrences</code> across all companies that have this event.</p>
+
+<p>An <strong>active business</strong> is a business that has <strong>more than one</strong> <code>event_type</code> such that their <code>occurrences</code> is <strong>strictly greater</strong> than the average activity for that event.</p>
+
+<p>Write a solution to find all <strong>active businesses</strong>.</p>
+
+<p>Return the result table in <strong>any order</strong>.</p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Events table:
++-------------+------------+-------------+
+| business_id | event_type | occurrences |
++-------------+------------+-------------+
+| 1           | reviews    | 7           |
+| 3           | reviews    | 3           |
+| 1           | ads        | 11          |
+| 2           | ads        | 7           |
+| 3           | ads        | 6           |
+| 1           | page views | 3           |
+| 2           | page views | 12          |
++-------------+------------+-------------+
+<strong>Output:</strong> 
++-------------+
+| business_id |
++-------------+
+| 1           |
++-------------+
+<strong>Explanation:</strong>  
+The average activity for each event can be calculated as follows:
+- &#39;reviews&#39;: (7+3)/2 = 5
+- &#39;ads&#39;: (11+7+6)/3 = 8
+- &#39;page views&#39;: (3+12)/2 = 7.5
+The business with id=1 has 7 &#39;reviews&#39; events (more than 5) and 11 &#39;ads&#39; events (more than 8), so it is an active business.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/active-businesses/">Submissions</a>
+        <a href="https://leetcode.com/problems/active-businesses/">Solutions</a>
+    </div>
+</body>
+</html>

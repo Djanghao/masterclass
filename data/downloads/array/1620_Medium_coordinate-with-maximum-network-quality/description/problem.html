@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1620. Coordinate With Maximum Network Quality</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/coordinate-with-maximum-network-quality/">1620. Coordinate With Maximum Network Quality</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>91</td>
+            <td>274</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/enumeration"><code>enumeration</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>lyft</code></p>
+    </details>
+
+    <p>You are given an array of network towers <code>towers</code>, where <code>towers[i] = [x<sub>i</sub>, y<sub>i</sub>, q<sub>i</sub>]</code> denotes the <code>i<sup>th</sup></code> network tower with location <code>(x<sub>i</sub>, y<sub>i</sub>)</code> and quality factor <code>q<sub>i</sub></code>. All the coordinates are <strong>integral coordinates</strong> on the X-Y plane, and the distance between the two coordinates is the <strong>Euclidean distance</strong>.</p>
+
+<p>You are also given an integer <code>radius</code> where a tower is <strong>reachable</strong> if the distance is <strong>less than or equal to</strong> <code>radius</code>. Outside that distance, the signal becomes garbled, and the tower is <strong>not reachable</strong>.</p>
+
+<p>The signal quality of the <code>i<sup>th</sup></code> tower at a coordinate <code>(x, y)</code> is calculated with the formula <code>&lfloor;q<sub>i</sub> / (1 + d)&rfloor;</code>, where <code>d</code> is the distance between the tower and the coordinate. The <strong>network quality</strong> at a coordinate is the sum of the signal qualities from all the <strong>reachable</strong> towers.</p>
+
+<p>Return <em>the array </em><code>[c<sub>x</sub>, c<sub>y</sub>]</code><em> representing the <strong>integral</strong> coordinate </em><code>(c<sub>x</sub>, c<sub>y</sub>)</code><em> where the <strong>network quality</strong> is maximum. If there are multiple coordinates with the same <strong>network quality</strong>, return the lexicographically minimum <strong>non-negative</strong> coordinate.</em></p>
+
+<p><strong>Note:</strong></p>
+
+<ul>
+	<li>A coordinate <code>(x1, y1)</code> is lexicographically smaller than <code>(x2, y2)</code> if either:
+
+	<ul>
+		<li><code>x1 &lt; x2</code>, or</li>
+		<li><code>x1 == x2</code> and <code>y1 &lt; y2</code>.</li>
+	</ul>
+	</li>
+	<li><code>&lfloor;val&rfloor;</code> is the greatest integer less than or equal to <code>val</code> (the floor function).</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.png">
+<pre><code><strong>Input:</strong> towers = [[1,2,5],[2,1,7],[3,1,9]], radius = 2
+<strong>Output:</strong> [2,1]
+<strong>Explanation:</strong> At coordinate (2, 1) the total quality is 13.
+- Quality of 7 from (2, 1) results in &lfloor;7 / (1 + sqrt(0)&rfloor; = &lfloor;7&rfloor; = 7
+- Quality of 5 from (1, 2) results in &lfloor;5 / (1 + sqrt(2)&rfloor; = &lfloor;2.07&rfloor; = 2
+- Quality of 9 from (3, 1) results in &lfloor;9 / (1 + sqrt(1)&rfloor; = &lfloor;4.5&rfloor; = 4
+No other coordinate has a higher network quality.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> towers = [[23,11,21]], radius = 9
+<strong>Output:</strong> [23,11]
+<strong>Explanation:</strong> Since there is only one tower, the network quality is highest right at the tower&#39;s location.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> towers = [[1,2,13],[2,1,7],[0,1,9]], radius = 2
+<strong>Output:</strong> [1,2]
+<strong>Explanation:</strong> Coordinate (1, 2) has the highest network quality.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= towers.length &lt;= 50</code></li>
+	<li><code>towers[i].length == 3</code></li>
+	<li><code>0 &lt;= x<sub>i</sub>, y<sub>i</sub>, q<sub>i</sub> &lt;= 50</code></li>
+	<li><code>1 &lt;= radius &lt;= 50</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/coordinate-with-maximum-network-quality/">Submissions</a>
+        <a href="https://leetcode.com/problems/coordinate-with-maximum-network-quality/">Solutions</a>
+    </div>
+</body>
+</html>

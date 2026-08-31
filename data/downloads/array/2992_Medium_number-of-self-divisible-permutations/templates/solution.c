@@ -1,0 +1,3 @@
+int selfDivisiblePermutationCount(int n) {
+    
+}

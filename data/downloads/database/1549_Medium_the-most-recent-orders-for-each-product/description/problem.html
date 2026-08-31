@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1549. The Most Recent Orders for Each Product</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/the-most-recent-orders-for-each-product/">1549. The Most Recent Orders for Each Product</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>139</td>
+            <td>12</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>amazon</code></p>
+    </details>
+
+    <p>Table: <code>Customers</code></p>
+
+<pre><code>+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| customer_id   | int     |
+| name          | varchar |
++---------------+---------+
+customer_id is the column with unique values for this table.
+This table contains information about the customers.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Orders</code></p>
+
+<pre><code>+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| order_id      | int     |
+| order_date    | date    |
+| customer_id   | int     |
+| product_id    | int     |
++---------------+---------+
+order_id is the column with unique values for this table.
+This table contains information about the orders made by customer_id.
+There will be no product ordered by the same user <strong>more than once</strong> in one day.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Products</code></p>
+
+<pre><code>+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| product_id    | int     |
+| product_name  | varchar |
+| price         | int     |
++---------------+---------+
+product_id is the column with unique values for this table.
+This table contains information about the Products.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Write a solution to find the most recent order(s) of each product.</p>
+
+<p>Return the result table ordered by <code>product_name</code> in ascending order and in case of a tie by the <code>product_id</code> in <strong>ascending order</strong>. If there still a tie, order them by <code>order_id</code> in <strong>ascending order</strong>.</p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Customers table:
++-------------+-----------+
+| customer_id | name      |
++-------------+-----------+
+| 1           | Winston   |
+| 2           | Jonathan  |
+| 3           | Annabelle |
+| 4           | Marwan    |
+| 5           | Khaled    |
++-------------+-----------+
+Orders table:
++----------+------------+-------------+------------+
+| order_id | order_date | customer_id | product_id |
++----------+------------+-------------+------------+
+| 1        | 2020-07-31 | 1           | 1          |
+| 2        | 2020-07-30 | 2           | 2          |
+| 3        | 2020-08-29 | 3           | 3          |
+| 4        | 2020-07-29 | 4           | 1          |
+| 5        | 2020-06-10 | 1           | 2          |
+| 6        | 2020-08-01 | 2           | 1          |
+| 7        | 2020-08-01 | 3           | 1          |
+| 8        | 2020-08-03 | 1           | 2          |
+| 9        | 2020-08-07 | 2           | 3          |
+| 10       | 2020-07-15 | 1           | 2          |
++----------+------------+-------------+------------+
+Products table:
++------------+--------------+-------+
+| product_id | product_name | price |
++------------+--------------+-------+
+| 1          | keyboard     | 120   |
+| 2          | mouse        | 80    |
+| 3          | screen       | 600   |
+| 4          | hard disk    | 450   |
++------------+--------------+-------+
+<strong>Output:</strong> 
++--------------+------------+----------+------------+
+| product_name | product_id | order_id | order_date |
++--------------+------------+----------+------------+
+| keyboard     | 1          | 6        | 2020-08-01 |
+| keyboard     | 1          | 7        | 2020-08-01 |
+| mouse        | 2          | 8        | 2020-08-03 |
+| screen       | 3          | 3        | 2020-08-29 |
++--------------+------------+----------+------------+
+<strong>Explanation:</strong> 
+keyboard&#39;s most recent order is in 2020-08-01, it was ordered two times this day.
+mouse&#39;s most recent order is in 2020-08-03, it was ordered only once this day.
+screen&#39;s most recent order is in 2020-08-29, it was ordered only once this day.
+The hard disk was never ordered and we do not include it in the result table.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/the-most-recent-orders-for-each-product/">Submissions</a>
+        <a href="https://leetcode.com/problems/the-most-recent-orders-for-each-product/">Solutions</a>
+    </div>
+</body>
+</html>

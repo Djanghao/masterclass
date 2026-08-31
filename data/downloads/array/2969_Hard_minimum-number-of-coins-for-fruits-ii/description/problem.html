@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2969. Minimum Number of Coins for Fruits II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-number-of-coins-for-fruits-ii/">2969. Minimum Number of Coins for Fruits II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>21</td>
+            <td>0</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/queue"><code>queue</code></a> | <a href="https://leetcode.com/tag/heap-priority-queue"><code>heap-priority-queue</code></a> | <a href="https://leetcode.com/tag/monotonic-queue"><code>monotonic-queue</code></a></p>
+    </details>
+
+    
+
+    <p>You are at a fruit market with different types of exotic fruits on display.</p>
+
+<p>You are given a <strong>1-indexed</strong> array <code>prices</code>, where <code>prices[i]</code> denotes the number of coins needed to purchase the <code>i<sup>th</sup></code> fruit.</p>
+
+<p>The fruit market has the following offer:</p>
+
+<ul>
+	<li>If you purchase the <code>i<sup>th</sup></code> fruit at <code>prices[i]</code> coins, you can get the next <code>i</code> fruits for free.</li>
+</ul>
+
+<p><strong>Note</strong> that even if you <strong>can</strong> take fruit <code>j</code> for free, you can still purchase it for <code>prices[j]</code> coins to receive a new offer.</p>
+
+<p>Return <em>the <strong>minimum</strong> number of coins needed to acquire all the fruits</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> prices = [3,1,2]
+<strong>Output:</strong> 4
+<strong>Explanation:</strong> You can acquire the fruits as follows:
+- Purchase the 1<sup>st</sup> fruit with 3 coins, and you are allowed to take the 2<sup>nd</sup> fruit for free.
+- Purchase the 2<sup>nd</sup> fruit with 1 coin, and you are allowed to take the 3<sup>rd</sup> fruit for free.
+- Take the 3<sup>rd</sup> fruit for free.
+Note that even though you were allowed to take the 2<sup>nd</sup> fruit for free, you purchased it because it is more optimal.
+It can be proven that 4 is the minimum number of coins needed to acquire all the fruits.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> prices = [1,10,1,1]
+<strong>Output:</strong> 2
+<strong>Explanation:</strong> You can acquire the fruits as follows:
+- Purchase the 1<sup>st</sup> fruit with 1 coin, and you are allowed to take the 2<sup>nd</sup> fruit for free.
+- Take the 2<sup>nd</sup> fruit for free.
+- Purchase the 3<sup>rd</sup> fruit for 1 coin, and you are allowed to take the 4<sup>th</sup> fruit for free.
+- Take the 4<sup>t</sup><sup>h</sup> fruit for free.
+It can be proven that 2 is the minimum number of coins needed to acquire all the fruits.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= prices.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= prices[i] &lt;= 10<sup>5</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-number-of-coins-for-fruits-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-number-of-coins-for-fruits-ii/">Solutions</a>
+    </div>
+</body>
+</html>

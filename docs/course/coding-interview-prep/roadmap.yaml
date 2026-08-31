@@ -1,0 +1,12 @@
+goals:
+  - Master LeetCode Hot 100 problem patterns for coding interviews
+  - Build coding interview readiness for deep learning / LLM engineering roles (PyTorch, Transformers, LlamaFactory, verl, DeepSpeed)
+tech_stack:
+  - Python
+  - PyTorch
+  - Transformers
+  - LlamaFactory
+  - verl
+  - DeepSpeed
+level: "junior"
+direction: "interview prep"

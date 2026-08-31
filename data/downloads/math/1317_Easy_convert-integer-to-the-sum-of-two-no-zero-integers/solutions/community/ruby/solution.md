@@ -1,0 +1,32 @@
+# Ruby solution: Get answer pair from iteration over range, and checking for zero precence.
+
+**Author:** user9697N
+**Votes:** 1
+**Link:** [https://leetcode.com/problems/convert-integer-to-the-sum-of-two-no-zero-integers/solutions/823536/](https://leetcode.com/problems/convert-integer-to-the-sum-of-two-no-zero-integers/solutions/823536/)
+
+---
+
+##### Leetcode: 1317. Convert Integer to the Sum of Two No-Zero Integers. 
+
+Iterate over range from 1 till n-1 inclusively, on each iteration check two variables acquired from i and n-i for comprising zeros in decimal representation. If both of them have no zeros return these values in array as an answer.  
+
+Ruby code:
+```Ruby
+# Leetcode: 1317. Convert Integer to the Sum of Two No-Zero Integers.
+# https://leetcode.com/problems/convert-integer-to-the-sum-of-two-no-zero-integers
+# Runtime: 64 ms, faster than 28.57% of Ruby online submissions for Convert Integer to the Sum of Two No-Zero Integers.
+# Memory Usage: 9.7 MB, less than 28.57% of Ruby online submissions for Convert Integer to the Sum of Two No-Zero Integers.
+# @param {Integer} n
+# @return {Integer[]}
+def get_no_zero_integers(n)
+    
+    (1...n).each do |i|
+        a,b = i,n-i
+        return [a,b] if no_zero(a) && no_zero(b)
+    end
+    raise "Cannot find solution."
+end
+def no_zero(x)
+    x.digits.find_index(0).nil?
+end
+```

@@ -1,0 +1,116 @@
+# Ruby/Go: Total sum and array of sub tree's sums.
+
+**Author:** user9697N
+**Votes:** 1
+**Link:** [https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/solutions/2898803/](https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/solutions/2898803/)
+
+---
+
+## Leetcode: 1339. Maximum Product of Splitted Binary Tree.
+
+**Ruby/Go: Total sum and array of sub tree's sums.**
+
+Time: O(n); Memory: O(n);
+
+Everey node delivers two ways to split a tree with a two values.
+
+1. (total_sum - left_subtree_sum) * left_subtree_sum;
+2. (total_sum - right_subtree_sum) * right_subtree_sum;
+
+Calculate total_sum and create of array where stored left and right subtree's sums. By a loop find maximum value.
+
+
+Ruby code:
+```Ruby
+# Leetcode: 1339. Maximum Product of Splitted Binary Tree.
+# https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/
+# = = = = = = = = = = = = = =
+# Accepted.
+# Thanks God, Jesus Christ!
+# = = = = = = = = = = = = = =
+# Runtime: 258 ms, faster than 100.00% of Ruby online submissions for Maximum Product of Splitted Binary Tree.
+# Memory Usage: 225.2 MB, less than 100.00% of Ruby online submissions for Maximum Product of Splitted Binary Tree.
+# 2022.12.10 Daily Challenge.
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val = 0, left = nil, right = nil)
+#         @val = val
+#         @left = left
+#         @right = right
+#     end
+# end
+# @param {TreeNode} root
+# @return {Integer}
+def max_product(root)
+  @total = 0
+  @arr = []
+  dfs(root)
+  max = (@total-@arr[0]) * @arr[0]
+  (1...@arr.size).each do |i|
+    tmp = (@total - @arr[i]) * @arr[i]
+    max = tmp if tmp > max
+  end
+  return max % ((10**9) + 7)
+end
+def dfs(r)
+  return 0 if ! r
+  @total += r.val
+  a = dfs(r.left)
+  @arr.push(a) if a > 0
+  b = dfs(r.right)
+  @arr.push(b) if b > 0
+  return r.val + a + b
+end
+```
+Go code:
+```Go
+// Leetcode: 1339. Maximum Product of Splitted Binary Tree.
+// https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/
+// = = = = = = = = = = = = = =
+// Accepted.
+// Thanks God, Jesus Christ!
+// = = = = = = = = = = = = = =
+// Runtime: 161 ms, faster than 80.00% of Go online submissions for Maximum Product of Splitted Binary Tree.
+// Memory Usage: 28.6 MB, less than 20.00% of Go online submissions for Maximum Product of Splitted Binary Tree.
+// 2022.12.10 Daily Challenge.
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var sum int64
+var a []int64
+func maxProduct(root *TreeNode) int {
+  sum = 0
+  a = make([]int64,0)
+  dfs(root)
+  max := (sum - a[0]) * a[0]
+  for _, v := range a {
+    tmp := (sum-v) * v
+    if tmp > max {
+      max = tmp
+    }
+  }
+  return int(max % 1000000007)
+}
+
+func dfs(r *TreeNode) int64{
+  if nil == r {
+    return 0
+  }
+  x := int64(r.Val)
+  b, c := dfs(r.Left), dfs(r.Right)
+  sum += x
+  if 0 < b {
+    a = append(a,b)
+  }
+  if 0 < c {
+    a = append(a,c)
+  }
+  return x + b + c
+}
+```

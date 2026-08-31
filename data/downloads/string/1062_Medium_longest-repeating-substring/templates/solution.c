@@ -1,0 +1,3 @@
+int longestRepeatingSubstring(char* s) {
+    
+}

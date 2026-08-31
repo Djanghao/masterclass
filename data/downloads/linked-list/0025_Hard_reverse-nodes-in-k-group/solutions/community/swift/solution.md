@@ -1,0 +1,104 @@
+# ✅ [Solution] Swift: Reverse Nodes in k-Group (+ test cases)
+
+**Author:** AsahiOcean
+**Votes:** 23
+**Link:** [https://leetcode.com/problems/reverse-nodes-in-k-group/solutions/1656819/](https://leetcode.com/problems/reverse-nodes-in-k-group/solutions/1656819/)
+
+---
+
+```swift
+class Solution {
+    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
+        let node = ListNode(0)
+        node.next = head
+        
+        var prev = node
+        
+        while prev.next != nil {
+            var tail: ListNode? = prev
+            for _ in 1...k { tail = tail?.next }
+            guard var node = tail else { break }
+            
+            let next = node.next
+            var last = next
+            var curr = prev.next
+            
+            while curr !== next {
+                let cnext = curr!.next
+                curr!.next = last
+                last = curr
+                curr = cnext
+            }
+            if let pnext = prev.next { node = pnext }
+            prev.next = last
+            prev = node
+        }
+        return node.next
+    }
+}
+```
+
+---
+
+<p><details>
+<summary>
+<img src="https://git.io/JDblm" height="24">
+<b>TEST CASES</b>
+</summary>
+
+<p><pre>
+<b>Result:</b> Executed 2 tests, with 0 failures (0 unexpected) in 0.040 (0.042) seconds
+</pre></p>
+
+```swift
+// Result: Executed 2 tests, with 0 failures (0 unexpected) in 0.020 (0.022) seconds
+
+import XCTest
+
+class Tests: XCTestCase {
+    
+    private let solution = Solution()
+    
+    func test0() {
+        let value = solution.reverseKGroup(ListNode([1,2,3,4,5]), 2)
+        XCTAssertEqual(value?.val, ListNode([2,1,4,3,5])?.val)
+    }
+    
+    func test1() {
+        let value = solution.reverseKGroup(ListNode([1,2,3,4,5]), 3)
+        XCTAssertEqual(value?.val, ListNode([3,2,1,4,5])?.val)
+    }
+}
+
+Tests.defaultTestSuite.run()
+```
+
+</details></p>
+
+<p><details>
+<summary>
+<b>ListNode</b>
+</summary>
+
+```swift
+public class ListNode {
+    public var val: Int
+    public var next: ListNode?
+    public init() { self.val = 0; self.next = nil; }
+    public init(_ val: Int) { self.val = val; self.next = nil; }
+    public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+    
+    public init?(_ array: [Int]) {
+        guard !array.isEmpty else { return nil }
+        self.val = array[0]
+        var prev: ListNode = self
+        for i in 1..<array.count {
+            let new = ListNode(array[i])
+            prev.next = new
+            prev = new
+        }
+    }
+}
+```
+
+</details></p>

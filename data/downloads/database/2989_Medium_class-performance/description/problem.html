@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2989. Class Performance</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/class-performance/">2989. Class Performance</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>14</td>
+            <td>3</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>Scores</code></p>
+
+<pre><code>+--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| student_id   | int     |
+| student_name | varchar |
+| assignment1  | int     |
+| assignment2  | int     |
+| assignment3  | int     |
++--------------+---------+
+student_id is column of unique values for this table.
+This table contains student_id, student_name, assignment1, assignment2, and assignment3.</code></pre>
+
+<p>Write a solution to calculate the <strong>difference</strong> in the <strong>total score</strong> (sum of all <code>3</code> assignments) between the <strong>highest score</strong> obtained by students and the <strong>lowest score</strong> obtained by them.</p>
+
+<p>Return <em>the result table in <strong>any</strong> order</em><em>.</em></p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Scores table:
++------------+--------------+-------------+-------------+-------------+
+| student_id | student_name | assignment1 | assignment2 | assignment3 |
++------------+--------------+-------------+-------------+-------------+
+| 309        | Owen         | 88          | 47          | 87          |
+| 321        | Claire       | 98          | 95          | 37          |     
+| 338        | Julian       | 100         | 64          | 43          |  
+| 423        | Peyton       | 60          | 44          | 47          |  
+| 896        | David        | 32          | 37          | 50          | 
+| 235        | Camila       | 31          | 53          | 69          | 
++------------+--------------+-------------+-------------+-------------+
+<strong>Output</strong>
++---------------------+
+| difference_in_score | 
++---------------------+
+| 111                 | 
++---------------------+
+<strong>Explanation</strong>
+- student_id 309 has a total score of 88 + 47 + 87 = 222.
+- student_id 321 has a total score of 98 + 95 + 37 = 230.
+- student_id 338 has a total score of 100 + 64 + 43 = 207.
+- student_id 423 has a total score of 60 + 44 + 47 = 151.
+- student_id 896 has a total score of 32 + 37 + 50 = 119.
+- student_id 235 has a total score of 31 + 53 + 69 = 153.
+student_id 321 has the highest score of 230, while student_id 896 has the lowest score of 119. Therefore, the difference between them is 111.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/class-performance/">Submissions</a>
+        <a href="https://leetcode.com/problems/class-performance/">Solutions</a>
+    </div>
+</body>
+</html>

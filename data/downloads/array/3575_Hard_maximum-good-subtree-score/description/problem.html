@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3575. Maximum Good Subtree Score</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/maximum-good-subtree-score/">3575. Maximum Good Subtree Score</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>47</td>
+            <td>7</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/bit-manipulation"><code>bit-manipulation</code></a> | <a href="https://leetcode.com/tag/tree"><code>tree</code></a> | <a href="https://leetcode.com/tag/depth-first-search"><code>depth-first-search</code></a> | <a href="https://leetcode.com/tag/bitmask"><code>bitmask</code></a></p>
+    </details>
+
+    
+
+    <p>You are given an undirected tree rooted at node 0 with <code>n</code> nodes numbered from 0 to <code>n - 1</code>. Each node <code>i</code> has an integer value <code>vals[i]</code>, and its parent is given by <code>par[i]</code>.</p>
+
+<p>A <strong>subset</strong> of nodes within the <strong>subtree</strong> of a node is called <strong>good</strong> if every digit from 0 to 9 appears <strong>at most</strong> once in the decimal representation of the values of the selected nodes.</p>
+
+<p>The <strong>score</strong> of a good subset is the sum of the values of its nodes.</p>
+
+<p>Define an array <code>maxScore</code> of length <code>n</code>, where <code>maxScore[u]</code> represents the <strong>maximum</strong> possible sum of values of a good subset of nodes that belong to the subtree rooted at node <code>u</code>, including <code>u</code> itself and all its descendants.</p>
+
+<p>Return the sum of all values in <code>maxScore</code>.</p>
+
+<p>Since the answer may be large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">vals = [2,3], par = [-1,0]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">8</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><img src="./images/0.png"></p>
+
+<ul>
+	<li>The subtree rooted at node 0 includes nodes <code>{0, 1}</code>. The subset <code>{2, 3}</code> is<i> </i>good as the digits 2 and 3 appear only once. The score of this subset is <code>2 + 3 = 5</code>.</li>
+	<li>The subtree rooted at node 1 includes only node <code>{1}</code>. The subset <code>{3}</code> is<i> </i>good. The score of this subset is 3.</li>
+	<li>The <code>maxScore</code> array is <code>[5, 3]</code>, and the sum of all values in <code>maxScore</code> is <code>5 + 3 = 8</code>. Thus, the answer is 8.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">vals = [1,5,2], par = [-1,0,0]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">15</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><strong><img src="./images/1.png"></strong></p>
+
+<ul>
+	<li>The subtree rooted at node 0 includes nodes <code>{0, 1, 2}</code>. The subset <code>{1, 5, 2}</code> is<i> </i>good as the digits 1, 5 and 2 appear only once. The score of this subset is <code>1 + 5 + 2 = 8</code>.</li>
+	<li>The subtree rooted at node 1 includes only node <code>{1}</code>. The subset <code>{5}</code> is<i> </i>good. The score of this subset is 5.</li>
+	<li>The subtree rooted at node 2 includes only node <code>{2}</code>. The subset <code>{2}</code> is<i> </i>good. The score of this subset is 2.</li>
+	<li>The <code>maxScore</code> array is <code>[8, 5, 2]</code>, and the sum of all values in <code>maxScore</code> is <code>8 + 5 + 2 = 15</code>. Thus, the answer is 15.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">vals = [34,1,2], par = [-1,0,1]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">42</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><img src="./images/2.png"></p>
+
+<ul>
+	<li>The subtree rooted at node 0 includes nodes <code>{0, 1, 2}</code>. The subset <code>{34, 1, 2}</code> is<i> </i>good as the digits 3, 4, 1 and 2 appear only once. The score of this subset is <code>34 + 1 + 2 = 37</code>.</li>
+	<li>The subtree rooted at node 1 includes node <code>{1, 2}</code>. The subset <code>{1, 2}</code> is<i> </i>good as the digits 1 and 2 appear only once. The score of this subset is <code>1 + 2 = 3</code>.</li>
+	<li>The subtree rooted at node 2 includes only node <code>{2}</code>. The subset <code>{2}</code> is<i> </i>good. The score of this subset is 2.</li>
+	<li>The <code>maxScore</code> array is <code>[37, 3, 2]</code>, and the sum of all values in <code>maxScore</code> is <code>37 + 3 + 2 = 42</code>. Thus, the answer is 42.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 4:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">vals = [3,22,5], par = [-1,0,1]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">18</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>The subtree rooted at node 0 includes nodes <code>{0, 1, 2}</code>. The subset <code>{3, 22, 5}</code> is<i> </i>not good, as digit 2 appears twice. Therefore, the subset <code>{3, 5}</code> is valid. The score of this subset is <code>3 + 5 = 8</code>.</li>
+	<li>The subtree rooted at node 1 includes nodes <code>{1, 2}</code>. The subset <code>{22, 5}</code> is<i> </i>not good, as digit 2 appears twice. Therefore, the subset <code>{5}</code> is valid. The score of this subset is 5.</li>
+	<li>The subtree rooted at node 2 includes <code>{2}</code>. The subset <code>{5}</code> is<i> </i>good. The score of this subset is 5.</li>
+	<li>The <code>maxScore</code> array is <code>[8, 5, 5]</code>, and the sum of all values in <code>maxScore</code> is <code>8 + 5 + 5 = 18</code>. Thus, the answer is 18.</li>
+</ul>
+
+<ul>
+</ul>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n == vals.length &lt;= 500</code></li>
+	<li><code>1 &lt;= vals[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>par.length == n</code></li>
+	<li><code>par[0] == -1</code></li>
+	<li><code>0 &lt;= par[i] &lt; n</code> for <code>i</code> in <code>[1, n - 1]</code></li>
+	<li>The input is generated such that the parent array <code>par</code> represents a valid tree.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/maximum-good-subtree-score/">Submissions</a>
+        <a href="https://leetcode.com/problems/maximum-good-subtree-score/">Solutions</a>
+    </div>
+</body>
+</html>

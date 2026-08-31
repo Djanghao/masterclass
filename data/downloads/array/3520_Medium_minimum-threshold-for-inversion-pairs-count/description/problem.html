@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3520. Minimum Threshold for Inversion Pairs Count</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-threshold-for-inversion-pairs-count/">3520. Minimum Threshold for Inversion Pairs Count</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>3</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/binary-search"><code>binary-search</code></a> | <a href="https://leetcode.com/tag/binary-indexed-tree"><code>binary-indexed-tree</code></a> | <a href="https://leetcode.com/tag/segment-tree"><code>segment-tree</code></a></p>
+    </details>
+
+    
+
+    <p>You are given an array of integers <code>nums</code> and an integer <code>k</code>.</p>
+
+<p>An inversion pair with a <strong>threshold</strong> <code>x</code> is defined as a pair of indices <code>(i, j)</code> such that:</p>
+
+<ul>
+	<li><code>i &lt; j</code></li>
+	<li><code>nums[i] &gt; nums[j]</code></li>
+	<li>The difference between the two numbers is <strong>at most</strong> <code>x</code> (i.e. <code>nums[i] - nums[j] &lt;= x</code>).</li>
+</ul>
+
+<p>Your task is to determine the <strong>minimum</strong> integer <code>min_threshold</code> such that there are <strong>at least</strong> <code>k</code> inversion pairs with threshold <code>min_threshold</code>.</p>
+
+<p>If no such integer exists, return <code>-1</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [1,2,3,4,3,2,1], k = 7</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">2</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>For threshold <code>x = 2</code>, the pairs are:</p>
+
+<ol>
+	<li><code>(3, 4)</code> where <code>nums[3] == 4</code> and <code>nums[4] == 3</code>.</li>
+	<li><code>(2, 5)</code> where <code>nums[2] == 3</code> and <code>nums[5] == 2</code>.</li>
+	<li><code>(3, 5)</code> where <code>nums[3] == 4</code> and <code>nums[5] == 2</code>.</li>
+	<li><code>(4, 5)</code> where <code>nums[4] == 3</code> and <code>nums[5] == 2</code>.</li>
+	<li><code>(1, 6)</code> where <code>nums[1] == 2</code> and <code>nums[6] == 1</code>.</li>
+	<li><code>(2, 6)</code> where <code>nums[2] == 3</code> and <code>nums[6] == 1</code>.</li>
+	<li><code>(4, 6)</code> where <code>nums[4] == 3</code> and <code>nums[6] == 1</code>.</li>
+	<li><code>(5, 6)</code> where <code>nums[5] == 2</code> and <code>nums[6] == 1</code>.</li>
+</ol>
+
+<p>There are less than <code>k</code> inversion pairs if we choose any integer less than 2 as threshold.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [10,9,9,9,1], k = 4</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">8</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>For threshold <code>x = 8</code>, the pairs are:</p>
+
+<ol>
+	<li><code>(0, 1)</code> where <code>nums[0] == 10</code> and <code>nums[1] == 9</code>.</li>
+	<li><code>(0, 2)</code> where <code>nums[0] == 10</code> and <code>nums[2] == 9</code>.</li>
+	<li><code>(0, 3)</code> where <code>nums[0] == 10</code> and <code>nums[3] == 9</code>.</li>
+	<li><code>(1, 4)</code> where <code>nums[1] == 9</code> and <code>nums[4] == 1</code>.</li>
+	<li><code>(2, 4)</code> where <code>nums[2] == 9</code> and <code>nums[4] == 1</code>.</li>
+	<li><code>(3, 4)</code> where <code>nums[3] == 9</code> and <code>nums[4] == 1</code>.</li>
+</ol>
+
+<p>There are less than <code>k</code> inversion pairs if we choose any integer less than 8 as threshold.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>
+	<li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>1 &lt;= k &lt;= 10<sup>9</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-threshold-for-inversion-pairs-count/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-threshold-for-inversion-pairs-count/">Solutions</a>
+    </div>
+</body>
+</html>

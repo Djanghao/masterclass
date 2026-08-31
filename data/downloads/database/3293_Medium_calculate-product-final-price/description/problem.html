@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3293. Calculate Product Final Price</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/calculate-product-final-price/">3293. Calculate Product Final Price</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>10</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <font face="monospace"><code>Products</code></font></p>
+
+<pre><code>+------------+---------+ 
+| Column Name| Type    | 
++------------+---------+ 
+| product_id | int     | 
+| category   | varchar |
+| price      | decimal |
++------------+---------+
+product_id is the unique key for this table.
+Each row includes the product&#39;s ID, its category, and its price.</code></pre>
+
+<p>Table: <font face="monospace"><code>Discounts</code></font></p>
+
+<pre><code>+------------+---------+ 
+| Column Name| Type    | 
++------------+---------+ 
+| category   | varchar |
+| discount   | int     |
++------------+---------+
+category is the primary key for this table.
+Each row contains a product category and the percentage discount applied to that category (values range from 0 to 100).</code></pre>
+
+<p>Write a solution to find the <strong>final price</strong> of each product after applying the <strong>category discount</strong>. If a product&#39;s category has <strong>no</strong> <strong>associated</strong> <strong>discount</strong>, its price remains <strong>unchanged</strong>.</p>
+
+<p>Return <em>the result table ordered by</em> <code>product_id</code><em> in <strong>ascending</strong> order.</em></p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong></p>
+
+<p><code>Products</code> table:</p>
+
+<pre class="example-io">
++------------+-------------+-------+
+| product_id | category    | price |
++------------+-------------+-------+
+| 1          | Electronics | 1000  |
+| 2          | Clothing    | 50    |
+| 3          | Electronics | 1200  | 
+| 4          | Home        | 500   |
++------------+-------------+-------+
+  </pre>
+
+<p><code>Discounts</code> table:</p>
+
+<pre class="example-io">
++------------+----------+
+| category   | discount |
++------------+----------+
+| Electronics| 10       |
+| Clothing   | 20       |
++------------+----------+
+  </pre>
+
+<p><strong>Output:</strong></p>
+
+<pre class="example-io">
++------------+------------+-------------+
+| product_id | final_price| category    |
++------------+------------+-------------+
+| 1          | 900        | Electronics |
+| 2          | 40         | Clothing    |
+| 3          | 1080       | Electronics |
+| 4          | 500        | Home        |
++------------+------------+-------------+
+  </pre>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>For product 1, it belongs to the Electronics&nbsp;category which has a 10% discount, so the final price is 1000 - (10% of 1000) = 900.</li>
+	<li>For product 2, it belongs to the Clothing&nbsp;category which has a 20% discount, so the final price is 50 - (20% of 50) = 40.</li>
+	<li>For product 3, it belongs to the Electronics&nbsp;category and receives a 10% discount, so the final price is 1200 - (10% of 1200) = 1080.</li>
+	<li>For product 4, no discount is available for the Home&nbsp;category, so the final price remains 500.</li>
+</ul>
+Result table is ordered by product_id in ascending order.</div>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/calculate-product-final-price/">Submissions</a>
+        <a href="https://leetcode.com/problems/calculate-product-final-price/">Solutions</a>
+    </div>
+</body>
+</html>

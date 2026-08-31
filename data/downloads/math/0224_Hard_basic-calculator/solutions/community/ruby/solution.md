@@ -1,0 +1,83 @@
+# Ruby: Loop and Stack.
+
+**Author:** user9697N
+**Votes:** 2
+**Link:** [https://leetcode.com/problems/basic-calculator/solutions/1457900/](https://leetcode.com/problems/basic-calculator/solutions/1457900/)
+
+---
+
+## Leetcode: 224. Basic Calculator.
+
+**Ruby: Loop and Stack.**
+
+Starting reasonoing.
+
+When working with a long chain of arithmetic operations in current task, it could be represented as sequence of actions: `total + sign * current_digit`.  
+Where `sign` is `1` of `-1` total is a total sum and current digit generating during reading symbols from the string.  
+At the begining `total = 0` and `sign = 1`.   
+
+When consequtive sequence of numbers finished it's time to implement an operation. When meet number it could be:
+
+- Only digit: if s.size == 1 ... this makes more commplicated.
+- First: first index or prev index is not a number.
+- Middle: not last index and prev and next are numbers.
+- Last: last index or next index is not a number. (at the last digit just make flush)
+- (I think this might be improved, if current is zero first and not first could be skipped)
+
+Great. When code for working without parentheses is done need to add parentheses.
+
+- Open parentheses push in stack current `total` and `sign`
+- Close parentheses works almost like last digit. Pop old total and sign and add current one to it.
+
+ 
+ 
+Ruby code:
+```Ruby
+# Leetcode: 224. Basic Calculator.
+# https://leetcode.com/problems/basic-calculator/description/
+# = = = = = = =
+# Accepted.
+# Thanks God!
+# = = = = = = =
+# https://leetcode.com/explore/challenge/card/september-leetcoding-challenge-2021/637/week-2-september-8th-september-14th/3971/
+# @param {String} s
+# @return {Integer}
+def calculate(s)
+  last = s.size - 1
+  total = 0
+  sign = 1 # it means +;
+  current = 0
+  is_char = ->index{ s[index].ord.between?(?0.ord,?9.ord)}
+  stack = []
+  (0...s.size).each do |i|
+    char = s[i]
+    if ?+ == char
+      sign = 1
+    elsif ?- == char
+      sign = -1
+    elsif " " == char
+      ; # do nothin on spacebar;
+    elsif ?( == char
+      stack.push([total,sign])
+      total = 0
+      sign = 1
+      current = 0
+    elsif ?) == char
+      prev_total, prev_sign = stack.pop()
+      current = 0
+      total = prev_total + prev_sign * total
+      sign = 0
+    elsif is_char[i]
+      current = current*10 + char.to_i
+      # And time to increase change the total.
+      if last == i || ! is_char[i+1]
+        raise "At i = #{i} and char = #{char} no sign" if 0 == sign
+        total += sign * current
+        current = 0
+        sign = 0
+      end
+    end
+  end
+  return total 
+end
+```

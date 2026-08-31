@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3241. Time Taken to Mark All Nodes</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/time-taken-to-mark-all-nodes/">3241. Time Taken to Mark All Nodes</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>136</td>
+            <td>6</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/tree"><code>tree</code></a> | <a href="https://leetcode.com/tag/depth-first-search"><code>depth-first-search</code></a> | <a href="https://leetcode.com/tag/graph"><code>graph</code></a></p>
+    </details>
+
+    
+
+    <p>There exists an <strong>undirected</strong> tree with <code>n</code> nodes numbered <code>0</code> to <code>n - 1</code>. You are given a 2D integer array <code>edges</code> of length <code>n - 1</code>, where <code>edges[i] = [u<sub>i</sub>, v<sub>i</sub>]</code> indicates that there is an edge between nodes <code>u<sub>i</sub></code> and <code>v<sub>i</sub></code> in the tree.</p>
+
+<p>Initially, <strong>all</strong> nodes are <strong>unmarked</strong>. For each node <code>i</code>:</p>
+
+<ul>
+	<li>If <code>i</code> is odd, the node will get marked at time <code>x</code> if there is <strong>at least</strong> one node <em>adjacent</em> to it which was marked at time <code>x - 1</code>.</li>
+	<li>If <code>i</code> is even, the node will get marked at time <code>x</code> if there is <strong>at least</strong> one node <em>adjacent</em> to it which was marked at time <code>x - 2</code>.</li>
+</ul>
+
+<p>Return an array <code>times</code> where <code>times[i]</code> is the time when all nodes get marked in the tree, if you mark node <code>i</code> at time <code>t = 0</code>.</p>
+
+<p><strong>Note</strong> that the answer for each <code>times[i]</code> is <strong>independent</strong>, i.e. when you mark node <code>i</code> all other nodes are <em>unmarked</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">edges = [[0,1],[0,2]]</span></p>
+
+<p><strong>Output:</strong> [2,4,3]</p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><img src="./images/0.png"></p>
+
+<ul>
+	<li>For <code>i = 0</code>:
+
+	<ul>
+		<li>Node 1 is marked at <code>t = 1</code>, and Node 2 at <code>t = 2</code>.</li>
+	</ul>
+	</li>
+	<li>For <code>i = 1</code>:
+	<ul>
+		<li>Node 0 is marked at <code>t = 2</code>, and Node 2 at <code>t = 4</code>.</li>
+	</ul>
+	</li>
+	<li>For <code>i = 2</code>:
+	<ul>
+		<li>Node 0 is marked at <code>t = 2</code>, and Node 1 at <code>t = 3</code>.</li>
+	</ul>
+	</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">edges = [[0,1]]</span></p>
+
+<p><strong>Output:</strong> [1,2]</p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><img src="./images/1.png"></p>
+
+<ul>
+	<li>For <code>i = 0</code>:
+
+	<ul>
+		<li>Node 1 is marked at <code>t = 1</code>.</li>
+	</ul>
+	</li>
+	<li>For <code>i = 1</code>:
+	<ul>
+		<li>Node 0 is marked at <code>t = 2</code>.</li>
+	</ul>
+	</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">edges = </span>[[2,4],[0,1],[2,3],[0,2]]</p>
+
+<p><strong>Output:</strong> [4,6,3,5,5]</p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><img src="./images/2.png"></p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>2 &lt;= n &lt;= 10<sup>5</sup></code></li>
+	<li><code>edges.length == n - 1</code></li>
+	<li><code>edges[i].length == 2</code></li>
+	<li><code>0 &lt;= edges[i][0], edges[i][1] &lt;= n - 1</code></li>
+	<li>The input is generated such that <code>edges</code> represents a valid tree.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/time-taken-to-mark-all-nodes/">Submissions</a>
+        <a href="https://leetcode.com/problems/time-taken-to-mark-all-nodes/">Solutions</a>
+    </div>
+</body>
+</html>

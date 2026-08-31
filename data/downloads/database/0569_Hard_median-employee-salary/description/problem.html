@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>569. Median Employee Salary</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/median-employee-salary/">569. Median Employee Salary</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Hard</td>
+            <td>339</td>
+            <td>156</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code></p>
+    </details>
+
+    <p>Table: <code>Employee</code></p>
+
+<pre><code>+--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| id           | int     |
+| company      | varchar |
+| salary       | int     |
++--------------+---------+
+id is the primary key (column with unique values) for this table.
+Each row of this table indicates the company and the salary of one employee.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Write a solution to find the rows that contain the median salary of each company. While calculating the median, when you sort the salaries of the company, break the ties by <code>id</code>.</p>
+
+<p>Return the result table in <strong>any order</strong>.</p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Employee table:
++----+---------+--------+
+| id | company | salary |
++----+---------+--------+
+| 1  | A       | 2341   |
+| 2  | A       | 341    |
+| 3  | A       | 15     |
+| 4  | A       | 15314  |
+| 5  | A       | 451    |
+| 6  | A       | 513    |
+| 7  | B       | 15     |
+| 8  | B       | 13     |
+| 9  | B       | 1154   |
+| 10 | B       | 1345   |
+| 11 | B       | 1221   |
+| 12 | B       | 234    |
+| 13 | C       | 2345   |
+| 14 | C       | 2645   |
+| 15 | C       | 2645   |
+| 16 | C       | 2652   |
+| 17 | C       | 65     |
++----+---------+--------+
+<strong>Output:</strong> 
++----+---------+--------+
+| id | company | salary |
++----+---------+--------+
+| 5  | A       | 451    |
+| 6  | A       | 513    |
+| 12 | B       | 234    |
+| 9  | B       | 1154   |
+| 14 | C       | 2645   |
++----+---------+--------+
+<strong>Explanation:</strong> 
+For company A, the rows sorted are as follows:
++----+---------+--------+
+| id | company | salary |
++----+---------+--------+
+| 3  | A       | 15     |
+| 2  | A       | 341    |
+| 5  | A       | 451    | &lt;-- median
+| 6  | A       | 513    | &lt;-- median
+| 1  | A       | 2341   |
+| 4  | A       | 15314  |
++----+---------+--------+
+For company B, the rows sorted are as follows:
++----+---------+--------+
+| id | company | salary |
++----+---------+--------+
+| 8  | B       | 13     |
+| 7  | B       | 15     |
+| 12 | B       | 234    | &lt;-- median
+| 11 | B       | 1221   | &lt;-- median
+| 9  | B       | 1154   |
+| 10 | B       | 1345   |
++----+---------+--------+
+For company C, the rows sorted are as follows:
++----+---------+--------+
+| id | company | salary |
++----+---------+--------+
+| 17 | C       | 65     |
+| 13 | C       | 2345   |
+| 14 | C       | 2645   | &lt;-- median
+| 15 | C       | 2645   | 
+| 16 | C       | 2652   |
++----+---------+--------+</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Follow up:</strong> Could you solve it without using any built-in or window functions?</p>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/median-employee-salary/">Submissions</a>
+        <a href="https://leetcode.com/problems/median-employee-salary/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3262. Find Overlapping Shifts</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-overlapping-shifts/">3262. Find Overlapping Shifts</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>10</td>
+            <td>3</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>EmployeeShifts</code></p>
+
+<pre><code>+------------------+---------+
+| Column Name      | Type    |
++------------------+---------+
+| employee_id      | int     |
+| start_time       | time    |
+| end_time         | time    |
++------------------+---------+
+(employee_id, start_time) is the unique key for this table.
+This table contains information about the shifts worked by employees, including the start and end times on a specific date.</code></pre>
+
+<p>Write a solution to count the number of <strong>overlapping shifts</strong> for each employee. Two shifts are considered overlapping if one shift&rsquo;s <code>end_time</code> is <strong>later than</strong> another shift&rsquo;s <code>start_time</code>.</p>
+
+<p><em>Return the result table ordered by</em> <code>employee_id</code> <em>in <strong>ascending</strong> order</em>.</p>
+
+<p>The query result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong></p>
+
+<p><code>EmployeeShifts</code> table:</p>
+
+<pre class="example-io">
++-------------+------------+----------+
+| employee_id | start_time | end_time |
++-------------+------------+----------+
+| 1           | 08:00:00   | 12:00:00 |
+| 1           | 11:00:00   | 15:00:00 |
+| 1           | 14:00:00   | 18:00:00 |
+| 2           | 09:00:00   | 17:00:00 |
+| 2           | 16:00:00   | 20:00:00 |
+| 3           | 10:00:00   | 12:00:00 |
+| 3           | 13:00:00   | 15:00:00 |
+| 3           | 16:00:00   | 18:00:00 |
+| 4           | 08:00:00   | 10:00:00 |
+| 4           | 09:00:00   | 11:00:00 |
++-------------+------------+----------+
+</pre>
+
+<p><strong>Output:</strong></p>
+
+<pre class="example-io">
++-------------+--------------------+
+| employee_id | overlapping_shifts |
++-------------+--------------------+
+| 1           | 2                  |
+| 2           | 1                  |
+| 4           | 1                  |
++-------------+--------------------+
+</pre>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>Employee 1 has 3 shifts:
+	<ul>
+		<li>08:00:00 to 12:00:00</li>
+		<li>11:00:00 to 15:00:00</li>
+		<li>14:00:00 to 18:00:00</li>
+	</ul>
+	The first shift overlaps with the second, and the second overlaps with the third, resulting in 2 overlapping shifts.</li>
+	<li>Employee 2 has 2 shifts:
+	<ul>
+		<li>09:00:00 to 17:00:00</li>
+		<li>16:00:00 to 20:00:00</li>
+	</ul>
+	These shifts overlap with each other, resulting in 1 overlapping shift.</li>
+	<li>Employee 3 has 3 shifts:
+	<ul>
+		<li>10:00:00 to 12:00:00</li>
+		<li>13:00:00 to 15:00:00</li>
+		<li>16:00:00 to 18:00:00</li>
+	</ul>
+	None of these shifts overlap, so Employee 3 is not included in the output.</li>
+	<li>Employee 4 has 2 shifts:
+	<ul>
+		<li>08:00:00 to 10:00:00</li>
+		<li>09:00:00 to 11:00:00</li>
+	</ul>
+	These shifts overlap with each other, resulting in 1 overlapping shift.</li>
+</ul>
+
+<p>The output shows the employee_id and the count of overlapping shifts for each employee who has at least one overlapping shift, ordered by employee_id in ascending order.</p>
+</div>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-overlapping-shifts/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-overlapping-shifts/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<p>You are given a string <code>s</code> consisting of one or more words separated by single spaces. Each word in <code>s</code> consists of lowercase English letters.</p>
+
+<p>We obtain the <strong>expanded</strong> string <code>t</code> from <code>s</code> as follows:</p>
+
+<ul>
+	<li>For each <strong>word</strong> in <code>s</code>, repeat its first character once, then its second character twice, and so on.</li>
+</ul>
+
+<p>For example, if <code>s = &quot;hello world&quot;</code>, then <code>t = &quot;heelllllllooooo woorrrllllddddd&quot;</code>.</p>
+
+<p>You are also given an integer <code>k</code>, representing a <strong>valid</strong> index of the string <code>t</code>.</p>
+
+<p>Return the <code>k<sup>th</sup></code> character of the string <code>t</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">s = &quot;hello world&quot;, k = 0</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;h&quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><code>t = &quot;heelllllllooooo woorrrllllddddd&quot;</code>. Therefore, the answer is <code>t[0] = &quot;h&quot;</code>.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">s = &quot;hello world&quot;, k = 15</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot; &quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><code>t = &quot;heelllllllooooo woorrrllllddddd&quot;</code>. Therefore, the answer is <code>t[15] = &quot; &quot;</code>.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>s</code> contains only lowercase English letters and spaces <code>&#39; &#39;</code>.</li>
+	<li><code>s</code> <strong>does not contain</strong> any leading or trailing spaces.</li>
+	<li>All the words in <code>s</code> are separated by a <strong>single space</strong>.</li>
+	<li><code>0 &lt;= k &lt; t.length</code>. That is, <code>k</code> is a <strong>valid</strong> index of <code>t</code>.</li>
+</ul>

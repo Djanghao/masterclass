@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1867. Orders With Maximum Quantity Above Average</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/orders-with-maximum-quantity-above-average/">1867. Orders With Maximum Quantity Above Average</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>77</td>
+            <td>277</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>OrdersDetails</code></p>
+
+<pre><code>+-------------+------+
+| Column Name | Type |
++-------------+------+
+| order_id    | int  |
+| product_id  | int  |
+| quantity    | int  |
++-------------+------+
+(order_id, product_id) is the primary key (combination of columns with unique values) for this table.
+A single order is represented as multiple rows, one row for each product in the order.
+Each row of this table contains the quantity ordered of the product product_id in the order order_id.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>You are running an e-commerce site that is looking for <strong>imbalanced orders</strong>. An <strong>imbalanced order</strong> is one whose <strong>maximum</strong> quantity is <strong>strictly greater</strong> than the <strong>average</strong> quantity of <strong>every order (including itself)</strong>.</p>
+
+<p>The <strong>average </strong>quantity of an order is calculated as <code>(total quantity of all products in the order) / (number of different products in the order)</code>. The <strong>maximum</strong> quantity of an order is the highest <code>quantity</code> of any single product in the order.</p>
+
+<p>Write a solution to find the <code>order_id</code> of all <strong>imbalanced orders</strong>.</p>
+
+<p>Return the result table in <strong>any order</strong>.</p>
+
+<p>The&nbsp;result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+OrdersDetails table:
++----------+------------+----------+
+| order_id | product_id | quantity |
++----------+------------+----------+
+| 1        | 1          | 12       |
+| 1        | 2          | 10       |
+| 1        | 3          | 15       |
+| 2        | 1          | 8        |
+| 2        | 4          | 4        |
+| 2        | 5          | 6        |
+| 3        | 3          | 5        |
+| 3        | 4          | 18       |
+| 4        | 5          | 2        |
+| 4        | 6          | 8        |
+| 5        | 7          | 9        |
+| 5        | 8          | 9        |
+| 3        | 9          | 20       |
+| 2        | 9          | 4        |
++----------+------------+----------+
+<strong>Output:</strong> 
++----------+
+| order_id |
++----------+
+| 1        |
+| 3        |
++----------+
+<strong>Explanation:</strong> 
+The average quantity of each order is:
+- order_id=1: (12+10+15)/3 = 12.3333333
+- order_id=2: (8+4+6+4)/4 = 5.5
+- order_id=3: (5+18+20)/3 = 14.333333
+- order_id=4: (2+8)/2 = 5
+- order_id=5: (9+9)/2 = 9
+
+The maximum quantity of each order is:
+- order_id=1: max(12, 10, 15) = 15
+- order_id=2: max(8, 4, 6, 4) = 8
+- order_id=3: max(5, 18, 20) = 20
+- order_id=4: max(2, 8) = 8
+- order_id=5: max(9, 9) = 9
+
+Orders 1 and 3 are imbalanced because they have a maximum quantity that exceeds the average quantity of every order.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/orders-with-maximum-quantity-above-average/">Submissions</a>
+        <a href="https://leetcode.com/problems/orders-with-maximum-quantity-above-average/">Solutions</a>
+    </div>
+</body>
+</html>

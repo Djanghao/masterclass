@@ -1,0 +1,40 @@
+# Python 97.27% speed | Hashmap only | Simple code
+
+**Author:** gulugulugulugulu
+**Votes:** 8
+**Link:** [https://leetcode.com/problems/implement-magic-dictionary/solutions/1901569/](https://leetcode.com/problems/implement-magic-dictionary/solutions/1901569/)
+
+---
+
+For each word, length is the key. For each searchWord, only need to check the words with same length
+
+```
+class MagicDictionary:
+
+    def __init__(self):
+        self.myDict = defaultdict(set)
+
+    def buildDict(self, dictionary: List[str]) -> None:
+        for word in dictionary:
+            n = len(word)
+            self.myDict[n].add(word)
+
+    def search(self, searchWord: str) -> bool:
+        n = len(searchWord)
+        if n not in self.myDict: return False
+        
+        def diff(word1, word2):
+            count = 0
+            for i in range(len(word1)):
+                if word1[i] != word2[i]:
+                    count += 1 
+                if count > 1:
+                    return count
+            return count
+                        
+        
+        for word in self.myDict[n]:
+            if diff(word, searchWord) == 1:
+                return True
+        return False
+```

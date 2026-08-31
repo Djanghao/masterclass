@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1642. Furthest Building You Can Reach</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/furthest-building-you-can-reach/">1642. Furthest Building You Can Reach</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>6179</td>
+            <td>149</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/greedy"><code>greedy</code></a> | <a href="https://leetcode.com/tag/heap-priority-queue"><code>heap-priority-queue</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>amazon</code> | <code>phonepe</code> | <code>google</code> | <code>oyo</code> | <code>apple</code> | <code>microsoft</code> | <code>tiktok</code> | <code>de-shaw</code> | <code>dream11</code> | <code>uber</code> | <code>twilio</code> | <code>medianet</code></p>
+    </details>
+
+    <p>You are given an integer array <code>heights</code> representing the heights of buildings, some <code>bricks</code>, and some <code>ladders</code>.</p>
+
+<p>You start your journey from building <code>0</code> and move to the next building by possibly using bricks or ladders.</p>
+
+<p>While moving from building <code>i</code> to building <code>i+1</code> (<strong>0-indexed</strong>),</p>
+
+<ul>
+	<li>If the current building&#39;s height is <strong>greater than or equal</strong> to the next building&#39;s height, you do <strong>not</strong> need a ladder or bricks.</li>
+	<li>If the current building&#39;s height is <b>less than</b> the next building&#39;s height, you can either use <strong>one ladder</strong> or <code>(h[i+1] - h[i])</code> <strong>bricks</strong>.</li>
+</ul>
+
+<p><em>Return the furthest building index (0-indexed) you can reach if you use the given ladders and bricks optimally.</em></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.gif">
+<pre><code><strong>Input:</strong> heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1
+<strong>Output:</strong> 4
+<strong>Explanation:</strong> Starting at building 0, you can follow these steps:
+- Go to building 1 without using ladders nor bricks since 4 &gt;= 2.
+- Go to building 2 using 5 bricks. You must use either bricks or ladders because 2 &lt; 7.
+- Go to building 3 without using ladders nor bricks since 7 &gt;= 6.
+- Go to building 4 using your only ladder. You must use either bricks or ladders because 6 &lt; 9.
+It is impossible to go beyond building 4 because you do not have any more bricks or ladders.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> heights = [4,12,2,7,3,18,20,3,19], bricks = 10, ladders = 2
+<strong>Output:</strong> 7</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> heights = [14,3,19,3], bricks = 17, ladders = 0
+<strong>Output:</strong> 3</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= heights.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= heights[i] &lt;= 10<sup>6</sup></code></li>
+	<li><code>0 &lt;= bricks &lt;= 10<sup>9</sup></code></li>
+	<li><code>0 &lt;= ladders &lt;= heights.length</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/furthest-building-you-can-reach/">Submissions</a>
+        <a href="https://leetcode.com/problems/furthest-building-you-can-reach/">Solutions</a>
+    </div>
+</body>
+</html>

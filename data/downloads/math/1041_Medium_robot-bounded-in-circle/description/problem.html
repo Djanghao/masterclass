@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1041. Robot Bounded In Circle</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/robot-bounded-in-circle/">1041. Robot Bounded In Circle</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>3844</td>
+            <td>715</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/string"><code>string</code></a> | <a href="https://leetcode.com/tag/simulation"><code>simulation</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>microsoft</code> | <code>goldman-sachs</code> | <code>apple</code> | <code>amazon</code> | <code>linkedin</code> | <code>chewy</code> | <code>zscaler</code> | <code>nvidia</code> | <code>airbnb</code></p>
+    </details>
+
+    <p>On an infinite plane, a robot initially stands at <code>(0, 0)</code> and faces north. Note that:</p>
+
+<ul>
+	<li>The <strong>north direction</strong> is the positive direction of the y-axis.</li>
+	<li>The <strong>south direction</strong> is the negative direction of the y-axis.</li>
+	<li>The <strong>east direction</strong> is the positive direction of the x-axis.</li>
+	<li>The <strong>west direction</strong> is the negative direction of the x-axis.</li>
+</ul>
+
+<p>The robot can receive one of three instructions:</p>
+
+<ul>
+	<li><code>&quot;G&quot;</code>: go straight 1 unit.</li>
+	<li><code>&quot;L&quot;</code>: turn 90 degrees to the left (i.e., anti-clockwise direction).</li>
+	<li><code>&quot;R&quot;</code>: turn 90 degrees to the right (i.e., clockwise direction).</li>
+</ul>
+
+<p>The robot performs the <code>instructions</code> given in order, and repeats them forever.</p>
+
+<p>Return <code>true</code> if and only if there exists a circle in the plane such that the robot never leaves the circle.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> instructions = &quot;GGLLGG&quot;
+<strong>Output:</strong> true
+<strong>Explanation:</strong> The robot is initially at (0, 0) facing the north direction.
+&quot;G&quot;: move one step. Position: (0, 1). Direction: North.
+&quot;G&quot;: move one step. Position: (0, 2). Direction: North.
+&quot;L&quot;: turn 90 degrees anti-clockwise. Position: (0, 2). Direction: West.
+&quot;L&quot;: turn 90 degrees anti-clockwise. Position: (0, 2). Direction: South.
+&quot;G&quot;: move one step. Position: (0, 1). Direction: South.
+&quot;G&quot;: move one step. Position: (0, 0). Direction: South.
+Repeating the instructions, the robot goes into the cycle: (0, 0) --&gt; (0, 1) --&gt; (0, 2) --&gt; (0, 1) --&gt; (0, 0).
+Based on that, we return true.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> instructions = &quot;GG&quot;
+<strong>Output:</strong> false
+<strong>Explanation:</strong> The robot is initially at (0, 0) facing the north direction.
+&quot;G&quot;: move one step. Position: (0, 1). Direction: North.
+&quot;G&quot;: move one step. Position: (0, 2). Direction: North.
+Repeating the instructions, keeps advancing in the north direction and does not go into cycles.
+Based on that, we return false.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> instructions = &quot;GL&quot;
+<strong>Output:</strong> true
+<strong>Explanation:</strong> The robot is initially at (0, 0) facing the north direction.
+&quot;G&quot;: move one step. Position: (0, 1). Direction: North.
+&quot;L&quot;: turn 90 degrees anti-clockwise. Position: (0, 1). Direction: West.
+&quot;G&quot;: move one step. Position: (-1, 1). Direction: West.
+&quot;L&quot;: turn 90 degrees anti-clockwise. Position: (-1, 1). Direction: South.
+&quot;G&quot;: move one step. Position: (-1, 0). Direction: South.
+&quot;L&quot;: turn 90 degrees anti-clockwise. Position: (-1, 0). Direction: East.
+&quot;G&quot;: move one step. Position: (0, 0). Direction: East.
+&quot;L&quot;: turn 90 degrees anti-clockwise. Position: (0, 0). Direction: North.
+Repeating the instructions, the robot goes into the cycle: (0, 0) --&gt; (0, 1) --&gt; (-1, 1) --&gt; (-1, 0) --&gt; (0, 0).
+Based on that, we return true.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= instructions.length &lt;= 100</code></li>
+	<li><code>instructions[i]</code> is <code>&#39;G&#39;</code>, <code>&#39;L&#39;</code> or, <code>&#39;R&#39;</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/robot-bounded-in-circle/">Submissions</a>
+        <a href="https://leetcode.com/problems/robot-bounded-in-circle/">Solutions</a>
+    </div>
+</body>
+</html>

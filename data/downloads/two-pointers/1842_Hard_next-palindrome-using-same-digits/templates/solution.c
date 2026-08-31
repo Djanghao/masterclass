@@ -1,0 +1,3 @@
+char* nextPalindrome(char* num) {
+    
+}

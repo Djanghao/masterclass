@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1412. Find the Quiet Students in All Exams</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-the-quiet-students-in-all-exams/">1412. Find the Quiet Students in All Exams</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Hard</td>
+            <td>227</td>
+            <td>27</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>Student</code></p>
+
+<pre><code>+---------------------+---------+
+| Column Name         | Type    |
++---------------------+---------+
+| student_id          | int     |
+| student_name        | varchar |
++---------------------+---------+
+student_id is the primary key (column with unique values) for this table.
+student_name is the name of the student.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Exam</code></p>
+
+<pre><code>+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| exam_id       | int     |
+| student_id    | int     |
+| score         | int     |
++---------------+---------+
+(exam_id, student_id) is the primary key (combination of columns with unique values) for this table.
+Each row of this table indicates that the student with student_id had a score points in the exam with id exam_id.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>A <strong>quiet student</strong> is the one who took at least one exam and did not score the highest or the lowest score.</p>
+
+<p>Write a solution&nbsp;to report the students <code>(student_id, student_name)</code> being quiet in all exams. Do not return the student who has never taken any exam.</p>
+
+<p>Return the result table <strong>ordered</strong> by <code>student_id</code>.</p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Student table:
++-------------+---------------+
+| student_id  | student_name  |
++-------------+---------------+
+| 1           | Daniel        |
+| 2           | Jade          |
+| 3           | Stella        |
+| 4           | Jonathan      |
+| 5           | Will          |
++-------------+---------------+
+Exam table:
++------------+--------------+-----------+
+| exam_id    | student_id   | score     |
++------------+--------------+-----------+
+| 10         |     1        |    70     |
+| 10         |     2        |    80     |
+| 10         |     3        |    90     |
+| 20         |     1        |    80     |
+| 30         |     1        |    70     |
+| 30         |     3        |    80     |
+| 30         |     4        |    90     |
+| 40         |     1        |    60     |
+| 40         |     2        |    70     |
+| 40         |     4        |    80     |
++------------+--------------+-----------+
+<strong>Output:</strong> 
++-------------+---------------+
+| student_id  | student_name  |
++-------------+---------------+
+| 2           | Jade          |
++-------------+---------------+
+<strong>Explanation:</strong> 
+For exam 1: Student 1 and 3 hold the lowest and high scores respectively.
+For exam 2: Student 1 hold both highest and lowest score.
+For exam 3 and 4: Student 1 and 4 hold the lowest and high scores respectively.
+Student 2 and 5 have never got the highest or lowest in any of the exams.
+Since student 5 is not taking any exam, he is excluded from the result.
+So, we only return the information of Student 2.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-the-quiet-students-in-all-exams/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-the-quiet-students-in-all-exams/">Solutions</a>
+    </div>
+</body>
+</html>

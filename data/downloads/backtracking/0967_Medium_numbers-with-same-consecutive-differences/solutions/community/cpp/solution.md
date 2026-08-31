@@ -1,0 +1,92 @@
+# 🔥 [LeetCode The Hard Way]🔥 Easy BFS 100% Explained Line By Line
+
+**Author:** tr1nity
+**Votes:** 71
+**Link:** [https://leetcode.com/problems/numbers-with-same-consecutive-differences/solutions/2521519/](https://leetcode.com/problems/numbers-with-same-consecutive-differences/solutions/2521519/)
+
+---
+
+Please check out [LeetCode The Hard Way](https://wingkwong.github.io/leetcode-the-hard-way/) for more solution explanations and tutorials. I'll explain my solution line by line daily. 
+If you like it, please give a star, watch my [Github Repository](https://github.com/wingkwong/leetcode-the-hard-way) and upvote this post.
+
+**C++**
+
+```cpp
+// Time Complexity: O(2 ^ n)
+// Space Complexity: O(2 ^ n)
+class Solution {
+public:
+    // The idea is to use BFS to try appending 0 - 9 to each number 
+    // starting from a single digit 1 - 9 until the number has n digits
+    vector<int> numsSameConsecDiff(int n, int k) {
+        // push all numbers with single digit to a deque
+        deque<int> q{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        // do the following logic n - 1 times
+        while (--n > 0) {
+            // get the queue size
+            int sz = q.size();
+            // for each item in the current queue,
+            // do the following logic
+            for (int i = 0; i < sz; i++) {
+                // get the first number from the queue
+                int p = q.front();
+                // pop it
+                q.pop_front();
+                // we can potentially add 0 to 9 to the current number p
+                for (int j = 0; j < 10; j++) {
+                    // we use p % 10 to get the last digit of p
+                    // then get the difference with j
+                    // since (p % 10) - j can be negative and positive
+                    // we use abs to cover both case
+                  if (abs((p % 10) - j) == k) {
+                    // if the difference is equal to k
+                    // we can include digit j 
+                    // so multiply the current number by 10 and add j
+                    q.push_back(p * 10 + j);
+                  }
+                }
+          }
+        }
+        // return all numbers in deque, return them in vector<int>
+        return vector<int>{q.begin(), q.end()};
+    }
+};
+```
+
+**Python**
+
+```py
+# Time Complexity: O(2 ^ n)
+# Space Complexity: O(2 ^ n)
+class Solution:
+    # The idea is to use BFS to try appending 0 - 9 to each number 
+    # starting from a single digit 1 - 9 until the number has n digits
+    def numsSameConsecDiff(self, n: int, k: int) -> List[int]:
+        # init ans
+        ans = []
+        # push all numbers with single digit to a deque
+        # (1, d) : (current position, number)
+        d = deque((1, d) for d in range(1, 10))
+        # while the queue is not empty
+        while d:
+            # pop the first element from the deque
+            pos, num = d.pop()
+            # if the current position is n, 
+            if pos == n:
+                # then we can append num to ans
+                ans.append(num)
+            else:
+                # otherwise, we can iterate 0 to 9
+                for j in range(10):
+                    # and use num % 10 to get the last digit of num
+                    # then get the difference with j
+                    # since (num % 10) - j can be negative and positive
+                    # we use abs to cover both case
+                    if abs(num % 10 - j) == k:
+                        # if the difference is equal to k
+                        # we can include digit j 
+                        # so multiply the current number by 10 and add j
+                        d.append((pos + 1, num * 10 + j))
+        # return the final ans
+        return ans
+```

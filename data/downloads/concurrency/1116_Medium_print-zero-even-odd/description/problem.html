@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1116. Print Zero Even Odd</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/print-zero-even-odd/">1116. Print Zero Even Odd</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Concurrency</td>
+            <td>Medium</td>
+            <td>542</td>
+            <td>368</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/concurrency"><code>concurrency</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>goldman-sachs</code></p>
+    </details>
+
+    <p>You have a function <code>printNumber</code> that can be called with an integer parameter and prints it to the console.</p>
+
+<ul>
+	<li>For example, calling <code>printNumber(7)</code> prints <code>7</code> to the console.</li>
+</ul>
+
+<p>You are given an instance of the class <code>ZeroEvenOdd</code> that has three functions: <code>zero</code>, <code>even</code>, and <code>odd</code>. The same instance of <code>ZeroEvenOdd</code> will be passed to three different threads:</p>
+
+<ul>
+	<li><strong>Thread A:</strong> calls <code>zero()</code> that should only output <code>0</code>&#39;s.</li>
+	<li><strong>Thread B:</strong> calls <code>even()</code> that should only output even numbers.</li>
+	<li><strong>Thread C:</strong> calls <code>odd()</code> that should only output odd numbers.</li>
+</ul>
+
+<p>Modify the given class to output the series <code>&quot;010203040506...&quot;</code> where the length of the series must be <code>2n</code>.</p>
+
+<p>Implement the <code>ZeroEvenOdd</code> class:</p>
+
+<ul>
+	<li><code>ZeroEvenOdd(int n)</code> Initializes the object with the number <code>n</code> that represents the numbers that should be printed.</li>
+	<li><code>void zero(printNumber)</code> Calls <code>printNumber</code> to output one zero.</li>
+	<li><code>void even(printNumber)</code> Calls <code>printNumber</code> to output one even number.</li>
+	<li><code>void odd(printNumber)</code> Calls <code>printNumber</code> to output one odd number.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> n = 2
+<strong>Output:</strong> &quot;0102&quot;
+<strong>Explanation:</strong> There are three threads being fired asynchronously.
+One of them calls zero(), the other calls even(), and the last one calls odd().
+&quot;0102&quot; is the correct output.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> n = 5
+<strong>Output:</strong> &quot;0102030405&quot;</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;= 1000</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/print-zero-even-odd/">Submissions</a>
+        <a href="https://leetcode.com/problems/print-zero-even-odd/">Solutions</a>
+    </div>
+</body>
+</html>

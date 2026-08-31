@@ -1,0 +1,3 @@
+char* nextClosestTime(char* time) {
+    
+}

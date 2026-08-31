@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2783. Flight Occupancy and Waitlist Analysis</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/flight-occupancy-and-waitlist-analysis/">2783. Flight Occupancy and Waitlist Analysis</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>19</td>
+            <td>8</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code><font face="monospace">Flights</font></code></p>
+
+<pre><code>+-------------+------+
+| Column Name | Type |
++-------------+------+
+| flight_id   | int  |
+| capacity    | int  |
++-------------+------+
+<code>flight_id</code> is the column with unique values for this table.
+Each row of this table contains flight id and its capacity.</code></pre>
+
+<p>Table: <code>Passengers</code></p>
+
+<pre><code>+--------------+------+
+| Column Name  | Type |
++--------------+------+
+| passenger_id | int  |
+| flight_id    | int  |
++--------------+------+
+passenger_id is the column with unique values for this table.
+Each row of this table contains passenger id and flight id.</code></pre>
+
+<p>Passengers book tickets for flights in advance. If a passenger books a ticket for a flight and there are still empty seats available on the flight, the passenger ticket will be <strong>confirmed</strong>. However, the passenger will be on a <strong>waitlist</strong> if the flight is already at full capacity.</p>
+
+<p>Write a solution to report the number of passengers who successfully booked a flight (got a seat) and the number of passengers who are on the waitlist for each flight.</p>
+
+<p>Return the result table ordered by<em> </em><code>flight_id</code>&nbsp;in <strong>ascending</strong><em><strong>&nbsp;order</strong>.</em></p>
+
+<p>The&nbsp;result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Flights table:
++-----------+----------+
+| flight_id | capacity |
++-----------+----------+
+| 1         | 2        |
+| 2         | 2        |
+| 3         | 1        |
++-----------+----------+
+Passengers table:
++--------------+-----------+
+| passenger_id | flight_id |
++--------------+-----------+
+| 101          | 1         |
+| 102          | 1         |
+| 103          | 1         |
+| 104          | 2         |
+| 105          | 2         |
+| 106          | 3         |
+| 107          | 3         |
++--------------+-----------+
+<strong>Output:</strong> 
++-----------+------------+--------------+
+| flight_id | booked_cnt | waitlist_cnt |
++-----------+------------+--------------+
+| 1         | 2          | 1            |
+| 2         | 2          | 0            |
+| 3         | 1          | 1            |
++-----------+------------+--------------+
+<strong>Explanation:</strong> 
+- Flight 1 has a capacity of 2. As there are 3 passengers who have booked tickets, only 2 passengers can get a seat. Therefore, 2 passengers are successfully booked, and 1 passenger is on the waitlist.
+- Flight 2 has a capacity of 2. Since there are exactly 2 passengers who booked tickets, everyone can secure a seat. As a result, 2 passengers successfully booked their seats and there are no passengers on the waitlist.
+- Flight 3 has a capacity of 1. As there are 2 passengers who have booked tickets, only 1 passenger can get a seat. Therefore, 1 passenger is successfully booked, and 1 passenger is on the waitlist.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/flight-occupancy-and-waitlist-analysis/">Submissions</a>
+        <a href="https://leetcode.com/problems/flight-occupancy-and-waitlist-analysis/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2647. Color the Triangle Red</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/color-the-triangle-red/">2647. Color the Triangle Red</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>11</td>
+            <td>17</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/math"><code>math</code></a></p>
+    </details>
+
+    
+
+    <p>You are given an integer <code>n</code>. Consider an equilateral triangle of side length <code>n</code>, broken up into <code>n<sup>2</sup></code> unit equilateral triangles. The triangle has <code>n</code> <strong>1-indexed</strong> rows where the <code>i<sup>th</sup></code> row has <code>2i - 1</code> unit equilateral triangles.</p>
+
+<p>The triangles in the <code>i<sup>th</sup></code> row are also <strong>1-indexed</strong> with coordinates from <code>(i, 1)</code> to <code>(i, 2i - 1)</code>. The following image shows a triangle of side length <code>4</code> with the indexing of its triangle.</p>
+<img src="./images/0.jpg">
+<p>Two triangles are <strong>neighbors</strong> if they <strong>share a side</strong>. For example:</p>
+
+<ul>
+	<li>Triangles <code>(1,1)</code> and <code>(2,2)</code> are neighbors</li>
+	<li>Triangles <code>(3,2)</code> and <code>(3,3)</code> are neighbors.</li>
+	<li>Triangles <code>(2,2)</code> and <code>(3,3)</code> are not neighbors because they do not share any side.</li>
+</ul>
+
+<p>Initially, all the unit triangles are <strong>white</strong>. You want to choose <code>k</code> triangles and color them <strong>red</strong>. We will then run the following algorithm:</p>
+
+<ol>
+	<li>Choose a white triangle that has <strong>at least two</strong> red neighbors.
+
+	<ul>
+		<li>If there is no such triangle, stop the algorithm.</li>
+	</ul>
+	</li>
+	<li>Color that triangle <strong>red</strong>.</li>
+	<li>Go to step 1.</li>
+</ol>
+
+<p>Choose the minimum <code>k</code> possible and set <code>k</code> triangles red before running this algorithm such that after the algorithm stops, all unit triangles are colored red.</p>
+
+<p>Return <em>a 2D list of the coordinates of the triangles that you will color red initially</em>. The answer has to be of the smallest size possible. If there are multiple valid solutions, return any.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/1.jpg">
+<pre><code><strong>Input:</strong> n = 3
+<strong>Output:</strong> [[1,1],[2,1],[2,3],[3,1],[3,5]]
+<strong>Explanation:</strong> Initially, we choose the shown 5 triangles to be red. Then, we run the algorithm:
+- Choose (2,2) that has three red neighbors and color it red.
+- Choose (3,2) that has two red neighbors and color it red.
+- Choose (3,4) that has three red neighbors and color it red.
+- Choose (3,3) that has three red neighbors and color it red.
+It can be shown that choosing any 4 triangles and running the algorithm will not make all triangles red.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+<img src="./images/2.jpg">
+<pre><code><strong>Input:</strong> n = 2
+<strong>Output:</strong> [[1,1],[2,1],[2,3]]
+<strong>Explanation:</strong> Initially, we choose the shown 3 triangles to be red. Then, we run the algorithm:
+- Choose (2,2) that has three red neighbors and color it red.
+It can be shown that choosing any 2 triangles and running the algorithm will not make all triangles red.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;= 1000</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/color-the-triangle-red/">Submissions</a>
+        <a href="https://leetcode.com/problems/color-the-triangle-red/">Solutions</a>
+    </div>
+</body>
+</html>

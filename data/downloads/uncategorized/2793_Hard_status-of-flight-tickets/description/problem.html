@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2793. Status of Flight Tickets</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/status-of-flight-tickets/">2793. Status of Flight Tickets</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Hard</td>
+            <td>12</td>
+            <td>21</td>
+        </tr>
+    </table>
+
+    
+
+    
+
+    <p>Table: <code><font face="monospace">Flights</font></code></p>
+
+<pre><code>+-------------+------+
+| Column Name | Type |
++-------------+------+
+| flight_id   | int  |
+| capacity    | int  |
++-------------+------+
+<code>flight_id</code> column contains distinct values.
+Each row of this table contains flight id and capacity.</code></pre>
+
+<p>Table: <code>Passengers</code></p>
+
+<pre><code>+--------------+----------+
+| Column Name  | Type     |
++--------------+----------+
+| passenger_id | int      |
+| flight_id    | int      |
+| booking_time | datetime |
++--------------+----------+
+passenger_id column contains distinct values.
+booking_time column contains distinct values.
+Each row of this table contains passenger id, booking time, and their flight id.</code></pre>
+
+<p>Passengers book tickets for flights in advance. If a passenger books a ticket for a flight and there are still empty seats available on the flight, the passenger&#39;s ticket will be <strong>confirmed</strong>. However, the passenger will be on a <strong>waitlist</strong> if the flight is already at full capacity.</p>
+
+<p>Write a solution to determine the current status of flight tickets for each passenger.</p>
+
+<p>Return the result table ordered by <code>passenger_id</code> <em>in <strong>ascending order</strong>.</em></p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Flights table:
++-----------+----------+
+| flight_id | capacity |
++-----------+----------+
+| 1         | 2        |
+| 2         | 2        |
+| 3         | 1        |
++-----------+----------+
+Passengers table:
++--------------+-----------+---------------------+
+| passenger_id | flight_id | booking_time        |
++--------------+-----------+---------------------+
+| 101          | 1         | 2023-07-10 16:30:00 |
+| 102          | 1         | 2023-07-10 17:45:00 |
+| 103          | 1         | 2023-07-10 12:00:00 |
+| 104          | 2         | 2023-07-05 13:23:00 |
+| 105          | 2         | 2023-07-05 09:00:00 |
+| 106          | 3         | 2023-07-08 11:10:00 |
+| 107          | 3         | 2023-07-08 09:10:00 |
++--------------+-----------+---------------------+
+<strong>Output:</strong> 
++--------------+-----------+
+| passenger_id | Status    |
++--------------+-----------+
+| 101          | Confirmed | 
+| 102          | Waitlist  | 
+| 103          | Confirmed | 
+| 104          | Confirmed | 
+| 105          | Confirmed | 
+| 106          | Waitlist  | 
+| 107          | Confirmed | 
++--------------+-----------+
+<strong>Explanation:</strong> 
+- Flight 1 has a capacity of 2 passengers. Passenger 101 and Passenger 103 were the first to book tickets, securing the available seats. Therefore, their bookings are confirmed. However, Passenger 102 was the third person to book a ticket for this flight, which means there are no more available seats. Passenger 102 is now placed on the waitlist, 
+- Flight 2 has a capacity of 2 passengers, Flight 2 has exactly two passengers who booked tickets,  Passenger 104 and Passenger 105. Since the number of passengers who booked tickets matches the available seats, both bookings are confirmed.
+- Flight 3 has a capacity of 1 passenger. Passenger 107 booked earlier and secured the only available seat, confirming their booking. Passenger 106, who booked after Passenger 107, is on the waitlist.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/status-of-flight-tickets/">Submissions</a>
+        <a href="https://leetcode.com/problems/status-of-flight-tickets/">Solutions</a>
+    </div>
+</body>
+</html>

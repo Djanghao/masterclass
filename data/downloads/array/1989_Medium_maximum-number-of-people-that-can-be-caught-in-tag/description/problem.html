@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1989. Maximum Number of People That Can Be Caught in Tag</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/">1989. Maximum Number of People That Can Be Caught in Tag</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>76</td>
+            <td>10</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/greedy"><code>greedy</code></a></p>
+    </details>
+
+    
+
+    <p>You are playing a game of tag with your friends. In tag, people are divided into two teams: people who are &quot;it&quot;, and people who are not &quot;it&quot;. The people who are &quot;it&quot; want to catch as many people as possible who are not &quot;it&quot;.</p>
+
+<p>You are given a <strong>0-indexed</strong> integer array <code>team</code> containing only zeros (denoting people who are <strong>not</strong> &quot;it&quot;) and ones (denoting people who are &quot;it&quot;), and an integer <code>dist</code>. A person who is &quot;it&quot; at index <code>i</code> can catch any <strong>one</strong> person whose index is in the range <code>[i - dist, i + dist]</code> (<strong>inclusive</strong>) and is <strong>not</strong> &quot;it&quot;.</p>
+
+<p>Return <em>the <strong>maximum</strong> number of people that the people who are &quot;it&quot; can catch</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> team = [0,1,0,1,0], dist = 3
+<strong>Output:</strong> 2
+<strong>Explanation:</strong>
+The person who is &quot;it&quot; at index 1 can catch people in the range [i-dist, i+dist] = [1-3, 1+3] = [-2, 4].
+They can catch the person who is not &quot;it&quot; at index 2.
+The person who is &quot;it&quot; at index 3 can catch people in the range [i-dist, i+dist] = [3-3, 3+3] = [0, 6].
+They can catch the person who is not &quot;it&quot; at index 0.
+The person who is not &quot;it&quot; at index 4 will not be caught because the people at indices 1 and 3 are already catching one person.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> team = [1], dist = 1
+<strong>Output:</strong> 0
+<strong>Explanation:</strong>
+There are no people who are not &quot;it&quot; to catch.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> team = [0], dist = 1
+<strong>Output:</strong> 0
+<strong>Explanation:
+</strong>There are no people who are &quot;it&quot; to catch people.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= team.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>0 &lt;= team[i] &lt;= 1</code></li>
+	<li><code>1 &lt;= dist &lt;= team.length</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/">Submissions</a>
+        <a href="https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/">Solutions</a>
+    </div>
+</body>
+</html>

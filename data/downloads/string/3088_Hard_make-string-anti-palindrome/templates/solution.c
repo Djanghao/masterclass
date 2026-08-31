@@ -1,0 +1,3 @@
+char* makeAntiPalindrome(char* s) {
+    
+}

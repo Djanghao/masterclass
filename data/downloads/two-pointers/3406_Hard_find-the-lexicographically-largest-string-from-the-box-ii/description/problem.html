@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3406. Find the Lexicographically Largest String From the Box II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-ii/">3406. Find the Lexicographically Largest String From the Box II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>6</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/two-pointers"><code>two-pointers</code></a> | <a href="https://leetcode.com/tag/string"><code>string</code></a></p>
+    </details>
+
+    
+
+    <p>You are given a string <code>word</code>, and an integer <code>numFriends</code>.</p>
+
+<p>Alice is organizing a game for her <code>numFriends</code> friends. There are multiple rounds in the game, where in each round:</p>
+
+<ul>
+	<li><code>word</code> is split into <code>numFriends</code> <strong>non-empty</strong> strings, such that no previous round has had the <strong>exact</strong> same split.</li>
+	<li>All the split words are put into a box.</li>
+</ul>
+
+<p>Find the <strong>lexicographically largest</strong> string from the box after all the rounds are finished.</p>
+
+<p>A string <code>a</code> is <strong>lexicographically smaller</strong> than a string <code>b</code> if in the first position where <code>a</code> and <code>b</code> differ, string <code>a</code> has a letter that appears earlier in the alphabet than the corresponding letter in <code>b</code>.<br />
+If the first <code>min(a.length, b.length)</code> characters do not differ, then the shorter string is the lexicographically smaller one.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">word = &quot;dbca&quot;, numFriends = 2</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;dbc&quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>All possible splits are:</p>
+
+<ul>
+	<li><code>&quot;d&quot;</code> and <code>&quot;bca&quot;</code>.</li>
+	<li><code>&quot;db&quot;</code> and <code>&quot;ca&quot;</code>.</li>
+	<li><code>&quot;dbc&quot;</code> and <code>&quot;a&quot;</code>.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">word = &quot;gggg&quot;, numFriends = 4</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;g&quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The only possible split is: <code>&quot;g&quot;</code>, <code>&quot;g&quot;</code>, <code>&quot;g&quot;</code>, and <code>&quot;g&quot;</code>.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= word.length &lt;= 2 * 10<sup>5</sup></code></li>
+	<li><code>word</code> consists only of lowercase English letters.</li>
+	<li><code>1 &lt;= numFriends &lt;= word.length</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-ii/">Solutions</a>
+    </div>
+</body>
+</html>

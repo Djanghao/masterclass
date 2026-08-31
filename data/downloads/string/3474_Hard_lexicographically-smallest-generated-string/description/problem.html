@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3474. Lexicographically Smallest Generated String</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/lexicographically-smallest-generated-string/">3474. Lexicographically Smallest Generated String</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>30</td>
+            <td>8</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/string"><code>string</code></a> | <a href="https://leetcode.com/tag/greedy"><code>greedy</code></a> | <a href="https://leetcode.com/tag/string-matching"><code>string-matching</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>barclays</code></p>
+    </details>
+
+    <p>You are given two strings, <code>str1</code> and <code>str2</code>, of lengths <code>n</code> and <code>m</code>, respectively.</p>
+
+<p>A string <code>word</code> of length <code>n + m - 1</code> is defined to be <strong>generated</strong> by <code>str1</code> and <code>str2</code> if it satisfies the following conditions for <strong>each</strong> index <code>0 &lt;= i &lt;= n - 1</code>:</p>
+
+<ul>
+	<li>If <code>str1[i] == &#39;T&#39;</code>, the <strong><span data-keyword="substring-nonempty">substring</span></strong> of <code>word</code> with size <code>m</code> starting at index <code>i</code> is <strong>equal</strong> to <code>str2</code>, i.e., <code>word[i..(i + m - 1)] == str2</code>.</li>
+	<li>If <code>str1[i] == &#39;F&#39;</code>, the <strong><span data-keyword="substring-nonempty">substring</span></strong> of <code>word</code> with size <code>m</code> starting at index <code>i</code> is <strong>not equal</strong> to <code>str2</code>, i.e., <code>word[i..(i + m - 1)] != str2</code>.</li>
+</ul>
+
+<p>Return the <strong><span data-keyword="lexicographically-smaller-string">lexicographically smallest</span></strong> possible string that can be <strong>generated</strong> by <code>str1</code> and <code>str2</code>. If no string can be generated, return an empty string <code>&quot;&quot;</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">str1 = &quot;TFTF&quot;, str2 = &quot;ab&quot;</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;ababa&quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<h4>The table below represents the string <code>&quot;ababa&quot;</code></h4>
+
+<table>
+	<tbody>
+		<tr>
+			<th style="border: 1px solid black;">Index</th>
+			<th style="border: 1px solid black;">T/F</th>
+			<th style="border: 1px solid black;">Substring of length <code>m</code></th>
+		</tr>
+		<tr>
+			<td style="border: 1px solid black;">0</td>
+			<td style="border: 1px solid black;"><code>&#39;T&#39;</code></td>
+			<td style="border: 1px solid black;">&quot;ab&quot;</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid black;">1</td>
+			<td style="border: 1px solid black;"><code>&#39;F&#39;</code></td>
+			<td style="border: 1px solid black;">&quot;ba&quot;</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid black;">2</td>
+			<td style="border: 1px solid black;"><code>&#39;T&#39;</code></td>
+			<td style="border: 1px solid black;">&quot;ab&quot;</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid black;">3</td>
+			<td style="border: 1px solid black;"><code>&#39;F&#39;</code></td>
+			<td style="border: 1px solid black;">&quot;ba&quot;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>The strings <code>&quot;ababa&quot;</code> and <code>&quot;ababb&quot;</code> can be generated by <code>str1</code> and <code>str2</code>.</p>
+
+<p>Return <code>&quot;ababa&quot;</code> since it is the lexicographically smaller string.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">str1 = &quot;TFTF&quot;, str2 = &quot;abc&quot;</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;&quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>No string that satisfies the conditions can be generated.</p>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">str1 = &quot;F&quot;, str2 = &quot;d&quot;</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;a&quot;</span></p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n == str1.length &lt;= 10<sup>4</sup></code></li>
+	<li><code>1 &lt;= m == str2.length &lt;= 500</code></li>
+	<li><code>str1</code> consists only of <code>&#39;T&#39;</code> or <code>&#39;F&#39;</code>.</li>
+	<li><code>str2</code> consists only of lowercase English characters.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/lexicographically-smallest-generated-string/">Submissions</a>
+        <a href="https://leetcode.com/problems/lexicographically-smallest-generated-string/">Solutions</a>
+    </div>
+</body>
+</html>

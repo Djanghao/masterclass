@@ -1,0 +1,68 @@
+# Ruby: Use array as a counter.
+
+**Author:** user9697N
+**Votes:** 2
+**Link:** [https://leetcode.com/problems/first-unique-character-in-a-string/solutions/2435066/](https://leetcode.com/problems/first-unique-character-in-a-string/solutions/2435066/)
+
+---
+
+## Leetcode: 387. First Unique Character in a String.
+
+**Ruby: Use array as a counter.**
+
+Create an array for 26 elements. These are counters. Iterate over a string for a first time and increase counter every time a symbol matched. Next. Iterate over a sting ones more and return index of first symbol with value 1 in the couter. A symbol converted to an array idex by the `ord` method or by the code of this symbol.
+
+Summary. Two loops, one array. Return `-1` if did not return in the second loop.
+
+Let's try.
+
+P.S. Also it is possible to have an array where store index of first occurance of a symbol. And return minimal occurance with counter 1.
+
+Ruby code(1):
+```Ruby
+# Leetcode: 387. First Unique Character in a String.
+# https://leetcode.com/problems/first-unique-character-in-a-string/
+# = = = = = = = = = = = = = =
+# Accepted.
+# Thanks God, Jesus Christ!
+# = = = = = = = = = = = = = =
+# Runtime: 469 ms, faster than 35.90% of Ruby online submissions for First Unique Character in a String.
+# Memory Usage: 217.2 MB, less than 27.18% of Ruby online submissions for First Unique Character in a String.
+# @param {String} s
+# @return {Integer}
+def first_uniq_char(s)
+  counter = Array.new(26,0)
+  position = Array.new(26,nil)
+  s.chars.each_with_index do |char,i|
+    code = char.ord - ?a.ord
+    next if 2 == counter[code]
+    counter[code] += 1
+    position[code] = i if ! position[code]
+  end
+  min = s.size 
+  (0...26).each do |i|
+    next if 1 != counter[i]
+    min = position[i] if position[i] < min
+  end
+  return -1 if s.size == min
+  return min
+end
+```
+Ruby code(2):
+```Ruby
+# Leetcode: 387. First Unique Character in a String.
+# https://leetcode.com/problems/first-unique-character-in-a-string/
+# = = = = = = = = = = = = = =
+# Accepted.
+# Thanks God, Jesus Christ!
+# = = = = = = = = = = = = = =
+# Runtime: 504 ms, faster than 31.80% of Ruby online submissions for First Unique Character in a String.
+# Memory Usage: 214.8 MB, less than 46.67% of Ruby online submissions for First Unique Character in a String.
+# @param {String} s
+# @return {Integer}
+def first_uniq_char(s)
+  hash = s.chars.tally
+  s.chars.each_with_index{|c,i| return i if 1 == hash[c]}
+  -1
+end
+```

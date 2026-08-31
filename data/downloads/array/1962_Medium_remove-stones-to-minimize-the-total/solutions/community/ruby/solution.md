@@ -1,0 +1,103 @@
+# Ruby/Go: K times pop and push in Binary Heap.
+
+**Author:** user9697N
+**Votes:** 2
+**Link:** [https://leetcode.com/problems/remove-stones-to-minimize-the-total/solutions/2964605/](https://leetcode.com/problems/remove-stones-to-minimize-the-total/solutions/2964605/)
+
+---
+
+## Leetcode: 1962. Remove Stones to Minimize the Total.
+
+**Ruby/Go: K times pop and push in Binary Heap.**
+
+Time: O(KLog(N)); Memory: O(N);
+
+- https://en.wikipedia.org/wiki/Binary_heap
+
+1. Get total sum of piles.
+2. Generate heap of piles.
+3. `k` times loop.
+4. Get biggets pile, take half, push rest into the heap.
+5. Return difference between total and taken.
+
+Ruby code:
+```Ruby
+# Leetcode: 1962. Remove Stones to Minimize the Total.
+# https://leetcode.com/problems/remove-stones-to-minimize-the-total/
+# = = = = = = = = = = = = = =
+# Correct.
+# Thanks God, Jesus Christ!
+# = = = = = = = = = = = = = =
+# At the Leetcode libraries works too long.
+# But the algorithm is correct.
+# @param {Integer[]} piles
+# @param {Integer} k
+# @return {Integer}
+def min_stone_sum(piles, k)
+  # https://www.rubydoc.info/github/kanwei/algorithms/Containers/MaxHeap
+  maxheap = MaxHeap.new(piles)
+  total = piles.sum
+  total_take = 0
+  k.times do
+    tmp = maxheap.pop
+    take = tmp/2
+    tmp -= take
+    total_take += take
+    maxheap.push(tmp)
+  end
+  return total - total_take
+end
+```
+Go code:
+```Go
+// Leetcode: 1962. Remove Stones to Minimize the Total.
+// https://leetcode.com/problems/remove-stones-to-minimize-the-total/
+// = = = = = = = = = = = = = =
+// Accepted.
+// Thanks God, Jesus Christ!
+// = = = = = = = = = = = = = =
+// Runtime: 451 ms, faster than 69.23% of Go online submissions for Remove Stones to Minimize the Total.
+// Memory Usage: 8.7 MB, less than 100.00% of Go online submissions for Remove Stones to Minimize the Total.
+// 2022.12.28 Daily Challenge.
+
+// https://pkg.go.dev/container/heap
+// https://leetcode.com/problems/last-stone-weight/discuss/549801/golang-using-containerheap
+// https://stackoverflow.com/questions/18041334/convert-interface-to-int
+import "container/heap"
+import "fmt"
+var p = fmt.Println
+type IntHeap []int
+
+func (h IntHeap) Len() int  { return len(h)}
+func (h IntHeap) Less(i, j int) bool { return h[i] > h[j] } // Reversed!
+func (h IntHeap) Swap(i, j int) { h[i], h[j] = h[j], h[i]}
+func (h  * IntHeap) Push(x interface{}){
+  *h = append(*h, x.(int))
+}
+func (h  * IntHeap) Pop() interface{} {
+  old := *h
+  n := len(old)
+  x := old[n-1]
+  *h = old[0:n-1]
+  return x
+}
+
+
+func minStoneSum(piles []int, k int) int {
+  pls := IntHeap(piles)
+  heap.Init(&pls)
+  total := 0 
+  taken := 0
+  for _, v := range piles {
+    total += v
+  }
+  for i:=0 ; i < k; i += 1{
+    big := heap.Pop(&pls).(int)
+    get := (big/2)
+    put := big - get
+    taken += get
+    heap.Push(&pls,put)
+  }
+  return total - taken
+}
+```

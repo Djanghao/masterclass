@@ -1,0 +1,50 @@
+# Ruby: Each node eats one slot, not nil add two slots.
+
+**Author:** user9697N
+**Votes:** 0
+**Link:** [https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/solutions/1427705/](https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/solutions/1427705/)
+
+---
+
+## Leetcode: 331. Verify Preorder Serialization of a Binary Tree. 
+
+ 
+**Ruby: Each node eats one slot, not nil add two slots.**
+
+For understanding need to get several concepts:
+
+- Nil is a type of nodes. There two types of nodes nil and not nil.
+- Each node eats one slot.
+- Not nil add two more slots for children.
+- Starting with one slot need to finish with zero slots.
+
+Solution is create counter for slots set it too one, iterete over elements in string converted to array, and decrease by one on each type of node and increase by two on not nil. Each node eats one slot, not nil add two slots.
+
+Resources I used:
+
+- https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/discuss/78564/The-simplest-python-solution-with-explanation-(no-stack-no-recursion)
+- https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/discuss/78564/The-simplest-python-solution-with-explanation-(no-stack-no-recursion)/168309
+- https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/discuss/78551/7-lines-Easy-Java-Solution
+
+Ruby code:
+```Ruby
+# Leetcode: 331. Verify Preorder Serialization of a Binary Tree. 
+# https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/
+# = = = = = = =
+# Accepted.
+# Thanks God!
+# = = = = = = =
+# https://leetcode.com/explore/challenge/card/august-leetcoding-challenge-2021/616/week-4-august-22nd-august-28th/3920/
+# @param {String} preorder
+# @return {Boolean}
+def is_valid_serialization(preorder)
+  arr = preorder.split(?,) # Convert string into array of tree nodes.
+  slots = 1 # Slots counter, now have one place for incoming root. Root might be nil.
+  arr.each do |x|
+    slots -= 1 # Each type of node eats one slot.
+    return false if slots < 0 # Not enough place for current node.
+    slots += 2 if x != ?# # Add place for two children, if not nil.
+  end
+  0 == slots
+end
+```

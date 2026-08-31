@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3127. Make a Square with the Same Color</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/make-a-square-with-the-same-color/">3127. Make a Square with the Same Color</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>90</td>
+            <td>9</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/matrix"><code>matrix</code></a> | <a href="https://leetcode.com/tag/enumeration"><code>enumeration</code></a></p>
+    </details>
+
+    
+
+    <p>You are given a 2D matrix <code>grid</code> of size <code>3 x 3</code> consisting only of characters <code>&#39;B&#39;</code> and <code>&#39;W&#39;</code>. Character <code>&#39;W&#39;</code> represents the white color<!-- notionvc: 06a49cc0-a296-4bd2-9bfe-c8818edeb53a -->, and character <code>&#39;B&#39;</code> represents the black color<!-- notionvc: 06a49cc0-a296-4bd2-9bfe-c8818edeb53a -->.</p>
+
+<p>Your task is to change the color of <strong>at most one</strong> cell<!-- notionvc: c04cb478-8dd5-49b1-80bb-727c6b1e0232 --> so that the matrix has a <code>2 x 2</code> square where all cells are of the same color.<!-- notionvc: adf957e1-fa0f-40e5-9a2e-933b95e276a7 --></p>
+
+<p>Return <code>true</code> if it is possible to create a <code>2 x 2</code> square of the same color, otherwise, return <code>false</code>.</p>
+
+<p>&nbsp;</p>
+<style type="text/css">.grid-container {
+  display: grid;
+  grid-template-columns: 30px 30px 30px;
+  padding: 10px;
+}
+.grid-item {
+  background-color: black;
+  border: 1px solid gray;
+  height: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+.grid-item-white {
+  background-color: white;
+}
+</style>
+<style class="darkreader darkreader--sync" media="screen" type="text/css">
+</style>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="grid-container">
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+</div>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">grid = [[&quot;B&quot;,&quot;W&quot;,&quot;B&quot;],[&quot;B&quot;,&quot;W&quot;,&quot;W&quot;],[&quot;B&quot;,&quot;W&quot;,&quot;B&quot;]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">true</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>It can be done by changing the color of the <code>grid[0][2]</code>.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="grid-container">
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+</div>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">grid = [[&quot;B&quot;,&quot;W&quot;,&quot;B&quot;],[&quot;W&quot;,&quot;B&quot;,&quot;W&quot;],[&quot;B&quot;,&quot;W&quot;,&quot;B&quot;]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">false</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>It cannot be done by changing at most one cell.</p>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="grid-container">
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+
+<div class="grid-item grid-item-white">&nbsp;</div>
+</div>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">grid = [[&quot;B&quot;,&quot;W&quot;,&quot;B&quot;],[&quot;B&quot;,&quot;W&quot;,&quot;W&quot;],[&quot;B&quot;,&quot;W&quot;,&quot;W&quot;]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">true</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The <code>grid</code> already contains a <code>2 x 2</code> square of the same color.<!-- notionvc: 9a8b2d3d-1e73-457a-abe0-c16af51ad5c2 --></p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>grid.length == 3</code></li>
+	<li><code>grid[i].length == 3</code></li>
+	<li><code>grid[i][j]</code> is either <code>&#39;W&#39;</code> or <code>&#39;B&#39;</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/make-a-square-with-the-same-color/">Submissions</a>
+        <a href="https://leetcode.com/problems/make-a-square-with-the-same-color/">Solutions</a>
+    </div>
+</body>
+</html>

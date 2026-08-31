@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2827. Number of Beautiful Integers in the Range</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/">2827. Number of Beautiful Integers in the Range</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>384</td>
+            <td>37</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>infosys</code></p>
+    </details>
+
+    <p>You are given positive integers <code>low</code>, <code>high</code>, and <code>k</code>.</p>
+
+<p>A number is <strong>beautiful</strong> if it meets both of the following conditions:</p>
+
+<ul>
+	<li>The count of even digits in the number is equal to the count of odd digits.</li>
+	<li>The number is divisible by <code>k</code>.</li>
+</ul>
+
+<p>Return <em>the number of beautiful integers in the range</em> <code>[low, high]</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> low = 10, high = 20, k = 3
+<strong>Output:</strong> 2
+<strong>Explanation:</strong> There are 2 beautiful integers in the given range: [12,18]. 
+- 12 is beautiful because it contains 1 odd digit and 1 even digit, and is divisible by k = 3.
+- 18 is beautiful because it contains 1 odd digit and 1 even digit, and is divisible by k = 3.
+Additionally we can see that:
+- 16 is not beautiful because it is not divisible by k = 3.
+- 15 is not beautiful because it does not contain equal counts even and odd digits.
+It can be shown that there are only 2 beautiful integers in the given range.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> low = 1, high = 10, k = 1
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> There is 1 beautiful integer in the given range: [10].
+- 10 is beautiful because it contains 1 odd digit and 1 even digit, and is divisible by k = 1.
+It can be shown that there is only 1 beautiful integer in the given range.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> low = 5, high = 5, k = 2
+<strong>Output:</strong> 0
+<strong>Explanation:</strong> There are 0 beautiful integers in the given range.
+- 5 is not beautiful because it is not divisible by k = 2 and it does not contain equal even and odd digits.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>0 &lt; low &lt;= high &lt;= 10<sup>9</sup></code></li>
+	<li><code>0 &lt; k &lt;= 20</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/">Submissions</a>
+        <a href="https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/">Solutions</a>
+    </div>
+</body>
+</html>

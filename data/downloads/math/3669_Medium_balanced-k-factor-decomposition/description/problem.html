@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3669. Balanced K-Factor Decomposition</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/balanced-k-factor-decomposition/">3669. Balanced K-Factor Decomposition</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>112</td>
+            <td>11</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/backtracking"><code>backtracking</code></a> | <a href="https://leetcode.com/tag/number-theory"><code>number-theory</code></a></p>
+    </details>
+
+    
+
+    <p>Given two integers <code>n</code> and <code>k</code>, split the number <code>n</code> into exactly <code>k</code> positive integers such that the <strong>product</strong> of these integers is equal to <code>n</code>.</p>
+
+<p>Return <em>any</em> <em>one</em> split in which the <strong>maximum</strong> difference between any two numbers is <strong>minimized</strong>. You may return the result in <em>any order</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 100, k = 2</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[10,10]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p data-end="157" data-start="0">The split <code>[10, 10]</code> yields <code>10 * 10 = 100</code> and a max-min difference of 0, which is minimal.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 44, k = 3</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[2,2,11]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li data-end="46" data-start="2">Split <code>[1, 1, 44]</code> yields a difference of 43</li>
+	<li data-end="93" data-start="49">Split <code>[1, 2, 22]</code> yields a difference of 21</li>
+	<li data-end="140" data-start="96">Split <code>[1, 4, 11]</code> yields a difference of 10</li>
+	<li data-end="186" data-start="143">Split <code>[2, 2, 11]</code> yields a difference of 9</li>
+</ul>
+
+<p data-end="264" data-is-last-node="" data-is-only-node="" data-start="188">Therefore, <code>[2, 2, 11]</code> is the optimal split with the smallest difference 9.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li data-end="54" data-start="37"><code data-end="52" data-start="37">4 &lt;= n &lt;= 10<sup><span style="font-size: 10.8333px;">5</span></sup></code></li>
+	<li data-end="71" data-start="57"><code data-end="69" data-start="57">2 &lt;= k &lt;= 5</code></li>
+	<li data-end="145" data-is-last-node="" data-start="74"><code data-end="77" data-start="74">k</code> is strictly less than the total number of positive divisors of <code data-end="144" data-is-only-node="" data-start="141">n</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/balanced-k-factor-decomposition/">Submissions</a>
+        <a href="https://leetcode.com/problems/balanced-k-factor-decomposition/">Solutions</a>
+    </div>
+</body>
+</html>

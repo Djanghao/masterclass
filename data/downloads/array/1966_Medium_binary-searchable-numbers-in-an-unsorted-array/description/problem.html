@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1966. Binary Searchable Numbers in an Unsorted Array</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/">1966. Binary Searchable Numbers in an Unsorted Array</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>76</td>
+            <td>12</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/binary-search"><code>binary-search</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code></p>
+    </details>
+
+    <p>Consider a function that implements an algorithm <strong>similar</strong> to <a href="https://leetcode.com/explore/learn/card/binary-search/" target="_blank">Binary Search</a>. The function has two input parameters: <code>sequence</code> is a sequence of integers, and <code>target</code> is an integer value. The purpose of the function is to find if the <code>target</code> exists in the <code>sequence</code>.</p>
+
+<p>The pseudocode of the function is as follows:</p>
+
+<pre><code>func(sequence, target)
+  while sequence is not empty
+    <strong>randomly</strong> choose an element from sequence as the pivot
+    if pivot = target, return <strong>true</strong>
+    else if pivot &lt; target, remove pivot and all elements to its left from the sequence
+    else, remove pivot and all elements to its right from the sequence
+  end while
+  return <strong>false</strong></code></pre>
+
+<p>When the <code>sequence</code> is sorted, the function works correctly for <strong>all</strong> values. When the <code>sequence</code> is not sorted, the function does not work for all values, but may still work for <strong>some</strong> values.</p>
+
+<p>Given an integer array <code>nums</code>, representing the <code>sequence</code>, that contains <strong>unique</strong> numbers and <strong>may or may not be sorted</strong>, return <em>the number of values that are <strong>guaranteed</strong> to be found using the function, for <strong>every possible</strong> pivot selection</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> nums = [7]
+<strong>Output:</strong> 1
+<strong>Explanation</strong>: 
+Searching for value 7 is guaranteed to be found.
+Since the sequence has only one element, 7 will be chosen as the pivot. Because the pivot equals the target, the function will return true.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> nums = [-1,5,2]
+<strong>Output:</strong> 1
+<strong>Explanation</strong>: 
+Searching for value -1 is guaranteed to be found.
+If -1 was chosen as the pivot, the function would return true.
+If 5 was chosen as the pivot, 5 and 2 would be removed. In the next loop, the sequence would have only -1 and the function would return true.
+If 2 was chosen as the pivot, 2 would be removed. In the next loop, the sequence would have -1 and 5. No matter which number was chosen as the next pivot, the function would find -1 and return true.
+
+Searching for value 5 is NOT guaranteed to be found.
+If 2 was chosen as the pivot, -1, 5 and 2 would be removed. The sequence would be empty and the function would return false.
+
+Searching for value 2 is NOT guaranteed to be found.
+If 5 was chosen as the pivot, 5 and 2 would be removed. In the next loop, the sequence would have only -1 and the function would return false.
+
+Because only -1 is guaranteed to be found, you should return 1.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>-10<sup>5</sup> &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>
+	<li>All the values of <code>nums</code> are <strong>unique</strong>.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong>Follow-up:</strong> If <code>nums</code> has <strong>duplicates</strong>, would you modify your algorithm? If so, how?</p>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/">Submissions</a>
+        <a href="https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/">Solutions</a>
+    </div>
+</body>
+</html>

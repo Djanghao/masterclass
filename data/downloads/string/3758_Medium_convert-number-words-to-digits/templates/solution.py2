@@ -1,0 +1,7 @@
+class Solution(object):
+    def convertNumber(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        

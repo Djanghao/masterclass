@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1902. Depth of BST Given Insertion Order</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/depth-of-bst-given-insertion-order/">1902. Depth of BST Given Insertion Order</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>109</td>
+            <td>12</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/tree"><code>tree</code></a> | <a href="https://leetcode.com/tag/binary-search-tree"><code>binary-search-tree</code></a> | <a href="https://leetcode.com/tag/binary-tree"><code>binary-tree</code></a> | <a href="https://leetcode.com/tag/ordered-set"><code>ordered-set</code></a></p>
+    </details>
+
+    
+
+    <p>You are given a <strong>0-indexed</strong> integer array <code>order</code> of length <code>n</code>, a <strong>permutation</strong> of integers from <code>1</code> to <code>n</code> representing the <strong>order</strong> of insertion into a <strong>binary search tree</strong>.</p>
+
+<p>A binary search tree is defined as follows:</p>
+
+<ul>
+	<li>The left subtree of a node contains only nodes with keys <strong>less than</strong> the node&#39;s key.</li>
+	<li>The right subtree of a node contains only nodes with keys <strong>greater than</strong> the node&#39;s key.</li>
+	<li>Both the left and right subtrees must also be binary search trees.</li>
+</ul>
+
+<p>The binary search tree is constructed as follows:</p>
+
+<ul>
+	<li><code>order[0]</code> will be the <strong>root</strong> of the binary search tree.</li>
+	<li>All subsequent elements are inserted as the <strong>child</strong> of <strong>any</strong> existing node such that the binary search tree properties hold.</li>
+</ul>
+
+<p>Return <em>the <strong>depth</strong> of the binary search tree</em>.</p>
+
+<p>A binary tree&#39;s <strong>depth</strong> is the number of <strong>nodes</strong> along the <strong>longest path</strong> from the root node down to the farthest leaf node.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.png">
+<pre><code><strong>Input:</strong> order = [2,1,4,3]
+<strong>Output:</strong> 3
+<strong>Explanation: </strong>The binary search tree has a depth of 3 with path 2-&gt;3-&gt;4.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+<img src="./images/1.png">
+<pre><code><strong>Input:</strong> order = [2,1,3,4]
+<strong>Output:</strong> 3
+<strong>Explanation: </strong>The binary search tree has a depth of 3 with path 2-&gt;3-&gt;4.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+<img src="./images/2.png">
+<pre><code><strong>Input:</strong> order = [1,2,3,4]
+<strong>Output:</strong> 4
+<strong>Explanation: </strong>The binary search tree has a depth of 4 with path 1-&gt;2-&gt;3-&gt;4.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>n == order.length</code></li>
+	<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>
+	<li><code>order</code> is a permutation of integers between <code>1</code> and <code>n</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/depth-of-bst-given-insertion-order/">Submissions</a>
+        <a href="https://leetcode.com/problems/depth-of-bst-given-insertion-order/">Solutions</a>
+    </div>
+</body>
+</html>

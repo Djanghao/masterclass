@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1821. Find Customers With Positive Revenue this Year</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-customers-with-positive-revenue-this-year/">1821. Find Customers With Positive Revenue this Year</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Easy</td>
+            <td>66</td>
+            <td>26</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code></p>
+    </details>
+
+    <p>Table: <code>Customers</code></p>
+
+<pre><code>+--------------+------+
+| Column Name  | Type |
++--------------+------+
+| customer_id  | int  |
+| year         | int  |
+| revenue      | int  |
++--------------+------+
+(customer_id, year) is the primary key (combination of columns with unique values) for this table.
+This table contains the customer ID and the revenue of customers in different years.
+Note that this revenue can be negative.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Write a solution to report the customers with <strong>postive revenue</strong> in the year 2021.</p>
+
+<p>Return the result table in <strong>any order</strong>.</p>
+
+<p>The&nbsp;result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Customers table:
++-------------+------+---------+
+| customer_id | year | revenue |
++-------------+------+---------+
+| 1           | 2018 | 50      |
+| 1           | 2021 | 30      |
+| 1           | 2020 | 70      |
+| 2           | 2021 | -50     |
+| 3           | 2018 | 10      |
+| 3           | 2016 | 50      |
+| 4           | 2021 | 20      |
++-------------+------+---------+
+<strong>Output:</strong> 
++-------------+
+| customer_id |
++-------------+
+| 1           |
+| 4           |
++-------------+
+<strong>Explanation:</strong> 
+Customer 1 has revenue equal to 30 in the year 2021.
+Customer 2 has revenue equal to -50 in the year 2021.
+Customer 3 has no revenue in the year 2021.
+Customer 4 has revenue equal to 20 in the year 2021.
+Thus only customers 1 and 4 have positive revenue in the year 2021.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-customers-with-positive-revenue-this-year/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-customers-with-positive-revenue-this-year/">Solutions</a>
+    </div>
+</body>
+</html>

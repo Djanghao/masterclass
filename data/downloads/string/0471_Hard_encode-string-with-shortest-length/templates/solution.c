@@ -1,0 +1,3 @@
+char* encode(char* s) {
+    
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2895. Minimum Processing Time</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-processing-time/">2895. Minimum Processing Time</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>280</td>
+            <td>49</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/greedy"><code>greedy</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>adobe</code> | <code>nutanix</code></p>
+    </details>
+
+    <p>You have a certain number of processors, each having 4 cores. The number of tasks to be executed is four times the number of processors. Each task must be assigned to a unique core, and each core can only be used once.</p>
+
+<p>You are given an array <code>processorTime</code> representing the time each processor becomes available and an array <code>tasks</code> representing how long each task takes to complete. Return the&nbsp;<em>minimum</em> time needed to complete all tasks.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">processorTime = [8,10], tasks = [2,2,3,1,8,7,4,5]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">16</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>Assign the tasks at indices 4, 5, 6, 7 to the first processor which becomes available at <code>time = 8</code>, and the tasks at indices 0, 1, 2, 3 to the second processor which becomes available at <code>time = 10</code>.&nbsp;</p>
+
+<p>The time taken by the first processor to finish the execution of all tasks is&nbsp;<code>max(8 + 8, 8 + 7, 8 + 4, 8 + 5) = 16</code>.</p>
+
+<p>The time taken by the second processor to finish the execution of all tasks is&nbsp;<code>max(10 + 2, 10 + 2, 10 + 3, 10 + 1) = 13</code>.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">processorTime = [10,20], tasks = [2,3,1,2,5,8,4,3]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">23</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>Assign the tasks at indices 1, 4, 5, 6 to the first processor and the others to the second processor.</p>
+
+<p>The time taken by the first processor to finish the execution of all tasks is <code>max(10 + 3, 10 + 5, 10 + 8, 10 + 4) = 18</code>.</p>
+
+<p>The time taken by the second processor to finish the execution of all tasks is <code>max(20 + 2, 20 + 1, 20 + 2, 20 + 3) = 23</code>.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n == processorTime.length &lt;= 25000</code></li>
+	<li><code>1 &lt;= tasks.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>0 &lt;= processorTime[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>1 &lt;= tasks[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>tasks.length == 4 * n</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-processing-time/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-processing-time/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3781. Maximum Score After Binary Swaps</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/maximum-score-after-binary-swaps/">3781. Maximum Score After Binary Swaps</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>37</td>
+            <td>2</td>
+        </tr>
+    </table>
+
+    
+
+    
+
+    <p>You are given an integer array <code>nums</code> of length <code>n</code> and a binary string <code>s</code> of the same length.</p>
+
+<p>Initially, your score is 0. Each index <code>i</code> where <code>s[i] = &#39;1&#39;</code> contributes <code>nums[i]</code> to the score.</p>
+
+<p>You may perform <strong>any</strong> number of operations (including zero). In one operation, you may choose an index <code>i</code> such that <code>0 &lt;= i &lt; n - 1</code>, where <code>s[i] = &#39;0&#39;</code>, and <code>s[i + 1] = &#39;1&#39;</code>, and swap these two characters.</p>
+
+<p>Return an integer denoting the <strong>maximum possible score</strong> you can achieve.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [2,1,5,2,3], s = &quot;01010&quot;</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">7</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>We can perform the following swaps:</p>
+
+<ul>
+	<li>Swap at index <code>i = 0</code>: <code>&quot;01010&quot;</code> changes to <code>&quot;10010&quot;</code></li>
+	<li>Swap at index <code>i = 2</code>: <code>&quot;10010&quot;</code> changes to <code>&quot;10100&quot;</code></li>
+</ul>
+
+<p>Positions 0 and 2 contain <code>&#39;1&#39;</code>, contributing <code>nums[0] + nums[2] = 2 + 5 = 7</code>. This is maximum score achievable.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [4,7,2,9], s = &quot;0000&quot;</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">0</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>There are no <code>&#39;1&#39;</code> characters in <code>s</code>, so no swaps can be performed. The score remains 0.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>n == nums.length == s.length</code></li>
+	<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>s[i]</code> is either <code>&#39;0&#39;</code> or <code>&#39;1&#39;</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/maximum-score-after-binary-swaps/">Submissions</a>
+        <a href="https://leetcode.com/problems/maximum-score-after-binary-swaps/">Solutions</a>
+    </div>
+</body>
+</html>

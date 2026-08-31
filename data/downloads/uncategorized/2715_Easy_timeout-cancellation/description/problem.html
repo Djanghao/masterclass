@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2715. Timeout Cancellation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/timeout-cancellation/">2715. Timeout Cancellation</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>JavaScript</td>
+            <td>Easy</td>
+            <td>308</td>
+            <td>361</td>
+        </tr>
+    </table>
+
+    
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>facebook</code> | <code>adobe</code></p>
+    </details>
+
+    <p>Given a function <code>fn</code>, an array of&nbsp;arguments&nbsp;<code>args</code>, and a timeout&nbsp;<code>t</code>&nbsp;in milliseconds, return a cancel function <code>cancelFn</code>.</p>
+
+<p>After a delay of <code>cancelTimeMs</code>, the returned cancel function <code>cancelFn</code> will be invoked.</p>
+
+<pre><code>setTimeout(cancelFn, cancelTimeMs)</code></pre>
+
+<p>Initially, the execution of the function <code>fn</code> should be delayed by <code>t</code> milliseconds.</p>
+
+<p>If, before the delay of <code>t</code> milliseconds, the function <code>cancelFn</code> is invoked, it should cancel the delayed execution of <code>fn</code>. Otherwise, if <code>cancelFn</code> is not invoked within the specified delay <code>t</code>, <code>fn</code> should be executed with the provided <code>args</code> as arguments.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> fn = (x) =&gt; x * 5, args = [2], t = 20
+<strong>Output:</strong> [{&quot;time&quot;: 20, &quot;returned&quot;: 10}]
+<strong>Explanation:</strong> 
+const cancelTimeMs = 50;
+const cancelFn = cancellable((x) =&gt; x * 5, [2], 20);
+setTimeout(cancelFn, cancelTimeMs);
+
+The cancellation was scheduled to occur after a delay of cancelTimeMs (50ms), which happened after the execution of fn(2) at 20ms.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> fn = (x) =&gt; x**2, args = [2], t = 100
+<strong>Output:</strong> []
+<strong>Explanation:</strong> 
+const cancelTimeMs = 50;
+const cancelFn = cancellable((x) =&gt; x**2, [2], 100);
+setTimeout(cancelFn, cancelTimeMs);
+
+The cancellation was scheduled to occur after a delay of cancelTimeMs (50ms), which happened before the execution of fn(2) at 100ms, resulting in fn(2) never being called.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> fn = (x1, x2) =&gt; x1 * x2, args = [2,4], t = 30
+<strong>Output:</strong> [{&quot;time&quot;: 30, &quot;returned&quot;: 8}]
+<strong>Explanation: 
+</strong>const cancelTimeMs = 100;
+const cancelFn = cancellable((x1, x2) =&gt; x1 * x2, [2,4], 30);
+setTimeout(cancelFn, cancelTimeMs);
+
+The cancellation was scheduled to occur after a delay of cancelTimeMs (100ms), which happened after the execution of fn(2,4) at 30ms.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>fn</code> is a function</li>
+	<li><code>args</code> is a valid JSON array</li>
+	<li><code>1 &lt;= args.length &lt;= 10</code></li>
+	<li><code><font face="monospace">20 &lt;= t &lt;= 1000</font></code></li>
+	<li><code><font face="monospace">10 &lt;= cancelTimeMs &lt;= 1000</font></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/timeout-cancellation/">Submissions</a>
+        <a href="https://leetcode.com/problems/timeout-cancellation/">Solutions</a>
+    </div>
+</body>
+</html>

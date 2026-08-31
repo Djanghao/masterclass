@@ -1,0 +1,3 @@
+char* findContestMatch(int n) {
+    
+}

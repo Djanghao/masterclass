@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2905. Find Indices With Index and Value Difference II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-ii/">2905. Find Indices With Index and Value Difference II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>293</td>
+            <td>11</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/two-pointers"><code>two-pointers</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>paytm</code></p>
+    </details>
+
+    <p>You are given a <strong>0-indexed</strong> integer array <code>nums</code> having length <code>n</code>, an integer <code>indexDifference</code>, and an integer <code>valueDifference</code>.</p>
+
+<p>Your task is to find <strong>two</strong> indices <code>i</code> and <code>j</code>, both in the range <code>[0, n - 1]</code>, that satisfy the following conditions:</p>
+
+<ul>
+	<li><code>abs(i - j) &gt;= indexDifference</code>, and</li>
+	<li><code>abs(nums[i] - nums[j]) &gt;= valueDifference</code></li>
+</ul>
+
+<p>Return <em>an integer array</em> <code>answer</code>, <em>where</em> <code>answer = [i, j]</code> <em>if there are two such indices</em>, <em>and</em> <code>answer = [-1, -1]</code> <em>otherwise</em>. If there are multiple choices for the two indices, return <em>any of them</em>.</p>
+
+<p><strong>Note:</strong> <code>i</code> and <code>j</code> may be <strong>equal</strong>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> nums = [5,1,4,1], indexDifference = 2, valueDifference = 4
+<strong>Output:</strong> [0,3]
+<strong>Explanation:</strong> In this example, i = 0 and j = 3 can be selected.
+abs(0 - 3) &gt;= 2 and abs(nums[0] - nums[3]) &gt;= 4.
+Hence, a valid answer is [0,3].
+[3,0] is also a valid answer.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> nums = [2,1], indexDifference = 0, valueDifference = 0
+<strong>Output:</strong> [0,0]
+<strong>Explanation:</strong> In this example, i = 0 and j = 0 can be selected.
+abs(0 - 0) &gt;= 0 and abs(nums[0] - nums[0]) &gt;= 0.
+Hence, a valid answer is [0,0].
+Other valid answers are [0,1], [1,0], and [1,1].</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> nums = [1,2,3], indexDifference = 2, valueDifference = 4
+<strong>Output:</strong> [-1,-1]
+<strong>Explanation:</strong> In this example, it can be shown that it is impossible to find two indices that satisfy both conditions.
+Hence, [-1,-1] is returned.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n == nums.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>0 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>0 &lt;= indexDifference &lt;= 10<sup>5</sup></code></li>
+	<li><code>0 &lt;= valueDifference &lt;= 10<sup>9</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-ii/">Solutions</a>
+    </div>
+</body>
+</html>

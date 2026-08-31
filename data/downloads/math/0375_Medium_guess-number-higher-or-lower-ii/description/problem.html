@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>375. Guess Number Higher or Lower II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/guess-number-higher-or-lower-ii/">375. Guess Number Higher or Lower II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>2307</td>
+            <td>2161</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/game-theory"><code>game-theory</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code></p>
+    </details>
+
+    <p>We are playing the Guessing Game. The game will work as follows:</p>
+
+<ol>
+	<li>I pick a number between&nbsp;<code>1</code>&nbsp;and&nbsp;<code>n</code>.</li>
+	<li>You guess a number.</li>
+	<li>If you guess the right number, <strong>you win the game</strong>.</li>
+	<li>If you guess the wrong number, then I will tell you whether the number I picked is <strong>higher or lower</strong>, and you will continue guessing.</li>
+	<li>Every time you guess a wrong number&nbsp;<code>x</code>, you will pay&nbsp;<code>x</code>&nbsp;dollars. If you run out of money, <strong>you lose the game</strong>.</li>
+</ol>
+
+<p>Given a particular&nbsp;<code>n</code>, return&nbsp;<em>the minimum amount of money you need to&nbsp;<strong>guarantee a win regardless of what number I pick</strong></em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.png">
+<pre><code><strong>Input:</strong> n = 10
+<strong>Output:</strong> 16
+<strong>Explanation:</strong> The winning strategy is as follows:
+- The range is [1,10]. Guess 7.
+&nbsp;   - If this is my number, your total is $0. Otherwise, you pay $7.
+&nbsp;   - If my number is higher, the range is [8,10]. Guess 9.
+&nbsp;       - If this is my number, your total is $7. Otherwise, you pay $9.
+&nbsp;       - If my number is higher, it must be 10. Guess 10. Your total is $7 + $9 = $16.
+&nbsp;       - If my number is lower, it must be 8. Guess 8. Your total is $7 + $9 = $16.
+&nbsp;   - If my number is lower, the range is [1,6]. Guess 3.
+&nbsp;       - If this is my number, your total is $7. Otherwise, you pay $3.
+&nbsp;       - If my number is higher, the range is [4,6]. Guess 5.
+&nbsp;           - If this is my number, your total is $7 + $3 = $10. Otherwise, you pay $5.
+&nbsp;           - If my number is higher, it must be 6. Guess 6. Your total is $7 + $3 + $5 = $15.
+&nbsp;           - If my number is lower, it must be 4. Guess 4. Your total is $7 + $3 + $5 = $15.
+&nbsp;       - If my number is lower, the range is [1,2]. Guess 1.
+&nbsp;           - If this is my number, your total is $7 + $3 = $10. Otherwise, you pay $1.
+&nbsp;           - If my number is higher, it must be 2. Guess 2. Your total is $7 + $3 + $1 = $11.
+The worst case in all these scenarios is that you pay $16. Hence, you only need $16 to guarantee a win.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> n = 1
+<strong>Output:</strong> 0
+<strong>Explanation:</strong>&nbsp;There is only one possible number, so you can guess 1 and not have to pay anything.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> n = 2
+<strong>Output:</strong> 1
+<strong>Explanation:</strong>&nbsp;There are two possible numbers, 1 and 2.
+- Guess 1.
+&nbsp;   - If this is my number, your total is $0. Otherwise, you pay $1.
+&nbsp;   - If my number is higher, it must be 2. Guess 2. Your total is $1.
+The worst case is that you pay $1.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;= 200</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/guess-number-higher-or-lower-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/guess-number-higher-or-lower-ii/">Solutions</a>
+    </div>
+</body>
+</html>

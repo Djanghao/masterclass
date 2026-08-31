@@ -1,0 +1,42 @@
+# Concise Rust Solution: Runtime O(N); Space O(SQRT(N))
+
+**Author:** xiaoping3418
+**Votes:** 1
+**Link:** [https://leetcode.com/problems/reverse-nodes-in-even-length-groups/solutions/2301832/](https://leetcode.com/problems/reverse-nodes-in-even-length-groups/solutions/2301832/)
+
+---
+
+~~~
+impl Solution {
+    pub fn reverse_even_length_groups(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        let mut head = head;
+        let mut data = vec![];
+        let mut ret = None;
+        let mut tail = &mut ret;
+        let mut sz = 1usize;
+        
+        while let Some(mut node) = head {
+            head = node.next.take();
+            node.next = None;
+            data.push(node);
+            if data.len() == sz {
+                if sz % 2 == 0 { data.reverse(); }
+                for p in data {
+                    tail = &mut tail.insert(p).next;
+                }
+                data = vec![];
+                sz += 1;
+            }
+        }
+        
+        if data.len() > 0 {
+            if data.len() % 2 == 0 { data.reverse(); }
+            for p in data {
+                tail = &mut tail.insert(p).next;
+            }
+        }
+        
+        ret
+    }
+}
+~~~

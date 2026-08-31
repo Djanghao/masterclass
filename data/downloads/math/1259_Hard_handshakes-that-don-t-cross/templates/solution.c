@@ -1,0 +1,3 @@
+int numberOfWays(int numPeople) {
+    
+}

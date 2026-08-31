@@ -1,0 +1,3 @@
+char* betterCompression(char* compressed) {
+    
+}

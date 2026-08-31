@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2558. Take Gifts From the Richest Pile</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/take-gifts-from-the-richest-pile/">2558. Take Gifts From the Richest Pile</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>839</td>
+            <td>81</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/heap-priority-queue"><code>heap-priority-queue</code></a> | <a href="https://leetcode.com/tag/simulation"><code>simulation</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code> | <code>de-shaw</code></p>
+    </details>
+
+    <p>You are given an integer array <code>gifts</code> denoting the number of gifts in various piles. Every second, you do the following:</p>
+
+<ul>
+	<li>Choose the pile with the maximum number of gifts.</li>
+	<li>If there is more than one pile with the maximum number of gifts, choose any.</li>
+	<li>Reduce the number of gifts in the pile to the floor of the square root of the original number of gifts in the pile.</li>
+</ul>
+
+<p>Return <em>the number of gifts remaining after </em><code>k</code><em> seconds.</em></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> gifts = [25,64,9,4,100], k = 4
+<strong>Output:</strong> 29
+<strong>Explanation:</strong> 
+The gifts are taken in the following way:
+- In the first second, the last pile is chosen and 10 gifts are left behind.
+- Then the second pile is chosen and 8 gifts are left behind.
+- After that the first pile is chosen and 5 gifts are left behind.
+- Finally, the last pile is chosen again and 3 gifts are left behind.
+The final remaining gifts are [5,8,9,4,3], so the total number of gifts remaining is 29.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> gifts = [1,1,1,1], k = 4
+<strong>Output:</strong> 4
+<strong>Explanation:</strong> 
+In this case, regardless which pile you choose, you have to leave behind 1 gift in each pile. 
+That is, you can&#39;t take any pile with you. 
+So, the total gifts remaining are 4.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= gifts.length &lt;= 10<sup>3</sup></code></li>
+	<li><code>1 &lt;= gifts[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>1 &lt;= k &lt;= 10<sup>3</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/take-gifts-from-the-richest-pile/">Submissions</a>
+        <a href="https://leetcode.com/problems/take-gifts-from-the-richest-pile/">Solutions</a>
+    </div>
+</body>
+</html>

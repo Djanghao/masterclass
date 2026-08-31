@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2051. The Category of Each Member in the Store</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/the-category-of-each-member-in-the-store/">2051. The Category of Each Member in the Store</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>62</td>
+            <td>8</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>Members</code></p>
+
+<pre><code>+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| member_id   | int     |
+| name        | varchar |
++-------------+---------+
+member_id is the column with unique values for this table.
+Each row of this table indicates the name and the ID of a member.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Visits</code></p>
+
+<pre><code>+-------------+------+
+| Column Name | Type |
++-------------+------+
+| visit_id    | int  |
+| member_id   | int  |
+| visit_date  | date |
++-------------+------+
+visit_id is the column with unique values for this table.
+member_id is a foreign key (reference column) to member_id from the Members table.
+Each row of this table contains information about the date of a visit to the store and the member who visited it.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Purchases</code></p>
+
+<pre><code>+----------------+------+
+| Column Name    | Type |
++----------------+------+
+| visit_id       | int  |
+| charged_amount | int  |
++----------------+------+
+visit_id is the column with unique values for this table.
+visit_id is a foreign key (reference column) to visit_id from the Visits table.
+Each row of this table contains information about the amount charged in a visit to the store.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>A store wants to categorize its members. There are three tiers:</p>
+
+<ul>
+	<li><strong>&quot;Diamond&quot;</strong>: if the conversion rate is <strong>greater than or equal to</strong> <code>80</code>.</li>
+	<li><strong>&quot;Gold&quot;</strong>: if the conversion rate is <strong>greater than or equal to</strong> <code>50</code> and less than <code>80</code>.</li>
+	<li><strong>&quot;Silver&quot;</strong>: if the conversion rate is <strong>less than</strong> <code>50</code>.</li>
+	<li><strong>&quot;Bronze&quot;</strong>: if the member never visited the store.</li>
+</ul>
+
+<p>The <strong>conversion rate</strong> of a member is <code>(100 * total number of purchases for the member) / total number of visits for the member</code>.</p>
+
+<p>Write a solution to report the id, the name, and the category of each member.</p>
+
+<p>Return the result table in <strong>any order</strong>.</p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Members table:
++-----------+---------+
+| member_id | name    |
++-----------+---------+
+| 9         | Alice   |
+| 11        | Bob     |
+| 3         | Winston |
+| 8         | Hercy   |
+| 1         | Narihan |
++-----------+---------+
+Visits table:
++----------+-----------+------------+
+| visit_id | member_id | visit_date |
++----------+-----------+------------+
+| 22       | 11        | 2021-10-28 |
+| 16       | 11        | 2021-01-12 |
+| 18       | 9         | 2021-12-10 |
+| 19       | 3         | 2021-10-19 |
+| 12       | 11        | 2021-03-01 |
+| 17       | 8         | 2021-05-07 |
+| 21       | 9         | 2021-05-12 |
++----------+-----------+------------+
+Purchases table:
++----------+----------------+
+| visit_id | charged_amount |
++----------+----------------+
+| 12       | 2000           |
+| 18       | 9000           |
+| 17       | 7000           |
++----------+----------------+
+<strong>Output:</strong> 
++-----------+---------+----------+
+| member_id | name    | category |
++-----------+---------+----------+
+| 1         | Narihan | Bronze   |
+| 3         | Winston | Silver   |
+| 8         | Hercy   | Diamond  |
+| 9         | Alice   | Gold     |
+| 11        | Bob     | Silver   |
++-----------+---------+----------+
+<strong>Explanation:</strong> 
+- User Narihan with id = 1 did not make any visits to the store. She gets a Bronze category.
+- User Winston with id = 3 visited the store one time and did not purchase anything. The conversion rate = (100 * 0) / 1 = 0. He gets a Silver category.
+- User Hercy with id = 8 visited the store one time and purchased one time. The conversion rate = (100 * 1) / 1 = 1. He gets a Diamond category.
+- User Alice with id = 9 visited the store two times and purchased one time. The conversion rate = (100 * 1) / 2 = 50. She gets a Gold category.
+- User Bob with id = 11 visited the store three times and purchased one time. The conversion rate = (100 * 1) / 3 = 33.33. He gets a Silver category.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/the-category-of-each-member-in-the-store/">Submissions</a>
+        <a href="https://leetcode.com/problems/the-category-of-each-member-in-the-store/">Solutions</a>
+    </div>
+</body>
+</html>

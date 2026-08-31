@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2655. Find Maximal Uncovered Ranges</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-maximal-uncovered-ranges/">2655. Find Maximal Uncovered Ranges</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>32</td>
+            <td>3</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>facebook</code></p>
+    </details>
+
+    <p>You are given&nbsp;an integer <code>n</code>&nbsp;which is the length of a <strong>0-indexed</strong> array <code>nums</code>, and a <strong>0-indexed</strong> 2D-array <code>ranges</code>, which is a list of sub-ranges of <code>nums</code>&nbsp;(sub-ranges may <strong>overlap</strong>).</p>
+
+<p>Each row <code>ranges[i]</code> has exactly 2 cells:</p>
+
+<ul>
+	<li><code>ranges[i][0]</code>, which shows the start of the i<sup>th</sup> range (inclusive)</li>
+	<li><code>ranges[i][1]</code>, which shows the end of the i<sup>th</sup> range (inclusive)</li>
+</ul>
+
+<p>These ranges cover some cells of <code>nums</code>&nbsp;and leave&nbsp;some cells uncovered. Your task is to find all of the <b>uncovered </b>ranges with <strong>maximal</strong> length.</p>
+
+<p>Return <em>a 2D-array </em><code>answer</code><em> of the uncovered ranges, <strong>sorted</strong> by the starting point in <strong>ascending order</strong>.</em></p>
+
+<p>By all of the&nbsp;<strong>uncovered</strong> ranges with <strong>maximal</strong> length, we mean satisfying two conditions:</p>
+
+<ul>
+	<li>Each uncovered cell should belong to <strong>exactly</strong> one sub-range</li>
+	<li>There should <strong>not exist</strong>&nbsp;two ranges (l<sub>1</sub>, r<sub>1</sub>) and (l<sub>2</sub>, r<sub>2</sub>) such that r<sub>1 </sub>+ 1 = l<sub>2</sub></li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> n = 10, ranges = [[3,5],[7,8]]
+<strong>Output:</strong> [[0,2],[6,6],[9,9]]
+<strong>Explanation:</strong> The ranges (3, 5) and (7, 8) are covered, so if we simplify the array nums to a binary array where 0 shows an uncovered cell and 1 shows a covered cell, the array becomes [0,0,0,1,1,1,0,1,1,0] in which we can observe that the ranges (0, 2), (6, 6) and (9, 9) aren&#39;t covered.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> n = 3, ranges = [[0,2]]
+<strong>Output:</strong> []
+<strong>Explanation: </strong>In this example, the whole of the array nums is covered and there are no uncovered cells so the output is an empty array.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> n = 7, ranges = [[2,4],[0,3]]
+<strong>Output:</strong> [[5,6]]
+<strong>Explanation:</strong> The ranges (0, 3) and (2, 4) are covered, so if we simplify the array nums to a binary array where 0 shows an uncovered cell and 1 shows a covered cell, the array becomes [1,1,1,1,1,0,0] in which we can observe that the range (5, 6) is uncovered.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;=&nbsp;10<sup>9</sup></code></li>
+	<li><code>0 &lt;= ranges.length &lt;= 10<sup>6</sup></code></li>
+	<li><code>ranges[i].length = 2</code></li>
+	<li><code>0 &lt;= ranges[i][j] &lt;= n - 1</code></li>
+	<li><code>ranges[i][0] &lt;=&nbsp;ranges[i][1]</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-maximal-uncovered-ranges/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-maximal-uncovered-ranges/">Solutions</a>
+    </div>
+</body>
+</html>

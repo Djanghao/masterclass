@@ -1,0 +1,40 @@
+# Ruby solution: min and max difference between sequential stones.
+
+**Author:** user9697N
+**Votes:** 0
+**Link:** [https://leetcode.com/problems/moving-stones-until-consecutive/solutions/774825/](https://leetcode.com/problems/moving-stones-until-consecutive/solutions/774825/)
+
+---
+
+##### Leetcode: 1033. Moving Stones Until Consecutive.
+
+Maximum number of steps to make `a` and `b` consecutive is `b - a - 1`.
+First is to make order in variables `a1 < b1 < c1`, rearrange values such way, to make it convenient to work with them, reorder values in variables for example to have `a < b < c`. And calculated differences from a to b, from b to c, and min and max difference.
+
+- If all variables consecutive there is no other value but `0 == min`, and `0 == max`.
+- If two two stones of three are consecutive `min = 1`, and `max = max_difference  - 1`.
+- If there is one step gap between to stones `minimum_difference== 2`, `min = 1`, `max = min_difference - 1 + max_difference -1`.
+- And if instance is not listed above `min = 2`, and `max = min_difference - 1 + max_difference - 1`.
+
+Ruby code:
+```Ruby
+# Leetcode: 1033. Moving Stones Until Consecutive.
+# https://leetcode.com/problems/moving-stones-until-consecutive/
+# Runtime: 40 ms, faster than 28.57% of Ruby online submissions for Moving Stones Until Consecutive.
+# Memory Usage: 9.5 MB, less than 100.00% of Ruby online submissions for Moving Stones Until Consecutive.
+# @param {Integer} a
+# @param {Integer} b
+# @param {Integer} c
+# @return {Integer[]}
+def num_moves_stones(a, b, c)
+    a,b,c = [a,b,c].sort
+    return [0,0] if a+1 == b && b+1 == c
+    da = b - a
+    db = c - b
+    max = [da,db].max
+    min = [da,db].min
+    return [1,max-1] if 1 == min
+    return [1, min-1 + max - 1] if 2 == min
+    [2,min-1 + max - 1]
+end
+```

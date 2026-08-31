@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1040. Moving Stones Until Consecutive II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/moving-stones-until-consecutive-ii/">1040. Moving Stones Until Consecutive II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>405</td>
+            <td>739</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/sliding-window"><code>sliding-window</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>facebook</code></p>
+    </details>
+
+    <p>There are some stones in different positions on the X-axis. You are given an integer array <code>stones</code>, the positions of the stones.</p>
+
+<p>Call a stone an <strong>endpoint stone</strong> if it has the smallest or largest position. In one move, you pick up an <strong>endpoint stone</strong> and move it to an unoccupied position so that it is no longer an <strong>endpoint stone</strong>.</p>
+
+<ul>
+	<li>In particular, if the stones are at say, <code>stones = [1,2,5]</code>, you cannot move the endpoint stone at position <code>5</code>, since moving it to any position (such as <code>0</code>, or <code>3</code>) will still keep that stone as an endpoint stone.</li>
+</ul>
+
+<p>The game ends when you cannot make any more moves (i.e., the stones are in three consecutive positions).</p>
+
+<p>Return <em>an integer array </em><code>answer</code><em> of length </em><code>2</code><em> where</em>:</p>
+
+<ul>
+	<li><code>answer[0]</code> <em>is the minimum number of moves you can play, and</em></li>
+	<li><code>answer[1]</code> <em>is the maximum number of moves you can play</em>.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> stones = [7,4,9]
+<strong>Output:</strong> [1,2]
+<strong>Explanation:</strong> We can move 4 -&gt; 8 for one move to finish the game.
+Or, we can move 9 -&gt; 5, 4 -&gt; 6 for two moves to finish the game.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> stones = [6,5,4,3,10]
+<strong>Output:</strong> [2,3]
+<strong>Explanation:</strong> We can move 3 -&gt; 8 then 10 -&gt; 7 to finish the game.
+Or, we can move 3 -&gt; 7, 4 -&gt; 8, 5 -&gt; 9 to finish the game.
+Notice we cannot move 10 -&gt; 2 to finish the game, because that would be an illegal move.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>3 &lt;= stones.length &lt;= 10<sup>4</sup></code></li>
+	<li><code>1 &lt;= stones[i] &lt;= 10<sup>9</sup></code></li>
+	<li>All the values of <code>stones</code> are <strong>unique</strong>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/moving-stones-until-consecutive-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/moving-stones-until-consecutive-ii/">Solutions</a>
+    </div>
+</body>
+</html>

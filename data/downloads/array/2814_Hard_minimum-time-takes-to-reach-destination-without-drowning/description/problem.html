@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2814. Minimum Time Takes to Reach Destination Without Drowning</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-time-takes-to-reach-destination-without-drowning/">2814. Minimum Time Takes to Reach Destination Without Drowning</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>25</td>
+            <td>2</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/breadth-first-search"><code>breadth-first-search</code></a> | <a href="https://leetcode.com/tag/matrix"><code>matrix</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>wix</code></p>
+    </details>
+
+    <p>You are given an <code>n * m</code> <strong>0-indexed</strong> grid of string <code>land</code>. Right now, you are standing at the cell that contains <code>&quot;S&quot;</code>, and you want to get to the cell containing <code>&quot;D&quot;</code>. There are three other types of cells in this land:</p>
+
+<ul>
+	<li><code>&quot;.&quot;</code>: These cells are empty.</li>
+	<li><code>&quot;X&quot;</code>: These cells are stone.</li>
+	<li><code>&quot;*&quot;</code>: These cells are flooded.</li>
+</ul>
+
+<p>At each second, you can move to a cell that shares a side with your current cell (if it exists). Also, at each second, every <strong>empty cell</strong> that shares a side with a flooded cell becomes flooded as well.<br />
+There are two problems ahead of your journey:</p>
+
+<ul>
+	<li>You can&#39;t step on stone cells.</li>
+	<li>You can&#39;t step on flooded cells since you will drown (also, you can&#39;t step on a cell that will be flooded at the same time as you step on it).</li>
+</ul>
+
+<p>Return<em> the <strong>minimum</strong> time it takes you to reach the destination in seconds, or </em><code>-1</code><em> if it is impossible.</em></p>
+
+<p><strong>Note</strong> that the destination will never be flooded.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> land = [[&quot;D&quot;,&quot;.&quot;,&quot;*&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;S&quot;,&quot;.&quot;]]
+<strong>Output:</strong> 3
+<strong>Explanation: </strong>The picture below shows the simulation of the land second by second. The blue cells are flooded, and the gray cells are stone.
+Picture (0) shows the initial state and picture (3) shows the final state when we reach destination. As you see, it takes us 3 second to reach destination and the answer would be 3.
+It can be shown that 3 is the minimum time needed to reach from S to D.</code></pre>
+
+<p><img src="./images/0.png"></p>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> land = [[&quot;D&quot;,&quot;X&quot;,&quot;*&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;S&quot;]]
+<strong>Output:</strong> -1
+<strong>Explanation:</strong> The picture below shows the simulation of the land second by second. The blue cells are flooded, and the gray cells are stone.
+Picture (0) shows the initial state. As you see, no matter which paths we choose, we will drown at the 3<sup>rd</sup>&nbsp;second. Also the minimum path takes us 4 seconds to reach from S to D.
+So the answer would be -1.</code></pre>
+
+<p><img src="./images/1.png"></p>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> land = [[&quot;D&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;*&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;X&quot;,&quot;.&quot;,&quot;X&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;S&quot;,&quot;.&quot;]]
+<strong>Output:</strong> 6
+<strong>Explanation:</strong> It can be shown that we can reach destination in 6 seconds. Also it can be shown that 6 is the minimum seconds one need to reach from S to D.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>2 &lt;= n, m &lt;= 100</code></li>
+	<li><code>land</code>&nbsp;consists only of&nbsp;<code>&quot;S&quot;</code>, <code>&quot;D&quot;</code>, <code>&quot;.&quot;</code>, <code>&quot;*&quot;</code> and&nbsp;<code>&quot;X&quot;</code>.</li>
+	<li><strong>Exactly</strong> one of the cells is equal to <code>&quot;S&quot;</code>.</li>
+	<li><strong>Exactly</strong> one of the cells is equal to <code>&quot;D&quot;</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-time-takes-to-reach-destination-without-drowning/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-time-takes-to-reach-destination-without-drowning/">Solutions</a>
+    </div>
+</body>
+</html>

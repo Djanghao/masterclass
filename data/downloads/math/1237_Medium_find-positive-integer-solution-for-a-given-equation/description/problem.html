@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1237. Find Positive Integer Solution for a Given Equation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-positive-integer-solution-for-a-given-equation/">1237. Find Positive Integer Solution for a Given Equation</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>539</td>
+            <td>1444</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/two-pointers"><code>two-pointers</code></a> | <a href="https://leetcode.com/tag/binary-search"><code>binary-search</code></a> | <a href="https://leetcode.com/tag/interactive"><code>interactive</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>tiktok</code> | <code>google</code></p>
+    </details>
+
+    <p>Given a callable function <code>f(x, y)</code> <strong>with a hidden formula</strong> and a value <code>z</code>, reverse engineer the formula and return <em>all positive integer pairs </em><code>x</code><em> and </em><code>y</code><em> where </em><code>f(x,y) == z</code>. You may return the pairs in any order.</p>
+
+<p>While the exact formula is hidden, the function is monotonically increasing, i.e.:</p>
+
+<ul>
+	<li><code>f(x, y) &lt; f(x + 1, y)</code></li>
+	<li><code>f(x, y) &lt; f(x, y + 1)</code></li>
+</ul>
+
+<p>The function interface is defined like this:</p>
+
+<pre><code>interface CustomFunction {
+public:
+  // Returns some positive integer f(x, y) for two positive integers x and y based on a formula.
+  int f(int x, int y);
+};</code></pre>
+
+<p>We will judge your solution as follows:</p>
+
+<ul>
+	<li>The judge has a list of <code>9</code> hidden implementations of <code>CustomFunction</code>, along with a way to generate an <strong>answer key</strong> of all valid pairs for a specific <code>z</code>.</li>
+	<li>The judge will receive two inputs: a <code>function_id</code> (to determine which implementation to test your code with), and the target <code>z</code>.</li>
+	<li>The judge will call your <code>findSolution</code> and compare your results with the <strong>answer key</strong>.</li>
+	<li>If your results match the <strong>answer key</strong>, your solution will be <code>Accepted</code>.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> function_id = 1, z = 5
+<strong>Output:</strong> [[1,4],[2,3],[3,2],[4,1]]
+<strong>Explanation:</strong> The hidden formula for function_id = 1 is f(x, y) = x + y.
+The following positive integer values of x and y make f(x, y) equal to 5:
+x=1, y=4 -&gt; f(1, 4) = 1 + 4 = 5.
+x=2, y=3 -&gt; f(2, 3) = 2 + 3 = 5.
+x=3, y=2 -&gt; f(3, 2) = 3 + 2 = 5.
+x=4, y=1 -&gt; f(4, 1) = 4 + 1 = 5.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> function_id = 2, z = 5
+<strong>Output:</strong> [[1,5],[5,1]]
+<strong>Explanation:</strong> The hidden formula for function_id = 2 is f(x, y) = x * y.
+The following positive integer values of x and y make f(x, y) equal to 5:
+x=1, y=5 -&gt; f(1, 5) = 1 * 5 = 5.
+x=5, y=1 -&gt; f(5, 1) = 5 * 1 = 5.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= function_id &lt;= 9</code></li>
+	<li><code>1 &lt;= z &lt;= 100</code></li>
+	<li>It is guaranteed that the solutions of <code>f(x, y) == z</code> will be in the range <code>1 &lt;= x, y &lt;= 1000</code>.</li>
+	<li>It is also guaranteed that <code>f(x, y)</code> will fit in 32 bit signed integer if <code>1 &lt;= x, y &lt;= 1000</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-positive-integer-solution-for-a-given-equation/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-positive-integer-solution-for-a-given-equation/">Solutions</a>
+    </div>
+</body>
+</html>

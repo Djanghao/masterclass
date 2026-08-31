@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2754. Bind Function to Context</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/bind-function-to-context/">2754. Bind Function to Context</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>JavaScript</td>
+            <td>Medium</td>
+            <td>17</td>
+            <td>0</td>
+        </tr>
+    </table>
+
+    
+
+    
+
+    <p>Enhance all functions to have the&nbsp;<code>bindPolyfill</code>&nbsp;method. When&nbsp;<code>bindPolyfill</code>&nbsp;is called with a passed&nbsp;object <code>obj</code>, that object becomes the&nbsp;<code>this</code>&nbsp;context for the function.</p>
+
+<p>For example, if you had the code:</p>
+
+<pre><code>function f() {
+  console.log(&#39;My context is &#39; + this.ctx);
+}
+f();</code></pre>
+
+<p>The output would be <code>&quot;My context is undefined&quot;</code>. However, if you bound the function:</p>
+
+<pre><code>function f() {
+  console.log(&#39;My context is &#39; + this.ctx);
+}
+const boundFunc = f.boundPolyfill({ &quot;ctx&quot;: &quot;My Object&quot; })
+boundFunc();</code></pre>
+
+<p>The output should be&nbsp;<code>&quot;My context is My Object&quot;</code>.</p>
+
+<p>You may assume that a single non-null object will be passed to the&nbsp;<code>bindPolyfill</code> method.</p>
+
+<p>Please solve it without the built-in&nbsp;<code>Function.bind</code> method.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+fn = function f(multiplier) { 
+&nbsp; return this.x * multiplier; 
+}
+obj = {&quot;x&quot;: 10}
+inputs = [5]
+<strong>Output:</strong> 50
+<strong>Explanation:</strong>
+const boundFunc = f.bindPolyfill({&quot;x&quot;: 10});
+boundFunc(5); // 50
+A multiplier of 5 is passed as a parameter.
+The context is set to {&quot;x&quot;: 10}.
+Multiplying those two numbers yields 50.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+fn = function speak() { 
+&nbsp; return &quot;My name is &quot; + this.name; 
+}
+obj = {&quot;name&quot;: &quot;Kathy&quot;}
+inputs = []
+<strong>Output:</strong> &quot;My name is Kathy&quot;
+<strong>Explanation:</strong>
+const boundFunc = f.bindPolyfill({&quot;name&quot;: &quot;Kathy&quot;});
+boundFunc(); // &quot;My name is Kathy&quot;</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>obj</code> is a non-null object</li>
+	<li><code>0 &lt;= inputs.length &lt;= 100</code></li>
+</ul>
+
+<p>&nbsp;</p>
+<strong>Can you solve it without using any built-in methods?</strong>
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/bind-function-to-context/">Submissions</a>
+        <a href="https://leetcode.com/problems/bind-function-to-context/">Solutions</a>
+    </div>
+</body>
+</html>

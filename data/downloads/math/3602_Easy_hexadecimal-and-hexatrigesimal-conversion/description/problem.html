@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3602. Hexadecimal and Hexatrigesimal Conversion</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/hexadecimal-and-hexatrigesimal-conversion/">3602. Hexadecimal and Hexatrigesimal Conversion</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>44</td>
+            <td>0</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/string"><code>string</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>zopsmart</code></p>
+    </details>
+
+    <p>You are given an integer <code>n</code>.</p>
+
+<p>Return the concatenation of the <strong>hexadecimal</strong> representation of <code>n<sup>2</sup></code> and the <strong>hexatrigesimal</strong> representation of <code>n<sup>3</sup></code>.</p>
+
+<p>A <strong>hexadecimal</strong> number is defined as a base-16 numeral system that uses the digits <code>0 &ndash; 9</code> and the uppercase letters <code>A - F</code> to represent values from 0 to 15.</p>
+
+<p>A <strong>hexatrigesimal</strong> number is defined as a base-36 numeral system that uses the digits <code>0 &ndash; 9</code> and the uppercase letters <code>A - Z</code> to represent values from 0 to 35.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 13</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;A91P1&quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li><code>n<sup>2</sup> = 13 * 13 = 169</code>. In hexadecimal, it converts to <code>(10 * 16) + 9 = 169</code>, which corresponds to <code>&quot;A9&quot;</code>.</li>
+	<li><code>n<sup>3</sup> = 13 * 13 * 13 = 2197</code>. In hexatrigesimal, it converts to <code>(1 * 36<sup>2</sup>) + (25 * 36) + 1 = 2197</code>, which corresponds to <code>&quot;1P1&quot;</code>.</li>
+	<li>Concatenating both results gives <code>&quot;A9&quot; + &quot;1P1&quot; = &quot;A91P1&quot;</code>.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 36</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;5101000&quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li><code>n<sup>2</sup> = 36 * 36 = 1296</code>. In hexadecimal, it converts to <code>(5 * 16<sup>2</sup>) + (1 * 16) + 0 = 1296</code>, which corresponds to <code>&quot;510&quot;</code>.</li>
+	<li><code>n<sup>3</sup> = 36 * 36 * 36 = 46656</code>. In hexatrigesimal, it converts to <code>(1 * 36<sup>3</sup>) + (0 * 36<sup>2</sup>) + (0 * 36) + 0 = 46656</code>, which corresponds to <code>&quot;1000&quot;</code>.</li>
+	<li>Concatenating both results gives <code>&quot;510&quot; + &quot;1000&quot; = &quot;5101000&quot;</code>.</li>
+</ul>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;= 1000</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/hexadecimal-and-hexatrigesimal-conversion/">Submissions</a>
+        <a href="https://leetcode.com/problems/hexadecimal-and-hexatrigesimal-conversion/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3435. Frequencies of Shortest Supersequences</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/frequencies-of-shortest-supersequences/">3435. Frequencies of Shortest Supersequences</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>27</td>
+            <td>8</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/string"><code>string</code></a> | <a href="https://leetcode.com/tag/bit-manipulation"><code>bit-manipulation</code></a> | <a href="https://leetcode.com/tag/graph"><code>graph</code></a> | <a href="https://leetcode.com/tag/topological-sort"><code>topological-sort</code></a> | <a href="https://leetcode.com/tag/enumeration"><code>enumeration</code></a></p>
+    </details>
+
+    
+
+    <p>You are given an array of strings <code>words</code>. Find all <strong>shortest common supersequences (SCS)</strong> of <code><font face="monospace">words</font></code> that are not <span data-keyword="permutation-string">permutations</span> of each other.</p>
+
+<p>A <strong>shortest common supersequence</strong> is a string of <strong>minimum</strong> length that contains each string in <code>words</code> as a <span data-keyword="subsequence-string-nonempty">subsequence</span>.</p>
+
+<p>Return a 2D array of integers <code>freqs</code> that represent all the SCSs. Each <code>freqs[i]</code> is an array of size 26, representing the frequency of each letter in the lowercase English alphabet for a single SCS. You may return the frequency arrays in any order.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">words = [&quot;ab&quot;,&quot;ba&quot;]</span></p>
+
+<p><strong>Output: </strong>[[1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]</p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The two SCSs are <code>&quot;aba&quot;</code> and <code>&quot;bab&quot;</code>. The output is the letter frequencies for each one.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">words = [&quot;aa&quot;,&quot;ac&quot;]</span></p>
+
+<p><strong>Output: </strong>[[2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]</p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The two SCSs are <code>&quot;aac&quot;</code> and <code>&quot;aca&quot;</code>. Since they are permutations of each other, keep only <code>&quot;aac&quot;</code>.</p>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">words = </span>[&quot;aa&quot;,&quot;bb&quot;,&quot;cc&quot;]</p>
+
+<p><strong>Output: </strong>[[2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]</p>
+
+<p><strong>Explanation:</strong></p>
+
+<p><code>&quot;aabbcc&quot;</code> and all its permutations are SCSs.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= words.length &lt;= 256</code></li>
+	<li><code>words[i].length == 2</code></li>
+	<li>All strings in <code>words</code> will altogether be composed of no more than 16 unique lowercase letters.</li>
+	<li>All strings in <code>words</code> are unique.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/frequencies-of-shortest-supersequences/">Submissions</a>
+        <a href="https://leetcode.com/problems/frequencies-of-shortest-supersequences/">Solutions</a>
+    </div>
+</body>
+</html>

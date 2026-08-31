@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2142. The Number of Passengers in Each Bus I</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/the-number-of-passengers-in-each-bus-i/">2142. The Number of Passengers in Each Bus I</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>116</td>
+            <td>12</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>Buses</code></p>
+
+<pre><code>+--------------+------+
+| Column Name  | Type |
++--------------+------+
+| bus_id       | int  |
+| arrival_time | int  |
++--------------+------+
+bus_id is the column with unique values for this table.
+Each row of this table contains information about the arrival time of a bus at the LeetCode station.
+No two buses will arrive at the same time.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Passengers</code></p>
+
+<pre><code>+--------------+------+
+| Column Name  | Type |
++--------------+------+
+| passenger_id | int  |
+| arrival_time | int  |
++--------------+------+
+passenger_id is the column with unique values for this table.
+Each row of this table contains information about the arrival time of a passenger at the LeetCode station.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Buses and passengers arrive at the LeetCode station. If a bus arrives at the station at time <code>t<sub>bus</sub></code> and a passenger arrived at time <code>t<sub>passenger</sub></code> where <code>t<sub>passenger</sub> &lt;= t<sub>bus</sub></code> and the passenger did not catch any bus, the passenger will use that bus.</p>
+
+<p>Write a solution&nbsp;to report the number of users that used each bus.</p>
+
+<p>Return the result table ordered by <code>bus_id</code> in <strong>ascending order</strong>.</p>
+
+<p>The&nbsp;result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Buses table:
++--------+--------------+
+| bus_id | arrival_time |
++--------+--------------+
+| 1      | 2            |
+| 2      | 4            |
+| 3      | 7            |
++--------+--------------+
+Passengers table:
++--------------+--------------+
+| passenger_id | arrival_time |
++--------------+--------------+
+| 11           | 1            |
+| 12           | 5            |
+| 13           | 6            |
+| 14           | 7            |
++--------------+--------------+
+<strong>Output:</strong> 
++--------+----------------+
+| bus_id | passengers_cnt |
++--------+----------------+
+| 1      | 1              |
+| 2      | 0              |
+| 3      | 3              |
++--------+----------------+
+<strong>Explanation:</strong> 
+- Passenger 11 arrives at time 1.
+- Bus 1 arrives at time 2 and collects passenger 11.
+
+- Bus 2 arrives at time 4 and does not collect any passengers.
+
+- Passenger 12 arrives at time 5.
+- Passenger 13 arrives at time 6.
+- Passenger 14 arrives at time 7.
+- Bus 3 arrives at time 7 and collects passengers 12, 13, and 14.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/the-number-of-passengers-in-each-bus-i/">Submissions</a>
+        <a href="https://leetcode.com/problems/the-number-of-passengers-in-each-bus-i/">Solutions</a>
+    </div>
+</body>
+</html>

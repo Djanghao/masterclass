@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2632. Curry</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/curry/">2632. Curry</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>JavaScript</td>
+            <td>Medium</td>
+            <td>348</td>
+            <td>35</td>
+        </tr>
+    </table>
+
+    
+
+    
+
+    <p>Given a function&nbsp;<code>fn</code>,&nbsp;return&nbsp;a&nbsp;<strong>curried</strong>&nbsp;version of that function.</p>
+
+<p>A&nbsp;<strong>curried</strong>&nbsp;function is a function that accepts fewer or an equal number of&nbsp;parameters as the original function and returns either another&nbsp;<strong>curried</strong>&nbsp;function or the same value the original function would have returned.</p>
+
+<p>In practical terms, if you called the original function like&nbsp;<code>sum(1,2,3)</code>, you would call the&nbsp;<strong>curried</strong>&nbsp;version like <code>csum(1)(2)(3)<font face="sans-serif, Arial, Verdana, Trebuchet MS">,&nbsp;</font></code><code>csum(1)(2,3)</code>,&nbsp;<code>csum(1,2)(3)</code>, or&nbsp;<code>csum(1,2,3)</code>. All these methods of calling the <strong>curried</strong> function&nbsp;should return the same value as the original.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+fn = function sum(a, b, c) { return a + b + c; }
+inputs = [[1],[2],[3]]
+<strong>Output:</strong> 6
+<strong>Explanation:</strong>
+The code being executed is:
+const curriedSum = curry(fn);
+curriedSum(1)(2)(3) === 6;
+curriedSum(1)(2)(3) should return the same value as sum(1, 2, 3).</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong>
+fn = function sum(a, b, c) { return a + b + c; }
+inputs = [[1,2],[3]]
+<strong>Output:</strong> 6
+<strong>Explanation:</strong>
+curriedSum(1, 2)(3) should return the same value as sum(1, 2, 3).</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong>
+fn = function sum(a, b, c) { return a + b + c; }
+inputs = [[],[],[1,2,3]]
+<strong>Output:</strong> 6
+<strong>Explanation:</strong>
+You should be able to pass the parameters in any way, including all at once or none at all.
+curriedSum()()(1, 2, 3) should return the same value as sum(1, 2, 3).</code></pre>
+
+<p><strong class="example">Example 4:</strong></p>
+
+<pre><code><strong>Input:</strong>
+fn = function life() { return 42; }
+inputs = [[]]
+<strong>Output:</strong> 42
+<strong>Explanation:</strong>
+currying a function that accepts zero parameters should effectively do nothing.
+curriedLife() === 42</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= inputs.length &lt;= 1000</code></li>
+	<li><code>0 &lt;= inputs[i][j] &lt;= 10<sup>5</sup></code></li>
+	<li><code>0 &lt;= fn.length &lt;= 1000</code></li>
+	<li><code>inputs.flat().length == fn.length</code></li>
+	<li>function parameters explicitly defined</li>
+	<li>If <code>fn.length &gt; 0</code>&nbsp;then the last array in <code>inputs</code> is not empty</li>
+	<li>If&nbsp;<code>fn.length === 0</code> then <code>inputs.length === 1</code>&nbsp;</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/curry/">Submissions</a>
+        <a href="https://leetcode.com/problems/curry/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1476. Subrectangle Queries</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/subrectangle-queries/">1476. Subrectangle Queries</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>661</td>
+            <td>1460</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/design"><code>design</code></a> | <a href="https://leetcode.com/tag/matrix"><code>matrix</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code> | <code>nuro</code></p>
+    </details>
+
+    <p>Implement the class <code>SubrectangleQueries</code>&nbsp;which receives a <code>rows x cols</code> rectangle as a matrix of integers in the constructor and supports two methods:</p>
+
+<p>1.<code>&nbsp;updateSubrectangle(int row1, int col1, int row2, int col2, int newValue)</code></p>
+
+<ul>
+	<li>Updates all values with <code>newValue</code> in the subrectangle whose upper left coordinate is <code>(row1,col1)</code> and bottom right coordinate is <code>(row2,col2)</code>.</li>
+</ul>
+
+<p>2.<code>&nbsp;getValue(int row, int col)</code></p>
+
+<ul>
+	<li>Returns the current value of the coordinate <code>(row,col)</code> from&nbsp;the rectangle.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input</strong>
+[&quot;SubrectangleQueries&quot;,&quot;getValue&quot;,&quot;updateSubrectangle&quot;,&quot;getValue&quot;,&quot;getValue&quot;,&quot;updateSubrectangle&quot;,&quot;getValue&quot;,&quot;getValue&quot;]
+[[[[1,2,1],[4,3,4],[3,2,1],[1,1,1]]],[0,2],[0,0,3,2,5],[0,2],[3,1],[3,0,3,2,10],[3,1],[0,2]]
+<strong>Output</strong>
+[null,1,null,5,5,null,10,5]
+<strong>Explanation</strong>
+SubrectangleQueries subrectangleQueries = new SubrectangleQueries([[1,2,1],[4,3,4],[3,2,1],[1,1,1]]);  
+// The initial rectangle (4x3) looks like:
+// 1 2 1
+// 4 3 4
+// 3 2 1
+// 1 1 1
+subrectangleQueries.getValue(0, 2); // return 1
+subrectangleQueries.updateSubrectangle(0, 0, 3, 2, 5);
+// After this update the rectangle looks like:
+// 5 5 5
+// 5 5 5
+// 5 5 5
+// 5 5 5 
+subrectangleQueries.getValue(0, 2); // return 5
+subrectangleQueries.getValue(3, 1); // return 5
+subrectangleQueries.updateSubrectangle(3, 0, 3, 2, 10);
+// After this update the rectangle looks like:
+// 5   5   5
+// 5   5   5
+// 5   5   5
+// 10  10  10 
+subrectangleQueries.getValue(3, 1); // return 10
+subrectangleQueries.getValue(0, 2); // return 5</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input</strong>
+[&quot;SubrectangleQueries&quot;,&quot;getValue&quot;,&quot;updateSubrectangle&quot;,&quot;getValue&quot;,&quot;getValue&quot;,&quot;updateSubrectangle&quot;,&quot;getValue&quot;]
+[[[[1,1,1],[2,2,2],[3,3,3]]],[0,0],[0,0,2,2,100],[0,0],[2,2],[1,1,2,2,20],[2,2]]
+<strong>Output</strong>
+[null,1,null,100,100,null,20]
+<strong>Explanation</strong>
+SubrectangleQueries subrectangleQueries = new SubrectangleQueries([[1,1,1],[2,2,2],[3,3,3]]);
+subrectangleQueries.getValue(0, 0); // return 1
+subrectangleQueries.updateSubrectangle(0, 0, 2, 2, 100);
+subrectangleQueries.getValue(0, 0); // return 100
+subrectangleQueries.getValue(2, 2); // return 100
+subrectangleQueries.updateSubrectangle(1, 1, 2, 2, 20);
+subrectangleQueries.getValue(2, 2); // return 20</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li>There will be at most <code><font face="monospace">500</font></code>&nbsp;operations considering both methods:&nbsp;<code>updateSubrectangle</code> and <code>getValue</code>.</li>
+	<li><code>1 &lt;= rows, cols &lt;= 100</code></li>
+	<li><code>rows ==&nbsp;rectangle.length</code></li>
+	<li><code>cols == rectangle[i].length</code></li>
+	<li><code>0 &lt;= row1 &lt;= row2 &lt; rows</code></li>
+	<li><code>0 &lt;= col1 &lt;= col2 &lt; cols</code></li>
+	<li><code>1 &lt;= newValue, rectangle[i][j] &lt;= 10^9</code></li>
+	<li><code>0 &lt;= row &lt; rows</code></li>
+	<li><code>0 &lt;= col &lt; cols</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/subrectangle-queries/">Submissions</a>
+        <a href="https://leetcode.com/problems/subrectangle-queries/">Solutions</a>
+    </div>
+</body>
+</html>

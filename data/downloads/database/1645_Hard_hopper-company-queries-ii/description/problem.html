@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1645. Hopper Company Queries II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/hopper-company-queries-ii/">1645. Hopper Company Queries II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Hard</td>
+            <td>64</td>
+            <td>18</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>uber</code></p>
+    </details>
+
+    <p>Table: <code>Drivers</code></p>
+
+<pre><code>+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| driver_id   | int     |
+| join_date   | date    |
++-------------+---------+
+driver_id is the column with unique values for this table.
+Each row of this table contains the driver&#39;s ID and the date they joined the Hopper company.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Rides</code></p>
+
+<pre><code>+--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| ride_id      | int     |
+| user_id      | int     |
+| requested_at | date    |
++--------------+---------+
+ride_id is the column with unique values for this table.
+Each row of this table contains the ID of a ride, the user&#39;s ID that requested it, and the day they requested it.
+There may be some ride requests in this table that were not accepted.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>AcceptedRides</code></p>
+
+<pre><code>+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| ride_id       | int     |
+| driver_id     | int     |
+| ride_distance | int     |
+| ride_duration | int     |
++---------------+---------+
+ride_id is the column with unique values for this table.
+Each row of this table contains some information about an accepted ride.
+It is guaranteed that each accepted ride exists in the Rides table.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Write a solution to report the <strong>percentage</strong> of working drivers (<code>working_percentage</code>) for each month of <strong>2020</strong> where:</p>
+<img src="./images/0.png">
+<p><strong>Note</strong> that if the number of available drivers during a month is zero, we consider the <code>working_percentage</code> to be <code>0</code>.</p>
+
+<p>Return the result table ordered by <code>month</code> in <strong>ascending</strong> order, where <code>month</code> is the month&#39;s number (January is <code>1</code>, February is <code>2</code>, etc.). Round <code>working_percentage</code> to the nearest <strong>2 decimal places</strong>.</p>
+
+<p>The&nbsp;result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Drivers table:
++-----------+------------+
+| driver_id | join_date  |
++-----------+------------+
+| 10        | 2019-12-10 |
+| 8         | 2020-1-13  |
+| 5         | 2020-2-16  |
+| 7         | 2020-3-8   |
+| 4         | 2020-5-17  |
+| 1         | 2020-10-24 |
+| 6         | 2021-1-5   |
++-----------+------------+
+Rides table:
++---------+---------+--------------+
+| ride_id | user_id | requested_at |
++---------+---------+--------------+
+| 6       | 75      | 2019-12-9    |
+| 1       | 54      | 2020-2-9     |
+| 10      | 63      | 2020-3-4     |
+| 19      | 39      | 2020-4-6     |
+| 3       | 41      | 2020-6-3     |
+| 13      | 52      | 2020-6-22    |
+| 7       | 69      | 2020-7-16    |
+| 17      | 70      | 2020-8-25    |
+| 20      | 81      | 2020-11-2    |
+| 5       | 57      | 2020-11-9    |
+| 2       | 42      | 2020-12-9    |
+| 11      | 68      | 2021-1-11    |
+| 15      | 32      | 2021-1-17    |
+| 12      | 11      | 2021-1-19    |
+| 14      | 18      | 2021-1-27    |
++---------+---------+--------------+
+AcceptedRides table:
++---------+-----------+---------------+---------------+
+| ride_id | driver_id | ride_distance | ride_duration |
++---------+-----------+---------------+---------------+
+| 10      | 10        | 63            | 38            |
+| 13      | 10        | 73            | 96            |
+| 7       | 8         | 100           | 28            |
+| 17      | 7         | 119           | 68            |
+| 20      | 1         | 121           | 92            |
+| 5       | 7         | 42            | 101           |
+| 2       | 4         | 6             | 38            |
+| 11      | 8         | 37            | 43            |
+| 15      | 8         | 108           | 82            |
+| 12      | 8         | 38            | 34            |
+| 14      | 1         | 90            | 74            |
++---------+-----------+---------------+---------------+
+<strong>Output:</strong> 
++-------+--------------------+
+| month | working_percentage |
++-------+--------------------+
+| 1     | 0.00               |
+| 2     | 0.00               |
+| 3     | 25.00              |
+| 4     | 0.00               |
+| 5     | 0.00               |
+| 6     | 20.00              |
+| 7     | 20.00              |
+| 8     | 20.00              |
+| 9     | 0.00               |
+| 10    | 0.00               |
+| 11    | 33.33              |
+| 12    | 16.67              |
++-------+--------------------+
+<strong>Explanation:</strong> 
+By the end of January --&gt; two active drivers (10, 8) and no accepted rides. The percentage is 0%.
+By the end of February --&gt; three active drivers (10, 8, 5) and no accepted rides. The percentage is 0%.
+By the end of March --&gt; four active drivers (10, 8, 5, 7) and one accepted ride by driver (10). The percentage is (1 / 4) * 100 = 25%.
+By the end of April --&gt; four active drivers (10, 8, 5, 7) and no accepted rides. The percentage is 0%.
+By the end of May --&gt; five active drivers (10, 8, 5, 7, 4) and no accepted rides. The percentage is 0%.
+By the end of June --&gt; five active drivers (10, 8, 5, 7, 4) and one accepted ride by driver (10). The percentage is (1 / 5) * 100 = 20%.
+By the end of July --&gt; five active drivers (10, 8, 5, 7, 4) and one accepted ride by driver (8). The percentage is (1 / 5) * 100 = 20%.
+By the end of August --&gt; five active drivers (10, 8, 5, 7, 4) and one accepted ride by driver (7). The percentage is (1 / 5) * 100 = 20%.
+By the end of September --&gt; five active drivers (10, 8, 5, 7, 4) and no accepted rides. The percentage is 0%.
+By the end of October --&gt; six active drivers (10, 8, 5, 7, 4, 1) and no accepted rides. The percentage is 0%.
+By the end of November --&gt; six active drivers (10, 8, 5, 7, 4, 1) and two accepted rides by <strong>two different</strong> drivers (1, 7). The percentage is (2 / 6) * 100 = 33.33%.
+By the end of December --&gt; six active drivers (10, 8, 5, 7, 4, 1) and one accepted ride by driver (4). The percentage is (1 / 6) * 100 = 16.67%.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/hopper-company-queries-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/hopper-company-queries-ii/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2094. Finding 3-Digit Even Numbers</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/finding-3-digit-even-numbers/">2094. Finding 3-Digit Even Numbers</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>1491</td>
+            <td>338</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/hash-table"><code>hash-table</code></a> | <a href="https://leetcode.com/tag/recursion"><code>recursion</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a> | <a href="https://leetcode.com/tag/enumeration"><code>enumeration</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code> | <code>facebook</code> | <code>amazon</code> | <code>bloomberg</code></p>
+    </details>
+
+    <p>You are given an integer array <code>digits</code>, where each element is a digit. The array may contain duplicates.</p>
+
+<p>You need to find <strong>all</strong> the <strong>unique</strong> integers that follow the given requirements:</p>
+
+<ul>
+	<li>The integer consists of the <strong>concatenation</strong> of <strong>three</strong> elements from <code>digits</code> in <strong>any</strong> arbitrary order.</li>
+	<li>The integer does not have <strong>leading zeros</strong>.</li>
+	<li>The integer is <strong>even</strong>.</li>
+</ul>
+
+<p>For example, if the given <code>digits</code> were <code>[1, 2, 3]</code>, integers <code>132</code> and <code>312</code> follow the requirements.</p>
+
+<p>Return <em>a <strong>sorted</strong> array of the unique integers.</em></p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> digits = [2,1,3,0]
+<strong>Output:</strong> [102,120,130,132,210,230,302,310,312,320]
+<strong>Explanation:</strong> All the possible integers that follow the requirements are in the output array. 
+Notice that there are no <strong>odd</strong> integers or integers with <strong>leading zeros</strong>.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> digits = [2,2,8,8,2]
+<strong>Output:</strong> [222,228,282,288,822,828,882]
+<strong>Explanation:</strong> The same digit can be used as many times as it appears in digits. 
+In this example, the digit 8 is used twice each time in 288, 828, and 882. </code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> digits = [3,7,5]
+<strong>Output:</strong> []
+<strong>Explanation:</strong> No <strong>even</strong> integers can be formed using the given digits.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>3 &lt;= digits.length &lt;= 100</code></li>
+	<li><code>0 &lt;= digits[i] &lt;= 9</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/finding-3-digit-even-numbers/">Submissions</a>
+        <a href="https://leetcode.com/problems/finding-3-digit-even-numbers/">Solutions</a>
+    </div>
+</body>
+</html>

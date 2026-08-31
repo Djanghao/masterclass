@@ -1,0 +1,42 @@
+# Ruby: Recognize string by ending. There are 26 types of endings.
+
+**Author:** user9697N
+**Votes:** 1
+**Link:** [https://leetcode.com/problems/unique-substrings-in-wraparound-string/solutions/1274596/](https://leetcode.com/problems/unique-substrings-in-wraparound-string/solutions/1274596/)
+
+---
+
+## Leetcode: 467. Unique Substrings in Wraparound String.
+ 
+
+**Important**: Do not overide [Kernel.p](https://apidock.com/ruby/Kernel/p) in the Ruby programs. `p "text"` it's an extremely usefull tool for debuging. 
+
+String defined by it last character, each uniq string eding with particular characher stores N unique substring with same ending. Where N is the length of the string. Thus only need to store length of the longest string for a particular ending and there are 26 ending for this problem.
+
+Ruby code:
+```Ruby
+# Leetcode: 467. Unique Substrings in Wraparound String.
+# https://leetcode.com/problems/unique-substrings-in-wraparound-string/
+# Runtime: 144 ms, faster than 50.00% of Ruby online submissions for Unique Substrings in Wraparound String.
+# Memory Usage: 210.3 MB, less than 50.00% of Ruby online submissions for Unique Substrings in Wraparound String.
+# Thanks God!
+# @param {String} p
+# @return {Integer}
+def find_substring_in_wrapround_string(ps)
+    len = 1
+    h = {}
+    (0...ps.size).each do |i|
+        if i>0 && (ps[i-1].ord + 1 == ps[i].ord  || (ps[i-1] == ?z && ?a == ps[i]))
+            len += 1
+        else
+            len = 1
+        end
+        h[ps[i]] ||= 0
+        h[ps[i]] = len if len > h[ps[i]]
+    end
+    h.values.sum
+end
+```
+
+P.S. I got this Idea for solution from [this article](https://leetcode.com/problems/unique-substrings-in-wraparound-string/discuss/747989/C%2B%2B-Dynamic-programming-simple-and-concise) by @suhailakhtar039. 
+

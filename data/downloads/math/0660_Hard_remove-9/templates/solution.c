@@ -1,0 +1,3 @@
+int newInteger(int n) {
+    
+}

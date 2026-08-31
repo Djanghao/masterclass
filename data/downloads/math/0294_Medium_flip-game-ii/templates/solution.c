@@ -1,0 +1,3 @@
+bool canWin(char* currentState) {
+    
+}

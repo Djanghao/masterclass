@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3307. Find the K-th Character in String Game II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/">3307. Find the K-th Character in String Game II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>519</td>
+            <td>31</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/bit-manipulation"><code>bit-manipulation</code></a> | <a href="https://leetcode.com/tag/recursion"><code>recursion</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>amazon</code> | <code>google</code> | <code>bloomberg</code></p>
+    </details>
+
+    <p>Alice and Bob are playing a game. Initially, Alice has a string <code>word = &quot;a&quot;</code>.</p>
+
+<p>You are given a <strong>positive</strong> integer <code>k</code>. You are also given an integer array <code>operations</code>, where <code>operations[i]</code> represents the <strong>type</strong> of the <code>i<sup>th</sup></code> operation.</p>
+
+<p>Now Bob will ask Alice to perform <strong>all</strong> operations in sequence:</p>
+
+<ul>
+	<li>If <code>operations[i] == 0</code>, <strong>append</strong> a copy of <code>word</code> to itself.</li>
+	<li>If <code>operations[i] == 1</code>, generate a new string by <strong>changing</strong> each character in <code>word</code> to its <strong>next</strong> character in the English alphabet, and <strong>append</strong> it to the <em>original</em> <code>word</code>. For example, performing the operation on <code>&quot;c&quot;</code> generates <code>&quot;cd&quot;</code> and performing the operation on <code>&quot;zb&quot;</code> generates <code>&quot;zbac&quot;</code>.</li>
+</ul>
+
+<p>Return the value of the <code>k<sup>th</sup></code> character in <code>word</code> after performing all the operations.</p>
+
+<p><strong>Note</strong> that the character <code>&#39;z&#39;</code> can be changed to <code>&#39;a&#39;</code> in the second type of operation.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">k = 5, operations = [0,0,0]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;a&quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>Initially, <code>word == &quot;a&quot;</code>. Alice performs the three operations as follows:</p>
+
+<ul>
+	<li>Appends <code>&quot;a&quot;</code> to <code>&quot;a&quot;</code>, <code>word</code> becomes <code>&quot;aa&quot;</code>.</li>
+	<li>Appends <code>&quot;aa&quot;</code> to <code>&quot;aa&quot;</code>, <code>word</code> becomes <code>&quot;aaaa&quot;</code>.</li>
+	<li>Appends <code>&quot;aaaa&quot;</code> to <code>&quot;aaaa&quot;</code>, <code>word</code> becomes <code>&quot;aaaaaaaa&quot;</code>.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">k = 10, operations = [0,1,0,1]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">&quot;b&quot;</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>Initially, <code>word == &quot;a&quot;</code>. Alice performs the four operations as follows:</p>
+
+<ul>
+	<li>Appends <code>&quot;a&quot;</code> to <code>&quot;a&quot;</code>, <code>word</code> becomes <code>&quot;aa&quot;</code>.</li>
+	<li>Appends <code>&quot;bb&quot;</code> to <code>&quot;aa&quot;</code>, <code>word</code> becomes <code>&quot;aabb&quot;</code>.</li>
+	<li>Appends <code>&quot;aabb&quot;</code> to <code>&quot;aabb&quot;</code>, <code>word</code> becomes <code>&quot;aabbaabb&quot;</code>.</li>
+	<li>Appends <code>&quot;bbccbbcc&quot;</code> to <code>&quot;aabbaabb&quot;</code>, <code>word</code> becomes <code>&quot;aabbaabbbbccbbcc&quot;</code>.</li>
+</ul>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= k &lt;= 10<sup>14</sup></code></li>
+	<li><code>1 &lt;= operations.length &lt;= 100</code></li>
+	<li><code>operations[i]</code> is either 0 or 1.</li>
+	<li>The input is generated such that <code>word</code> has <strong>at least</strong> <code>k</code> characters after all operations.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/">Solutions</a>
+    </div>
+</body>
+</html>

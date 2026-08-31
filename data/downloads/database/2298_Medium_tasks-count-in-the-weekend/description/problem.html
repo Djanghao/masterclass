@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2298. Tasks Count in the Weekend</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/tasks-count-in-the-weekend/">2298. Tasks Count in the Weekend</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>53</td>
+            <td>10</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>Tasks</code></p>
+
+<pre><code>+-------------+------+
+| Column Name | Type |
++-------------+------+
+| task_id     | int  |
+| assignee_id | int  |
+| submit_date | date |
++-------------+------+
+task_id is the primary key (column with unique values) for this table.
+Each row in this table contains the ID of a task, the id of the assignee, and the submission date.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Write a solution&nbsp;to report:</p>
+
+<ul>
+	<li>the number of tasks that were submitted during the weekend (Saturday, Sunday) as <code>weekend_cnt</code>, and</li>
+	<li>the number of tasks that were submitted during the working days as <code>working_cnt</code>.</li>
+</ul>
+
+<p>Return the result table in <strong>any order</strong>.</p>
+
+<p>The&nbsp;result format is shown in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Tasks table:
++---------+-------------+-------------+
+| task_id | assignee_id | submit_date |
++---------+-------------+-------------+
+| 1       | 1           | 2022-06-13  |
+| 2       | 6           | 2022-06-14  |
+| 3       | 6           | 2022-06-15  |
+| 4       | 3           | 2022-06-18  |
+| 5       | 5           | 2022-06-19  |
+| 6       | 7           | 2022-06-19  |
++---------+-------------+-------------+
+<strong>Output:</strong> 
++-------------+-------------+
+| weekend_cnt | working_cnt |
++-------------+-------------+
+| 3           | 3           |
++-------------+-------------+
+<strong>Explanation:</strong> 
+Task 1 was submitted on Monday.
+Task 2 was submitted on Tuesday.
+Task 3 was submitted on Wednesday.
+Task 4 was submitted on Saturday.
+Task 5 was submitted on Sunday.
+Task 6 was submitted on Sunday.
+3 tasks were submitted during the weekend.
+3 tasks were submitted during the working days.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/tasks-count-in-the-weekend/">Submissions</a>
+        <a href="https://leetcode.com/problems/tasks-count-in-the-weekend/">Solutions</a>
+    </div>
+</body>
+</html>

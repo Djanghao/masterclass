@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1840. Maximum Building Height</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/maximum-building-height/">1840. Maximum Building Height</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>389</td>
+            <td>22</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>dataminr</code></p>
+    </details>
+
+    <p>You want to build <code>n</code> new buildings in a city. The new buildings will be built in a line and are labeled from <code>1</code> to <code>n</code>.</p>
+
+<p>However, there are city restrictions on the heights of the new buildings:</p>
+
+<ul>
+	<li>The height of each building must be a non-negative integer.</li>
+	<li>The height of the first building <strong>must</strong> be <code>0</code>.</li>
+	<li>The height difference between any two adjacent buildings <strong>cannot exceed</strong> <code>1</code>.</li>
+</ul>
+
+<p>Additionally, there are city restrictions on the maximum height of specific buildings. These restrictions are given as a 2D integer array <code>restrictions</code> where <code>restrictions[i] = [id<sub>i</sub>, maxHeight<sub>i</sub>]</code> indicates that building <code>id<sub>i</sub></code> must have a height <strong>less than or equal to</strong> <code>maxHeight<sub>i</sub></code>.</p>
+
+<p>It is guaranteed that each building will appear <strong>at most once</strong> in <code>restrictions</code>, and building <code>1</code> will <strong>not</strong> be in <code>restrictions</code>.</p>
+
+<p>Return <em>the <strong>maximum possible height</strong> of the <strong>tallest</strong> building</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.png">
+<pre><code><strong>Input:</strong> n = 5, restrictions = [[2,1],[4,1]]
+<strong>Output:</strong> 2
+<strong>Explanation:</strong> The green area in the image indicates the maximum allowed height for each building.
+We can build the buildings with heights [0,1,2,1,2], and the tallest building has a height of 2.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+<img src="./images/1.png">
+<pre><code><strong>Input:</strong> n = 6, restrictions = []
+<strong>Output:</strong> 5
+<strong>Explanation:</strong> The green area in the image indicates the maximum allowed height for each building.
+We can build the buildings with heights [0,1,2,3,4,5], and the tallest building has a height of 5.</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+<img src="./images/2.png">
+<pre><code><strong>Input:</strong> n = 10, restrictions = [[5,3],[2,5],[7,4],[10,3]]
+<strong>Output:</strong> 5
+<strong>Explanation:</strong> The green area in the image indicates the maximum allowed height for each building.
+We can build the buildings with heights [0,1,2,3,3,4,4,5,4,3], and the tallest building has a height of 5.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>2 &lt;= n &lt;= 10<sup>9</sup></code></li>
+	<li><code>0 &lt;= restrictions.length &lt;= min(n - 1, 10<sup>5</sup>)</code></li>
+	<li><code>2 &lt;= id<sub>i</sub> &lt;= n</code></li>
+	<li><code>id<sub>i</sub></code>&nbsp;is <strong>unique</strong>.</li>
+	<li><code>0 &lt;= maxHeight<sub>i</sub> &lt;= 10<sup>9</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/maximum-building-height/">Submissions</a>
+        <a href="https://leetcode.com/problems/maximum-building-height/">Solutions</a>
+    </div>
+</body>
+</html>

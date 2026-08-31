@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>430. Flatten a Multilevel Doubly Linked List</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/">430. Flatten a Multilevel Doubly Linked List</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>5386</td>
+            <td>345</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/linked-list"><code>linked-list</code></a> | <a href="https://leetcode.com/tag/depth-first-search"><code>depth-first-search</code></a> | <a href="https://leetcode.com/tag/doubly-linked-list"><code>doubly-linked-list</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>bloomberg</code> | <code>amazon</code> | <code>facebook</code> | <code>google</code></p>
+    </details>
+
+    <p>You are given a doubly linked list, which contains nodes that have a next pointer, a previous pointer, and an additional <strong>child pointer</strong>. This child pointer may or may not point to a separate doubly linked list, also containing these special nodes. These child lists may have one or more children of their own, and so on, to produce a <strong>multilevel data structure</strong> as shown in the example below.</p>
+
+<p>Given the <code>head</code> of the first level of the list, <strong>flatten</strong> the list so that all the nodes appear in a single-level, doubly linked list. Let <code>curr</code> be a node with a child list. The nodes in the child list should appear <strong>after</strong> <code>curr</code> and <strong>before</strong> <code>curr.next</code> in the flattened list.</p>
+
+<p>Return <em>the </em><code>head</code><em> of the flattened list. The nodes in the list must have <strong>all</strong> of their child pointers set to </em><code>null</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+<img src="./images/0.jpg">
+<pre><code><strong>Input:</strong> head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
+<strong>Output:</strong> [1,2,3,7,8,11,12,9,10,4,5,6]
+<strong>Explanation:</strong> The multilevel linked list in the input is shown.
+After flattening the multilevel linked list it becomes:
+<img src="./images/1.jpg"></code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+<img src="./images/2.1jpg">
+<pre><code><strong>Input:</strong> head = [1,2,null,3]
+<strong>Output:</strong> [1,3,2]
+<strong>Explanation:</strong> The multilevel linked list in the input is shown.
+After flattening the multilevel linked list it becomes:
+<img src="./images/3.jpg"></code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> head = []
+<strong>Output:</strong> []
+<strong>Explanation:</strong> There could be empty list in the input.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li>The number of Nodes will not exceed <code>1000</code>.</li>
+	<li><code>1 &lt;= Node.val &lt;= 10<sup>5</sup></code></li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong>How the multilevel linked list is represented in test cases:</strong></p>
+
+<p>We use the multilevel linked list from <strong>Example 1</strong> above:</p>
+
+<pre><code> 1---2---3---4---5---6--NULL
+         |
+         7---8---9---10--NULL
+             |
+             11--12--NULL</code></pre>
+
+<p>The serialization of each level is as follows:</p>
+
+<pre><code>[1,2,3,4,5,6,null]
+[7,8,9,10,null]
+[11,12,null]</code></pre>
+
+<p>To serialize all levels together, we will add nulls in each level to signify no node connects to the upper node of the previous level. The serialization becomes:</p>
+
+<pre><code>[1,    2,    3, 4, 5, 6, null]
+             |
+[null, null, 7,    8, 9, 10, null]
+                   |
+[            null, 11, 12, null]</code></pre>
+
+<p>Merging the serialization of each level and removing trailing nulls we obtain:</p>
+
+<pre><code>[1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/">Submissions</a>
+        <a href="https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/">Solutions</a>
+    </div>
+</body>
+</html>

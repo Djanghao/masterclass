@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1555. Bank Account Summary</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/bank-account-summary/">1555. Bank Account Summary</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>144</td>
+            <td>27</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>optum</code></p>
+    </details>
+
+    <p>Table: <code>Users</code></p>
+
+<pre><code>+--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| user_id      | int     |
+| user_name    | varchar |
+| credit       | int     |
++--------------+---------+
+user_id is the primary key (column with unique values) for this table.
+Each row of this table contains the current credit information for each user.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Transactions</code></p>
+
+<pre><code>+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| trans_id      | int     |
+| paid_by       | int     |
+| paid_to       | int     |
+| amount        | int     |
+| transacted_on | date    |
++---------------+---------+
+trans_id is the primary key (column with unique values) for this table.
+Each row of this table contains information about the transaction in the bank.
+User with id (paid_by) transfer money to user with id (paid_to).</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Leetcode Bank (LCB) helps its coders in making virtual payments. Our bank records all transactions in the table <em>Transaction</em>, we want to find out the current balance of all users and check whether they have breached their credit limit (If their current credit is less than <code>0</code>).</p>
+
+<p>Write a solution&nbsp;to report.</p>
+
+<ul>
+	<li><code>user_id</code>,</li>
+	<li><code>user_name</code>,</li>
+	<li><code>credit</code>, current balance after performing transactions, and</li>
+	<li><code>credit_limit_breached</code>, check credit_limit (<code>&quot;Yes&quot;</code> or <code>&quot;No&quot;</code>)</li>
+</ul>
+
+<p>Return the result table in <strong>any</strong> order.</p>
+
+<p>The&nbsp;result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Users table:
++------------+--------------+-------------+
+| user_id    | user_name    | credit      |
++------------+--------------+-------------+
+| 1          | Moustafa     | 100         |
+| 2          | Jonathan     | 200         |
+| 3          | Winston      | 10000       |
+| 4          | Luis         | 800         | 
++------------+--------------+-------------+
+Transactions table:
++------------+------------+------------+----------+---------------+
+| trans_id   | paid_by    | paid_to    | amount   | transacted_on |
++------------+------------+------------+----------+---------------+
+| 1          | 1          | 3          | 400      | 2020-08-01    |
+| 2          | 3          | 2          | 500      | 2020-08-02    |
+| 3          | 2          | 1          | 200      | 2020-08-03    |
++------------+------------+------------+----------+---------------+
+<strong>Output:</strong> 
++------------+------------+------------+-----------------------+
+| user_id    | user_name  | credit     | credit_limit_breached |
++------------+------------+------------+-----------------------+
+| 1          | Moustafa   | -100       | Yes                   | 
+| 2          | Jonathan   | 500        | No                    |
+| 3          | Winston    | 9900       | No                    |
+| 4          | Luis       | 800        | No                    |
++------------+------------+------------+-----------------------+
+<strong>Explanation:</strong> 
+Moustafa paid $400 on &quot;2020-08-01&quot; and received $200 on &quot;2020-08-03&quot;, credit (100 -400 +200) = -$100
+Jonathan received $500 on &quot;2020-08-02&quot; and paid $200 on &quot;2020-08-08&quot;, credit (200 +500 -200) = $500
+Winston received $400 on &quot;2020-08-01&quot; and paid $500 on &quot;2020-08-03&quot;, credit (10000 +400 -500) = $9990
+Luis did not received any transfer, credit = $800</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/bank-account-summary/">Submissions</a>
+        <a href="https://leetcode.com/problems/bank-account-summary/">Solutions</a>
+    </div>
+</body>
+</html>

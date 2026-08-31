@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1441. Build an Array With Stack Operations</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/build-an-array-with-stack-operations/">1441. Build an Array With Stack Operations</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>1143</td>
+            <td>510</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/stack"><code>stack</code></a> | <a href="https://leetcode.com/tag/simulation"><code>simulation</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code></p>
+    </details>
+
+    <p>You are given an integer array <code>target</code> and an integer <code>n</code>.</p>
+
+<p>You have an empty stack with the two following operations:</p>
+
+<ul>
+	<li><strong><code>&quot;Push&quot;</code></strong>: pushes an integer to the top of the stack.</li>
+	<li><strong><code>&quot;Pop&quot;</code></strong>: removes the integer on the top of the stack.</li>
+</ul>
+
+<p>You also have a stream of the integers in the range <code>[1, n]</code>.</p>
+
+<p>Use the two stack operations to make the numbers in the stack (from the bottom to the top) equal to <code>target</code>. You should follow the following rules:</p>
+
+<ul>
+	<li>If the stream of the integers is not empty, pick the next integer from the stream and push it to the top of the stack.</li>
+	<li>If the stack is not empty, pop the integer at the top of the stack.</li>
+	<li>If, at any moment, the elements in the stack (from the bottom to the top) are equal to <code>target</code>, do not read new integers from the stream and do not do more operations on the stack.</li>
+</ul>
+
+<p>Return <em>the stack operations needed to build </em><code>target</code> following the mentioned rules. If there are multiple valid answers, return <strong>any of them</strong>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> target = [1,3], n = 3
+<strong>Output:</strong> [&quot;Push&quot;,&quot;Push&quot;,&quot;Pop&quot;,&quot;Push&quot;]
+<strong>Explanation:</strong> Initially the stack s is empty. The last element is the top of the stack.
+Read 1 from the stream and push it to the stack. s = [1].
+Read 2 from the stream and push it to the stack. s = [1,2].
+Pop the integer on the top of the stack. s = [1].
+Read 3 from the stream and push it to the stack. s = [1,3].</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> target = [1,2,3], n = 3
+<strong>Output:</strong> [&quot;Push&quot;,&quot;Push&quot;,&quot;Push&quot;]
+<strong>Explanation:</strong> Initially the stack s is empty. The last element is the top of the stack.
+Read 1 from the stream and push it to the stack. s = [1].
+Read 2 from the stream and push it to the stack. s = [1,2].
+Read 3 from the stream and push it to the stack. s = [1,2,3].</code></pre>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<pre><code><strong>Input:</strong> target = [1,2], n = 4
+<strong>Output:</strong> [&quot;Push&quot;,&quot;Push&quot;]
+<strong>Explanation:</strong> Initially the stack s is empty. The last element is the top of the stack.
+Read 1 from the stream and push it to the stack. s = [1].
+Read 2 from the stream and push it to the stack. s = [1,2].
+Since the stack (from the bottom to the top) is equal to target, we stop the stack operations.
+The answers that read integer 3 from the stream are not accepted.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= target.length &lt;= 100</code></li>
+	<li><code>1 &lt;= n &lt;= 100</code></li>
+	<li><code>1 &lt;= target[i] &lt;= n</code></li>
+	<li><code>target</code> is strictly increasing.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/build-an-array-with-stack-operations/">Submissions</a>
+        <a href="https://leetcode.com/problems/build-an-array-with-stack-operations/">Solutions</a>
+    </div>
+</body>
+</html>

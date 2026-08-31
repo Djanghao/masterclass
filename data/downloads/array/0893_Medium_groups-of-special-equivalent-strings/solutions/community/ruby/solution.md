@@ -1,0 +1,73 @@
+# Ruby solution. Represent word as array of 52 elements with 2 histograms in it.
+
+**Author:** user9697N
+**Votes:** 2
+**Link:** [https://leetcode.com/problems/groups-of-special-equivalent-strings/solutions/702121/](https://leetcode.com/problems/groups-of-special-equivalent-strings/solutions/702121/)
+
+---
+
+#### Leetcode: 893. Groups of Special-Equivalent Strings.
+
+
+
+##### Simplified approach.
+
+`thnx @quantumlexa`  
+
+Two strings are special equivalent if their histograms for even and odd indices are equal. Histogram for a word can be represented as 52 elments array, 26 for even 26 for odd symbols. Array mapped from array of words to array of histograms. Then make array contain only uniq values and return it's size.
+
+Ruby code: 
+```Ruby
+# Leetcode: 893. Groups of Special-Equivalent Strings.
+# https://leetcode.com/problems/groups-of-special-equivalent-strings/
+# thnx @quantumlexa
+# Runtime: 92 ms, faster than 10.00% of Ruby online submissions for Groups of Special-Equivalent Strings.
+# Memory Usage: 10.3 MB, less than 66.67% of Ruby online submissions for Groups of Special-Equivalent Strings.
+# @param {String[]} a
+# @return {Integer}
+def num_special_equiv_groups(arr)
+    arr.map!{|x|
+        h = Array.new(52,0)
+        (0...x.size).each do |i|
+            h[26*(i%2) + x[i].ord - ?a.ord] += 1
+        end
+        h
+    }.uniq.size
+end
+```
+
+##### Initial accepted approach.
+
+Two strings are special equivalent if their histograms for even indexed chars and odd indexed chars are equal. Because there are only 26 different chars in this task, the both histograms could be represented as array of 52 elements. First map array of strings to array of histograms. Than create array name used to mark words that already in groups, and compare all words with each other by two loops external and internal one. External one iterates over all indexes, and internal start iteration from index after external one. Skip indexes already in groups for both arrays. When pointing on new index in external array if it is not used new group is started, during internal loop mark all words in this group as used. So on next iteration of external loop indices of this group will be skipped.
+
+
+Ruby code:
+```Ruby
+# Leetcode: 893. Groups of Special-Equivalent Strings.
+# https://leetcode.com/problems/groups-of-special-equivalent-strings/
+# Runtime: 260 ms, faster than 10.00% of Ruby online submissions for Groups of Special-Equivalent Strings.
+# Memory Usage: 10.1 MB, less than 66.67% of Ruby online submissions for Groups of Special-Equivalent Strings.
+# @param {String[]} a
+# @return {Integer}
+def num_special_equiv_groups(arr)
+    arr.map!{|x|
+        h = Array.new(52,0)
+        (0...x.size).each do |i|
+            h[26*(i%2) + x[i].ord - ?a.ord] += 1
+        end
+        h
+    }
+    groups = 0
+    used = Array.new(arr.size,false)
+    (0...arr.size).each do |i|
+        next if used[i]
+        used[i] = true
+        groups += 1
+        (i+1...arr.size).each do |j|
+            next if used[j]
+            used[j] = true if arr[i] == arr[j] 
+        end
+    end
+    groups
+end
+```

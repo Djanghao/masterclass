@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3383. Minimum Runes to Add to Cast Spell</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-runes-to-add-to-cast-spell/">3383. Minimum Runes to Add to Cast Spell</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>9</td>
+            <td>2</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/depth-first-search"><code>depth-first-search</code></a> | <a href="https://leetcode.com/tag/breadth-first-search"><code>breadth-first-search</code></a> | <a href="https://leetcode.com/tag/union-find"><code>union-find</code></a> | <a href="https://leetcode.com/tag/graph"><code>graph</code></a> | <a href="https://leetcode.com/tag/topological-sort"><code>topological-sort</code></a></p>
+    </details>
+
+    
+
+    <p>Alice has just graduated from wizard school, and wishes to cast a magic spell to celebrate. The magic spell contains certain <strong>focus points</strong> where magic needs to be concentrated, and some of these focus points contain <strong>magic crystals</strong> which serve as the spell&#39;s energy source. Focus points can be linked through <strong>directed runes</strong>, which channel magic flow from one focus point to another.</p>
+
+<p>You are given a integer <code>n</code> denoting the <em>number</em> of focus points and an array of integers <code>crystals</code> where <code>crystals[i]</code> indicates a focus point which holds a magic crystal. You are also given two integer arrays <code>flowFrom</code> and <code>flowTo</code>, which represent the existing <strong>directed runes</strong>. The <code>i<sup>th</sup></code> rune allows magic to freely flow from focus point <code>flowFrom[i]</code> to focus point <code>flowTo[i]</code>.</p>
+
+<p>You need to find the number of directed runes Alice must add to her spell, such that <em>each</em> focus point either:</p>
+
+<ul>
+	<li><strong>Contains</strong> a magic crystal.</li>
+	<li><strong>Receives</strong> magic flow <em>from</em> another focus point.</li>
+</ul>
+
+<p>Return the <strong>minimum</strong> number of directed runes that she should add.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 6, crystals = [0], flowFrom = [0,1,2,3], flowTo = [1,2,3,0]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">2</span></p>
+
+<p><strong>Explanation:</strong>&nbsp;</p>
+
+<p><img src="./images/0.png"></p>
+
+<p>Add two directed runes:</p>
+
+<ul>
+	<li>From focus point&nbsp;0 to focus point&nbsp;4.</li>
+	<li>From focus point 0 to focus point 5.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 7, crystals = [3,5], flowFrom = [0,1,2,3,5], flowTo = [1,2,0,4,6]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">1</span></p>
+
+<p><strong>Explanation:</strong>&nbsp;</p>
+
+<p><img src="./images/1.png"></p>
+
+<p>Add a directed rune from focus point 4 to focus point 2.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>2 &lt;= n &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= crystals.length &lt;= n</code></li>
+	<li><code>0 &lt;= crystals[i] &lt;= n - 1</code></li>
+	<li><code>1 &lt;= flowFrom.length == flowTo.length &lt;= min(2 * 10<sup>5</sup>, (n * (n - 1)) / 2)</code></li>
+	<li><code>0 &lt;= flowFrom[i], flowTo[i] &lt;= n - 1</code></li>
+	<li><code>flowFrom[i] != flowTo[i]</code></li>
+	<li>All pre-existing directed runes are <strong>distinct</strong>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-runes-to-add-to-cast-spell/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-runes-to-add-to-cast-spell/">Solutions</a>
+    </div>
+</body>
+</html>

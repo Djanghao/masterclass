@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3730. Maximum Calories Burnt from Jumps</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/maximum-calories-burnt-from-jumps/">3730. Maximum Calories Burnt from Jumps</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>5</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/two-pointers"><code>two-pointers</code></a> | <a href="https://leetcode.com/tag/greedy"><code>greedy</code></a> | <a href="https://leetcode.com/tag/sorting"><code>sorting</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>amazon</code></p>
+    </details>
+
+    <p>You are given an integer array <code>heights</code> of size <code>n</code>, where <code>heights[i]</code> represents the height of the <code>i<sup>th</sup></code> block in an exercise routine.</p>
+
+<p>You start on the ground (height 0) and <strong>must</strong> jump onto each block <strong>exactly once</strong> in any order.</p>
+
+<ul>
+	<li>The <strong>calories burned</strong> for a jump from a block of height <code>a</code> to a block of height <code>b</code> is <code>(a - b)<sup>2</sup></code>.</li>
+	<li>The <strong>calories burned</strong> for the first jump from the ground to the chosen first block <code>heights[i]</code> is <code>(0 - heights[i])<sup>2</sup></code>.</li>
+</ul>
+
+<p>Return the <strong>maximum</strong> total calories you can burn by selecting an optimal jumping sequence.</p>
+
+<p><strong>Note:</strong> Once you jump onto the first block, you cannot return to the ground.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">heights = [1,7,9]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">181</span></p>
+
+<p><strong>Explanation:</strong>​​​​​​​</p>
+
+<p>The optimal sequence is <code>[9, 1, 7]</code>.</p>
+
+<ul>
+	<li>Initial jump from the ground to <code>heights[2] = 9</code>: <code>(0 - 9)<sup>2</sup> = 81</code>.</li>
+	<li>Next jump to <code>heights[0] = 1</code>: <code>(9 - 1)<sup>2</sup> = 64</code>.</li>
+	<li>Final jump to <code>heights[1] = 7</code>: <code>(1 - 7)<sup>2</sup> = 36</code>.</li>
+</ul>
+
+<p>Total calories burned = <code>81 + 64 + 36 = 181</code>.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">heights = [5,2,4]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">38</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The optimal sequence is <code>[5, 2, 4]</code>.</p>
+
+<ul>
+	<li>Initial jump from the ground to <code>heights[0] = 5</code>: <code>(0 - 5)<sup>2</sup> = 25</code>.</li>
+	<li>Next jump to <code>heights[1] = 2</code>: <code>(5 - 2)<sup>2</sup> = 9</code>.</li>
+	<li>Final jump to <code>heights[2] = 4</code>: <code>(2 - 4)<sup>2</sup> = 4</code>.</li>
+</ul>
+
+<p>Total calories burned = <code>25 + 9 + 4 = 38</code>.</p>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">heights = [3,3]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">9</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The optimal sequence is <code>[3, 3]</code>.</p>
+
+<ul>
+	<li>Initial jump from the ground to <code>heights[0] = 3</code>: <code>(0 - 3)<sup>2</sup> = 9</code>.</li>
+	<li>Next jump to <code>heights[1] = 3</code>: <code>(3 - 3)<sup>2</sup> = 0</code>.</li>
+</ul>
+
+<p>Total calories burned = <code>9 + 0 = 9</code>.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n == heights.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= heights[i] &lt;= 10<sup>5</sup></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/maximum-calories-burnt-from-jumps/">Submissions</a>
+        <a href="https://leetcode.com/problems/maximum-calories-burnt-from-jumps/">Solutions</a>
+    </div>
+</body>
+</html>

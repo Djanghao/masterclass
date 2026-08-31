@@ -1,0 +1,3 @@
+char* similarRGB(char* color) {
+    
+}

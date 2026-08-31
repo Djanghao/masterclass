@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3712. Sum of Elements With Frequency Divisible by K</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/sum-of-elements-with-frequency-divisible-by-k/">3712. Sum of Elements With Frequency Divisible by K</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Easy</td>
+            <td>40</td>
+            <td>3</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/hash-table"><code>hash-table</code></a> | <a href="https://leetcode.com/tag/counting"><code>counting</code></a></p>
+    </details>
+
+    
+
+    <p>You are given an integer array <code>nums</code> and an integer <code>k</code>.</p>
+
+<p>Return an integer denoting the <strong>sum</strong> of all elements in <code>nums</code> whose <strong><span data-keyword="frequency-array">frequency</span></strong> is divisible by <code>k</code>, or 0 if there are no such elements.</p>
+
+<p><strong>Note:</strong> An element is included in the sum <strong>exactly</strong> as many times as it appears in the array if its total frequency is divisible by <code>k</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [1,2,2,3,3,3,3,4], k = 2</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">16</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>The number 1 appears once (odd frequency).</li>
+	<li>The number 2 appears twice (even frequency).</li>
+	<li>The number 3 appears four times (even frequency).</li>
+	<li>The number 4 appears once (odd frequency).</li>
+</ul>
+
+<p>So, the total sum is <code>2 + 2 + 3 + 3 + 3 + 3 = 16</code>.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [1,2,3,4,5], k = 2</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">0</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>There are no elements that appear an even number of times, so the total sum is 0.</p>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [4,4,4,1,2,3], k = 3</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">12</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>The number 1 appears once.</li>
+	<li>The number 2 appears once.</li>
+	<li>The number 3 appears once.</li>
+	<li>The number 4 appears three times.</li>
+</ul>
+
+<p>So, the total sum is <code>4 + 4 + 4 = 12</code>.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 100</code></li>
+	<li><code>1 &lt;= nums[i] &lt;= 100</code></li>
+	<li><code>1 &lt;= k &lt;= 100</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/sum-of-elements-with-frequency-divisible-by-k/">Submissions</a>
+        <a href="https://leetcode.com/problems/sum-of-elements-with-frequency-divisible-by-k/">Solutions</a>
+    </div>
+</body>
+</html>

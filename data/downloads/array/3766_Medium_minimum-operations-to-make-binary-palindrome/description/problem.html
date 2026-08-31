@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3766. Minimum Operations to Make Binary Palindrome</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-operations-to-make-binary-palindrome/">3766. Minimum Operations to Make Binary Palindrome</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>41</td>
+            <td>9</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/two-pointers"><code>two-pointers</code></a> | <a href="https://leetcode.com/tag/binary-search"><code>binary-search</code></a> | <a href="https://leetcode.com/tag/bit-manipulation"><code>bit-manipulation</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>teradata</code></p>
+    </details>
+
+    <p>You are given an integer array <code>nums</code>.</p>
+
+<p>For each element <code>nums[i]</code>, you may perform the following operations <strong>any</strong> number of times (including zero):</p>
+
+<ul>
+	<li>Increase <code>nums[i]</code> by 1, or</li>
+	<li>Decrease <code>nums[i]</code> by 1.</li>
+</ul>
+
+<p>A number is called a <strong>binary palindrome</strong> if its binary representation without leading zeros reads the same forward and backward.</p>
+
+<p>Your task is to return an integer array <code>ans</code>, where <code>ans[i]</code> represents the <strong>minimum</strong> number of operations required to convert <code>nums[i]</code> into a <strong>binary palindrome</strong>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [1,2,4]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[0,1,1]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>One optimal set of operations:</p>
+
+<table style="border: 1px solid black;">
+	<thead>
+		<tr>
+			<th style="border: 1px solid black;"><code>nums[i]</code></th>
+			<th style="border: 1px solid black;">Binary(<code>nums[i]</code>)</th>
+			<th style="border: 1px solid black;">Nearest<br />
+			Palindrome</th>
+			<th style="border: 1px solid black;">Binary<br />
+			(Palindrome)</th>
+			<th style="border: 1px solid black;">Operations Required</th>
+			<th style="border: 1px solid black;"><code>ans[i]</code></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="border: 1px solid black;">1</td>
+			<td style="border: 1px solid black;">1</td>
+			<td style="border: 1px solid black;">1</td>
+			<td style="border: 1px solid black;">1</td>
+			<td style="border: 1px solid black;">Already palindrome</td>
+			<td style="border: 1px solid black;">0</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid black;">2</td>
+			<td style="border: 1px solid black;">10</td>
+			<td style="border: 1px solid black;">3</td>
+			<td style="border: 1px solid black;">11</td>
+			<td style="border: 1px solid black;">Increase by 1</td>
+			<td style="border: 1px solid black;">1</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid black;">4</td>
+			<td style="border: 1px solid black;">100</td>
+			<td style="border: 1px solid black;">3</td>
+			<td style="border: 1px solid black;">11</td>
+			<td style="border: 1px solid black;">Decrease by 1</td>
+			<td style="border: 1px solid black;">1</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Thus, <code>ans = [0, 1, 1]</code>.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [6,7,12]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[1,0,3]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>One optimal set of operations:</p>
+
+<table style="border: 1px solid black;">
+	<thead>
+		<tr>
+			<th style="border: 1px solid black;"><code>nums[i]</code></th>
+			<th style="border: 1px solid black;">Binary(<code>nums[i]</code>)</th>
+			<th style="border: 1px solid black;">Nearest<br />
+			Palindrome</th>
+			<th style="border: 1px solid black;">Binary<br />
+			(Palindrome)</th>
+			<th style="border: 1px solid black;">Operations Required</th>
+			<th style="border: 1px solid black;"><code>ans[i]</code></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="border: 1px solid black;">6</td>
+			<td style="border: 1px solid black;">110</td>
+			<td style="border: 1px solid black;">5</td>
+			<td style="border: 1px solid black;">101</td>
+			<td style="border: 1px solid black;">Decrease by 1</td>
+			<td style="border: 1px solid black;">1</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid black;">7</td>
+			<td style="border: 1px solid black;">111</td>
+			<td style="border: 1px solid black;">7</td>
+			<td style="border: 1px solid black;">111</td>
+			<td style="border: 1px solid black;">Already palindrome</td>
+			<td style="border: 1px solid black;">0</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid black;">12</td>
+			<td style="border: 1px solid black;">1100</td>
+			<td style="border: 1px solid black;">15</td>
+			<td style="border: 1px solid black;">1111</td>
+			<td style="border: 1px solid black;">Increase by 3</td>
+			<td style="border: 1px solid black;">3</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Thus, <code>ans = [1, 0, 3]</code>.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 5000</code></li>
+	<li><code><sup>​​​​​​​</sup>1 &lt;= nums[i] &lt;=<sup> </sup>5000</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-operations-to-make-binary-palindrome/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-operations-to-make-binary-palindrome/">Solutions</a>
+    </div>
+</body>
+</html>

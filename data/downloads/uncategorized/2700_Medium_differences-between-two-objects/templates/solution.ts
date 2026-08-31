@@ -1,0 +1,6 @@
+type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };
+type Obj = Record<string, JSONValue> | Array<JSONValue>
+
+function objDiff(obj1: Obj, obj2: Obj): Obj {
+    
+};

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3124. Find Longest Calls</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-longest-calls/">3124. Find Longest Calls</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>7</td>
+            <td>5</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>Contacts</code></p>
+
+<pre><code>+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| first_name  | varchar |
+| last_name   | varchar |
++-------------+---------+
+id is the primary key (column with unique values) of this table.
+id is a foreign key (reference column) to <code>Calls</code> table.
+Each row of this table contains id, first_name, and last_name.</code></pre>
+
+<p>Table: <code>Calls</code></p>
+
+<pre><code>+-------------+------+
+| Column Name | Type |
++-------------+------+
+| contact_id  | int  |
+| type        | enum |
+| duration    | int  |
++-------------+------+
+(contact_id, type, duration) is the primary key (column with unique values) of this table.
+type is an ENUM (category) type of (&#39;incoming&#39;, &#39;outgoing&#39;).
+Each row of this table contains information about calls, comprising of contact_id, type, and duration in seconds.</code></pre>
+
+<p>Write a solution to find the <b>three longest&nbsp;</b><strong>incoming</strong> and <strong>outgoing</strong> calls.</p>
+
+<p>Return t<em>he result table ordered by</em> <code>type</code>, <code>duration</code>, and<code> first_name</code>&nbsp;<em>in <strong>descending&nbsp;</strong>order and <code>duration</code> must be formatted as <strong>HH:MM:SS</strong>.</em></p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong></p>
+
+<p>Contacts table:</p>
+
+<pre class="example-io">
++----+------------+-----------+
+| id | first_name | last_name |
++----+------------+-----------+
+| 1  | John       | Doe       |
+| 2  | Jane       | Smith     |
+| 3  | Alice      | Johnson   |
+| 4  | Michael    | Brown     |
+| 5  | Emily      | Davis     |
++----+------------+-----------+        
+</pre>
+
+<p>Calls table:</p>
+
+<pre class="example-io">
++------------+----------+----------+
+| contact_id | type     | duration |
++------------+----------+----------+
+| 1          | incoming | 120      |
+| 1          | outgoing | 180      |
+| 2          | incoming | 300      |
+| 2          | outgoing | 240      |
+| 3          | incoming | 150      |
+| 3          | outgoing | 360      |
+| 4          | incoming | 420      |
+| 4          | outgoing | 200      |
+| 5          | incoming | 180      |
+| 5          | outgoing | 280      |
++------------+----------+----------+
+        </pre>
+
+<p><strong>Output:</strong></p>
+
+<pre class="example-io">
++-----------+----------+-------------------+
+| first_name| type     | duration_formatted|
++-----------+----------+-------------------+
+| Alice     | outgoing | 00:06:00          |
+| Emily     | outgoing | 00:04:40          |
+| Jane      | outgoing | 00:04:00          |
+| Michael   | incoming | 00:07:00          |
+| Jane      | incoming | 00:05:00          |
+| Emily     | incoming | 00:03:00          |
++-----------+----------+-------------------+
+        </pre>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>Alice had an outgoing call lasting 6 minutes.</li>
+	<li>Emily had an outgoing call lasting 4 minutes and 40 seconds.</li>
+	<li>Jane had an outgoing call lasting 4 minutes.</li>
+	<li>Michael had an incoming call lasting 7 minutes.</li>
+	<li>Jane had an incoming call lasting 5 minutes.</li>
+	<li>Emily had an incoming call lasting 3 minutes.</li>
+</ul>
+
+<p><b>Note:</b> Output table is sorted by type, duration, and first_name in descending order.</p>
+</div>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-longest-calls/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-longest-calls/">Solutions</a>
+    </div>
+</body>
+</html>

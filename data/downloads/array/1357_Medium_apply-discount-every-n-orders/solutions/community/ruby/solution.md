@@ -1,0 +1,63 @@
+# Ruby: Convert products and prices into Hash.
+
+**Author:** user9697N
+**Votes:** 0
+**Link:** [https://leetcode.com/problems/apply-discount-every-n-orders/solutions/1147082/](https://leetcode.com/problems/apply-discount-every-n-orders/solutions/1147082/)
+
+---
+
+## Leetcode: 1357. Apply Discount Every n Orders.
+
+
+
+**Ruby: Convert products and prices into Hash.**
+
+Key to this task is to understand that in the constructor arrays pair products and prices is a hash. Where key of the hash is value in the products array and value is value is price value under the same index. After getting that program become very simple, value of the product array's element is a key for the hash to get a price, price multiplied by amount and accumulated in sum. Then discount applied to a total sum, if consecutive number of get_bill call divided without a reminder by n. That's it.
+
+
+Ruby code:
+```Ruby
+# Leetcode: 1357. Apply Discount Every n Orders.
+# https://leetcode.com/problems/apply-discount-every-n-orders/
+# Runtime: 128 ms, faster than 100.00% of Ruby online submissions for Apply Discount Every n Orders.
+# Memory Usage: 219.6 MB, less than 100.00% of Ruby online submissions for Apply Discount Every n Orders.
+# Thanks God!
+class Cashier
+
+=begin
+    :type n: Integer
+    :type discount: Integer
+    :type products: Integer[]
+    :type prices: Integer[]
+=end
+    def initialize(n, discount, products, prices)
+        @counter = 0
+        @products = products
+        @prices = prices
+        @discount = discount
+        @price_by_id = {}
+        products.each_with_index{|id,i| @price_by_id[id] = prices[i] }
+        @n = n
+        
+    end
+
+
+=begin
+    :type product: Integer[]
+    :type amount: Integer[]
+    :rtype: Float
+=end
+    def get_bill(product, amount)
+        @counter += 1
+        dsc = ( 0 == (@counter % @n))
+        total = product.zip(amount).sum{|(i,a)| @price_by_id[i]*a}
+        dsc ? total - (total * @discount.to_f)/100.0 : total
+    end
+
+
+end
+
+# Your Cashier object will be instantiated and called as such:
+# obj = Cashier.new(n, discount, products, prices)
+# param_1 = obj.get_bill(product, amount)
+```

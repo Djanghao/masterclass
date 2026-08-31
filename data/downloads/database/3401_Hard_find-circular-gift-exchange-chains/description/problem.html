@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3401. Find Circular Gift Exchange Chains</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/find-circular-gift-exchange-chains/">3401. Find Circular Gift Exchange Chains</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Hard</td>
+            <td>3</td>
+            <td>0</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>SecretSanta</code></p>
+
+<pre><code>+-------------+------+
+| Column Name | Type |
++-------------+------+
+| giver_id    | int  |
+| receiver_id | int  |
+| gift_value  | int  |
++-------------+------+
+(giver_id, receiver_id) is the unique key for this table.   
+Each row represents a record of a gift exchange between two employees, giver_id represents the employee who gives a gift, receiver_id represents the employee who receives the gift and gift_value represents the value of the gift given.  </code></pre>
+
+<p>Write a solution to find the <strong>total gift value</strong> and <strong>length</strong> of<strong> circular chains</strong> of Secret Santa gift exchanges:</p>
+
+<p>A <strong>circular chain</strong> is defined as a series of exchanges where:</p>
+
+<ul>
+	<li>Each employee gives a gift to <strong>exactly one</strong> other employee.</li>
+	<li>Each employee receives a gift <strong>from exactly</strong> one other employee.</li>
+	<li>The exchanges form a continuous <strong>loop</strong> (e.g., employee A gives a gift to B, B gives to C, and C gives back to A).</li>
+</ul>
+
+<p>Return <em>the result ordered by the chain length and total gift value of the chain in&nbsp;<strong>descending</strong> order</em>.&nbsp;</p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong></p>
+
+<p>SecretSanta table:</p>
+
+<pre class="example-io">
++----------+-------------+------------+
+| giver_id | receiver_id | gift_value |
++----------+-------------+------------+
+| 1        | 2           | 20         |
+| 2        | 3           | 30         |
+| 3        | 1           | 40         |
+| 4        | 5           | 25         |
+| 5        | 4           | 35         |
++----------+-------------+------------+
+</pre>
+
+<p><strong>Output:</strong></p>
+
+<pre class="example-io">
++----------+--------------+------------------+
+| chain_id | chain_length | total_gift_value |
++----------+--------------+------------------+
+| 1        | 3            | 90               |
+| 2        | 2            | 60               |
++----------+--------------+------------------+
+</pre>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li><strong>Chain 1</strong> involves employees 1, 2, and 3:
+
+	<ul>
+		<li>Employee 1 gives a gift to 2, employee 2 gives a gift to 3, and employee 3 gives a gift to 1.</li>
+		<li>Total gift value for this chain = 20 + 30 + 40 = 90.</li>
+	</ul>
+	</li>
+	<li><strong>Chain 2</strong> involves employees 4 and 5:
+	<ul>
+		<li>Employee 4 gives a gift to 5, and employee 5 gives a gift to 4.</li>
+		<li>Total gift value for this chain = 25 + 35 = 60.</li>
+	</ul>
+	</li>
+</ul>
+
+<p>The result table is ordered by the chain length and total gift value of the chain in descending order.</p>
+</div>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/find-circular-gift-exchange-chains/">Submissions</a>
+        <a href="https://leetcode.com/problems/find-circular-gift-exchange-chains/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3594. Minimum Time to Transport All Individuals</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-time-to-transport-all-individuals/">3594. Minimum Time to Transport All Individuals</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>39</td>
+            <td>5</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/bit-manipulation"><code>bit-manipulation</code></a> | <a href="https://leetcode.com/tag/graph"><code>graph</code></a> | <a href="https://leetcode.com/tag/heap-priority-queue"><code>heap-priority-queue</code></a> | <a href="https://leetcode.com/tag/shortest-path"><code>shortest-path</code></a> | <a href="https://leetcode.com/tag/bitmask"><code>bitmask</code></a></p>
+    </details>
+
+    
+
+    <p>You are given <code>n</code> individuals at a base camp who need to cross a river to reach a destination using a single boat. The boat can carry at most <code>k</code> people at a time. The trip is affected by environmental conditions that vary <strong>cyclically</strong> over <code>m</code> stages.</p>
+
+<p>Each stage <code>j</code> has a speed multiplier <code>mul[j]</code>:</p>
+
+<ul>
+	<li>If <code>mul[j] &gt; 1</code>, the trip slows down.</li>
+	<li>If <code>mul[j] &lt; 1</code>, the trip speeds up.</li>
+</ul>
+
+<p>Each individual <code>i</code> has a rowing strength represented by <code>time[i]</code>, the time (in minutes) it takes them to cross alone in neutral conditions.</p>
+
+<p><strong>Rules:</strong></p>
+
+<ul>
+	<li>A group <code>g</code> departing at stage <code>j</code> takes time equal to the <strong>maximum</strong> <code>time[i]</code> among its members, multiplied by <code>mul[j]</code> minutes to reach the destination.</li>
+	<li>After the group crosses the river in time <code>d</code>, the stage advances by <code>floor(d) % m</code> steps.</li>
+	<li>If individuals are left behind, one person must return with the boat. Let <code>r</code> be the index of the returning person, the return takes <code>time[r] &times; mul[current_stage]</code>, defined as <code>return_time</code>, and the stage advances by <code>floor(return_time) % m</code>.</li>
+</ul>
+
+<p>Return the <strong>minimum</strong> total time required to transport all individuals. If it is not possible to transport all individuals to the destination, return <code>-1</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 1, k = 1, m = 2, time = [5], mul = [1.0,1.3]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">5.00000</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>Individual 0 departs from stage 0, so crossing time = <code>5 &times; 1.00 = 5.00</code> minutes.</li>
+	<li>All team members are now at the destination. Thus, the total time taken is <code>5.00</code> minutes.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 3, k = 2, m = 3, time = [2,5,8], mul = [1.0,1.5,0.75]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">14.50000</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The optimal strategy is:</p>
+
+<ul>
+	<li>Send individuals 0 and 2 from the base camp to the destination from stage 0. The crossing time is <code>max(2, 8) &times; mul[0] = 8 &times; 1.00 = 8.00</code> minutes. The stage advances by <code>floor(8.00) % 3 = 2</code>, so the next stage is <code>(0 + 2) % 3 = 2</code>.</li>
+	<li>Individual 0 returns alone from the destination to the base camp from stage 2. The return time is <code>2 &times; mul[2] = 2 &times; 0.75 = 1.50</code> minutes. The stage advances by <code>floor(1.50) % 3 = 1</code>, so the next stage is <code>(2 + 1) % 3 = 0</code>.</li>
+	<li>Send individuals 0 and 1 from the base camp to the destination from stage 0. The crossing time is <code>max(2, 5) &times; mul[0] = 5 &times; 1.00 = 5.00</code> minutes. The stage advances by <code>floor(5.00) % 3 = 2</code>, so the final stage is <code>(0 + 2) % 3 = 2</code>.</li>
+	<li>All team members are now at the destination. The total time taken is <code>8.00 + 1.50 + 5.00 = 14.50</code> minutes.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 3:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">n = 2, k = 1, m = 2, time = [10,10], mul = [2.0,2.0]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">-1.00000</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>Since the boat can only carry one person at a time, it is impossible to transport both individuals as one must always return. Thus, the answer is <code>-1.00</code>.</li>
+</ul>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n == time.length &lt;= 12</code></li>
+	<li><code>1 &lt;= k &lt;= 5</code></li>
+	<li><code>1 &lt;= m &lt;= 5</code></li>
+	<li><code>1 &lt;= time[i] &lt;= 100</code></li>
+	<li><code>m == mul.length</code></li>
+	<li><code>0.5 &lt;= mul[i] &lt;= 2.0</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-time-to-transport-all-individuals/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-time-to-transport-all-individuals/">Solutions</a>
+    </div>
+</body>
+</html>

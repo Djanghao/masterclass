@@ -1,0 +1,3 @@
+int equalDigitFrequency(char* s) {
+    
+}

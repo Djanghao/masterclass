@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3426. Manhattan Distances of All Arrangements of Pieces</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/manhattan-distances-of-all-arrangements-of-pieces/">3426. Manhattan Distances of All Arrangements of Pieces</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>40</td>
+            <td>10</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/combinatorics"><code>combinatorics</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>google</code> | <code>rubrik</code></p>
+    </details>
+
+    <p>You are given three integers <code><font face="monospace">m</font></code>, <code><font face="monospace">n</font></code>, and <code>k</code>.</p>
+
+<p>There is a rectangular grid of size <code>m &times; n</code> containing <code>k</code> identical pieces. Return the sum of Manhattan distances between every pair of pieces over all <strong>valid arrangements</strong> of pieces.</p>
+
+<p>A <strong>valid arrangement</strong> is a placement of all <code>k</code> pieces on the grid with <strong>at most</strong> one piece per cell.</p>
+
+<p>Since the answer may be very large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>
+
+<p>The Manhattan Distance between two cells <code>(x<sub>i</sub>, y<sub>i</sub>)</code> and <code>(x<sub>j</sub>, y<sub>j</sub>)</code> is <code>|x<sub>i</sub> - x<sub>j</sub>| + |y<sub>i</sub> - y<sub>j</sub>|</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">m = 2, n = 2, k = 2</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">8</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The valid arrangements of pieces on the board are:</p>
+
+<p><img src="./images/0.drawio"><img src="./images/1.png"></p>
+
+<ul>
+	<li>In the first 4 arrangements, the Manhattan distance between the two pieces is 1.</li>
+	<li>In the last 2 arrangements, the Manhattan distance between the two pieces is 2.</li>
+</ul>
+
+<p>Thus, the total Manhattan distance across all valid arrangements is <code>1 + 1 + 1 + 1 + 2 + 2 = 8</code>.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">m = 1, n = 4, k = 3</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">20</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The valid arrangements of pieces on the board are:</p>
+
+<p><img src="./images/2.png"></p>
+
+<ul>
+	<li>The first and last arrangements have a total Manhattan distance of <code>1 + 1 + 2 = 4</code>.</li>
+	<li>The middle two arrangements have a total Manhattan distance of <code>1 + 2 + 3 = 6</code>.</li>
+</ul>
+
+<p>The total Manhattan distance between all pairs of pieces across all arrangements is <code>4 + 6 + 6 + 4 = 20</code>.</p>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= m, n &lt;= 10<sup>5</sup></code></li>
+	<li><code>2 &lt;= m * n &lt;= 10<sup>5</sup></code></li>
+	<li><code><font face="monospace">2 &lt;= k &lt;= m * n</font></code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/manhattan-distances-of-all-arrangements-of-pieces/">Submissions</a>
+        <a href="https://leetcode.com/problems/manhattan-distances-of-all-arrangements-of-pieces/">Solutions</a>
+    </div>
+</body>
+</html>

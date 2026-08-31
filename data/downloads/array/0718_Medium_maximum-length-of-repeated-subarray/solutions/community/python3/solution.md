@@ -1,0 +1,189 @@
+# 🔥 [LeetCode The Hard Way] 🔥 Explained Line By Line
+
+**Author:** tr1nity
+**Votes:** 47
+**Link:** [https://leetcode.com/problems/maximum-length-of-repeated-subarray/solutions/2599501/](https://leetcode.com/problems/maximum-length-of-repeated-subarray/solutions/2599501/)
+
+---
+
+Please check out [LeetCode The Hard Way](https://wingkwong.github.io/leetcode-the-hard-way/) for more solution explanations and tutorials. 
+I'll explain my solution line by line daily and you can find the full list in my [Discord](https://discord.gg/Nqm4jJcyBf).
+If you like it, please give a star, watch my [Github Repository](https://github.com/wingkwong/leetcode-the-hard-way) and upvote this post.
+
+---
+
+**C++**
+
+```cpp
+class Solution {
+public:
+    // DP Approach - Similar to 1143. Longest Common Subsequence
+    int findLength(vector<int>& nums1, vector<int>& nums2) {
+        int n = nums1.size(), m = nums2.size(), ans = 0;
+        // dp[i][j] means the length of repeated subarray of nums1[:i] and nums2[:j]
+        // initially the first row (i = 0) and the first col (j = 0) would be zero
+        // dp[i][0] = 0 for all i and dp[0][j] = 0 for all j
+        // if you use int dp[n + 1][m + 1], then you need to take care of this part
+        vector<vector<int>> dp(n + 1, vector<int>(m + 1));
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= m; j++) {
+                // if both character is same
+				if (nums1[i - 1] == nums2[j - 1]) {
+                    // then we add 1 to the previous state, which is dp[i - 1][j - 1]
+                    // in other word, we extend the repeated subarray by 1
+                    // e.g. a = [1], b = [1], length of repeated array is 1
+                    //      a = [1,2], b = [1,2], length of repeated array is the previous result + 1 = 2
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+                    // record the max ans here
+					ans = max(ans, dp[i][j]);
+				} else {
+                    // if you are looking for longest common sequence,
+                    // then you put dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]); here
+                    // however, this problem is looking for subarray,
+                    // since both character is not equal, which means we need to break it here
+                    // hence, set dp[i][j] to 0
+                    // since we use vector<vector<int>> dp instead of int dp[n + 1][m + 1]
+                    // this part can be skipped as it is already 0
+				}
+			}
+		}
+		return ans;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    // DP Approach - Space Optimized
+    int findLength(vector<int>& nums1, vector<int>& nums2) {
+        int n = nums1.size(), m = nums2.size(), ans = 0;
+        // swap it to ensure n > m
+        if (n < m) {
+            // or you can call findLength(nums2, nums1); 
+            swap(nums1, nums2);
+            swap(n, m);
+        }
+        // dp records current dp state
+        // dp2 records the previous dp state
+        vector<int> dp(n + 1), dp2(n + 1);
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (nums1[i - 1] == nums2[j - 1]) {
+                    // extend from the previous dp state
+                    dp[j] = dp2[j - 1] + 1; 
+                } else {
+                    // reset to 0
+                    dp[j] = 0;
+                }
+                // record the max length
+                ans = max(ans, dp[j]);
+            }
+            // the current state now becomes the previous state for next round
+            dp2 = dp;
+        }
+        return ans;
+    }
+};
+```
+
+```cpp
+// Rolling Hash Approach
+class Solution {
+public:
+    // the idea is to use binary search to find the length `m`
+    // then we check if there is any nums1[i : i + m] == nums2[i : i + m]
+    // for c++, it may get TLE. so we can use rolling hash to speed up
+    // we can see `nums1[i : j]` as a hash, then we insert all the possible hashes to a set
+    // then we do the same on `nums2` to see if the hash exists in the set
+    int findLength(vector<int>& nums1, vector<int>& nums2) {
+        int N = nums1.size(), M = nums2.size();
+        // build hashes for nums1
+        PolyHash H1 = PolyHash(nums1);
+        // build hashes for nums2
+        PolyHash H2 = PolyHash(nums2);
+        
+        int l = 0, r = min(N, M);
+        // binary search
+        while (l < r) {
+            // guess that the length is m
+            int m = l + (r - l + 1) / 2, ok = 0;
+            // use set to store all the possible hashes
+            set<int> s;
+            // for each subarray, we get the hash and store in set
+            for (int i = 0; i < N - m + 1; i++) {
+                s.insert(H1.get_hash(i, i + m - 1));
+            }
+            // see if we can get the same hash
+            for (int i = 0; i < M - m + 1; i++) {
+                if (s.find(H2.get_hash(i, i + m - 1)) != s.end()) {
+                    ok = 1;
+                    break;
+                }
+            }
+            // include m
+            if (ok) l = m;
+            // exclude m
+            else r = m - 1;
+        }
+        return l;
+    }
+};
+```
+
+**Python**
+
+```py
+class Solution:
+    # DP Approach - Similar to 1143. Longest Common Subsequence
+    def findLength(self, nums1: List[int], nums2: List[int]) -> int:
+        n, m = len(nums1), len(nums2)
+        # dp[i][j] means the length of repeated subarray of nums1[:i] and nums2[:j]
+        dp = [[0] * (m + 1) for _ in range(n + 1)]
+        ans = 0
+        for i in range(1, n + 1):
+            for j in range(1, m + 1):
+                # if both character is same
+                if nums1[i - 1] == nums2[j - 1]:
+                    # then we add 1 to the previous state, which is dp[i - 1][j - 1]
+                    # in other word, we extend the repeated subarray by 1
+                    # e.g. a = [1], b = [1], length of repeated array is 1
+                    #      a = [1,2], b = [1,2], length of repeated array is the previous result + 1 = 2
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                    # record the max ans here
+                    ans = max(ans, dp[i][j])
+                # else:
+                    # if you are looking for longest common sequence,
+                    # then you put dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]); here
+                    # however, this problem is looking for subarray,
+                    # since both character is not equal, which means we need to break it here
+                    # hence, set dp[i][j] to 0
+        return ans
+```
+
+```py
+class Solution:
+    # Binary Search Approach
+    def findLength(self, nums1: List[int], nums2: List[int]) -> int:
+        N, M = len(nums1), len(nums2)
+        
+        def ok(k):
+            # the idea is to use binary search to find the length `k`
+            # then we check if there is any nums1[i : i + k] == nums2[i : i + k]
+            s = set(tuple(nums1[i : i + k]) for i in range(N - k + 1))
+            return any(tuple(nums2[i : i + k]) in s for i in range(M - k + 1))
+        
+        # init possible boundary
+        l, r = 0, min(N, M)
+        while l < r:
+            # get the middle one
+            # for even number of elements, take the upper one
+            m = (l + r + 1) // 2
+            if ok(m): 
+                # include m
+                l = m
+            else:
+                # exclude m
+                r = m - 1
+        return l
+```

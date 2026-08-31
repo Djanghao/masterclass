@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3374. First Letter Capitalization II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/first-letter-capitalization-ii/">3374. First Letter Capitalization II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Hard</td>
+            <td>25</td>
+            <td>12</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>user_content</code></p>
+
+<pre><code>+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| content_id  | int     |
+| content_text| varchar |
++-------------+---------+
+content_id is the unique key for this table.
+Each row contains a unique ID and the corresponding text content.</code></pre>
+
+<p>Write a solution to transform the text in the <code>content_text</code> column by applying the following rules:</p>
+
+<ul>
+	<li>Convert the <strong>first letter</strong> of each word to <strong>uppercase</strong> and the <strong>remaining</strong> letters to <strong>lowercase</strong></li>
+	<li>Special handling for words containing special characters:
+	<ul>
+		<li>For words connected with a hyphen <code>-</code>, <strong>both parts</strong> should be <strong>capitalized</strong> (<strong>e.g.</strong>, top-rated&nbsp;&rarr; Top-Rated)</li>
+	</ul>
+	</li>
+	<li>All other <strong>formatting</strong> and <strong>spacing</strong> should remain <strong>unchanged</strong></li>
+</ul>
+
+<p>Return <em>the result table that includes both the original <code>content_text</code> and the modified text following the above rules</em>.</p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong></p>
+
+<p>user_content table:</p>
+
+<pre class="example-io">
++------------+---------------------------------+
+| content_id | content_text                    |
++------------+---------------------------------+
+| 1          | hello world of SQL              |
+| 2          | the QUICK-brown fox             |
+| 3          | modern-day DATA science         |
+| 4          | web-based FRONT-end development |
++------------+---------------------------------+
+</pre>
+
+<p><strong>Output:</strong></p>
+
+<pre class="example-io">
++------------+---------------------------------+---------------------------------+
+| content_id | original_text                   | converted_text                  |
++------------+---------------------------------+---------------------------------+
+| 1          | hello world of SQL              | Hello World Of Sql              |
+| 2          | the QUICK-brown fox             | The Quick-Brown Fox             |
+| 3          | modern-day DATA science         | Modern-Day Data Science         |
+| 4          | web-based FRONT-end development | Web-Based Front-End Development |
++------------+---------------------------------+---------------------------------+
+</pre>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>For content_id = 1:
+	<ul>
+		<li>Each word&#39;s first letter is capitalized: &quot;Hello World Of Sql&quot;</li>
+	</ul>
+	</li>
+	<li>For content_id = 2:
+	<ul>
+		<li>Contains the hyphenated word &quot;QUICK-brown&quot; which becomes &quot;Quick-Brown&quot;</li>
+		<li>Other words follow normal capitalization rules</li>
+	</ul>
+	</li>
+	<li>For content_id = 3:
+	<ul>
+		<li>Hyphenated word &quot;modern-day&quot; becomes &quot;Modern-Day&quot;</li>
+		<li>&quot;DATA&quot; is converted to &quot;Data&quot;</li>
+	</ul>
+	</li>
+	<li>For content_id = 4:
+	<ul>
+		<li>Contains two hyphenated words: &quot;web-based&quot; &rarr; &quot;Web-Based&quot;</li>
+		<li>And &quot;FRONT-end&quot; &rarr; &quot;Front-End&quot;</li>
+	</ul>
+	</li>
+</ul>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>context_text</code> contains only English letters, and the characters in the list <code>[&#39;\&#39;, &#39; &#39;, &#39;@&#39;, &#39;-&#39;, &#39;/&#39;, &#39;^&#39;, &#39;,&#39;]</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/first-letter-capitalization-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/first-letter-capitalization-ii/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+# [Dart] 한국인 유저를 위한 한글 솔루션
+
+**Author:** hyungzin
+**Votes:** 0
+**Link:** [https://leetcode.com/problems/word-ladder-ii/solutions/5156053/](https://leetcode.com/problems/word-ladder-ii/solutions/5156053/)
+
+---
+
+# Intuition
+Word Ladder 1\uC740 \uCD5C\uB2E8\uACBD\uB85C\uC758 \uAE38\uC774\uB9CC \uBC18\uD658\uD558\uBA74 \uB418\uC5C8\uAE30\uC5D0
+\uBAA8\uB4E0 \uC7AC\uBC29\uBB38\uC744 \uB9C9\uACE0(\uBC31\uD2B8\uB798\uD0B9) BFS\uB97C \uB3CC\uB9AC\uBA74 \uC190\uC27D\uAC8C \uD574\uACB0\uD560 \uC218 \uC788\uC5C8\uC9C0\uB9CC
+\uC774\uBC88\uBB38\uC81C\uB294 \uBAA8\uB4E0 \uAC00\uB2A5\uD55C \uACBD\uB85C\uB97C \uBC18\uD658\uD574\uC57C \uD558\uAE30 \uB54C\uBB38\uC5D0 \uAF64\uB098 \uD2B8\uB9AC\uD0A4 \uD569\uB2C8\uB2E4.
+
+# Approach
+2 \uAC00\uC9C0 \uD2B8\uB9AD\uC744 \uC0AC\uC6A9\uD588\uC2B5\uB2C8\uB2E4
+1. visit\uACFC tempV\uB97C \uBD84\uB9AC\uD558\uC5EC \uD604 \uB2E8\uACC4\uC758 \uBC29\uBB38\uC744 \uD5C8\uC6A9\uD558\uACE0 \uC774\uC804 \uB2E8\uACC4\uC5D0 \uBC29\uBB38\uD588\uB358 \uB178\uB4DC\uC758 \uC7AC\uBC29\uBB38\uB9CC\uC744 \uB9C9\uC544\uC90D\uB2C8\uB2E4.
+2.1 BFS\uB97C \uB3C4\uCC29 -> \uC2DC\uC791 \uB178\uB4DC\uB85C \uC5ED\uC8FC\uD589\uD558\uBA74\uC11C \uAC00\uB2A5\uD55C \uACBD\uB85C\uB97C hashmap\uC5D0 \uB2E4\uC2DC \uC5ED\uC73C\uB85C \uB2F4\uC544\uC8FC\uACE0
+2.2 \uC704\uC5D0\uC11C \uB9CC\uB4E0 hashmap\uC744 \uC2DC\uC791\uB178\uB4DC\uBD80\uD130 \uC815\uC8FC\uD589\uD558\uBA74\uC11C \uC815\uB2F5 \uACBD\uB85C\uB97C \uCD94\uB824\uB0C5\uB2C8\uB2E4.
+
+* \uB098\uBA38\uC9C0\uB294 \uCF54\uB4DC\uC5D0 \uB2EC\uB824\uC788\uB294 \uC8FC\uC11D\uC744 \uBCF4\uBA74\uC11C \uD574\uACB0\uD574\uC8FC\uC138\uC694
+* \uC5B4\uC124\uD508 \uC124\uBA85 \uC8C4\uC1A1\uD569\uB2C8\uB2E4. \uC774\uAC8C \uC800\uC758 \uD55C\uACC4 \u3160
+* \uD639\uC2DC \uB3C4\uC800\uD788 \uC774\uD574\uAC00 \uC548\uAC00\uB294 \uBD80\uBD84 \uC788\uB2E4\uBA74 \uB313\uAE00\uB85C \uB0A8\uACA8\uC8FC\uC138\uC694 \uAF2D \uB2F5\uBCC0\uD558\uACA0\uC2B5\uB2C8\uB2E4.
+
+# Complexity
+- Time complexity:
+<!-- Add your time complexity here, e.g. $$O(n)$$ -->
+
+- Space complexity:
+<!-- Add your space complexity here, e.g. $$O(n)$$ -->
+
+# Code
+```
+import 'dart:collection';
+class Solution {
+  List<List<String>> findLadders(String b, String e, List<String> w) {
+    final res = <List<String>>[]; // \uB2F5\uC744 \uB2F4\uC744 list
+    final edges = <String, List<String>>{}; // \uAC04\uC120\uC744 \uB2F4\uC744 hashmap
+    // \uB450 \uB178\uB4DC\uAC04\uC758 \uC774\uB3D9\uC774 \uAC00\uB2A5\uD55C\uC9C0(\uD55C\uAE00\uC790\uB9CC \uB2E4\uB978\uC9C0)\uB97C \uD30C\uC545\uD558\uC5EC \uC591\uBC29\uD5A5 \uAC04\uC120\uC744 \uB9CC\uB4E4\uC5B4 \uC90D\uB2C8\uB2E4
+    for (int i = 0; i < w.length; i++){
+      if (w[i] != b && canMove(w[i], b)){
+          edges[b] ??= [];
+          edges[w[i]] ??= [];
+          edges[b]!.add(w[i]);
+          edges[w[i]]!.add(b);
+      }
+      for (int j = i + 1; j < w.length; j++){
+        if (w[i] != w[j] && canMove(w[i], w[j])){
+          edges[w[i]] ??= [];
+          edges[w[j]] ??= [];
+          edges[w[i]]!.add(w[j]);
+          edges[w[j]]!.add(w[i]);
+        }
+      }      
+    }
+    
+    // \uC2DC\uC791\uC774\uB098 \uB9C8\uC9C0\uB9C9 \uB178\uB4DC\uAC00 \uAC04\uC120\uC5D0 \uD3EC\uD568\uB418\uC5B4\uC788\uC9C0 \uC54A\uB2E4\uBA74 
+    // \uC5F0\uACB0\uC774 \uBD88\uAC00\uB2A5\uD568\uC73C\uB85C \uBE48 list\uB97C \uBC18\uD658\uD569\uB2C8\uB2E4
+    if (!edges.containsKey(e) || !edges.containsKey(b) ) return [];
+
+    var q = Queue<String>()..add(e); // bfs\uB97C \uC704\uD55C Queue
+    final visit = <String>{e}; // \uC774\uC804\uB2E8\uACC4\uC5D0\uC11C \uBC29\uBB38\uD55C \uB178\uB4DC\uC5D0 \uC911\uBCF5\uBC29\uBB38\uC744 \uB9C9\uAE30\uC704\uD55C Set
+    final rev = <String, Set<String>>{}; // \uB3C4\uCC29\uC9C0\uBD80\uD130 \uC5ED\uC73C\uB85C \uD0D0\uC0C9\uD558\uBA70 \uADF8 \uACBD\uB85C\uB97C \uB2E4\uC2DC \uC5ED\uC73C\uB85C \uB2F4\uC544\uC904 Hashmap (\uC911\uBCF5\uC73C\uB85C \uB2F4\uAE30\uB294 \uAC83\uC744 \uB9C9\uAE30\uC704\uD574 Set\uC73C\uB85C \uC124\uC815\uD574\uC90D\uB2C8\uB2E4~)
+
+    // \uB3C4\uCC29 \uB178\uB4DC\uBD80\uD130 '\uC5ED'\uC73C\uB85C BFS \uD0D0\uC0C9\uC744 \uD558\uBA70 
+    // \uADF8 \uACBD\uB85C\uB97C \uB2E4\uC2DC '\uC5ED'\uC73C\uB85C \uB2F4\uC544\uC90D\uB2C8\uB2E4 (\uC5ED\uC758 \uC5ED\uC740 \uC815)
+    while (q.isNotEmpty){
+      // \uD604 \uB2E8\uACC4\uC5D0\uC11C \uBC29\uBB38\uD558\uB294 \uB178\uB4DC\uB294 \uC815\uB2F5\uACBD\uB85C \uC5EC\uB7EC\uBC88 \uD3EC\uD568\uB418\uC5B4\uC788\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4
+      // \uB530\uB77C\uC11C visit\uACFC \uBD84\uB9AC\uD558\uAE30\uC704\uD574 tempV\uB97C \uB530\uB85C \uB5F4\uC5B4\uC90D\uB2C8\uB2E4
+      final tempV = <String>{};
+      while (q.isNotEmpty){
+        final cur = q.removeFirst();
+        for (final next in edges[cur]!){
+          if (visit.contains(next)) continue;
+          rev[next] ??= {};
+          rev[next]!.add(cur);
+          // \uD604 \uB2E8\uACC4\uC758 \uBC29\uBB38\uD55C \uB178\uB4DC
+          tempV.add(next);
+        }
+      }
+      // \uC5ED\uC73C\uB85C \uB2F4\uC558\uAE30 \uB54C\uBB38\uC5D0 rev\uC758 Key \uC911 \uC2DC\uC791 \uB178\uB4DC\uAC00 \uD3EC\uD568\uB418\uC5B4\uC788\uB2E4\uBA74
+      // \uADF8 \uB9D0\uC778\uC989\uC2A8 \uCD5C\uB2E8\uAC70\uB9AC \uD0D0\uC0C9\uC774 \uC644\uB8CC\uB418\uC5C8\uB2E4\uB294 \uC758\uBBF8\uC785\uB2C8\uB2E4
+      // \uC790\uC6D0\uB0AD\uBE44\uB97C \uB9C9\uAE30 \uC704\uD574 \uC5EC\uAE30\uC11C \uD0D0\uC0C9\uC744 \uBA48\uCDB0\uC90D\uB2C8\uB2E4
+      if (rev.containsKey(b)){
+        break;
+      }
+      q.addAll(tempV);
+      // \uD604 \uB2E8\uACC4\uC758 \uBC29\uBB38\uD55C \uB178\uB4DC\uB97C \uB2E4\uC74C\uC5D0 \uB610 \uBC29\uBB38\uD558\uB294 \uCC38\uC0AC\uB97C \uB9C9\uAE30\uC704\uD574
+      // visit\uC5D0 \uB2F4\uC544 \uC90D\uB2C8\uB2E4
+      visit.addAll(tempV);
+    }
+
+    // rev\uB97C \uC815\uBC29\uD5A5\uC73C\uB85C \uD0D0\uC0C9\uD558\uBA70 \uC815\uB2F5\uC774 \uB420 \uACBD\uB85C\uB97C \uB2F4\uC544\uC904 List\uD0C0\uC785\uC758 Q
+    var q2 = Queue<List<String>>()..add([b]);
+    while (q2.isNotEmpty){
+      final tempQ = Queue<List<String>>(); // BFS \uD0D0\uC0C9\uC744 \uC704\uD55C \uC784\uC2DC Q
+      while (q2.isNotEmpty){
+        final cur = q2.removeFirst();
+        // \uD604\uC7AC \uD0D0\uC0C9\uC911\uC778 \uACBD\uB85C\uC758 \uB9C8\uC9C0\uB9C9 \uB178\uB4DC\uAC00 \uB3C4\uCC29 \uB178\uB4DC\uC640 \uAC19\uB2E4\uBA74 \uC774\uB140\uC11D\uC740 \uC815\uB2F5\uC911 \uD558\uB098 \uC784\uC73C\uB85C res\uC5D0 \uB2F4\uC544\uC90D\uB2C8\uB2E4
+        if (cur.last == e) {
+          res.add(cur);
+          continue;
+        }
+        // \uD604\uC7AC \uD0D0\uC0C9\uC911\uC778 \uACBD\uB85C\uC758 \uB9C8\uC9C0\uB9C9 \uB178\uB4DC\uAC00 rev\uC5D0 \uD3EC\uD568\uB418\uC5B4\uC788\uC9C0 \uC54A\uB2E4\uBA74 \uB9C9\uB2E4\uB978 \uACE8\uBAA9\uC5D0 \uBAB0\uB9B0 \uC624\uB2F5\uC784\uC73C\uB85C Pass!
+        if (!rev.containsKey(cur.last)) {
+          continue;
+        }
+        // \uD604\uC7AC \uD0D0\uC0C9\uC911\uC778 \uACBD\uB85C\uC758 \uB9C8\uC9C0\uB9C9 \uB178\uB4DC\uAC00 rev\uC5D0 \uC788\uB2E4\uBA74 \uC0C8\uB85C\uC6B4 list\uC758 \uB05D\uC5D0 \uB2E4\uC74C \uB178\uB4DC\uB97C \uB2F4\uC544 tempQ\uC5D0 \uB2F4\uC544\uC90D\uB2C8\uB2E4
+        for (final next in rev[cur.last]!){
+          tempQ.add([...cur, next]);
+        }
+      }
+      q2 = tempQ;
+    }
+    // \uB05D~
+    return res;
+  }
+
+
+  // \uB178\uB4DC\uAC04 \uC774\uB3D9\uC774 \uAC00\uB2A5\uD55C\uC9C0 \uC5EC\uBD80\uB97C \uCCB4\uD06C\uD558\uB294 \uD568\uC218
+  bool canMove (String from, String to){
+    int diff = 0;
+    for (int i = 0; i < from.length; i++){
+      if (from[i] == to[i]) continue;
+      if (++diff > 1) return false;
+    }
+    return true;
+  }
+}
+```

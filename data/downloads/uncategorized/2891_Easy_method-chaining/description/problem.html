@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2891. Method Chaining</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/method-chaining/">2891. Method Chaining</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>pandas</td>
+            <td>Easy</td>
+            <td>105</td>
+            <td>6</td>
+        </tr>
+    </table>
+
+    
+
+    
+
+    <pre><code>DataFrame <code>animals</code>
++-------------+--------+
+| Column Name | Type   |
++-------------+--------+
+| name        | object |
+| species     | object |
+| age         | int    |
+| weight      | int    |
++-------------+--------+</code></pre>
+
+<p>Write a solution to list the names of animals that weigh <strong>strictly more than</strong> <code>100</code> kilograms.</p>
+
+<p>Return the&nbsp;animals sorted by weight in <strong>descending order</strong>.</p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+DataFrame animals:
++----------+---------+-----+--------+
+| name     | species | age | weight |
++----------+---------+-----+--------+
+| Tatiana  | Snake   | 98  | 464    |
+| Khaled   | Giraffe | 50  | 41     |
+| Alex     | Leopard | 6   | 328    |
+| Jonathan | Monkey  | 45  | 463    |
+| Stefan   | Bear    | 100 | 50     |
+| Tommy    | Panda   | 26  | 349    |
++----------+---------+-----+--------+
+<strong>Output:</strong> 
++----------+
+| name     |
++----------+
+| Tatiana  |
+| Jonathan |
+| Tommy    |
+| Alex     |
++----------+
+<strong>Explanation:</strong> 
+All animals weighing more than 100 should be included in the results table.
+Tatiana&#39;s weight is 464, Jonathan&#39;s weight is 463, Tommy&#39;s weight is 349, and Alex&#39;s weight is 328.
+The results should be sorted in descending order of weight.</code></pre>
+
+<p>&nbsp;</p>
+<p>In Pandas, <strong>method chaining</strong> enables us to&nbsp;perform operations on a DataFrame without breaking up each operation into a separate line or creating multiple temporary variables.&nbsp;</p>
+
+<p>Can you complete this&nbsp;task in just <strong>one line </strong>of code using method chaining?</p>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/method-chaining/">Submissions</a>
+        <a href="https://leetcode.com/problems/method-chaining/">Solutions</a>
+    </div>
+</body>
+</html>

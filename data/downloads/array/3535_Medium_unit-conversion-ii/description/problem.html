@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3535. Unit Conversion II</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/unit-conversion-ii/">3535. Unit Conversion II</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>4</td>
+            <td>7</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/depth-first-search"><code>depth-first-search</code></a> | <a href="https://leetcode.com/tag/breadth-first-search"><code>breadth-first-search</code></a> | <a href="https://leetcode.com/tag/graph"><code>graph</code></a></p>
+    </details>
+
+    
+
+    <p>There are <code>n</code> types of units indexed from <code>0</code> to <code>n - 1</code>.</p>
+
+<p>You are given a 2D integer array <code>conversions</code> of length <code>n - 1</code>, where <code>conversions[i] = [sourceUnit<sub>i</sub>, targetUnit<sub>i</sub>, conversionFactor<sub>i</sub>]</code>. This indicates that a single unit of type <code>sourceUnit<sub>i</sub></code> is equivalent to <code>conversionFactor<sub>i</sub></code> units of type <code>targetUnit<sub>i</sub></code>.</p>
+
+<p>You are also given a 2D integer array <code>queries</code> of length <code>q</code>, where <code>queries[i] = [unitA<sub>i</sub>, unitB<sub>i</sub>]</code>.</p>
+
+<p>Return an array <code face="monospace">answer</code> of length <code>q</code> where <code>answer[i]</code> is the number of units of type <code>unitB<sub>i</sub></code> equivalent to 1 unit of type <code>unitA<sub>i</sub></code>, and can be represented as <code>p/q</code> where <code>p</code> and <code>q</code> are coprime. Return each <code>answer[i]</code> as <code>pq<sup>-1</sup></code> <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>, where <code>q<sup>-1</sup></code> represents the multiplicative inverse of <code>q</code> modulo <code>10<sup>9</sup> + 7</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">conversions = [[0,1,2],[0,2,6]], queries = [[1,2],[1,0]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[3,500000004]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>In the first query, we can convert unit 1 into 3 units of type 2 using the inverse of <code>conversions[0]</code>, then <code>conversions[1]</code>.</li>
+	<li>In the second query, we can convert unit 1 into 1/2 units of type 0 using the inverse of <code>conversions[0]</code>. We return 500000004 since it is the multiplicative inverse of 2.</li>
+</ul>
+<img src="./images/0.png"></div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">conversions = [[0,1,2],[0,2,6],[0,3,8],[2,4,2],[2,5,4],[3,6,3]], queries = [[1,2],[0,4],[6,5],[4,6],[6,1]]</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">[3,12,1,2,83333334]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+	<li>In the first query, we can convert unit 1 into 3 units of type 2 using the inverse of <code>conversions[0]</code>, then <code>conversions[1]</code>.</li>
+	<li>In the second query, we can convert unit 0 into 12 units of type 4 using <code>conversions[1]</code>, then <code>conversions[3]</code>.</li>
+	<li>In the third query, we can convert unit 6 into 1 unit of type 5 using the inverse of <code>conversions[5]</code>, the inverse of <code>conversions[2]</code>, <code>conversions[1]</code>, then <code>conversions[4]</code>.</li>
+	<li>In the fourth query, we can convert unit 4 into 2 units of type 6 using the inverse of <code>conversions[3]</code>, the inverse of <code>conversions[1]</code>, <code>conversions[2]</code>, then <code>conversions[5]</code>.</li>
+	<li>In the fifth query, we can convert unit 6 into 1/12 units of type 1 using the inverse of <code>conversions[5]</code>, the inverse of <code>conversions[2]</code>, then <code>conversions[0]</code>. We return 83333334 since it is the multiplicative inverse of 12.</li>
+</ul>
+<img src="./images/1.png"></div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>2 &lt;= n &lt;= 10<sup>5</sup></code></li>
+	<li><code>conversions.length == n - 1</code></li>
+	<li><code>0 &lt;= sourceUnit<sub>i</sub>, targetUnit<sub>i</sub> &lt; n</code></li>
+	<li><code>1 &lt;= conversionFactor<sub>i</sub> &lt;= 10<sup>9</sup></code></li>
+	<li><code>1 &lt;= q &lt;= 10<sup>5</sup></code></li>
+	<li><code>queries.length == q</code></li>
+	<li><code>0 &lt;= unitA<sub>i</sub>, unitB<sub>i</sub> &lt; n</code></li>
+	<li>It is guaranteed that unit 0 can be <strong>uniquely</strong> converted into any other unit through a combination of forward or backward conversions.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/unit-conversion-ii/">Submissions</a>
+        <a href="https://leetcode.com/problems/unit-conversion-ii/">Solutions</a>
+    </div>
+</body>
+</html>

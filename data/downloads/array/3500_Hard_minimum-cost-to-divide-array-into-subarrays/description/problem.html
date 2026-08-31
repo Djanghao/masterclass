@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3500. Minimum Cost to Divide Array Into Subarrays</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/minimum-cost-to-divide-array-into-subarrays/">3500. Minimum Cost to Divide Array Into Subarrays</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Hard</td>
+            <td>78</td>
+            <td>10</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/array"><code>array</code></a> | <a href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a> | <a href="https://leetcode.com/tag/prefix-sum"><code>prefix-sum</code></a></p>
+    </details>
+
+    
+
+    <p>You are given two integer arrays, <code>nums</code> and <code>cost</code>, of the same size, and an integer <code>k</code>.</p>
+
+<p>You can divide <code>nums</code> into <span data-keyword="subarray-nonempty">subarrays</span>. The cost of the <code>i<sup>th</sup></code> subarray consisting of elements <code>nums[l..r]</code> is:</p>
+
+<ul>
+	<li><code>(nums[0] + nums[1] + ... + nums[r] + k * i) * (cost[l] + cost[l + 1] + ... + cost[r])</code>.</li>
+</ul>
+
+<p><strong>Note</strong> that <code>i</code> represents the order of the subarray: 1 for the first subarray, 2 for the second, and so on.</p>
+
+<p>Return the <strong>minimum</strong> total cost possible from any valid division.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [3,1,4], cost = [4,6,6], k = 1</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">110</span></p>
+
+<p><strong>Explanation:</strong></p>
+The minimum total cost possible can be achieved by dividing <code>nums</code> into subarrays <code>[3, 1]</code> and <code>[4]</code>.
+
+<ul>
+	<li>The cost of the first subarray <code>[3,1]</code> is <code>(3 + 1 + 1 * 1) * (4 + 6) = 50</code>.</li>
+	<li>The cost of the second subarray <code>[4]</code> is <code>(3 + 1 + 4 + 1 * 2) * 6 = 60</code>.</li>
+</ul>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">nums = [4,8,5,1,14,2,2,12,1], cost = [7,2,8,4,2,2,1,1,2], k = 7</span></p>
+
+<p><strong>Output:</strong> 985</p>
+
+<p><strong>Explanation:</strong></p>
+The minimum total cost possible can be achieved by dividing <code>nums</code> into subarrays <code>[4, 8, 5, 1]</code>, <code>[14, 2, 2]</code>, and <code>[12, 1]</code>.
+
+<ul>
+	<li>The cost of the first subarray <code>[4, 8, 5, 1]</code> is <code>(4 + 8 + 5 + 1 + 7 * 1) * (7 + 2 + 8 + 4) = 525</code>.</li>
+	<li>The cost of the second subarray <code>[14, 2, 2]</code> is <code>(4 + 8 + 5 + 1 + 14 + 2 + 2 + 7 * 2) * (2 + 2 + 1) = 250</code>.</li>
+	<li>The cost of the third subarray <code>[12, 1]</code> is <code>(4 + 8 + 5 + 1 + 14 + 2 + 2 + 12 + 1 + 7 * 3) * (1 + 2) = 210</code>.</li>
+</ul>
+</div>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+	<li><code>cost.length == nums.length</code></li>
+	<li><code>1 &lt;= nums[i], cost[i] &lt;= 1000</code></li>
+	<li><code>1 &lt;= k &lt;= 1000</code></li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/minimum-cost-to-divide-array-into-subarrays/">Submissions</a>
+        <a href="https://leetcode.com/problems/minimum-cost-to-divide-array-into-subarrays/">Solutions</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2450. Number of Distinct Binary Strings After Applying Operations</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/">2450. Number of Distinct Binary Strings After Applying Operations</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Algorithms</td>
+            <td>Medium</td>
+            <td>39</td>
+            <td>9</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/math"><code>math</code></a> | <a href="https://leetcode.com/tag/string"><code>string</code></a></p>
+    </details>
+
+    <details>
+        <summary><strong>Companies</strong></summary>
+        <p><code>microsoft</code></p>
+    </details>
+
+    <p>You are given a <strong>binary</strong> string <code>s</code> and a positive integer <code>k</code>.</p>
+
+<p>You can apply the following operation on the string <strong>any</strong> number of times:</p>
+
+<ul>
+	<li>Choose any substring of size <code>k</code> from <code>s</code> and <strong>flip</strong> all its characters, that is, turn all <code>1</code>&#39;s into <code>0</code>&#39;s, and all <code>0</code>&#39;s into <code>1</code>&#39;s.</li>
+</ul>
+
+<p>Return <em>the number of <strong>distinct</strong> strings you can obtain</em>. Since the answer may be too large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>
+
+<p><strong>Note</strong> that:</p>
+
+<ul>
+	<li>A binary string is a string that consists <strong>only</strong> of the characters <code>0</code> and <code>1</code>.</li>
+	<li>A substring is a contiguous part of a string.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> s = &quot;1001&quot;, k = 3
+<strong>Output:</strong> 4
+<strong>Explanation:</strong> We can obtain the following strings:
+- Applying no operation on the string gives s = &quot;1001&quot;.
+- Applying one operation on the substring starting at index 0 gives s = &quot;<u><strong>011</strong></u>1&quot;.
+- Applying one operation on the substring starting at index 1 gives s = &quot;1<u><strong>110</strong></u>&quot;.
+- Applying one operation on both the substrings starting at indices 0 and 1 gives s = &quot;<u><strong>0000</strong></u>&quot;.
+It can be shown that we cannot obtain any other string, so the answer is 4.</code></pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><code><strong>Input:</strong> s = &quot;10110&quot;, k = 5
+<strong>Output:</strong> 2
+<strong>Explanation:</strong> We can obtain the following strings:
+- Applying no operation on the string gives s = &quot;10110&quot;.
+- Applying one operation on the whole string gives s = &quot;01001&quot;.
+It can be shown that we cannot obtain any other string, so the answer is 2.</code></pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= k &lt;= s.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>s[i]</code> is either <code>0</code> or <code>1</code>.</li>
+</ul>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/">Submissions</a>
+        <a href="https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/">Solutions</a>
+    </div>
+</body>
+</html>

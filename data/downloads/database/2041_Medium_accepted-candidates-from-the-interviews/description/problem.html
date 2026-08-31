@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2041. Accepted Candidates From the Interviews</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h1 a { color: #333; text-decoration: none; }
+        h1 a:hover { color: #0066cc; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { padding: 8px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        code { background-color: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+        pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        pre code { background-color: transparent; padding: 0; white-space: pre-wrap; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: 600; padding: 8px; background-color: #f6f8fa; border-radius: 3px; }
+        summary:hover { background-color: #e1e4e8; }
+        hr { border: none; border-top: 1px solid #eee; margin: 30px 0; }
+        .links { margin-top: 20px; }
+        .links a { margin-right: 20px; color: #0066cc; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1><a href="https://leetcode.com/problems/accepted-candidates-from-the-interviews/">2041. Accepted Candidates From the Interviews</a></h1>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Difficulty</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>Medium</td>
+            <td>58</td>
+            <td>28</td>
+        </tr>
+    </table>
+
+    <details>
+        <summary><strong>Tags</strong></summary>
+        <p><a href="https://leetcode.com/tag/database"><code>database</code></a></p>
+    </details>
+
+    
+
+    <p>Table: <code>Candidates</code></p>
+
+<pre><code>+--------------+----------+
+| Column Name  | Type     |
++--------------+----------+
+| candidate_id | int      |
+| name         | varchar  |
+| years_of_exp | int      |
+| interview_id | int      |
++--------------+----------+
+candidate_id is the primary key (column with unique values) for this table.
+Each row of this table indicates the name of a candidate, their number of years of experience, and their interview ID.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Table: <code>Rounds</code></p>
+
+<pre><code>+--------------+------+
+| Column Name  | Type |
++--------------+------+
+| interview_id | int  |
+| round_id     | int  |
+| score        | int  |
++--------------+------+
+(interview_id, round_id) is the primary key (combination of columns with unique values) for this table.
+Each row of this table indicates the score of one round of an interview.</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Write a solution to report the IDs of the candidates who have <strong>at least two</strong> years of experience and the sum of the score of their interview rounds is <strong>strictly greater than <code>15</code></strong>.</p>
+
+<p>Return the result table in <strong>any order</strong>.</p>
+
+<p>The result format is in the following example.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><code><strong>Input:</strong> 
+Candidates table:
++--------------+---------+--------------+--------------+
+| candidate_id | name    | years_of_exp | interview_id |
++--------------+---------+--------------+--------------+
+| 11           | Atticus | 1            | 101          |
+| 9            | Ruben   | 6            | 104          |
+| 6            | Aliza   | 10           | 109          |
+| 8            | Alfredo | 0            | 107          |
++--------------+---------+--------------+--------------+
+Rounds table:
++--------------+----------+-------+
+| interview_id | round_id | score |
++--------------+----------+-------+
+| 109          | 3        | 4     |
+| 101          | 2        | 8     |
+| 109          | 4        | 1     |
+| 107          | 1        | 3     |
+| 104          | 3        | 6     |
+| 109          | 1        | 4     |
+| 104          | 4        | 7     |
+| 104          | 1        | 2     |
+| 109          | 2        | 1     |
+| 104          | 2        | 7     |
+| 107          | 2        | 3     |
+| 101          | 1        | 8     |
++--------------+----------+-------+
+<strong>Output:</strong> 
++--------------+
+| candidate_id |
++--------------+
+| 9            |
++--------------+
+<strong>Explanation:</strong> 
+- Candidate 11: The total score is 16, and they have one year of experience. We do not include them in the result table because of their years of experience.
+- Candidate 9: The total score is 22, and they have six years of experience. We include them in the result table.
+- Candidate 6: The total score is 10, and they have ten years of experience. We do not include them in the result table because the score is not good enough.
+- Candidate 8: The total score is 6, and they have zero years of experience. We do not include them in the result table because of their years of experience and the score.</code></pre>
+
+
+    <hr>
+
+    <div class="links">
+        <a href="https://leetcode.com/problems/accepted-candidates-from-the-interviews/">Submissions</a>
+        <a href="https://leetcode.com/problems/accepted-candidates-from-the-interviews/">Solutions</a>
+    </div>
+</body>
+</html>
